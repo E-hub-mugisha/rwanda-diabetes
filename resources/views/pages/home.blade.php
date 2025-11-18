@@ -323,7 +323,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span>Why Choose Us</span>
+                            <span>About Rwanda Diabetes Association</span>
                             <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                 <g clip-path="url(#clip0_9088_4143)">
                                     <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
@@ -335,14 +335,15 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
-                            Supporting Growth on a Global Scale
+                        <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up">
+                            Leading the Fight Against Diabetes in Rwanda
                         </h2>
                         <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                            We provide dependable and tailored consulting services that help your business navigate challenges, seize opportunities.
+                            Rwanda Diabetes Association is committed to improving the lives of people living with diabetes
+                            through education, prevention, screening, and access to quality care.
                         </p>
                         <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                            <a href="about.html" class="button button--primary" aria-label="More About Us">
+                            <a href="{{ route('about') }}" class="button button--primary" aria-label="More About Us">
                                 More About Us
                                 <span class="svg-wrapper">
                                     <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -422,7 +423,7 @@
                             </div>
                             <div class="content">
                                 <h2 class="heading text-20 fw-700">Our Mission</h2>
-                                <p class="text text-16">Our mission is push engage boundaries, enga audiences, and driv engage.</p>
+                                <p class="text text-16">To improve the well-being of people living with diabetes in Rwanda through prevention, treatment, education</p>
                             </div>
                         </div>
                     </div>
@@ -447,7 +448,7 @@
                             </div>
                             <div class="content">
                                 <h2 class="heading text-20 fw-700">Our Vision</h2>
-                                <p class="text text-16">Our mission is push engage boundaries, enga audiences, and driv engage.</p>
+                                <p class="text text-16">A Rwanda where no one dies from diabetes and every person has access to timely care, education, and support.</p>
                             </div>
                         </div>
                     </div>
@@ -467,8 +468,8 @@
                                 </svg>
                             </div>
                             <div class="content">
-                                <h2 class="heading text-20 fw-700">Our Awards</h2>
-                                <p class="text text-16">Our mission is push engage boundaries, enga audiences, and driv engage.</p>
+                                <h2 class="heading text-20 fw-700">Our Objectives</h2>
+                                <p class="text text-16">Prevent and manage diabetes and reduce its complications through accessible care and early intervention.</p>
                             </div>
                         </div>
                     </div>
@@ -811,7 +812,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span>Why Choose Us</span>
+                            <span>Rwanda Diabetes Initiative</span>
                             <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                 <g clip-path="url(#clip0_9088_4143)">
                                     <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
@@ -824,7 +825,7 @@
                             </svg>
                         </div>
                         <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
-                            Supporting Growth on a Global Scale
+                            Rwanda Diabetes Initiative
                         </h2>
                         <div class="text text-18 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
                             The solar solution company specializes in providing

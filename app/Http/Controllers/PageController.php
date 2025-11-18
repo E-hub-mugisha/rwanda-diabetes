@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+        $posts = Post::where('status', 'published')->orderBy('published_at', 'desc')->take(3)->get();
+        return view('pages.home', compact('posts'));
     }
 
     public function about()
