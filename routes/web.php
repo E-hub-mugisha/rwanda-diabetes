@@ -16,6 +16,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/programs', [PageController::class, 'programs'])->name('programs');
 Route::get('/impact', [PageController::class, 'impact'])->name('impact');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/news', [PageController::class, 'news'])->name('news.index');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 
