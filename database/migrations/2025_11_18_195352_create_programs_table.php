@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->text('short_description')->nullable();
+            $table->longText('content')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('published');
             $table->timestamps();
         });
     }

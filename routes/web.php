@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -52,6 +54,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
     Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
+    Route::get('/programs', [ProgramController::class, 'index'])->name('admin.programs.index');
+    Route::get('/programs/create', [ProgramController::class, 'create'])->name('admin.programs.create');
+    Route::post('/programs', [ProgramController::class, 'store'])->name('admin.programs.store');
+    Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('admin.programs.edit');
+    Route::put('/programs/{program}', [ProgramController::class, 'update'])->name('admin.programs.update');
+    Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('admin.programs.destroy');
+
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+    Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
+    Route::post('/testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+    Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
+    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 });
 
 
