@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('title', 'Latest news')
-
+@section('content')
 
 <div class="page-blog mt-100">
     <div class="container">

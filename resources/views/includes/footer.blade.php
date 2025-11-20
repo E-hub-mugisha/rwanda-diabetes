@@ -13,79 +13,26 @@
                     <div class="col-12 col-lg-6">
                         <div class="contact-form-wrap">
                             <div class="contact-box-headings section-headings">
-                                <div class="subheading text-20 subheading-bg" data-aos="fade-up" data-aos-anchor=".contact-box">
-                                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                        viewBox="0 0 14 14" fill="none">
-                                        <g clip-path="url(#clip0_9088_4143)">
-                                            <path
-                                                d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                                fill="CurrentColor" />
-                                        </g>
-                                        <defs>
-                                            <clipPath>
-                                                <rect width="14" height="14" fill="CurrentColor" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <span>Contact Us</span>
-                                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                        viewBox="0 0 14 14" fill="none">
-                                        <g clip-path="url(#clip0_9088_4143)">
-                                            <path
-                                                d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                                fill="CurrentColor" />
-                                        </g>
-                                        <defs>
-                                            <clipPath>
-                                                <rect width="14" height="14" fill="CurrentColor" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
                                 <h2 class="heading text-50" data-aos="fade-up" data-aos-delay="50" data-aos-anchor=".contact-box">
-                                    Get free business consultation today
+                                    Need support managing diabetes? We're here to help.
                                 </h2>
                                 <p class="text text-18" data-aos="fade-up" data-aos-delay="80" data-aos-anchor=".contact-box">
-                                    Need help with a project, have a question about our work?
-                                    have a question about our work? We're here to help you.
+                                    Get guidance, screening information, and access to care.
                                 </p>
                             </div>
-                            <form action="#" class="form contact-form">
-                                <div class="field w-half" data-aos="fade-right" data-aos-anchor=".contact-form-wrap">
-                                    <label for="ContactForm-name" class="visually-hidden">
-                                        Your Name
-                                    </label>
-                                    <input id="ContactForm-name" class="text text-16" type="text" placeholder="Your Name*" name="name"
-                                        required>
-                                </div>
-                                <div class="field w-half" data-aos="fade-left" data-aos-anchor=".contact-form-wrap">
-                                    <label for="ContactForm-email" class="visually-hidden">
-                                        Your Email
-                                    </label>
-                                    <input id="ContactForm-email" class="text text-16" type="text" placeholder="Your Email*"
-                                        name="email" required>
-                                </div>
-                                <div class="field" data-aos="fade-up" data-aos-anchor=".contact-form-wrap">
-                                    <label for="ContactForm-body" class="visually-hidden">
-                                        Write your message
-                                    </label>
-                                    <textarea id="ContactForm-body" class="text text-16" rows="4" placeholder="Write your message*"
-                                        name="message" required></textarea>
-                                </div>
-                                <div class="form-button" data-aos="fade-up" data-aos-anchor=".contact-form-wrap">
-                                    <button type="submit" class="button button--primary" aria-label="Request Free Consultation">
-                                        Request Free Consultation
-                                        <span class="svg-wrapper">
-                                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                    fill="currentColor"></path>
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="form-button mt-3" data-aos="fade-up" data-aos-anchor=".contact-form-wrap">
+                                <button type="submit" class="button button--primary" aria-label="Request Free Consultation">
+                                    Request Free Consultation
+                                    <span class="svg-wrapper">
+                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,9 +51,7 @@
                                 <img src="assets/img/logo-white.png" alt="Consulo Logo" width="189" height="32" loading="lazy">
                             </a>
                             <p class="text text-16">
-                                Each demo built with Teba will look different. You can
-                                customize almost anything in the appearance of your website
-                                with only a few
+                                Committed to preventing diabetes complications and improving the health and wellbeing of communities across Rwanda.
                             </p>
                             <ul class="social-icons list-unstyled" data-aos="fade-up" data-aos-anchor=".footer-top">
                                 <li>
@@ -158,22 +103,22 @@
                             <ul class="footer-menu list-unstyled">
                                 <li>
                                     <a href="about.html" class="text text-16 link" aria-label="About Us">
-                                        About Us
+                                        Who We Are
                                     </a>
                                 </li>
                                 <li>
                                     <a href="team.html" class="text text-16 link" aria-label="Our Team">
-                                        Our Team
+                                        Mission & Vision
                                     </a>
                                 </li>
                                 <li>
                                     <a href="pricing-plan.html" class="text text-16 link" aria-label="Pricing Plans">
-                                        Pricing Plans
+                                        Our History
                                     </a>
                                 </li>
                                 <li>
                                     <a href="blog.html" class="text text-16 link" aria-label="Blogs">
-                                        Blogs
+                                        Leadership & Governance
                                     </a>
                                 </li>
                                 <li>
@@ -186,29 +131,31 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="footer-widget footer-widget-menu" data-aos="fade-up" data-aos-anchor=".footer-top">
-                            <div class="widget-heading heading text-22">Services</div>
+                            <div class="widget-heading heading text-22">Programs & Services</div>
                             <ul class="footer-menu list-unstyled">
                                 <li>
                                     <a href="project.html" class="text text-16 link" aria-label="UI/UX Design">
-                                        UI/UX Design
+                                        Awareness & Education
                                     </a>
                                 </li>
                                 <li>
                                     <a href="team.html" class="text text-16 link" aria-label="App Development">
-                                        App Development
+                                        Screening & Early Detection
                                     </a>
                                 </li>
                                 <li>
                                     <a href="services.html" class="text text-16 link" aria-label="Digital Marketing">
-                                        Digital Marketing
+                                        Treatment & Patient Support
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="blog.html" class="text text-16 link" aria-label="Web Development">Web Development</a>
+                                    <a href="blog.html" class="text text-16 link" aria-label="Web Development">
+                                        Community Outreach
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="contact.html" class="text text-16 link" aria-label="Cyber Security">
-                                        Cyber Security
+                                        Research & Data
                                     </a>
                                 </li>
                             </ul>
@@ -216,26 +163,31 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="footer-widget footer-widget-menu" data-aos="fade-up" data-aos-anchor=".footer-top">
-                            <div class="widget-heading heading text-22">Information</div>
+                            <div class="widget-heading heading text-22">Resources</div>
                             <ul class="footer-menu list-unstyled">
                                 <li>
                                     <a href="about.html" class="text text-16 link" aria-label="Working Process">
-                                        Working Process
+                                        Diabetes Basics
                                     </a>
                                 </li>
                                 <li>
                                     <a href="privacy-policy.html" class="text text-16 link" aria-label="Privacy Policy">
-                                        Privacy Policy
+                                        Prevention Tips
                                     </a>
                                 </li>
                                 <li>
                                     <a href="terms-condition.html" class="text text-16 link" aria-label="Terms & Conditions">
-                                        Terms & Conditions
+                                        Nutrition & Lifestyle
                                     </a>
                                 </li>
                                 <li>
                                     <a href="faq.html" class="text text-16 link" aria-label="FAQ">
-                                        Faqs
+                                        Publications & Reports
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="faq.html" class="text text-16 link" aria-label="FAQ">
+                                        FAQs
                                     </a>
                                 </li>
                             </ul>
@@ -249,7 +201,7 @@
                 <div class="row footer-bottom-row">
                     <div class="col-12 col-md-6 col-lg-6">
                         <div class="footer-copyright text text-16">
-                            Copyright ©<span class="current-year"></span> SpreeThemes.
+                            Copyright ©<span class="current-year"></span> {{ config('app.name')}}.
                             All rights reserved.
                         </div>
                     </div>
@@ -257,7 +209,7 @@
                         <ul class="footer-menu footer-policies list-unstyled">
                             <li>
                                 <a href="privacy-policy.html" class="text text-16 link" aria-label="Privacy Policy">
-                                    Privacy Policy
+                                    Donate
                                 </a>
                             </li>
                             <li>

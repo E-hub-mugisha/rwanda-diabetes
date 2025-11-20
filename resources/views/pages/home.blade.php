@@ -75,7 +75,7 @@
                         data-aos="fade-up"
                         data-aos-delay="200">
                         <a
-                            href="services.html"
+                            href="{{ route('about') }}"
                             class="button button--primary"
                             aria-label="hero button">
                             Learn More
@@ -300,6 +300,242 @@
     </div>
 </div>
 
+<div class="text-image-sticky mt-100">
+    <div class="container">
+        <div class="section-headings section-headings-horizontal align-items-start overflow-hidden">
+            <div class="section-headings-left">
+                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right">
+                    Get to know about Diabetes, Awareness, Support
+                </h2>
+            </div>
+            <div class="section-headings-right text text-18 aos-init aos-animate" data-aos="fade-left">
+                The solar solution company specializes in providing innovative,
+                eco-friendly energy systems harness the power, reducing carbon
+                footprints and energy for clients worldwide.
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="image-text-card radius18">
+                <div class="row align-items-center product-grid">
+                    <div class="col-lg-6 col-12">
+                        <div class="content section-headings">
+                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>Awareness</span>
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
+                                Diabetes Awareness
+                            </h2>
+                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                                Learn the basics of diabetes, symptoms, risk factors, and how to stay healthy.
+                            </div>
+                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
+                                <a href="project.html" class="button button--primary" aria-label="More About Us">
+                                    Learn More
+                                    <span class="svg-wrapper">
+                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="visually-hidden">To learn more about diabetes & awareness, click this
+                                        button.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
+                            <img src="assets/img/project/1.jpg" width="1000" height="707" loading="lazy" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-text-card radius18">
+                <div class="row align-items-center product-grid">
+                    <div class="col-lg-6 col-12">
+                        <div class="content section-headings">
+                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>Screening & Support</span>
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
+                                Screening & Support
+                            </h2>
+                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                                Find screening programs, counseling services, and patient follow-up support.
+                            </div>
+                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
+                                <a href="project.html" class="button button--primary" aria-label="More About Us">
+                                    Learn More
+                                    <span class="svg-wrapper">
+                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="visually-hidden">To learn more about the Screening & support, click this
+                                        button.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
+                            <img src="assets/img/project/2.jpg" width="1000" height="707" loading="lazy" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-text-card radius18">
+                <div class="row align-items-center product-grid">
+                    <div class="col-lg-6 col-12">
+                        <div class="content section-headings">
+                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>Programs & Initiatives</span>
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
+                                Programs & Initiatives
+                            </h2>
+                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                                Explore our community outreach, education programs, and nationwide campaigns.
+                            </div>
+                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
+                                <a href="project.html" class="button button--primary" aria-label="More About Us">
+                                    Learn More
+                                    <span class="svg-wrapper">
+                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="visually-hidden">To learn more about our initiatives, click this
+                                        button.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
+                            <img src="assets/img/project/3.jpg" width="1000" height="707" loading="lazy" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-text-card radius18">
+                <div class="row align-items-center product-grid">
+                    <div class="col-lg-6 col-12">
+                        <div class="content section-headings">
+                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>Education Resources</span>
+                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <g clip-path="url(#clip0_9088_4143)">
+                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath>
+                                            <rect width="14" height="14" fill="CurrentColor"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
+                                Education Resources and learning
+                            </h2>
+                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                                Download guides, infographics, and materials for families and caregivers.
+                            </div>
+                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
+                                <a href="project.html" class="button button--primary" aria-label="More About Us">
+                                    Learn More
+                                    <span class="svg-wrapper">
+                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="visually-hidden">To learn more about diabetes & awareness, click this
+                                        button.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
+                            <img src="assets/img/project/1.jpg" width="1000" height="707" loading="lazy" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="why-choose-us mt-100 section-padding">
     <div class="container">
         <div class="choose-top">
@@ -342,9 +578,13 @@
                             Rwanda Diabetes Association is committed to improving the lives of people living with diabetes
                             through education, prevention, screening, and access to quality care.
                         </p>
+                        <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                            The Rwanda Diabetes Association has been improving the lives of people living with diabetes since 1997.
+                            Through education, advocacy, and community support, we work to prevent complications and ensure every Rwandan has access to reliable diabetes care.
+                        </p>
                         <div class="buttons aos-init aos-animate" data-aos="fade-up">
                             <a href="{{ route('about') }}" class="button button--primary" aria-label="More About Us">
-                                More About Us
+                                Learn About Us
                                 <span class="svg-wrapper">
                                     <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
@@ -510,12 +750,15 @@
                     </svg>
                 </div>
                 <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Explore more of our programs
+                    Explore more of our programs overview
                 </h2>
+                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                    We deliver a wide range of programs designed to prevent diabetes complications and support individuals, families, and communities.
+                </p>
             </div>
             <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
                 <a href="services.html" class="button button--primary" aria-label="hero button">
-                    See All Programs
+                    Explore Programs
                     <span class="svg-wrapper">
                         <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
@@ -574,7 +817,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M18 13H13V18C13 18.2652 12.8946 18.5196 12.7071 18.7071C12.5196 18.8946 12.2652 19 12 19C11.7348 19 11.4804 18.8946 11.2929 18.7071C11.1054 18.5196 11 18.2652 11 18V13H6C5.73478 13 5.48043 12.8946 5.29289 12.7071C5.10536 12.5196 5 12.2652 5 12C5 11.7348 5.10536 11.4804 5.29289 11.2929C5.48043 11.1054 5.73478 11 6 11H11V6C11 5.73478 11.1054 5.48043 11.2929 5.29289C11.4804 5.10536 11.7348 5 12 5C12.2652 5 12.5196 5.10536 12.7071 5.29289C12.8946 5.48043 13 5.73478 13 6V11H18C18.2652 11 18.5196 11.1054 18.7071 11.2929C18.8946 11.4804 19 11.7348 19 12C19 12.2652 18.8946 12.5196 18.7071 12.7071C18.5196 12.8946 18.2652 13 18 13Z" fill="CurrentColor"></path>
                                 </svg>
-                                Nutritions  & Lifestyle
+                                Nutritions & Lifestyle
                             </li>
                         </ul>
                     </a>
@@ -593,7 +836,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-28">Plan development</h2>
+                        <h2 class="heading text-28">Screening & early detection</h2>
                         <div class="text text-16">
                             See how our tailored solutions can boost your business. From
                             planning to support.
@@ -634,7 +877,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-28">Finance strategy</h2>
+                        <h2 class="heading text-28">Treatment support</h2>
                         <div class="text text-16">
                             See how our tailored solutions can boost your business. From
                             planning to support.
@@ -677,7 +920,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-28">Investment Idea</h2>
+                        <h2 class="heading text-28">Research & data collection</h2>
                         <div class="text text-16">
                             See how our tailored solutions can boost your business. From
                             planning to support.
@@ -726,7 +969,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-28">Finance strategy</h2>
+                        <h2 class="heading text-28">Community outreach activities</h2>
                         <div class="text text-16">
                             See how our tailored solutions can boost your business. From
                             planning to support.
@@ -795,6 +1038,9 @@
     </div>
 </div>
 
+
+
+
 <div class="promotion mt-100 section-padding">
     <div class="container">
         <div class="promotion-container">
@@ -825,13 +1071,10 @@
                             </svg>
                         </div>
                         <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
-                            Rwanda Diabetes Initiative
+                            Our Initiative Impact
                         </h2>
                         <div class="text text-18 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
-                            The solar solution company specializes in providing
-                            innovative, eco-friendly energy systems that harness the
-                            power, reducing carbon footprints and energy for clients
-                            worldwide.
+                            Building Healthier Communities through awareness campaigns, support
                         </div>
                         <ul class="promotion-lists list-unstyled">
                             <li class="promotion-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="10">
@@ -848,11 +1091,11 @@
                                         </defs>
                                     </svg>
                                     <div class="text text-18 fw-600">
-                                        99% Winning <br>Guarantee
+                                        40,000+
                                     </div>
                                 </div>
                                 <div class="promotion-text text text-16">
-                                    The solar solution company specializes innovative.
+                                    people reached through awareness campaigns
                                 </div>
                             </li>
                             <li class="promotion-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
@@ -869,17 +1112,17 @@
                                         </defs>
                                     </svg>
                                     <div class="text text-18 fw-600">
-                                        Full Time <br>Support
+                                        Initiative
                                     </div>
                                 </div>
                                 <div class="promotion-text text text-16">
-                                    The solar solution company specializes innovative.
+                                    A growing impact across Rwanda.
                                 </div>
                             </li>
                         </ul>
                         <div class="buttons aos-init aos-animate" data-aos="fade-up">
                             <a href="promotion.html" class="button button--secondary" aria-label="View All Details">
-                                Discover More
+                                Our Impact
                                 <span class="svg-wrapper">
                                     <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
@@ -900,17 +1143,17 @@
                     <div class="counter-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
                         <h2 class="heading text-50" data-target="20">20<span>k+</span>
                         </h2>
-                        <div class="text text-18 fw-500">Project completed</div>
+                        <div class="text text-18 fw-500">screened annually</div>
                     </div>
                     <div class="counter-item">
-                        <h2 class="heading text-50" data-target="12">12<span>k+</span>
+                        <h2 class="heading text-50" data-target="12">2<span>k+</span>
                         </h2>
-                        <div class="text text-18 fw-500">Happy customers</div>
+                        <div class="text text-18 fw-500">clinics supported</div>
                     </div>
                     <div class="counter-item aos-init aos-animate" data-aos="fade-down" data-aos-delay="50">
                         <h2 class="heading text-50" data-target="25">25<span>+</span>
                         </h2>
-                        <div class="text text-18 fw-500">Years experiences</div>
+                        <div class="text text-18 fw-500">Health professionals trained</div>
                     </div>
                 </div>
             </counter-up>
@@ -1027,11 +1270,11 @@
                             </svg>
                         </div>
                         <h2 class="heading text-50">
-                            See what our customers have to say about us
+                            Success story from our community outreach
                         </h2>
                     </div>
                     <div class="section-headings-bottom section-headings-horizontal">
-                        <div class="text text-18">Discover how we've helped businesses like yours succeed through real feedback, genuine experiences, and proven results from our valued clients.</div>
+                        <div class="text text-18">Real stories from individuals whose lives have been transformed through early detection, education, and support.</div>
                     </div>
                 </div>
             </div>
@@ -1234,7 +1477,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <span>Our Blog</span>
+                    <span>Our news & updates</span>
                     <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <g clip-path="url(#clip0_9088_4143)">
                             <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
@@ -1247,8 +1490,11 @@
                     </svg>
                 </div>
                 <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Latest News From Us
+                    Latest News & updates
                 </h2>
+                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
+                </p>
             </div>
             <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
                 <a href="services.html" class="button button--primary" aria-label="See All Post">
@@ -1387,4 +1633,54 @@
         </div>
     </div>
 </div>
+
+<div class="text-banner">
+    <div class="container-fluid">
+        <div class="text-banner-inner radius18">
+            <div class="section-headings">
+                <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <g clip-path="url(#clip0_9088_4143)">
+                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="14" height="14" fill="CurrentColor"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span>Learning resources</span>
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <g clip-path="url(#clip0_9088_4143)">
+                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="14" height="14" fill="CurrentColor"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="heading text-80 aos-init aos-animate" data-aos="fade-up">
+                    Resources & Education Hub
+                </h2>
+                <p class="text text-24 aos-init aos-animate" data-aos="fade-up">
+                    Explore easy-to-understand guides, prevention tips, nutrition advice, and tools to help you manage diabetes at home.
+                </p>
+                <div class="buttons aos-init aos-animate" data-aos="fade-up">
+                    <a href="services.html" class="button button--secondary" aria-label="See More Services">
+                        View our resources
+                        <span class="svg-wrapper">
+                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
+                            </svg>
+                        </span>
+                        <span class="visually-hidden">To learn more about our resources, click this button.</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

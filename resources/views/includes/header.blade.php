@@ -24,145 +24,7 @@
                             </drawer-opener>
                         </div>
                         <ul class="header-menu list-unstyled">
-                            <li class="nav-item">
-                                <a class="menu-link menu-link-main menu-accrodion" href="index-6.html">
-                                    Home
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="services.html">
-                                    GET INVOLVED
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">
-                                                GET INVOLVED
-                                            </a>
-                                            <ul class="reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="services.html">
-                                                        <div class="heading text-20">
-                                                            Partner with us
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Links customers with trusted Partners who help
-                                                            them realize greater value—faster—through
-                                                            Consulo.
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="project.html">
-                                                        <div class="heading text-20">
-                                                            Case Studies
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Hundreds of emerging brands thrive with
-                                                            Consulo. Discover their journeys.
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="project-details.html">
-                                                        <div class="heading text-20">
-                                                            Community Groups
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Speed up innovation to enable quicker,
-                                                            effective team-driven product launches.
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="project.html">
-                                                FEATURED CASE STUDY
-                                            </a>
-                                            <ul class="reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link megamenu-image-wrap" href="project-details.html">
-                                                        <picture>
-                                                            <source media="(max-width: 575px)" srcset="assets/img/menu/575.jpg">
-                                                            <img src="assets/img/menu/1.jpg" width="1000" height="668" loading="lazy"
-                                                                alt="Hero Image">
-                                                        </picture>
-                                                        <div class="content">
-                                                            <div class="heading text-20">
-                                                                <div class="heading text-20">
-                                                                    Consulo Subscriptions
-                                                                </div>
-                                                                <div class="text text-14">
-                                                                    Hundreds of emerging brands thrive with
-                                                                    Consulo. Discover their journeys.
-                                                                </div>
-                                                            </div>
-                                                            <div class="button button--primary">
-                                                                <span class="svg-wrapper">
-                                                                    <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                                            fill="currentColor"></path>
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="contact.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path opacity="0.5" d="M8 10.5H16" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                    <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                </svg>
-                                                Contact Sales
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="project-details.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                </svg>
-                                                Watch Demo
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="team.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M13 15C13 16.1046 13 17 9 17C5 17 5 16.1046 5 15C5 13.8954 6.79086 13 9 13C11.2091 13 13 13.8954 13 15Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C21.298 5.64118 21.5794 6.2255 21.748 7"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                </svg>
-                                                Webinars
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                            
                             <li class="nav-item nav-item-static">
                                 <a class="menu-link menu-link-main menu-accrodion" href="faq.html">
                                     ABOUT US
@@ -675,6 +537,137 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="nav-item nav-item-static">
+                                <a class="menu-link menu-link-main menu-accrodion" href="services.html">
+                                    GET INVOLVED
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                    </svg>
+                                </a>
+                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item">
+                                            <a class="menu-link heading fw-300" href="blog.html">
+                                                GET INVOLVED
+                                            </a>
+                                            <ul class="reset-submenu list-unstyled submenu-color">
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="services.html">
+                                                        <div class="heading text-20">
+                                                            Partner with us
+                                                        </div>
+                                                        <div class="text text-14">
+                                                            Links customers with trusted Partners who help
+                                                            them realize greater value—faster—through
+                                                            Consulo.
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="project.html">
+                                                        <div class="heading text-20">
+                                                            Case Studies
+                                                        </div>
+                                                        <div class="text text-14">
+                                                            Hundreds of emerging brands thrive with
+                                                            Consulo. Discover their journeys.
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="project-details.html">
+                                                        <div class="heading text-20">
+                                                            Community Groups
+                                                        </div>
+                                                        <div class="text text-14">
+                                                            Speed up innovation to enable quicker,
+                                                            effective team-driven product launches.
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link heading fw-300" href="project.html">
+                                                FEATURED CASE STUDY
+                                            </a>
+                                            <ul class="reset-submenu list-unstyled submenu-color">
+                                                <li class="nav-item">
+                                                    <a class="menu-link megamenu-image-wrap" href="project-details.html">
+                                                        <picture>
+                                                            <source media="(max-width: 575px)" srcset="assets/img/menu/575.jpg">
+                                                            <img src="assets/img/menu/1.jpg" width="1000" height="668" loading="lazy"
+                                                                alt="Hero Image">
+                                                        </picture>
+                                                        <div class="content">
+                                                            <div class="heading text-20">
+                                                                <div class="heading text-20">
+                                                                    Consulo Subscriptions
+                                                                </div>
+                                                                <div class="text text-14">
+                                                                    Hundreds of emerging brands thrive with
+                                                                    Consulo. Discover their journeys.
+                                                                </div>
+                                                            </div>
+                                                            <div class="button button--primary">
+                                                                <span class="svg-wrapper">
+                                                                    <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
+                                                                            fill="currentColor"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item megamenu-links">
+                                            <a class="menu-link text-14 fw-300" href="contact.html">
+                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
+                                                        stroke="currentColor" stroke-width="1.5" />
+                                                    <path opacity="0.5" d="M8 10.5H16" stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" />
+                                                    <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" />
+                                                </svg>
+                                                Contact Sales
+                                            </a>
+                                            <a class="menu-link text-14 fw-300" href="project-details.html">
+                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                                                    <path
+                                                        d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
+                                                        stroke="currentColor" stroke-width="1.5" />
+                                                </svg>
+                                                Watch Demo
+                                            </a>
+                                            <a class="menu-link text-14 fw-300" href="team.html">
+                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
+                                                    <path
+                                                        d="M13 15C13 16.1046 13 17 9 17C5 17 5 16.1046 5 15C5 13.8954 6.79086 13 9 13C11.2091 13 13 13.8954 13 15Z"
+                                                        stroke="currentColor" stroke-width="1.5" />
+                                                    <path
+                                                        d="M22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C21.298 5.64118 21.5794 6.2255 21.748 7"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                    <path d="M19 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                    <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                    <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                </svg>
+                                                Webinars
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
 
                         <div class="drawer-content d-lg-none">
@@ -789,20 +782,20 @@
     </div>
     <div class="drawer-content">
         <div class="drawer-block">
-            <div class="drawer-heading text text-18">Our Services</div>
+            <div class="drawer-heading text text-18">Our Programs</div>
             <ul class="drawer-additional-menu list-unstyled flex-direction-column">
                 <li class="nav-item">
-                    <a class="menu-link" href="services.html">Launch with Consulo</a>
+                    <a class="menu-link" href="services.html">Awareness & Education</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-link" href="project.html">Migrate to Consulo</a>
+                    <a class="menu-link" href="project.html">Screening & Early Detection</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-link" href="contact.html">Partner Services</a>
+                    <a class="menu-link" href="contact.html">Diabetes Basics</a>
                 </li>
                 <li class="nav-item">
                     <a class="menu-link" href="project-details.html">
-                        Professional Services
+                        Resources
                     </a>
                 </li>
             </ul>
@@ -818,7 +811,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                         </svg>
-                        Peel House, 30 The Downs
+                        Kigali City, Rwanda
                     </div>
                 </li>
                 <li class="nav-item">
@@ -838,7 +831,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
                         </svg>
-                        consulo@email.com
+                        info@rwandadiabetes.rw
                     </a>
                 </li>
             </ul>
