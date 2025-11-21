@@ -26,7 +26,7 @@
                         <ul class="header-menu list-unstyled">
                             
                             <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="faq.html">
+                                <a class="menu-link menu-link-main menu-accrodion" href="#">
                                     ABOUT US
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
@@ -35,24 +35,24 @@
                                 <div class="header-megamenu header-submenu menu-absolute submenu-color">
                                     <ul class="list-unstyled">
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Organization</a>
+                                            <a class="menu-link heading fw-300">Organization</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="services.html">
+                                                    <a class="menu-link" href="{{ route('about')}}">
                                                         <div class="heading text-18 fw-500">
                                                             who we are
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="service-details.html">
+                                                    <a class="menu-link" href="{{ route('values')}}">
                                                         <div class="heading text-18 fw-500">
                                                             Mission, Vision & objectives
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="pricing-plan.html">
+                                                    <a class="menu-link" href="{{ route('history')}}">
                                                         <div class="heading text-18 fw-500">
                                                             our history
                                                         </div>
@@ -61,7 +61,7 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">LeaderShip</a>
+                                            <a class="menu-link heading fw-300" href="#">LeaderShip</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="blog.html">
@@ -111,10 +111,10 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Partnerships</a>
+                                            <a class="menu-link heading fw-300" href="#">Partnerships</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="project.html">
+                                                    <a class="menu-link" href="{{ route('partners')}}">
                                                         <div class="heading text-18 fw-500">
                                                             Our Partners
                                                         </div>
@@ -128,7 +128,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="team.html">
+                                                    <a class="menu-link" href="{{ route('success.stories')}}">
                                                         <div class="heading text-18 fw-500">
                                                             Success Stories
                                                         </div>
@@ -505,7 +505,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="menu-link menu-link-main menu-accrodion" href="blog.html">
+                                <a class="menu-link menu-link-main menu-accrodion" href="#">
                                     NEWS & STORIES
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
@@ -514,7 +514,7 @@
                                 <div class="header-submenu menu-absolute submenu-color">
                                     <ul class="list-unstyled">
                                         <li class="nav-item">
-                                            <a class="menu-link" href="blog.html">Latest News</a>
+                                            <a class="menu-link" href="{{ route('news.index')}}">Latest News</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="menu-link" href="blog-details.html">
@@ -538,7 +538,7 @@
                                 </div>
                             </li>
                             <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="services.html">
+                                <a class="menu-link menu-link-main menu-accrodion" href="#">
                                     GET INVOLVED
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
@@ -552,7 +552,7 @@
                                             </a>
                                             <ul class="reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="services.html">
+                                                    <a class="menu-link" href="{{ route('partner_with_us')}}">
                                                         <div class="heading text-20">
                                                             Partner with us
                                                         </div>

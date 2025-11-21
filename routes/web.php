@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -17,10 +19,16 @@ Route::get('/programs', [PageController::class, 'programs'])->name('programs');
 Route::get('/impact', [PageController::class, 'impact'])->name('impact');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/news', [PageController::class, 'news'])->name('news.index');
+Route::get('/news/details/{id}', [PageController::class, 'newsDetail'])->name('news.detail');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
-
-
+Route::get('/values', [PageController::class, 'values'])->name('values');
+Route::get('/history', [PageController::class, 'history'])->name('history');
+Route::get('/partners', [PageController::class, 'partners'])->name('partners');
+Route::get('/success_stories', [PageController::class, 'successStories'])->name('success.stories');
+Route::get('/stories', [PageController::class, 'story'])->name('stories.index');
+Route::get('/stories/{slug}', [PageController::class, 'showStory'])->name('stories.show');
+Route::get('/partner_with_us', [PageController::class, 'PartnerWithUs'])->name('partner_with_us');
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),
@@ -69,6 +77,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
     Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
+
+    Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('admin.articles.create');
+    Route::post('/articles', [ArticleController::class, 'store'])->name('admin.articles.store');
+    Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
+    Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('admin.articles.update');
+    Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
+
+    Route::get('/stories', [StoryController::class, 'index'])->name('admin.stories.index');
+    Route::get('/stories/create', [StoryController::class, 'create'])->name('admin.stories.create');
+    Route::post('/stories', [StoryController::class, 'store'])->name('admin.stories.store');
+    Route::get('/stories/{story}/edit', [StoryController::class, 'edit'])->name('admin.stories.edit');
+    Route::put('/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
+    Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('admin.stories.destroy');
 });
 
 

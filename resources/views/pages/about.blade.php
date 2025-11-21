@@ -88,7 +88,7 @@
                         For more than two decades, we have partnered with local and international institutions to promote better health, reduce stigma, and ensure that reliable information and lifesaving support reach communities everywhere.
                     </div>
                     <div class="buttons" data-aos="fade-up">
-                        <a href="about.html" class="button button--primary" aria-label="More About Us">
+                        <a href="{{ route('about') }}" class="button button--primary" aria-label="More About Us">
                             More About Us
                             <span class="svg-wrapper">
                                 <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -221,7 +221,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="about.html" class="button button--secondary aos-init aos-animate" aria-label="hero button" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#" class="button button--secondary aos-init aos-animate" aria-label="hero button" data-aos="fade-up" data-aos-delay="300">
                         Our Impact
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
