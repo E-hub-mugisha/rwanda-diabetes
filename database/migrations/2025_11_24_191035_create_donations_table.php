@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('donations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('logo')->nullable();
-            $table->string('website')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->text('description')->nullable();
-            $table->enum('type', ['hospital', 'university', 'ngo', 'corporate', 'government', 'media', 'other'])->default('other');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->decimal('amount', 12, 2);
+            $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->string('payment_gateway')->default('flutterwave');
+            $table->string('transaction_id')->nullable();
+            $table->json('meta')->nullable(); // store additional info
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('donations');
     }
 };

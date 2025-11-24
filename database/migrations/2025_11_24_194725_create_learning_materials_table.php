@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table) {
+        Schema::create('learning_materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('image')->nullable();
-            $table->text('short_description')->nullable();
+            $table->text('excerpt')->nullable();
             $table->longText('content')->nullable();
-            $table->enum('status', ['draft', 'published'])->default('published');
+            $table->string('material_type')->default('article'); // article, video, pdf, infographic
+            $table->string('file')->nullable(); // file path if uploaded
+            $table->string('thumbnail')->nullable();
+            $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->foreignId('author_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programs');
+        Schema::dropIfExists('learning_materials');
     }
 };

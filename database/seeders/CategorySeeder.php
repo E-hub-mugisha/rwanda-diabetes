@@ -23,6 +23,12 @@ class CategorySeeder extends Seeder
             ['name' => 'Programs & Services', 'slug' => 'programs-services'],
             ['name' => 'News & Updates', 'slug' => 'news-updates'],
             ['name' => 'Events', 'slug' => 'events'],
+            ['name' => 'Type 1 Diabetes', 'slug' => 'type-1-diabetes'],
+            ['name' => 'Type 2 Diabetes', 'slug' => 'type-2-diabetes'],
+            ['name' => 'Gestational Diabetes', 'slug' => 'gestational-diabetes'],
+            ['name' => 'Prevention', 'slug' => 'prevention'],
+            ['name' => 'Nutrition', 'slug' => 'nutrition'],
+            ['name' => 'Lifestyle', 'slug' => 'lifestyle'],
         ];
 
         foreach ($categories as $category) {

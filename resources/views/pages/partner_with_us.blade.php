@@ -18,7 +18,7 @@
                     <div class="text text-18 fw-500">Trusted <br> Partners</div>
                 </div>
                 <div class="buttons d-flex gap-4 flex-wrap aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <a href="contact.html" class="button button--primary" aria-label="hero button">
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#partnerModal" class="button button--primary" aria-label="hero button">
                         Become a Partner Today
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,6 +124,7 @@
         </div>
         <div class="section-content">
             <div class="row product-grid">
+                @foreach($partners as $partner)
                 <div class="col-lg-3 col-sm-4 col-6">
                     <div class="brand-logo aos-init aos-animate" data-aos="fade-up">
                         <a href="about.html" class="content-link">
@@ -131,55 +132,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b2.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b3.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b4.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b5.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b6.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b2.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b4.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -246,7 +199,7 @@
                         </li>
                     </ul>
                     <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                        <a href="promotion.html" class="button button--secondary" aria-label="View All Details">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#partnerModal" class="button button--secondary" aria-label="View All Details">
                             Partner with us
                             <span class="svg-wrapper">
                                 <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,4 +219,81 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="partnerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="partnerModalLabel">Partner With Us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('partners.store.request') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
+                    <div class="mb-3">
+                        <label class="form-label">Organization / Company Name</label>
+                        <input type="text" name="organization" class="form-control" value="{{ old('organization') }}" required>
+                        @error('organization') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contact Person</label>
+                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                        @error('name') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                        @error('email') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                        @error('phone') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Partnership Type</label>
+                        <select name="type" class="form-control" required>
+                            <option value="">Select Type</option>
+                            <option value="hospital">Hospital / Clinic</option>
+                            <option value="university">University / Research</option>
+                            <option value="ngo">NGO / Community</option>
+                            <option value="corporate">Corporate</option>
+                            <option value="government">Government</option>
+                            <option value="media">Media / Tech</option>
+                            <option value="other">Other</option>
+                        </select>
+                        @error('type') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Message / Proposal</label>
+                        <textarea name="message" class="form-control" rows="4" required>{{ old('message') }}</textarea>
+                        @error('message') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 @endsection

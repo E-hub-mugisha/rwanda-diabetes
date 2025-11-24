@@ -26,5 +26,14 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'volunteer']);
+
+        $this->call([
+            CategorySeeder::class,
+            PostSeeder::class,
+            ArticleSeeder::class,
+            StorySeeder::class,
+            TeamMemberSeeder::class,
+            ProgramsTableSeeder::class,
+        ]);
     }
 }

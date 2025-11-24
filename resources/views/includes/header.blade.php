@@ -24,7 +24,7 @@
                             </drawer-opener>
                         </div>
                         <ul class="header-menu list-unstyled">
-                            
+
                             <li class="nav-item nav-item-static">
                                 <a class="menu-link menu-link-main menu-accrodion" href="#">
                                     ABOUT US
@@ -52,59 +52,9 @@
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('history')}}">
+                                                    <a class="menu-link" href="{{ route('our-team')}}">
                                                         <div class="heading text-18 fw-500">
-                                                            our history
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="#">LeaderShip</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog.html">
-                                                        <div class="heading text-18 fw-500">Board Members</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-list.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Management Team
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Profile
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Governance & Transparency</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="about.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Annual Reports
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Policies & Guidelines
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact-2.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Financial Reports
+                                                            Our Team
                                                         </div>
                                                     </a>
                                                 </li>
@@ -114,7 +64,7 @@
                                             <a class="menu-link heading fw-300" href="#">Partnerships</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('partners')}}">
+                                                    <a class="menu-link" href="{{ route('partner_with_us')}}">
                                                         <div class="heading text-18 fw-500">
                                                             Our Partners
                                                         </div>
@@ -181,8 +131,53 @@
                                 </div>
                             </li>
                             <li class="nav-item nav-item-static">
+                                <a class="menu-link menu-link-main menu-accrodion" href="#">
+                                    PROGRAMS & INITIATIVES
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                    </svg>
+                                </a>
+
+                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
+                                    <ul class="list-unstyled">
+                                        @foreach(\App\Models\Category::with('programs')->get() as $category)
+                                        <li class="nav-item">
+                                            <a class="menu-link heading fw-300" href="{{ route('programs.category', $category->slug) }}">
+                                                {{ $category->name }}
+                                            </a>
+
+                                            @if($category->programs->count() > 0)
+                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+                                                @foreach($category->programs->take(5) as $program)
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="{{ route('programs.show', $program->slug) }}">
+                                                        <div class="heading text-18 fw-500">
+                                                            {{ $program->title }}
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                @endforeach
+
+                                                @if($category->programs->count() > 5)
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="{{ route('programs.category', $category->slug) }}">
+                                                        <div class="heading text-18 fw-500">
+                                                            See all
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                @endif
+                                            </ul>
+                                            @endif
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item nav-item-static">
                                 <a class="menu-link menu-link-main menu-accrodion" href="faq.html">
-                                    PROGRAMS & SERVICES
+                                    RESOURCES
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
                                     </svg>
@@ -190,116 +185,52 @@
                                 <div class="header-megamenu header-submenu menu-absolute submenu-color">
                                     <ul class="list-unstyled">
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Awareness & Education</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="services.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Diabetes Basics
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="service-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Prevention & Early Detection
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="pricing-plan.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Nutrition & Lifestyle
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Medical Services</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog.html">
-                                                        <div class="heading text-18 fw-500">Clinics & Screening</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-list.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Insulin Support
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Complication Prevention & Medication Guides
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Youth & Communities</a>
+                                            <a class="menu-link heading fw-300" href="blog.html">Research</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="about.html">
                                                         <div class="heading text-18 fw-500">
-                                                           Youth Programs
+                                                            Publications
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="contact.html">
                                                         <div class="heading text-18 fw-500">
-                                                            School Outreach
+                                                            Local Studies
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="contact-2.html">
                                                         <div class="heading text-18 fw-500">
-                                                            Community Education
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact-2.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Training Health Workers
+                                                            Global Recommendations
                                                         </div>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Initiatives</a>
+                                            <a class="menu-link heading fw-300" href="blog.html">Downloads</a>
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="project.html">
                                                         <div class="heading text-18 fw-500">
-                                                            Community Screening Events
+                                                            PDF Downloads
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="project-details.html">
                                                         <div class="heading text-18 fw-500">
-                                                            Rural Outreach
+                                                            Kinyarwanda Resources
                                                         </div>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="team.html">
                                                         <div class="heading text-18 fw-500">
-                                                            Research & Advocacy
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="team.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Emergency Guidance (DKA, Hypo)
+                                                            Toolkits & Training Downloads
                                                         </div>
                                                     </a>
                                                 </li>
@@ -350,160 +281,50 @@
                                 </div>
                             </li>
                             <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="faq.html">
-                                    RESOURCES
+                                <a class="menu-link menu-link-main menu-accrodion" href="#">
+                                    LEARNING TIPS
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
                                     </svg>
                                 </a>
+
                                 <div class="header-megamenu header-submenu menu-absolute submenu-color">
                                     <ul class="list-unstyled">
+                                        @foreach(\App\Models\Category::with('materials')->get() as $category)
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Learning Materials</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="services.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Guides & Manuals
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="service-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Infographics
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="pricing-plan.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Posters & Flyers
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Medical Resources</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog.html">
-                                                        <div class="heading text-18 fw-500">Diabetes Management</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-list.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Foot Care
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="blog-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Medication & Glucose Monitoring
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Research</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="about.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Publications
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Local Studies
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact-2.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Global Recommendations
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Downloads</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="project.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            PDF Downloads
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="project-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Kinyarwanda Resources
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="team.html">
-                                                        <div class="heading text-18 fw-500">
-                                                           Toolkits & Training Downloads
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="contact.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path opacity="0.5" d="M8 10.5H16" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                    <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                </svg>
-                                                Contact Sales
+                                            <a class="menu-link heading fw-300" href="{{ route('materials.category', $category->slug) }}">
+                                                {{ $category->name }}
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="project-details.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                </svg>
-                                                Watch Demo
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="team.html">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M13 15C13 16.1046 13 17 9 17C5 17 5 16.1046 5 15C5 13.8954 6.79086 13 9 13C11.2091 13 13 13.8954 13 15Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C21.298 5.64118 21.5794 6.2255 21.748 7"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                </svg>
-                                                Webinars
-                                            </a>
+
+                                            <!-- @if($category->materials->count() > 0)
+                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+                                                @foreach($category->materials->take(5) as $material)
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="{{ route('materials.show', $material->slug) }}">
+                                                        <div class="heading text-18 fw-500">
+                                                            {{ $material->title }}
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                @endforeach
+
+                                                @if($category->materials->count() > 5)
+                                                <li class="nav-item">
+                                                    <a class="menu-link" href="{{ route('materials.category', $category->slug) }}">
+                                                        <div class="heading text-18 fw-500">
+                                                            See all
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                @endif
+                                            </ul>
+                                            @endif -->
                                         </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </li>
+
                             <li class="nav-item">
                                 <a class="menu-link menu-link-main menu-accrodion" href="#">
                                     NEWS & STORIES
@@ -731,7 +552,7 @@
                     </nav>
                 </drawer-menu>
                 <div class="header-actions d-flex align-items-center">
-                    <a href="contact.html" aria-label="contact us" class="button button--primary button--slim">
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#donationModal" aria-label="contact us" class="button button--primary button--slim">
                         Donate
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -835,6 +656,41 @@
                     </a>
                 </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Donation Modal -->
+<div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="donationModalLabel">Make a Donation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="donationForm" method="POST" action="{{ route('donate.pay') }}">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="text" name="name" placeholder="Full Name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" name="email" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="phone" placeholder="Phone Number" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" name="amount" placeholder="Amount (RWF)" class="form-control" min="100" required>
+                    </div>
+                    <div class="form-text text-muted">
+                        Payments via Flutterwave: Card or Rwanda Mobile Money (MTN/Airtel)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success w-100">Donate Now</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

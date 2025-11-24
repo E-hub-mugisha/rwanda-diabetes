@@ -22,4 +22,8 @@ class Program extends Model
             $program->slug = Str::slug($program->title);
         });
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

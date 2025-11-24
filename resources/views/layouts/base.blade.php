@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en" class="no-js">
 
-<!-- Mirrored from consulo-html.vercel.app/html/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 16:27:47 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
-    <title>Consulo Creative Business Consulting Template</title>
+    <title>@yield('title') | Rwanda diabetes Association</title>
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
     <!-- meta tags -->
@@ -15,13 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="view-transition" content="same-origin">
     <meta name="theme-color" content="Red">
-    <meta property="og:site_name" content="Consulo">
-    <meta property="og:url" content="https://themeforest.net/user/spreethemes/portfolio">
-    <meta property="og:title" content="Creative Business Consulting Template">
+    <meta property="og:site_name" content="Rwanda diabetes Association">
+    <meta property="og:url" content="https://rwandadiabetes.rw">
+    <meta property="og:title" content="Rwanda diabetes Association">
     <meta property="og:description"
-        content="A versatile HTML template designed for corporate entities and professional businesses.">
+        content="Rwanda diabetes Association">
     <meta name="description"
-        content="Consulo is a creative business consulting Bootstrap 5 template designed for corporate entities and professional businesses.">
+        content="Rwanda diabetes Association">
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -192,7 +190,5 @@
     <script src="{{ asset('assets/js/vendor.js') }}" defer></script>
     <script src="{{ asset('assets/js/main.js') }}" defer></script>
 </body>
-
-<!-- Mirrored from consulo-html.vercel.app/html/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 16:27:49 GMT -->
 
 </html>

@@ -5,7 +5,10 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\StoryController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\LearningMaterialController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +32,29 @@ Route::get('/success_stories', [PageController::class, 'successStories'])->name(
 Route::get('/stories', [PageController::class, 'story'])->name('stories.index');
 Route::get('/stories/{slug}', [PageController::class, 'showStory'])->name('stories.show');
 Route::get('/partner_with_us', [PageController::class, 'PartnerWithUs'])->name('partner_with_us');
+Route::get('/our-team', [PageController::class, 'TeamMember'])->name('our-team');
+Route::get('/team/{slug}', [PageController::class, 'showTeam'])->name('team.show');
+Route::post('/partner-request', [PageController::class, 'storeRequest'])
+    ->name('partners.store.request');
+Route::post('/donate/pay', [DonationController::class, 'pay'])->name('donate.pay');
+Route::get('/donate/flutterwave/callback', [DonationController::class, 'flutterwaveCallback'])->name('donate.flutterwave.callback');
+Route::get('/donate/thank-you', function() {
+    return view('donate.thank-you');
+})->name('donate.thankyou');
+
+Route::get('/learning-materials', [LearningMaterialController::class, 'index'])->name('learning.index');
+Route::get('/learning-materials/{slug}', [LearningMaterialController::class, 'show'])->name('learning.show');
+
+Route::get('/materials/category/{slug}', [LearningMaterialController::class, 'category'])->name('materials.category');
+Route::get('/materials/{slug}', [LearningMaterialController::class, 'show'])->name('materials.show');
+
+// Programs listing by category (optional slug)
+Route::get('/programs', [PageController::class, 'programs'])->name('programs.index');
+Route::get('/programs/category/{slug}', [PageController::class, 'categoryPrograms'])->name('programs.category');
+
+// Single program detail
+Route::get('/programs/{slug}', [PageController::class, 'showPrograms'])->name('programs.show');
+
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),
@@ -91,7 +117,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/stories/{story}/edit', [StoryController::class, 'edit'])->name('admin.stories.edit');
     Route::put('/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
     Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('admin.stories.destroy');
+
+    Route::resource('team', TeamController::class)
+            ->names('admin.team');
+    
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -11,17 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('team_members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('logo')->nullable();
-            $table->string('website')->nullable();
+            $table->string('position');
+            $table->string('role')->nullable();
+            $table->string('photo')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->text('description')->nullable();
-            $table->enum('type', ['hospital', 'university', 'ngo', 'corporate', 'government', 'media', 'other'])->default('other');
+            $table->text('bio')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('team_members');
     }
 };
