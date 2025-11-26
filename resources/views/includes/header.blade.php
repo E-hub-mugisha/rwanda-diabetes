@@ -3,14 +3,14 @@
     <header class="header-3 header-sticky">
         <div class="container-fluid">
             <div class="header-grid">
-                <a class="header-logo" href="index-6.html" aria-label="Consulo">
-                    <img src="assets/img/logo-white.png" alt="Consulo Logo" width="189" height="32">
+                <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
+                    <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Consulo Logo" width="189" height="32">
                 </a>
                 <drawer-menu>
                     <nav class="header-nav drawer-menu">
                         <div class="d-lg-none header-nav-headings">
-                            <a class="header-logo" href="index-6.html" aria-label="Consulo">
-                                <img src="assets/img/logo.png" alt="Consulo Logo" width="189" height="32" loading="lazy">
+                            <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
+                                <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Consulo Logo" width="189" height="32" loading="lazy">
                             </a>
                             <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-menu">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="contact.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('contact')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -151,7 +151,7 @@
                                                 @foreach($category->programs->take(5) as $program)
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="{{ route('programs.show', $program->slug) }}">
-                                                        <div class="heading text-18 fw-500">
+                                                        <div class="heading text-16 fw-300">
                                                             {{ $program->title }}
                                                         </div>
                                                     </a>
@@ -184,60 +184,60 @@
                                 </a>
                                 <div class="header-megamenu header-submenu menu-absolute submenu-color">
                                     <ul class="list-unstyled">
+
+                                        {{-- ========================= --}}
+                                        {{-- RESEARCH MENU BLOCK     --}}
+                                        {{-- ========================= --}}
+                                        @php
+                                        $researchCategories = App\Models\ResearchCategory::where('type', 'research')->get();
+                                        @endphp
+
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Research</a>
+                                            <a class="menu-link heading fw-300" href="{{ route('research.index') }}">Research</a>
+
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+                                                @foreach ($researchCategories as $cat)
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="about.html">
+                                                    <a class="menu-link" href="{{ route('research.category', $cat->slug) }}">
                                                         <div class="heading text-18 fw-500">
-                                                            Publications
+                                                            {{ $cat->name }}
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Local Studies
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="contact-2.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Global Recommendations
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </li>
+
+
+                                        {{-- ========================= --}}
+                                        {{-- DOWNLOADS MENU BLOCK    --}}
+                                        {{-- ========================= --}}
+                                        @php
+                                        $downloadCategories = App\Models\ResearchCategory::where('type', 'download')->get();
+                                        @endphp
+
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">Downloads</a>
+                                            <a class="menu-link heading fw-300" href="{{ route('downloads.index') }}">Downloads</a>
+
                                             <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+                                                @foreach ($downloadCategories as $cat)
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="project.html">
+                                                    <a class="menu-link" href="{{ route('downloads.category', $cat->slug) }}">
                                                         <div class="heading text-18 fw-500">
-                                                            PDF Downloads
+                                                            {{ $cat->name }}
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="project-details.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Kinyarwanda Resources
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="team.html">
-                                                        <div class="heading text-18 fw-500">
-                                                            Toolkits & Training Downloads
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </li>
+
+
+                                        {{-- ========================= --}}
+                                        {{-- STATIC RIGHT SIDE    --}}
+                                        {{-- ========================= --}}
                                         <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="contact.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('contact') }}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -250,7 +250,8 @@
                                                 </svg>
                                                 Contact Sales
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="project-details.html">
+
+                                            <a class="menu-link text-14 fw-300" href="#">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
@@ -260,7 +261,8 @@
                                                 </svg>
                                                 Watch Demo
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="team.html">
+
+                                            <a class="menu-link text-14 fw-300" href="#">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
@@ -277,53 +279,64 @@
                                                 Webinars
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
+
                             </li>
                             <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    LEARNING TIPS
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
+    <a class="menu-link menu-link-main menu-accrodion" href="#">
+        LEARNING TIPS
+        <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+        </svg>
+    </a>
 
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
-                                        @foreach(\App\Models\Category::with('materials')->get() as $category)
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="{{ route('materials.category', $category->slug) }}">
-                                                {{ $category->name }}
-                                            </a>
+    <div class="header-megamenu header-submenu menu-absolute submenu-color">
+        <ul class="list-unstyled">
+            @foreach(\App\Models\Category::with('materials')->get() as $category)
+                <li class="nav-item">
 
-                                            <!-- @if($category->materials->count() > 0)
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                @foreach($category->materials->take(5) as $material)
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('materials.show', $material->slug) }}">
-                                                        <div class="heading text-18 fw-500">
-                                                            {{ $material->title }}
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                @endforeach
+                    <!-- Category Name -->
+                    <a class="menu-link heading fw-300" 
+                       href="{{ route('materials.category', $category->slug) }}">
+                        {{ $category->name }}
+                    </a>
 
-                                                @if($category->materials->count() > 5)
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('materials.category', $category->slug) }}">
-                                                        <div class="heading text-18 fw-500">
-                                                            See all
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                @endif
-                                            </ul>
-                                            @endif -->
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </li>
+                    @if($category->materials->count() > 0)
+                        <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+
+                            <!-- Show max 5 materials -->
+                            @foreach($category->materials->take(5) as $material)
+                                <li class="nav-item">
+                                    <a class="menu-link" href="{{ route('materials.show', $material->slug) }}">
+                                        <div class="heading text-18 fw-500">
+                                            {{ $material->title }}
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+
+                            <!-- “See all” -->
+                            @if($category->materials->count() > 5)
+                                <li class="nav-item">
+                                    <a class="menu-link" href="{{ route('materials.category', $category->slug) }}">
+                                        <div class="heading text-18 fw-500">
+                                            See all
+                                        </div>
+                                    </a>
+                                </li>
+                            @endif
+
+                        </ul>
+                    @endif
+
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</li>
+
 
                             <li class="nav-item">
                                 <a class="menu-link menu-link-main menu-accrodion" href="#">
@@ -338,21 +351,16 @@
                                             <a class="menu-link" href="{{ route('news.index')}}">Latest News</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link" href="blog-details.html">
+                                            <a class="menu-link" href="{{ route('articles.index')}}">
                                                 Articles (Health + Research)
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link" href="blog.html">Stories & Testimonials</a>
+                                            <a class="menu-link" href="{{ route('stories.index')}}">Stories & Testimonials</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link" href="blog-details.html">
+                                            <a class="menu-link" href="{{ route('media.index')}}">
                                                 Media Gallery (Photos & Videos)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="blog-details.html">
-                                                Press Releases
                                             </a>
                                         </li>
                                     </ul>
@@ -385,13 +393,12 @@
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="menu-link" href="project.html">
+                                                    <a class="menu-link" href="{{ route('contact')}}">
                                                         <div class="heading text-20">
-                                                            Case Studies
+                                                            Contact US
                                                         </div>
                                                         <div class="text text-14">
-                                                            Hundreds of emerging brands thrive with
-                                                            Consulo. Discover their journeys.
+                                                            Let's get in touch.
                                                         </div>
                                                     </a>
                                                 </li>
@@ -446,7 +453,7 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="contact.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('contact')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -502,7 +509,7 @@
                                         <a class="menu-link" href="project.html">Migrate to Consulo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="menu-link" href="contact.html">Partner Services</a>
+                                        <a class="menu-link" href="{{ route('contact')}}">Partner Services</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="menu-link" href="project-details.html">
@@ -612,7 +619,7 @@
                     <a class="menu-link" href="project.html">Screening & Early Detection</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-link" href="contact.html">Diabetes Basics</a>
+                    <a class="menu-link" href="{{ route('contact')}}">Diabetes Basics</a>
                 </li>
                 <li class="nav-item">
                     <a class="menu-link" href="project-details.html">

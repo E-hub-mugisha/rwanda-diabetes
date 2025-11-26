@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             StorySeeder::class,
             TeamMemberSeeder::class,
             ProgramsTableSeeder::class,
+            LearningMaterialSeeder::class,
+            ResearchCategoriesSeeder::class
         ]);
     }
 }

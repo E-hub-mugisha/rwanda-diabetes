@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Partner;
 use App\Models\PartnershipRequest;
 use App\Models\Post;
 use App\Models\Program;
+use App\Models\ResearchCategory;
+use App\Models\ResearchItem;
 use App\Models\Story;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
@@ -118,5 +121,64 @@ class PageController extends Controller
     {
         $program = Program::where('slug', $slug)->where('status', 'published')->firstOrFail();
         return view('programs.show', compact('program'));
+    }
+
+    public function articles()
+    {
+        $articles = Article::with('category')->get();
+        return view('pages.articles', compact('articles'));
+    }
+    public function articlesDetail($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('pages.article-details', compact('article'));
+    }
+
+    public function media()
+    {
+        return view('pages.media');
+    }
+
+    public function stories()
+    {
+        $stories = Story::where('status', 'published')->get();
+        return view('pages.stories', compact('stories'));
+    }
+
+    public function research()
+    {
+        $categories = ResearchCategory::where('type', 'research')
+            ->with(['items' => function ($query) {
+                $query->where('status', 'published')->latest()->take(5);
+            }])
+            ->get();
+
+        // Latest 6 research items across all categories
+        $latestItems = ResearchItem::where('status', 'published')
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('pages.research', compact('categories', 'latestItems'));
+    }
+
+    public function indexResearch()
+    {
+        $categories = ResearchCategory::where('type', 'research')->get();
+        return view('pages.research', compact('categories'));
+    }
+
+    public function categoryResearch($slug)
+    {
+        $category = ResearchCategory::whereSlug($slug)->firstOrFail();
+        $items = $category->items()->paginate(12);
+
+        return view('pages.research_category', compact('category', 'items'));
+    }
+
+    public function showResearch($slug)
+    {
+        $item = ResearchItem::whereSlug($slug)->firstOrFail();
+        return view('pages.research_show', compact('item'));
     }
 }

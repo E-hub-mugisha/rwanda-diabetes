@@ -1,11 +1,4 @@
-/*
-Theme Name: Consulo Creative Business Consulting Template
-Theme URI: https://consulo-html.vercel.app/
-Author: Spree Themes
-Author URI: https://themeforest.net/user/spreethemes/portfolio
-Description: Consulo is a creative business consulting Bootstrap 5 template designed for corporate entities and professional businesses.
-Version: 1.0.3
-*/
+
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
@@ -1771,7 +1764,7 @@ sticky-header[data-sticky-type="always"] {
   width: auto; }
 
 .header-megamenu > * > .nav-item {
-  padding: 30px 20px 10px; }
+  padding: 15px 10px 5px; }
 
 .megamenu-links .menu-link {
   display: -webkit-inline-box;
@@ -1906,7 +1899,7 @@ sticky-header[data-sticky-type="always"] {
   .header-menu {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    /* display: flex; */
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-box-align: center;

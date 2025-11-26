@@ -1,45 +1,5 @@
 <!-- Footer -->
-<footer>
-    <!-- Footer Contact Form -->
-    <div class="footer-contact bg-contain" style="background-image: url(assets/img/contact/contact-bg.jpg)">
-        <div class="container">
-            <div class="contact-box radius18">
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="contact-media" data-aos="fade-right" data-aos-anchor=".contact-box">
-                            <img src="assets/img/contact/contact.jpg" alt="contact image" width="1290" height="1400" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="contact-form-wrap">
-                            <div class="contact-box-headings section-headings">
-                                <h2 class="heading text-50" data-aos="fade-up" data-aos-delay="50" data-aos-anchor=".contact-box">
-                                    Need support managing diabetes? We're here to help.
-                                </h2>
-                                <p class="text text-18" data-aos="fade-up" data-aos-delay="80" data-aos-anchor=".contact-box">
-                                    Get guidance, screening information, and access to care.
-                                </p>
-                            </div>
-                            <div class="form-button mt-3" data-aos="fade-up" data-aos-anchor=".contact-form-wrap">
-                                <button type="submit" class="button button--primary" aria-label="Request Free Consultation">
-                                    Request Free Consultation
-                                    <span class="svg-wrapper">
-                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                fill="currentColor"></path>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<footer class="mt-4">
     <!-- Footer Main -->
     <div class="footer-main bg-contain" style="background-image: url(assets/img/footer/footer-bg-large.jpg)">
         <div class="footer-top">
@@ -47,8 +7,8 @@
                 <div class="row footer-custom-row">
                     <div class="col-12 col-md-6">
                         <div class="footer-widget footer-widget-brand" data-aos="fade-up" data-aos-anchor=".footer-top">
-                            <a class="footer-logo" href="index.html" aria-label="Consulo Logo">
-                                <img src="assets/img/logo-white.png" alt="Consulo Logo" width="189" height="32" loading="lazy">
+                            <a class="footer-logo" href="{{ route('home') }}" aria-label="Consulo Logo">
+                                <img src="{{ asset('assets/img/logo-white.png') }}" alt="Consulo Logo" width="189" height="32" loading="lazy">
                             </a>
                             <p class="text text-16">
                                 Committed to preventing diabetes complications and improving the health and wellbeing of communities across Rwanda.
@@ -133,31 +93,13 @@
                         <div class="footer-widget footer-widget-menu" data-aos="fade-up" data-aos-anchor=".footer-top">
                             <div class="widget-heading heading text-22">Programs & Services</div>
                             <ul class="footer-menu list-unstyled">
+                                @foreach(\App\Models\Category::with('programs')->take(5)->get() as $category)
                                 <li>
-                                    <a href="project.html" class="text text-16 link" aria-label="UI/UX Design">
-                                        Awareness & Education
+                                    <a href="{{ route('programs.category', $category->slug) }}" class="text text-16 link" aria-label="UI/UX Design">
+                                        {{ $category->name }}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="team.html" class="text text-16 link" aria-label="App Development">
-                                        Screening & Early Detection
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="services.html" class="text text-16 link" aria-label="Digital Marketing">
-                                        Treatment & Patient Support
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="blog.html" class="text text-16 link" aria-label="Web Development">
-                                        Community Outreach
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html" class="text text-16 link" aria-label="Cyber Security">
-                                        Research & Data
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -165,31 +107,13 @@
                         <div class="footer-widget footer-widget-menu" data-aos="fade-up" data-aos-anchor=".footer-top">
                             <div class="widget-heading heading text-22">Resources</div>
                             <ul class="footer-menu list-unstyled">
+                                @foreach(\App\Models\ResearchCategory::latest()->take(5)->get() as $cat)
                                 <li>
-                                    <a href="about.html" class="text text-16 link" aria-label="Working Process">
-                                        Diabetes Basics
+                                    <a href="{{ route('research.category', $cat->slug) }}" class="text text-16 link" aria-label="Working Process">
+                                        {{ $cat->name }}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="privacy-policy.html" class="text text-16 link" aria-label="Privacy Policy">
-                                        Prevention Tips
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="terms-condition.html" class="text text-16 link" aria-label="Terms & Conditions">
-                                        Nutrition & Lifestyle
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="faq.html" class="text text-16 link" aria-label="FAQ">
-                                        Publications & Reports
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="faq.html" class="text text-16 link" aria-label="FAQ">
-                                        FAQs
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -218,7 +142,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="contact.html" class="text text-16 link" aria-label="FAQ">
+                                <a href="{{ route('contact')}}" class="text text-16 link" aria-label="FAQ">
                                     Contact
                                 </a>
                             </li>

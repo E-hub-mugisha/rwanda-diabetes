@@ -54,15 +54,30 @@ Route::get('/programs/category/{slug}', [PageController::class, 'categoryProgram
 
 // Single program detail
 Route::get('/programs/{slug}', [PageController::class, 'showPrograms'])->name('programs.show');
+Route::get('/articles', [PageController::class, 'articles'])->name('articles.index');
+Route::get('/articles/details/{id}', [PageController::class, 'articlesDetail'])->name('articles.detail');
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+Route::get('/media', [PageController::class, 'media'])->name('media.index');
+Route::get('/stories', [PageController::class, 'stories'])->name('stories.index');
+
+// ----------------------
+// RESEARCH PAGES
+// ----------------------
+Route::prefix('research')->name('research.')->group(function () {
+    Route::get('/', [PageController::class, 'research'])->name('index');
+    Route::get('/category/{slug}', [PageController::class, 'categoryResearch'])->name('category');
+    Route::get('/{slug}', [PageController::class, 'showResearch'])->name('show');
+});
+
+// ----------------------
+// DOWNLOAD PAGES
+// ----------------------
+Route::prefix('downloads')->name('downloads.')->group(function () {
+    Route::get('/', [PageController::class, 'indexResearch'])->name('index');
+    Route::get('/category/{slug}', [PageController::class, 'categoryResearch'])->name('category');
+    Route::get('/{slug}', [PageController::class, 'showResearch'])->name('show');
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
