@@ -94,7 +94,7 @@
                             </span>
                         </a>
                         <a
-                            href="tel:(307)555-0133"
+                            href="tel:+250 7800"
                             class="hero-phone-call"
                             aria-label="Phone number"
                             data-aos="fade-up"
@@ -114,7 +114,7 @@
                             </svg>
                             <div class="hero-call">
                                 <div class="text text-14">Need help?</div>
-                                <div class="text text-16">(307) 555-0133</div>
+                                <div class="text text-16">+250 7800</div>
                             </div>
                         </a>
                     </div>
@@ -177,7 +177,7 @@
                                 <div class="swiper-slide">
                                     <div class="main-img">
                                         <img
-                                            src="assets/img/slider/s1.jpg"
+                                            src="assets/img/image.png"
                                             width="992"
                                             height="717"
                                             loading="eager"
@@ -187,7 +187,7 @@
                                 <div class="swiper-slide">
                                     <div class="main-img">
                                         <img
-                                            src="assets/img/slider/s2.jpg"
+                                            src="assets/img/image.png"
                                             width="992"
                                             height="717"
                                             loading="lazy"
@@ -197,7 +197,7 @@
                                 <div class="swiper-slide">
                                     <div class="main-img">
                                         <img
-                                            src="assets/img/slider/s3.jpg"
+                                            src="assets/img/image.png"
                                             width="992"
                                             height="717"
                                             loading="lazy"
@@ -207,7 +207,7 @@
                                 <div class="swiper-slide">
                                     <div class="main-img">
                                         <img
-                                            src="assets/img/slider/s2.jpg"
+                                            src="assets/img/image.png"
                                             width="992"
                                             height="717"
                                             loading="lazy"
@@ -224,7 +224,7 @@
                                 <div class="swiper-slide">
                                     <div class="thumb-img">
                                         <img
-                                            src="assets/img/slider/s1sm.jpg"
+                                            src="assets/img/image.png"
                                             width="160"
                                             height="140"
                                             loading="lazy"
@@ -234,7 +234,7 @@
                                 <div class="swiper-slide">
                                     <div class="thumb-img">
                                         <img
-                                            src="assets/img/slider/s2sm.jpg"
+                                            src="assets/img/image.png"
                                             width="160"
                                             height="140"
                                             loading="lazy"
@@ -244,7 +244,7 @@
                                 <div class="swiper-slide">
                                     <div class="thumb-img">
                                         <img
-                                            src="assets/img/slider/s3sm.jpg"
+                                            src="assets/img/image.png"
                                             width="160"
                                             height="140"
                                             loading="lazy"
@@ -254,7 +254,7 @@
                                 <div class="swiper-slide">
                                     <div class="thumb-img">
                                         <img
-                                            src="assets/img/slider/s2sm.jpg"
+                                            src="assets/img/image.png"
                                             width="160"
                                             height="140"
                                             loading="lazy"
@@ -309,12 +309,11 @@
                 </h2>
             </div>
             <div class="section-headings-right text text-18 aos-init aos-animate" data-aos="fade-left">
-                The solar solution company specializes in providing innovative,
-                eco-friendly energy systems harness the power, reducing carbon
-                footprints and energy for clients worldwide.
+                Through mobile clinics, outreach events, and health facility partnerships, we help communities access early screening—critical for reducing complications and saving lives.
             </div>
         </div>
         <div class="section-content">
+            @foreach( $programs as $program)
             <div class="image-text-card radius18">
                 <div class="row align-items-center product-grid">
                     <div class="col-lg-6 col-12">
@@ -343,13 +342,13 @@
                                 </svg>
                             </div>
                             <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
-                                Diabetes Awareness
+                                {{ $program->title }}
                             </h2>
                             <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                                Learn the basics of diabetes, symptoms, risk factors, and how to stay healthy.
+                                {{ $program->short_description }}.
                             </div>
                             <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                                <a href="project.html" class="button button--primary" aria-label="More About Us">
+                                <a href="{{ route('programs.show', $program->slug) }}" class="button button--primary" aria-label="More About Us">
                                     Learn More
                                     <span class="svg-wrapper">
                                         <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -364,173 +363,12 @@
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
-                            <img src="assets/img/project/1.jpg" width="1000" height="707" loading="lazy" alt="Image">
+                            <img src="assets/img/image.png" width="1000" height="707" loading="lazy" alt="Image">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="image-text-card radius18">
-                <div class="row align-items-center product-grid">
-                    <div class="col-lg-6 col-12">
-                        <div class="content section-headings">
-                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <span>Screening & Support</span>
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
-                                Screening & Support
-                            </h2>
-                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                                Find screening programs, counseling services, and patient follow-up support.
-                            </div>
-                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                                <a href="project.html" class="button button--primary" aria-label="More About Us">
-                                    Learn More
-                                    <span class="svg-wrapper">
-                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="visually-hidden">To learn more about the Screening & support, click this
-                                        button.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
-                            <img src="assets/img/project/2.jpg" width="1000" height="707" loading="lazy" alt="Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="image-text-card radius18">
-                <div class="row align-items-center product-grid">
-                    <div class="col-lg-6 col-12">
-                        <div class="content section-headings">
-                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <span>Programs & Initiatives</span>
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
-                                Programs & Initiatives
-                            </h2>
-                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                                Explore our community outreach, education programs, and nationwide campaigns.
-                            </div>
-                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                                <a href="project.html" class="button button--primary" aria-label="More About Us">
-                                    Learn More
-                                    <span class="svg-wrapper">
-                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="visually-hidden">To learn more about our initiatives, click this
-                                        button.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
-                            <img src="assets/img/project/3.jpg" width="1000" height="707" loading="lazy" alt="Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="image-text-card radius18">
-                <div class="row align-items-center product-grid">
-                    <div class="col-lg-6 col-12">
-                        <div class="content section-headings">
-                            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <span>Education Resources</span>
-                                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <g clip-path="url(#clip0_9088_4143)">
-                                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath>
-                                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up">
-                                Education Resources and learning
-                            </h2>
-                            <div class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                                Download guides, infographics, and materials for families and caregivers.
-                            </div>
-                            <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                                <a href="project.html" class="button button--primary" aria-label="More About Us">
-                                    Learn More
-                                    <span class="svg-wrapper">
-                                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="visually-hidden">To learn more about diabetes & awareness, click this
-                                        button.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="media-wrap radius18 aos-init aos-animate" data-aos="zoom-in-up">
-                            <img src="assets/img/project/1.jpg" width="1000" height="707" loading="lazy" alt="Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -542,8 +380,8 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <picture class="choose-media radius18 aos-init aos-animate" data-aos="fade-right">
-                        <source media="(max-width: 575px)" srcset="assets/img/why-choose-us/575.jpg">
-                        <img src="assets/img/why-choose-us/1.jpg" alt="choose us image" width="1000" height="742" loading="lazy">
+                        <source media="(max-width: 575px)" srcset="assets/img/image.png">
+                        <img src="assets/img/image.png" alt="choose us image" width="1000" height="742" loading="lazy">
                     </picture>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -716,7 +554,7 @@
                 </div>
             </div>
             <div class="choose-media-absolute radius18 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                <img src="assets/img/why-choose-us/2.jpg" alt="choose image" width="800" height="834" loading="lazy">
+                <img src="assets/img/image.png" alt="choose image" width="800" height="834" loading="lazy">
             </div>
         </div>
     </div>
@@ -1134,7 +972,7 @@
                 </div>
                 <div class="col-lg-5 col-12">
                     <div class="promotion-img radius18 aos-init aos-animate" data-aos="flip-left">
-                        <img src="assets/img/promotion/1.jpg" width="1000" height="1469" loading="lazy" alt="Promotion image">
+                        <img src="assets/img/image.png" width="1000" height="1469" loading="lazy" alt="Promotion image">
                     </div>
                 </div>
             </div>
@@ -1318,7 +1156,7 @@
                                     <div class="user-info-wrap">
                                         <div class="user-info">
                                             <div class="user-img">
-                                                <img src="assets/img/testimonial/1.jpg" width="80" height="80" loading="lazy" alt="image">
+                                                <img src="assets/img/image.png" width="80" height="80" loading="lazy" alt="image">
                                             </div>
                                             <div class="user-name-desig">
                                                 <h2 class="user-name heading text-24">
@@ -1423,7 +1261,7 @@
                         <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
                             <span class="blog-tag subheading subheading-bg text-16 fw-500">Business</span>
                             <div class="media">
-                                <img src="assets/img/blog/1.jpg" alt="blog image" width="1000" height="707" loading="lazy">
+                                <img src="assets/img/image.png" alt="blog image" width="1000" height="707" loading="lazy">
                             </div>
                             <div class="buttons">
                                 <div class="button button--primary">
@@ -1505,7 +1343,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span>Our Blog</span>
+                <span>Our Publications</span>
                 <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <g clip-path="url(#clip0_9088_4143)">
                         <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
@@ -1518,7 +1356,7 @@
                 </svg>
             </div>
             <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                Latest News From Us
+                Latest Publications From Us
             </h2>
         </div>
         <div class="section-content">
@@ -1527,7 +1365,7 @@
                     <div class="card-blog-list aos-init aos-animate" data-aos="fade-up">
                         <div class="card-blog-list-media radius18">
                             <div class="media">
-                                <img src="assets/img/blog/9.jpg" alt="blog image" width="1000" height="707" loading="lazy">
+                                <img src="assets/img/image.png" alt="blog image" width="1000" height="707" loading="lazy">
                             </div>
                         </div>
 
@@ -1559,7 +1397,7 @@
                         <div class="card-blog-list-horizontal radius18 aos-init aos-animate" data-aos="fade-up">
                             <div class="card-blog-list-media">
                                 <div class="media">
-                                    <img src="assets/img/blog/2.jpg" alt="blog image" width="1000" height="707" loading="lazy">
+                                    <img src="assets/img/image.png" alt="blog image" width="1000" height="707" loading="lazy">
                                 </div>
                             </div>
 
@@ -1601,7 +1439,7 @@
                         <div class="card-blog-list-horizontal radius18 aos-init aos-animate" data-aos="fade-up">
                             <div class="card-blog-list-media">
                                 <div class="media">
-                                    <img src="assets/img/blog/1.jpg" alt="blog image" width="1000" height="707" loading="lazy">
+                                    <img src="assets/img/image.png" alt="blog image" width="1000" height="707" loading="lazy">
                                 </div>
                             </div>
 
@@ -1643,7 +1481,7 @@
                         <div class="card-blog-list-horizontal radius18 aos-init aos-animate" data-aos="fade-up">
                             <div class="card-blog-list-media">
                                 <div class="media">
-                                    <img src="assets/img/blog/3.jpg" alt="blog image" width="1000" height="707" loading="lazy">
+                                    <img src="assets/img/image.png" alt="blog image" width="1000" height="707" loading="lazy">
                                 </div>
                             </div>
 

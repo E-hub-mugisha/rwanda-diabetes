@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\Partner;
 use App\Models\PartnershipRequest;
 use App\Models\Post;
 use App\Models\Program;
+use App\Models\Question;
 use App\Models\ResearchCategory;
 use App\Models\ResearchItem;
 use App\Models\Story;
@@ -21,12 +24,15 @@ class PageController extends Controller
         $news = Post::where('status', 'published')->orderBy('published_at', 'desc')->take(3)->get();
         $stories = Story::where('status', 'published')
             ->latest()->paginate(6);
-        return view('pages.home', compact('news', 'stories'));
+        $programs = Program::with('category')->get();
+        return view('pages.home', compact('news', 'stories', 'programs'));
     }
 
     public function about()
     {
-        return view('pages.about');
+        $faqs = Faq::where('is_active', true)->get();
+        $programs = Program::with('category')->get();
+        return view('pages.about', compact('faqs','programs'));
     }
 
     public function impact()
@@ -36,7 +42,8 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        $faqs = Faq::where('is_active', true)->get();
+        return view('pages.contact', compact('faqs'));
     }
     public function news()
     {
@@ -72,7 +79,8 @@ class PageController extends Controller
     public function partnerWithUs()
     {
         $partners = Partner::where('status', 'active')->get();
-        return view('pages.partner_with_us', compact('partners'));
+        $faqs = Faq::where('is_active', true)->get();
+        return view('pages.partner_with_us', compact('partners','faqs'));
     }
     public function TeamMember()
     {
@@ -120,7 +128,15 @@ class PageController extends Controller
     public function showPrograms($slug)
     {
         $program = Program::where('slug', $slug)->where('status', 'published')->firstOrFail();
-        return view('programs.show', compact('program'));
+        $category = Category::where('id', $program->category_id)->first();
+        $posts = Post::where('category_id', $category->id)->get();
+        // Latest 6 research items across all categories
+        $latestItems = ResearchItem::where('status', 'published')
+            ->where('category_id', $category->id)
+            ->latest()
+            ->take(6)
+            ->get();
+        return view('pages.program_show', compact('program', 'category', 'posts', 'latestItems'));
     }
 
     public function articles()
@@ -136,7 +152,8 @@ class PageController extends Controller
 
     public function media()
     {
-        return view('pages.media');
+        $media = Gallery::latest()->paginate(12);
+        return view('pages.media', compact('media'));
     }
 
     public function stories()
@@ -180,5 +197,16 @@ class PageController extends Controller
     {
         $item = ResearchItem::whereSlug($slug)->firstOrFail();
         return view('pages.research_show', compact('item'));
+    }
+
+    public function storeQuestion(Request $request)
+    {
+        $request->validate([
+            'question' => 'required|min:5'
+        ]);
+
+        Faq::create($request->all());
+
+        return back()->with('success', 'Your question has been submitted!');
     }
 }

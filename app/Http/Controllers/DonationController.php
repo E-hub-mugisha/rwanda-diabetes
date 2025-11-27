@@ -6,36 +6,10 @@ use App\Models\Donation;
 use Illuminate\Http\Request;
 use Flutterwave;
 use Flutterwave\Flutterwave as FlutterwaveAlias;
+use Illuminate\Support\Facades\Http;
 
 class DonationController extends Controller
 {
-    public function pay(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'amount' => 'required|numeric|min:100',
-        ]);
-
-        $donation = Donation::create($request->all());
-        $reference = uniqid('fw_');
-
-        $payload = [
-            'tx_ref' => $reference,
-            'amount' => $donation->amount,
-            'currency' => 'RWF',
-            'redirect_url' => route('donate.flutterwave.callback'),
-            'customer' => [
-                'email' => $donation->email,
-                'name' => $donation->name
-            ],
-            'payment_options' => 'card,mobilemoneyrwanda',
-        ];
-
-        $flutterwave = new FlutterwaveAlias();
-        $payment = $flutterwave->payments()->initialize($payload);
-
-        return redirect($payment['data']['link']);
-    }
 
     public function flutterwaveCallback(Request $request)
     {
@@ -50,5 +24,30 @@ class DonationController extends Controller
         }
 
         return redirect()->back()->with('error', 'Payment failed or cancelled.');
+    }
+
+    public function verify(Request $request)
+    {
+        $transactionId = $request->transaction_id;
+
+        $res = Http::withToken(env('FLW_SECRET_KEY'))
+            ->get("https://api.flutterwave.com/v3/transactions/{$transactionId}/verify")
+            ->json();
+
+        if ($res['status'] === 'success' && $res['data']['status'] === 'successful') {
+
+            Donation::create([
+                'transaction_id' => $transactionId,
+                'name' => $res['data']['customer']['name'],
+                'email' => $res['data']['customer']['email'],
+                'phone' => $res['data']['customer']['phone_number'],
+                'amount' => $res['data']['amount'],
+                'status' => 'paid'
+            ]);
+
+            return redirect()->back()->with('success', 'Thank you for your donation!');
+        }
+
+        return redirect()->back()->with('error', 'Payment verification failed.');
     }
 }

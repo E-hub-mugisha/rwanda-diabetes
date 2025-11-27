@@ -2609,7 +2609,7 @@ form textarea {
   margin-top: 40px; }
 
 .hero-banner.with-floating-header {
-  --padding-block-start: calc(var(--header-height) + 60px + 60px);
+  /* --padding-block-start: calc(var(--header-height) + 60px + 60px); */
   --padding-block-bottom: calc(var(--header-height)); }
 
 .hero-banner-2.with-floating-header {
@@ -2789,7 +2789,8 @@ form textarea {
   padding: var(--padding); }
 
 .text-banner .section-headings .text {
-  max-width: 800px; }
+  /* max-width: 800px;  */
+}
 
 .hero-banner-2 .banner-wrapper {
   position: relative;

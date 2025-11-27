@@ -26,7 +26,7 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="services.html" class="button button--secondary" aria-label="hero button">
+                    <a href="{{ route('impact') }}" class="button button--secondary" aria-label="hero button">
                         Our Impact
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -218,6 +218,106 @@
         </div>
     </div>
 </div>
+
+<!-- FAQ -->
+<div class="faq mt-100 mb-8">
+    <div class="container">
+        <div class="row faq-row">
+
+            <!-- Left Side -->
+            <div class="col-lg-6 col-12">
+                <div class="section-headings">
+
+                    <div class="subheading text-20 subheading-bg">
+                        <span>Questions</span>
+                    </div>
+
+                    <h2 class="heading text-50">
+                        Have any questions? Here are some answers
+                    </h2>
+
+                    <div class="text text-18">
+                        Here are some of the questions we often receive from our community.
+                    </div>
+
+                    <div class="buttons mt-3">
+                        <button class="button button--primary" data-bs-toggle="modal" data-bs-target="#askQuestionModal">
+                            Ask Your Question
+                        </button>
+                    </div>
+
+                    <div class="image-absolute">
+                        <img src="{{ asset('assets/img/faq/question.png') }}" width="104" height="180" alt="Question">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Dynamic FAQ -->
+            <div class="col-lg-6 col-12">
+                <faq-accordion>
+                    <div class="accordion-list">
+
+                        @foreach($faqs as $faq)
+                        <div class="accordion-block">
+                            <div class="accordion-opener heading text-22">
+                                {{ $faq->question }}
+                                <div class="svg-wrapper">
+                                    <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M12.7083 15.7044C12.5208 15.8919..." fill="CurrentColor" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner text text-18">
+                                    {{ $faq->answer }}
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+
+                    </div>
+                </faq-accordion>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL: Ask Question -->
+<div class="modal fade" id="askQuestionModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Ask a Question</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('questions.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label>Your Question *</label>
+                        <textarea required name="question" rows="4" class="form-control"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary">Submit Question</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="partnerModalLabel" aria-hidden="true">

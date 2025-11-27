@@ -78,6 +78,10 @@ Route::prefix('downloads')->name('downloads.')->group(function () {
     Route::get('/{slug}', [PageController::class, 'showResearch'])->name('show');
 });
 
+Route::get('/our_impact', [PageController::class, 'impact'])->name('impact');
+Route::post('/questions', [PageController::class, 'storeQuestion'])->name('questions.store');
+
+Route::get('/donation/verify', [DonationController::class, 'verify'])->name('donation.verify');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
