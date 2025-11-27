@@ -13,6 +13,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -142,5 +143,9 @@ Route::prefix('admin')->group(function () {
     
 });
 
-
+Route::get('/fix-config', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    return "Done";
+});
 require __DIR__ . '/auth.php';
