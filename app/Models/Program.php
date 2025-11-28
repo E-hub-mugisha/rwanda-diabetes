@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 class Program extends Model
 {
     protected $fillable = [
-        'title', 'slug', 'image', 'short_description', 'content', 'status'
+        'title', 'slug', 'image', 'short_description', 'content', 'status', 'category_id'
     ];
 
     protected static function boot()

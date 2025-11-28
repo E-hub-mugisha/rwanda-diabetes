@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Program;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class ProgramController extends Controller
     public function index()
     {
         $programs = Program::latest()->paginate(10);
-        return view('admin.programs.index', compact('programs'));
+        $categories = Category::all();
+        return view('admin.programs.index', compact('programs', 'categories'));
     }
 
     public function store(Request $request)
@@ -20,7 +22,8 @@ class ProgramController extends Controller
             'title' => 'required|string|max:255',
             'short_description' => 'nullable|string',
             'content' => 'nullable|string',
-            'image' => 'nullable|image'
+            'image' => 'nullable|image',
+            'category_id' => 'nullable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -38,7 +41,8 @@ class ProgramController extends Controller
             'title' => 'required|string|max:255',
             'short_description' => 'nullable|string',
             'content' => 'nullable|string',
-            'image' => 'nullable|image'
+            'image' => 'nullable|image',
+            'category_id' => 'nullable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -54,5 +58,24 @@ class ProgramController extends Controller
     {
         $program->delete();
         return back()->with('success', 'Program deleted successfully.');
+    }
+    public function show($slug)
+    {
+        $program = Program::with('category')->where('slug', $slug)->firstOrFail();
+
+        return view('admin.programs.show', compact('program'));
+    }
+    // Update program status
+    public function updateStatus(Request $request, Program $program)
+    {
+        $request->validate([
+            'status' => 'required|in:draft,published,archived',
+        ]);
+
+        $program->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Program status updated successfully!');
     }
 }

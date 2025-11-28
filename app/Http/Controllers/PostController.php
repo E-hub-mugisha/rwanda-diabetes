@@ -74,33 +74,38 @@ class PostController extends Controller
     }
 
     // Admin: update post
-    public function update(Request $request, Post $post)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'excerpt' => 'nullable|string',
-            'content' => 'required|string',
-            'featured_image' => 'nullable|image',
-            'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'nullable|array',
-            'status' => 'required|in:draft,published,archived',
-            'published_at' => 'nullable|date',
-        ]);
+public function update(Request $request, Post $post)
+{
+    $data = $request->validate([
+        'title' => 'required|string|max:255',
+        'excerpt' => 'nullable|string',
+        'content' => 'required|string',
+        'featured_image' => 'nullable|image',
+        'category_id' => 'nullable|exists:categories,id',
+        'tags' => 'nullable|string', // string NOT array
+        'status' => 'required|in:draft,published,archived',
+        'published_at' => 'nullable|date',
+    ]);
 
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('posts', 'public');
-        }
+    // Convert tags from string to array
+    $data['tags'] = $request->tags
+        ? array_map('trim', explode(',', $request->tags))
+        : [];
 
-        $data['slug'] = Str::slug($data['title']);
-        $data['tags'] = $request->tags;
-        // Convert tags string to array
-        $validated['tags'] = isset($validated['tags']) ? explode(',', $validated['tags']) : [];
-
-
-        $post->update($data);
-
-        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
+    // Save image if exists
+    if ($request->hasFile('featured_image')) {
+        $data['featured_image'] = $request->file('featured_image')->store('posts', 'public');
     }
+
+    // Generate slug
+    $data['slug'] = Str::slug($data['title']);
+
+    // Update post
+    $post->update($data);
+
+    return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
+}
+
 
     // Admin: delete post
     public function destroy(Post $post)

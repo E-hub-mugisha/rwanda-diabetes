@@ -14,6 +14,10 @@ class StoryController extends Controller
         return view('admin.stories.index', compact('stories'));
     }
 
+    public function create()
+    {
+        return view('admin.stories.create');
+    }
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -71,5 +75,10 @@ class StoryController extends Controller
     {
         $story->delete();
         return back()->with('success', 'Story/Testimony deleted.');
+    }
+    public function edit(Request $request, $id)
+    {
+        $story = Story::where('id', $id)->firstOrFail();
+        return view('admin.stories.edit', compact('story'));
     }
 }

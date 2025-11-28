@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('content')->nullable();
-            $table->enum('status', ['draft', 'published'])->default('published');
+            $table->enum('status', ['draft', 'published','archived'])->default('published');
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->timestamps();
         });

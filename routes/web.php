@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -11,11 +13,8 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\LearningMaterialController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -39,7 +38,7 @@ Route::post('/partner-request', [PageController::class, 'storeRequest'])
     ->name('partners.store.request');
 Route::post('/donate/pay', [DonationController::class, 'pay'])->name('donate.pay');
 Route::get('/donate/flutterwave/callback', [DonationController::class, 'flutterwaveCallback'])->name('donate.flutterwave.callback');
-Route::get('/donate/thank-you', function() {
+Route::get('/donate/thank-you', function () {
     return view('donate.thank-you');
 })->name('donate.thankyou');
 
@@ -84,8 +83,9 @@ Route::post('/questions', [PageController::class, 'storeQuestion'])->name('quest
 
 Route::get('/donation/verify', [DonationController::class, 'verify'])->name('donation.verify');
 
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -116,6 +116,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('admin.programs.edit');
     Route::put('/programs/{program}', [ProgramController::class, 'update'])->name('admin.programs.update');
     Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('admin.programs.destroy');
+    Route::get('/programs/{slug}', [ProgramController::class, 'show'])->name('admin.programs.show');
+    Route::patch('/admin/programs/{program}/status', [ProgramController::class, 'updateStatus'])->name('admin.programs.updateStatus');
 
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
     Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
@@ -130,6 +132,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
     Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('admin.articles.update');
     Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
+    Route::patch('articles/{article}/status', [ArticleController::class, 'updateStatus'])->name('articles.updateStatus');
+    Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('admin.articles.show');
 
     Route::get('/stories', [StoryController::class, 'index'])->name('admin.stories.index');
     Route::get('/stories/create', [StoryController::class, 'create'])->name('admin.stories.create');
@@ -138,8 +142,12 @@ Route::prefix('admin')->group(function () {
     Route::put('/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
     Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('admin.stories.destroy');
 
-    Route::resource('team', TeamController::class)
-            ->names('admin.team');
+    Route::resource('team', TeamController::class)->names('admin.team');
+
+    Route::get('/donations', [DonationController::class, 'index'])->name('admin.donations.index');
+    Route::get('/donations/{donation}}', [DonationController::class, 'show'])->name('admin.donations.show');
+    Route::delete('donations/{id}', [DonationController::class, 'destroy'])
+    ->name('admin.donations.destroy');
     
 });
 

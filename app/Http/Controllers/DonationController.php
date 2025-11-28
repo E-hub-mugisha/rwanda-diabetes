@@ -50,4 +50,45 @@ class DonationController extends Controller
 
         return redirect()->back()->with('error', 'Payment verification failed.');
     }
+    /**
+     * Display a listing of donations.
+     */
+    public function index()
+    {
+        $donations = Donation::latest()->paginate(10); // Paginate 10 per page
+        return view('admin.donations.index', compact('donations'));
+    }
+
+    /**
+     * Display a single donation.
+     */
+    public function show(Donation $donation)
+    {
+        return view('admin.donations.show', compact('donation'));
+    }
+
+    /**
+     * Delete a donation.
+     */
+    public function destroy($id)
+    {
+        $donation = Donation::findOrFail($id);
+        $donation->delete();
+        return redirect()->route('admin.donations.index')->with('success', 'Donation deleted successfully.');
+    }
+
+    /**
+     * Optional: Update donation status (e.g., pending -> approved).
+     */
+    public function updateStatus(Request $request, Donation $donation)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,approved,rejected',
+        ]);
+
+        $donation->status = $request->status;
+        $donation->save();
+
+        return redirect()->back()->with('success', 'Donation status updated successfully.');
+    }
 }

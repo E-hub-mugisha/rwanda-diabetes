@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -74,5 +75,29 @@ class ArticleController extends Controller
     {
         $article->delete();
         return back()->with('success', 'Article deleted.');
+    }
+    // Admin: Update article status only
+    public function updateStatus(Request $request, Article $article)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:draft,published,archived',
+        ]);
+
+        $article->status = $validated['status'];
+
+        // Set published_at if changing to published
+        if ($article->status === 'published' && !$article->published_at) {
+            $article->published_at = now();
+        }
+
+        $article->save();
+
+        return back()->with('success', 'Article status updated successfully.');
+    }
+    public function show($slug)
+    {
+        $article = Article::with('category')->where('slug', $slug)->firstOrFail();
+        $categories = Category::all();
+        return view('admin.articles.show', compact('article','categories'));
     }
 }
