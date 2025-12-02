@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class LearningMaterial extends Model
 {
@@ -20,6 +21,21 @@ class LearningMaterial extends Model
         'status',
         'author_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($material) {
+            $material->slug = Str::slug($material->title);
+        });
+
+        static::updating(function ($material) {
+            if ($material->isDirty('title')) {
+                $material->slug = Str::slug($material->title);
+            }
+        });
+    }
 
     public function author()
     {

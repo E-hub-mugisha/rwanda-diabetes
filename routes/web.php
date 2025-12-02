@@ -3,8 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminPartnershipController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\ResourceController;
 use App\Http\Controllers\Admin\StoryController;
@@ -143,7 +146,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
     Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('admin.stories.destroy');
 
-    Route::resource('team', TeamController::class)->names('admin.team');
+    Route::resource('team-members', TeamController::class)->names('admin.team-members');
 
     Route::get('/donations', [DonationController::class, 'index'])->name('admin.donations.index');
     Route::get('/donations/{donation}}', [DonationController::class, 'show'])->name('admin.donations.show');
@@ -158,6 +161,44 @@ Route::prefix('admin')->group(function () {
     Route::delete('/resources/{resource}', [ResourceController::class, 'destroy'])->name('admin.resources.destroy');
     Route::get('/resources/{slug}', [ResourceController::class, 'show'])->name('admin.resources.show');
     Route::patch('/admin/resources/{resource}/status', [ResourceController::class, 'updateStatus'])->name('admin.resources.updateStatus');
+
+    Route::get('/partners', [AdminPartnershipController::class, 'indexPartner'])->name('admin.partners.index');
+    Route::get('/partners/create', [AdminPartnershipController::class, 'createPartner'])->name('admin.partners.create');
+    Route::post('/partners', [AdminPartnershipController::class, 'storePartner'])->name('admin.partners.store');
+    Route::get('/partners/{partner}/edit', [AdminPartnershipController::class, 'editPartner'])->name('admin.partners.edit');
+    Route::put('/partners/{partner}', [AdminPartnershipController::class, 'updatePartner'])->name('admin.partners.update');
+    Route::delete('/partners/{partner}', [AdminPartnershipController::class, 'destroyPartner'])->name('admin.partners.destroy');
+
+    Route::get('/partnership-requests', [AdminPartnershipController::class, 'index'])
+        ->name('admin.partnership.requests.index');
+
+    Route::post('/partnership-requests/{id}/approve', [AdminPartnershipController::class, 'approve'])
+        ->name('admin.partnership.requests.approve');
+
+    Route::post('/partnership-requests/{id}/reject', [AdminPartnershipController::class, 'reject'])
+        ->name('admin.partnership.requests.reject');
+    
+    Route::get('/faqs', [FaqController::class, 'index'])->name('admin.faqs.index');
+    Route::get('/faqs/create', [FaqController::class, 'create'])->name('admin.faqs.create');
+    Route::post('/faqs', [FaqController::class, 'store'])->name('admin.faqs.store');
+    Route::get('/faqs/{faq}/edit', [FaqController::class, 'edit'])->name('admin.faqs.edit');
+    Route::put('/faqs/{faq}', [FaqController::class, 'update'])->name('admin.faqs.update');
+    Route::delete('/faqs/{faq}', [FaqController::class, 'destroy'])->name('admin.faqs.destroy');
+
+    Route::get('/learning-materials', [LearningMaterialController::class, 'indexMaterial'])->name('admin.learning-materials.index');
+    Route::get('/learning-materials/create', [LearningMaterialController::class, 'create'])->name('admin.learning-materials.create');
+    Route::get('/learning-materials/{learning_material}', [LearningMaterialController::class, 'showMaterial'])->name('admin.learning-materials.show');
+    Route::post('/learning-materials', [LearningMaterialController::class, 'store'])->name('admin.learning-materials.store');
+    Route::get('/learning-materials/{learning_material}/edit', [LearningMaterialController::class, 'edit'])->name('admin.learning-materials.edit');
+    Route::put('/learning-materials/{learning_material}', [LearningMaterialController::class, 'update'])->name('admin.learning-materials.update');
+    Route::delete('/learning-materials/{learning_material}', [LearningMaterialController::class, 'destroy'])->name('admin.learning-materials.destroy');
+
+    Route::get('/galleries', [GalleryController::class, 'index'])->name('admin.galleries.index');
+    Route::get('/galleries/create', [GalleryController::class, 'create'])->name('admin.galleries.create');
+    Route::post('/galleries', [GalleryController::class, 'store'])->name('admin.galleries.store');   
+    Route::get('/galleries/{gallery}/edit', [GalleryController::class, 'edit'])->name('admin.galleries.edit');
+    Route::put('/galleries/{gallery}', [GalleryController::class, 'update'])->name('admin.galleries.update');
+    Route::delete('/galleries/{gallery}', [GalleryController::class, 'destroy'])->name('admin.galleries.destroy');
 });
 
 Route::get('/fix-config', function () {

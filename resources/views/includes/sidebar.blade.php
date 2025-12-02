@@ -71,9 +71,33 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.members.index')}}">
+            <a class="nav-link" href="{{ route('admin.team-members.index')}}">
                 <i class="menu-icon typcn typcn-mail"></i>
                 <span class="menu-title">Team Members</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.partners.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">Partners</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.faqs.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">FAQs</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.learning-materials.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">Learning Materials</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.galleries.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">Galleries</span>
             </a>
         </li>
     </ul>

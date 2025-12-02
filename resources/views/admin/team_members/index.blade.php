@@ -1,271 +1,266 @@
 @extends('layouts.app')
 @section('title', 'Team Members')
-
 @section('content')
+<div class="container py-4">
 
-<div class="content-wrapper">
-    <div class="row">
-        <div class="card">
-            <div class="card-body">
-                <div class="col-md-12 grid-margin">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2>Team Members</h2>
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createMemberModal">
-                            <i class="bi bi-plus-circle"></i> Add Team Member
-                        </button>
-                    </div>
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Team Members</h3>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+            <i class="ti ti-plus"></i> Add Member
+        </button>
+    </div>
 
-                    {{-- Error Messages --}}
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>There were some problems with your input:</strong>
-                        <ul class="mt-2 mb-0">
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+    <!-- Team Table -->
+    <div class="card">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-striped align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th width="180">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($teamMembers as $member)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ asset('storage/'.$member->photo) }}" width="50" class="rounded">
+                        </td>
+                        <td>{{ $member->name }}</td>
+                        <td>{{ $member->position }}</td>
+                        <td>{{ $member->role }}</td>
+                        <td>{{ $member->email }}</td>
+                        <td>
+                            <span class="badge bg-success">{{ ucfirst($member->status) }}</span>
+                        </td>
+                        <td>
 
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="order-listing" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Names</th>
-                                            <th>Position</th>
-                                            <th>Bio</th>
-                                            <th>Status</th>
-                                            <th class="text-end">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($programs as $program)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                            <!-- Show -->
+                            <button class="btn btn-info btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#showModal{{ $member->id }}">
+                                <i class="ti ti-eye"></i>
+                            </button>
 
-                                            <td>
-                                                @if($program->image)
-                                                <img src="{{ asset('storage/' . $program->image) }}" width="60" class="rounded">
-                                                @else
-                                                <span class="text-muted">No image</span>
-                                                @endif
-                                            </td>
+                            <!-- Edit -->
+                            <button class="btn btn-warning btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editModal{{ $member->id }}">
+                                <i class="ti ti-pencil"></i>
+                            </button>
 
-                                            <td>{{ $program->title }}</td>
+                            <!-- Delete -->
+                            <button class="btn btn-danger btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $member->id }}">
+                                <i class="ti ti-trash"></i>
+                            </button>
 
-                                            <td>
-                                                <span title="{{ $program->short_description }}">
-                                                    {{ Str::limit($program->short_description, 50) }}
-                                                </span>
-                                            </td>
+                        </td>
+                    </tr>
 
-                                            <td>{{ ucfirst($program->category?->name ?? 'N/A') }}</td>
+                    <!-- ================= SHOW MODAL ================= -->
+                    <div class="modal fade" id="showModal{{ $member->id }}" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+                                    <h5 class="modal-title">Team Member Details</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-flex gap-3">
+                                        <img src="{{ asset('storage/'.$member->photo) }}" width="150" class="rounded">
+                                        <div>
+                                            <h4>{{ $member->name }}</h4>
+                                            <p class="text-muted">{{ $member->position }} — <strong>{{ $member->role }}</strong></p>
 
-                                            <td>
-                                                @php
-                                                $statusColors = [
-                                                'draft' => 'secondary',
-                                                'published' => 'success',
-                                                'archived' => 'warning'
-                                                ];
-                                                @endphp
-                                                <span class="badge bg-{{ $statusColors[$program->status] ?? 'secondary' }}">
-                                                    {{ ucfirst($program->status) }}
-                                                </span>
-                                            </td>
+                                            <p><strong>Email:</strong> {{ $member->email }}</p>
+                                            <p><strong>Phone:</strong> {{ $member->phone }}</p>
+                                            <p><strong>Status:</strong> {{ ucfirst($member->status) }}</p>
 
-                                            <td class="text-end">
-                                                <a class="btn btn-success btn-sm" href="{{ route('admin.programs.show', $program->slug) }}">
-                                                    <i class="bi bi-eye"></i> Details
-                                                </a>
-
-                                                {{-- Edit Modal Trigger --}}
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProgramModal{{ $program->id }}">
-                                                    <i class="bi bi-pencil-square"></i> Edit
-                                                </button>
-
-                                                {{-- Status Update Modal Trigger --}}
-                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#updateStatusModal" data-program-id="{{ $program->id }}" data-program-status="{{ $program->status }}">
-                                                    <i class="bi bi-arrow-repeat"></i> Update Status
-                                                </button>
-
-                                                {{-- Delete --}}
-                                                <form action="{{ route('admin.programs.destroy', $program) }}" method="POST" class="d-inline">
-                                                    @csrf @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this program?')">
-                                                        <i class="bi bi-trash"></i> Delete
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-
-                                        {{-- Edit Modal --}}
-                                        <div class="modal fade" id="editProgramModal{{ $program->id }}" tabindex="-1">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <form action="{{ route('admin.programs.update', $program) }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf @method('PUT')
-
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Edit Program</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                        </div>
-
-                                                        <div class="modal-body">
-                                                            <div class="mb-3">
-                                                                <label>Title</label>
-                                                                <input type="text" name="title" value="{{ $program->title }}" class="form-control" required>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label>Short Description</label>
-                                                                <textarea name="short_description" class="form-control" rows="3">{{ $program->short_description }}</textarea>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label>Content</label>
-                                                                <textarea name="content" class="form-control" rows="6">{{ $program->content }}</textarea>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label>Category</label>
-                                                                <select name="category_id" class="form-select">
-                                                                    <option value="">-- Select Category --</option>
-                                                                    @foreach($categories as $category)
-                                                                    <option value="{{ $category->id }}" {{ $program->category_id == $category->id ? 'selected' : '' }}>
-                                                                        {{ $category->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label>Image</label>
-                                                                <input type="file" name="image" class="form-control">
-                                                                @if($program->image)
-                                                                <img src="{{ asset('storage/' . $program->image) }}" width="100" class="mt-2 rounded">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary">Update</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                            <p class="mt-3"><strong>Bio:</strong></p>
+                                            <p>{{ $member->bio }}</p>
                                         </div>
-
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                    <!-- ================= EDIT MODAL ================= -->
+                    <div class="modal fade" id="editModal{{ $member->id }}" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <form action="{{ route('admin.team-members.update', $member->id) }}" method="POST" enctype="multipart/form-data" class="modal-content">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="modal-header bg-warning">
+                                    <h5 class="modal-title">Edit Member</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                            <input type="text" name="name" value="{{ $member->name }}" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Position</label>
+                                            <input type="text" name="position" value="{{ $member->position }}" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <label>Role</label>
+                                            <input type="text" name="role" value="{{ $member->role }}" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <label>Status</label>
+                                            <select name="status" class="form-control">
+                                                <option value="active" {{ $member->status == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="inactive" {{ $member->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <label>Email</label>
+                                            <input type="email" name="email" value="{{ $member->email }}" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <label>Phone</label>
+                                            <input type="text" name="phone" value="{{ $member->phone }}" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12 mt-2">
+                                            <label>Bio</label>
+                                            <textarea name="bio" class="form-control" rows="4">{{ $member->bio }}</textarea>
+                                        </div>
+
+                                        <div class="col-md-12 mt-3">
+                                            <label>Photo (optional)</label>
+                                            <input type="file" name="photo" class="form-control">
+                                            <small class="text-muted">Leave empty to keep current photo.</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-warning">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- ================= DELETE MODAL ================= -->
+                    <div class="modal fade" id="deleteModal{{ $member->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <form action="{{ route('admin.team-members.destroy', $member->id) }}" method="POST" class="modal-content">
+                                @csrf
+                                @method('DELETE')
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title">Delete Member</h5>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete <strong>{{ $member->name }}</strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<!-- Create Program Modal -->
-<div class="modal fade" id="createProgramModal" tabindex="-1">
+
+<!-- ================= ADD MODAL ================= -->
+<div class="modal fade" id="addModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form action="{{ route('admin.programs.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Program</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label>Title</label>
-                        <input type="text" name="title" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Short Description</label>
-                        <textarea name="short_description" class="form-control" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Content</label>
-                        <textarea name="content" class="form-control" rows="6"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Category</label>
-                        <select name="category_id" class="form-select">
-                            <option value="">-- Select Category --</option>
-                            @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Image</label>
-                        <input type="file" name="image" class="form-control">
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-success" type="submit">Create Program</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Update Status Modal (Single Reusable) -->
-<div class="modal fade" id="updateStatusModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form id="statusUpdateForm" method="POST">
+        <form action="{{ route('admin.team-members.store') }}" method="POST" enctype="multipart/form-data" class="modal-content">
             @csrf
-            @method('PATCH')
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Update Program Status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="statusSelect" class="form-label">Select Status</label>
-                        <select name="status" id="statusSelect" class="form-select" required>
-                            <option value="draft">Draft</option>
-                            <option value="published">Published</option>
-                            <option value="archived">Archived</option>
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add Team Member</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Position</label>
+                        <input type="text" name="position" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label>Role</label>
+                        <input type="text" name="role" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label>Status</label>
+                        <select name="status" class="form-control">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
                         </select>
                     </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label>Phone</label>
+                        <input type="text" name="phone" class="form-control">
+                    </div>
+
+                    <div class="col-md-12 mt-2">
+                        <label>Bio</label>
+                        <textarea name="bio" rows="4" class="form-control"></textarea>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <label>Photo</label>
+                        <input type="file" name="photo" class="form-control" required>
+                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update Status</button>
-                </div>
+
             </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+
         </form>
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-<script>
-    const statusModal = document.getElementById('updateStatusModal');
-    statusModal.addEventListener('show.bs.modal', event => {
-        const button = event.relatedTarget;
-        const programId = button.getAttribute('data-program-id');
-        const status = button.getAttribute('data-program-status');
-        const form = document.getElementById('statusUpdateForm');
-        form.action = `/admin/programs/${programId}/status`;
-        document.getElementById('statusSelect').value = status;
-    });
-</script>
 @endsection

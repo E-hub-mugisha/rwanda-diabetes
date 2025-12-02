@@ -5,71 +5,131 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TeamController extends Controller
 {
+    /**
+     * Display all team members.
+     */
     public function index()
     {
-        $members = TeamMember::orderBy('order', 'asc')->get();
-        return view('admin.team.index', compact('members'));
+        $teamMembers = TeamMember::orderBy('name')->get();
+        return view('admin.team_members.index', compact('teamMembers'));
     }
 
-    public function create()
-    {
-        return view('admin.team.create');
-    }
-
+    /**
+     * Store new team member.
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'position' => 'required',
-            'category' => 'required',
-            'bio' => 'nullable',
-            'photo' => 'nullable|image|max:3072',
+            'name'      => 'required|string|max:255',
+            'position'  => 'required|string|max:255',
+            'role'      => 'required|string|max:255',
+            'email'     => 'nullable|email',
+            'phone'     => 'nullable|string|max:50',
+            'status'    => 'required|in:active,inactive',
+            'bio'       => 'nullable|string',
+            'photo'     => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = $request->all();
+        // Upload photo
+        $photoPath = $request->file('photo')->store('team', 'public');
 
-        if ($request->hasFile('photo')) {
-            $data['photo'] = $request->photo->store('team', 'public');
-        }
+        TeamMember::create([
+            'name'      => $request->name,
+            'slug'      => Str::slug($request->name),
+            'position'  => $request->position,
+            'role'      => $request->role,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'bio'       => $request->bio,
+            'status'    => $request->status,
+            'photo'     => $photoPath,
+            'linkedin'  => $request->linkedin,
+            'twitter'   => $request->twitter,
+            'instagram' => $request->instagram,
+        ]);
 
-        TeamMember::create($data);
-
-        return redirect()->route('admin.team.index')->with('success', 'Team member added successfully.');
+        return redirect()->back()->with('success', 'Team member added successfully.');
     }
 
-    public function edit(TeamMember $team)
+    /**
+     * Show single team member (if needed via API or route).
+     */
+    public function show($id)
     {
-        return view('admin.team.edit', compact('team'));
+        $member = TeamMember::findOrFail($id);
+        return response()->json($member);
     }
 
-    public function update(Request $request, TeamMember $team)
+    /**
+     * Update team member.
+     */
+    public function update(Request $request, $id)
     {
+        $member = TeamMember::findOrFail($id);
+
         $request->validate([
-            'name' => 'required',
-            'position' => 'required',
-            'category' => 'required',
-            'photo' => 'nullable|image|max:3072',
+            'name'      => 'required|string|max:255',
+            'position'  => 'required|string|max:255',
+            'role'      => 'required|string|max:255',
+            'email'     => 'nullable|email',
+            'phone'     => 'nullable|string|max:50',
+            'status'    => 'required|in:active,inactive',
+            'bio'       => 'nullable|string',
+            'photo'     => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = $request->all();
+        $photoPath = $member->photo;
 
+        // If new image uploaded → replace old one
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->photo->store('team', 'public');
+
+            // delete old photo
+            if ($member->photo && Storage::disk('public')->exists($member->photo)) {
+                Storage::disk('public')->delete($member->photo);
+            }
+
+            // upload new
+            $photoPath = $request->file('photo')->store('team', 'public');
         }
 
-        $team->update($data);
+        // Update member
+        $member->update([
+            'name'      => $request->name,
+            'slug'      => Str::slug($request->name),
+            'position'  => $request->position,
+            'role'      => $request->role,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'bio'       => $request->bio,
+            'status'    => $request->status,
+            'photo'     => $photoPath,
+            'linkedin'  => $request->linkedin,
+            'twitter'   => $request->twitter,
+            'instagram' => $request->instagram,
+        ]);
 
-        return redirect()->route('admin.team.index')->with('success', 'Team member updated.');
+        return redirect()->back()->with('success', 'Team member updated successfully.');
     }
 
-    public function destroy(TeamMember $team)
+    /**
+     * Delete team member.
+     */
+    public function destroy($id)
     {
-        $team->delete();
+        $member = TeamMember::findOrFail($id);
 
-        return back()->with('success', 'Team member removed.');
+        // Delete photo from storage
+        if ($member->photo && Storage::disk('public')->exists($member->photo)) {
+            Storage::disk('public')->delete($member->photo);
+        }
+
+        $member->delete();
+
+        return redirect()->back()->with('success', 'Team member deleted successfully.');
     }
 }
