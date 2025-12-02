@@ -29,7 +29,7 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="services.html" class="button button--secondary" aria-label="hero button">
+                    <a href="#summary" class="button button--secondary" aria-label="hero button">
                         Summary
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<counter-up class="counter-up d-block mt-100 ">
+<counter-up class="counter-up d-block mt-100 " id="summary">
     <div class="container mb-80">
         <div class="counter-up-box radius18">
             <div class="row product-grid text-center">

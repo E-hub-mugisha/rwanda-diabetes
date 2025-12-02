@@ -25,7 +25,12 @@ class PageController extends Controller
         $stories = Story::where('status', 'published')
             ->latest()->paginate(6);
         $programs = Program::with('category')->get();
-        return view('pages.home', compact('news', 'stories', 'programs'));
+        // Latest 6 research items across all categories
+        $latestItems = ResearchItem::where('status', 'published')
+            ->latest()
+            ->take(3)
+            ->get();
+        return view('pages.home', compact('news', 'stories', 'programs','latestItems'));
     }
 
     public function about()

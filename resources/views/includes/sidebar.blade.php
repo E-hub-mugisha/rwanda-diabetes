@@ -64,6 +64,18 @@
                 <span class="menu-title">donations</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.resources.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">Resources</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.members.index')}}">
+                <i class="menu-icon typcn typcn-mail"></i>
+                <span class="menu-title">Team Members</span>
+            </a>
+        </li>
     </ul>
 </nav>
 <!-- partial -->

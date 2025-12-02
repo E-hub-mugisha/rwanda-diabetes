@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\ResourceController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -149,6 +150,14 @@ Route::prefix('admin')->group(function () {
     Route::delete('donations/{id}', [DonationController::class, 'destroy'])
     ->name('admin.donations.destroy');
     
+    Route::get('/resources', [ResourceController::class, 'index'])->name('admin.resources.index');
+    Route::get('/resources/create', [ResourceController::class, 'create'])->name('admin.resources.create');
+    Route::post('/resources', [ResourceController::class, 'store'])->name('admin.resources.store');
+    Route::get('/resources/{resource}/edit', [ResourceController::class, 'edit'])->name('admin.resources.edit');
+    Route::put('/resources/{resource}', [ResourceController::class, 'update'])->name('admin.resources.update');
+    Route::delete('/resources/{resource}', [ResourceController::class, 'destroy'])->name('admin.resources.destroy');
+    Route::get('/resources/{slug}', [ResourceController::class, 'show'])->name('admin.resources.show');
+    Route::patch('/admin/resources/{resource}/status', [ResourceController::class, 'updateStatus'])->name('admin.resources.updateStatus');
 });
 
 Route::get('/fix-config', function () {

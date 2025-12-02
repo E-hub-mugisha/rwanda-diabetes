@@ -62,27 +62,27 @@
                             <div class="widget-heading heading text-22">Quick Link</div>
                             <ul class="footer-menu list-unstyled">
                                 <li>
-                                    <a href="about.html" class="text text-16 link" aria-label="About Us">
+                                    <a href="{{ route('about')}}" class="text text-16 link" aria-label="About Us">
                                         Who We Are
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="team.html" class="text text-16 link" aria-label="Our Team">
+                                    <a href="{{ route('values')}}" class="text text-16 link" aria-label="Our Team">
                                         Mission & Vision
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="pricing-plan.html" class="text text-16 link" aria-label="Pricing Plans">
-                                        Our History
+                                    <a href="{{ route('partner_with_us')}}" class="text text-16 link" aria-label="Pricing Plans">
+                                        Our Partners
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="blog.html" class="text text-16 link" aria-label="Blogs">
-                                        Leadership & Governance
+                                    <a href="{{ route('impact')}}" class="text text-16 link" aria-label="Blogs">
+                                        Our Impact
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="contact.html" class="text text-16 link" aria-label="Blogs">
+                                    <a href="{{ route('contact')}}" class="text text-16 link" aria-label="Blogs">
                                         Contact Us
                                     </a>
                                 </li>
@@ -132,12 +132,12 @@
                     <div class="col-12 col-md-6 col-lg-6">
                         <ul class="footer-menu footer-policies list-unstyled">
                             <li>
-                                <a href="privacy-policy.html" class="text text-16 link" aria-label="Privacy Policy">
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#donationModal" class="text text-16 link" aria-label="Privacy Policy">
                                     Donate
                                 </a>
                             </li>
                             <li>
-                                <a href="faq.html" class="text text-16 link" aria-label="FAQ">
+                                <a href="#" class="text text-16 link" aria-label="FAQ">
                                     Faqs
                                 </a>
                             </li>
