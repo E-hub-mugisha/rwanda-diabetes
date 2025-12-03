@@ -41,23 +41,10 @@
             </div>
         </div>
     </div>
-    <div class="section-content">
-        <div class="banner-wrapper">
-            <picture class="media media-bg d-flex">
-                <source media="(max-width: 575px)" srcset="assets/img/slider/hero2-575.jpg">
-                <source media="(max-width: 991px)" srcset="assets/img/slider/hero2-991.jpg">
-                <img src="assets/img/slider/hero-2.jpg" width="1920" height="1000" loading="lazy" alt="Hero Image">
-            </picture>
-            <div class="content-absolute">
-                <div class="container-fluid d-flex align-items-end height-100">
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
-<counter-up class="counter-up d-block mt-100 " id="summary">
-    <div class="container mb-80">
+<counter-up class="counter-up d-block mt-100 mb-100 " id="summary" style="margin-bottom: 40px;">
+    <div class="container">
         <div class="counter-up-box radius18">
             <div class="row product-grid text-center">
                 <div class="col-12 col-md-4 aos-init aos-animate" data-aos="fade-up">

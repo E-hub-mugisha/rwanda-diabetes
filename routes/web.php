@@ -25,6 +25,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/programs', [PageController::class, 'programs'])->name('programs');
 Route::get('/impact', [PageController::class, 'impact'])->name('impact');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact-submit', [PageController::class, 'submit'])->name('contact.submit');
 Route::get('/news', [PageController::class, 'news'])->name('news.index');
 Route::get('/news/details/{id}', [PageController::class, 'newsDetail'])->name('news.detail');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

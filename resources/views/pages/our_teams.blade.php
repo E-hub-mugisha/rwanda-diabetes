@@ -2,41 +2,53 @@
 @section('title', 'our team members')
 @section('content')
 
-<!-- Page Banner -->
-<div class="page-banner overlay">
-    <picture class="media media-bg">
-        <source media="(max-width: 575px)" srcset="assets/img/banner/page-banner-575.jpg">
-        <source media="(max-width: 991px)" srcset="assets/img/banner/page-banner-991.jpg">
-        <img src="assets/img/banner/page-banner.jpg" width="1920" height="520" loading="eager" alt="Page Banner Image">
-    </picture>
-    <div class="page-banner-content">
-        <div class="container text-center">
-            <h1 class="heading text-80 fw-700 aos-init aos-animate" data-aos="fade-up">Our Team</h1>
-            <ul class="breadcrumb list-unstyled aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <li>
-                    <a href="index.html" class="text text-18" aria-label="Home Page">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015C2.29825 11.3811 2.2063 11.4446 2.10463 11.4883C2.00296 11.532 1.89361 11.5549 1.78296 11.5559C1.67231 11.5569 1.56258 11.5358 1.46016 11.4939C1.35775 11.452 1.2647 11.3901 1.18646 11.3119C1.10822 11.2336 1.04634 11.1406 1.00444 11.0382C0.962537 10.9357 0.941453 10.826 0.942414 10.7154C0.943376 10.6047 0.966364 10.4954 1.01004 10.3937C1.05371 10.292 1.1172 10.2001 1.19679 10.1232L5.32179 5.9982L1.19679 1.8732C1.04499 1.71603 0.960996 1.50553 0.962894 1.28703C0.964793 1.06853 1.05243 0.859522 1.20694 0.705015C1.36145 0.550508 1.57046 0.462868 1.78896 0.460969C2.00745 0.45907 2.21795 0.543066 2.37512 0.694864L7.08929 5.40903Z" fill="currentColor"></path>
-                    </svg>
-                </li>
-                <li>
-                    <a role="link" aria-disabled="true" class="text text-18 active">
-                        Our Team
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
 <!-- Our Team -->
 <div class="our-team mt-100">
     <div class="container">
-        <div class="row product-grid">
+        <div class="section-headings section-headings-horizontal">
+            <div class="section-headings-left">
+                <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-right" data-aos-delay="10">
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <g clip-path="url(#clip0_9088_4143)">
+                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="14" height="14" fill="CurrentColor"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span>Our team member</span>
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <g clip-path="url(#clip0_9088_4143)">
+                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="14" height="14" fill="CurrentColor"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
+                    our team member
+                </h2>
+                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                    Meet the dedicated individuals who drive our mission forward with passion and expertise.
+                </p>
+            </div>
+            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
+                <a href="#team-section" class="button button--primary" aria-label="See All Post">
+                    Discover More
+                    <span class="svg-wrapper">
+                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="row product-grid" id="team-section">
             @forelse($teams as $team)
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 aos-init aos-animate"
                 data-aos="fade-up" data-aos-delay="100">

@@ -596,8 +596,8 @@
 
 <div class="theme-drawer drawer-additional" data-position="right">
     <div class="drawer-headings">
-        <a class="header-logo" href="https://consulo-html.vercel.app/" aria-label="Consulo">
-            <img src="assets/img/logo.png" alt="Consulo Logo" width="189" height="32" loading="lazy">
+        <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
+            <img src="{{ asset('assets/img/logo-rda.png') }}" alt="rwanda Logo" width="189" height="32" loading="lazy">
         </a>
         <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-additional">
             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

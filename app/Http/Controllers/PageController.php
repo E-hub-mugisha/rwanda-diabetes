@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\Partner;
@@ -16,6 +18,7 @@ use App\Models\ResearchItem;
 use App\Models\Story;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -24,20 +27,21 @@ class PageController extends Controller
         $news = Post::where('status', 'published')->orderBy('published_at', 'desc')->take(3)->get();
         $stories = Story::where('status', 'published')
             ->latest()->paginate(6);
-        $programs = Program::with('category')->get();
+        $programs = Program::with('category')->get()->take(3);
         // Latest 6 research items across all categories
         $latestItems = ResearchItem::where('status', 'published')
             ->latest()
             ->take(3)
             ->get();
-        return view('pages.home', compact('news', 'stories', 'programs','latestItems'));
+        $partners = Partner::where('status', 'active')->get();
+        return view('pages.home', compact('news', 'stories', 'programs', 'latestItems', 'partners'));
     }
 
     public function about()
     {
         $faqs = Faq::where('is_active', true)->get();
         $programs = Program::with('category')->get();
-        return view('pages.about', compact('faqs','programs'));
+        return view('pages.about', compact('faqs', 'programs'));
     }
 
     public function impact()
@@ -85,7 +89,7 @@ class PageController extends Controller
     {
         $partners = Partner::where('status', 'active')->get();
         $faqs = Faq::where('is_active', true)->get();
-        return view('pages.partner_with_us', compact('partners','faqs'));
+        return view('pages.partner_with_us', compact('partners', 'faqs'));
     }
     public function TeamMember()
     {
@@ -213,5 +217,23 @@ class PageController extends Controller
         Faq::create($request->all());
 
         return back()->with('success', 'Your question has been submitted!');
+    }
+
+    public function submit(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'service' => 'required',
+            'message' => 'required',
+        ]);
+
+        // Save to database
+        $contact = Contact::create($validated);
+
+        // Send email
+        Mail::to('your-email@example.com')->send(new ContactMail($contact));
+
+        return back()->with('success', 'Your message has been sent successfully!');
     }
 }

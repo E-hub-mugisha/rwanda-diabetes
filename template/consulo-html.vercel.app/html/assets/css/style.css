@@ -918,7 +918,7 @@ drawer-opener * {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background-color: #1c2539;
+  background-color: #6086C1;
   border-radius: 50%;
   -webkit-box-shadow: 0px 4px 22px rgba(255, 255, 255, 0.5);
   box-shadow: 0px 4px 22px rgba(255, 255, 255, 0.5); }
@@ -2022,7 +2022,7 @@ sticky-header[data-sticky-type="always"] {
   --color-background: linear-gradient(
     184.15deg,
     rgba(28, 37, 57, 40%) -187.51%,
-    #1c2539 96.62%
+    #6086C1 96.62%
   );
   --color-foreground: rgba(255, 255, 255, 1);
   --color-input-background: rgba(255, 255, 255, 0);
@@ -2903,10 +2903,10 @@ form textarea {
   --color-background: rgba(28, 37, 57, 0.1); }
 
 .running-content .logos-background {
-  background-image: -webkit-gradient(linear, left top, right top, from(#e1e2ee), color-stop(15%, #1c253900), to(#e3e1ee));
-  background-image: -webkit-linear-gradient(left, #e1e2ee, #1c253900 15% 85%, #e3e1ee);
-  background-image: -o-linear-gradient(left, #e1e2ee, #1c253900 15% 85%, #e3e1ee);
-  background-image: linear-gradient(90deg, #e1e2ee, #1c253900 15% 85%, #e3e1ee);
+  background-image: -webkit-gradient(linear, left top, right top, from(#e1e2ee), color-stop(15%, #6086C100), to(#e3e1ee));
+  background-image: -webkit-linear-gradient(left, #e1e2ee, #6086C100 15% 85%, #e3e1ee);
+  background-image: -o-linear-gradient(left, #e1e2ee, #6086C100 15% 85%, #e3e1ee);
+  background-image: linear-gradient(90deg, #e1e2ee, #6086C100 15% 85%, #e3e1ee);
   inset: 0%; }
 
 .running-content .content-lists {
@@ -4056,10 +4056,10 @@ project-slider .swiper-slide {
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(28, 37, 57, 0)), to(#1c2539));
-  background: -webkit-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
-  background: -o-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
-  background: linear-gradient(180deg, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(28, 37, 57, 0)), to(#6086C1));
+  background: -webkit-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
+  background: -o-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
+  background: linear-gradient(180deg, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -4256,7 +4256,7 @@ project-slider .swiper-slide {
   --color-overlay: linear-gradient(
     184.15deg,
     rgba(28, 37, 57, 0) -187.51%,
-    #1c2539 96.62%
+    #6086C1 96.62%
   );
   --color-foreground: rgba(255, 255, 255, 1);
   --color-foreground-heading: rgba(255, 255, 255, 1);
@@ -4493,10 +4493,10 @@ project-slider .swiper-slide {
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(28, 37, 57, 0)), to(#1c2539));
-  background: -webkit-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
-  background: -o-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
-  background: linear-gradient(180deg, rgba(28, 37, 57, 0) 0%, #1c2539 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(28, 37, 57, 0)), to(#6086C1));
+  background: -webkit-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
+  background: -o-linear-gradient(top, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
+  background: linear-gradient(180deg, rgba(28, 37, 57, 0) 0%, #6086C1 100%);
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -5979,7 +5979,7 @@ blockquote:before {
   margin-block-start: 50px; }
 
 .contact-2 .social-link {
-  background-color: #1c2539;
+  background-color: #6086C1;
   color: #fff;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
@@ -6478,7 +6478,7 @@ footer {
   text-decoration: none; }
 
 footer .social-link {
-  background-color: #1c2539;
+  background-color: #6086C1;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s; }
@@ -6573,7 +6573,7 @@ footer .social-link:hover {
 
 .footer-2 .social-link {
   background-color: #fff;
-  color: #1c2539; }
+  color: #6086C1; }
 
 .footer-2 .social-link:focus,
 .footer-2 .social-link:hover {
@@ -6585,7 +6585,7 @@ footer .social-link:hover {
 
 footer .logo-with-newsletter .social-link {
   background-color: #fff;
-  color: #1c2539; }
+  color: #6086C1; }
 
 footer .logo-with-newsletter .social-link:hover {
   background-color: #d0c9c9; }
