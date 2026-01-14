@@ -899,11 +899,11 @@
     display: none;
   }
   .sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link.active {
-    color: #0d6efd;
+    color: #197FC5;
     font-weight: bold;
   }
   .sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-    color: #0d6efd;
+    color: #197FC5;
   }
   .rtl.sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link {
     text-align: right;
@@ -1073,7 +1073,7 @@
 }
 
 .sidebar-cta button:hover a {
-  color: #0d6efd;
+  color: #197FC5;
 }
 
 .cta-hide {

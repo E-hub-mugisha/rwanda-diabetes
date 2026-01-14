@@ -1,14 +1,14 @@
 <!-- Footer -->
 <footer class="mt-4">
     <!-- Footer Main -->
-    <div class="footer-main bg-contain" style="background-image: url(assets/img/footer/footer-bg-large.jpg)">
+    <div class="footer-main bg-contain">
         <div class="footer-top">
             <div class="container">
                 <div class="row footer-custom-row">
                     <div class="col-12 col-md-6">
                         <div class="footer-widget footer-widget-brand" data-aos="fade-up" data-aos-anchor=".footer-top">
                             <a class="footer-logo" href="{{ route('home') }}" aria-label="Consulo Logo">
-                                <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Consulo Logo" width="189" height="32" loading="lazy">
+                                <img src="{{ asset('assets/img/logo-rda-white.png') }}" alt="Consulo Logo" width="189" height="32" loading="lazy">
                             </a>
                             <p class="text text-16">
                                 Committed to preventing diabetes complications and improving the health and wellbeing of communities across Rwanda.

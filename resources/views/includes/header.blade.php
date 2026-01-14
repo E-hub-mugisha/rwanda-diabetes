@@ -2,11 +2,11 @@
 
 <!-- Header 3 -->
 <sticky-header data-sticky-type="always">
-    <header class="header-3 header-sticky">
+    <header class="header-1 header-floating">
         <div class="container-fluid">
             <div class="header-grid">
                 <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
-                    <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Consulo Logo" width="189" height="32">
+                    <img src="{{ asset('assets/img/logo-rda-trans.png') }}" alt="Consulo Logo" width="189" height="32">
                 </a>
                 <drawer-menu>
                     <nav class="header-nav drawer-menu">

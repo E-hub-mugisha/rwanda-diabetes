@@ -68,7 +68,7 @@ class AdminPartnershipController extends Controller
     {
         $validated = $request->validate([
             'name'        => 'required',
-            'logo'        => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'logo'        => 'nullable|image',
             'website'     => 'nullable|url',
             'email'       => 'nullable|email',
             'phone'       => 'nullable',
