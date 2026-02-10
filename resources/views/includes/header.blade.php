@@ -5,14 +5,14 @@
     <header class="header-1 header-floating">
         <div class="container-fluid">
             <div class="header-grid">
-                <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
-                    <img src="{{ asset('assets/img/logo-rda-trans.png') }}" alt="Consulo Logo" width="189" height="32">
+                <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
+                    <img src="{{ asset('assets/img/logo-1.png') }}" alt="Rwanda diabetes Logo" width="189" height="32">
                 </a>
                 <drawer-menu>
                     <nav class="header-nav drawer-menu">
                         <div class="d-lg-none header-nav-headings">
-                            <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
-                                <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Consulo Logo" width="189" height="32" loading="lazy">
+                            <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
+                                <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Rwanda diabetes Logo" width="189" height="32" loading="lazy">
                             </a>
                             <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-menu">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,9 +100,9 @@
                                                     <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
                                                         stroke-linecap="round" />
                                                 </svg>
-                                                Contact Sales
+                                                Get Help
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="project-details.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('news.index')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
@@ -110,9 +110,9 @@
                                                         d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
                                                         stroke="currentColor" stroke-width="1.5" />
                                                 </svg>
-                                                Watch Demo
+                                                Latest News
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="team.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('articles.index')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
@@ -126,7 +126,7 @@
                                                     <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                     <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                 </svg>
-                                                Webinars
+                                                Articles
                                             </a>
                                         </li>
                                     </ul>
@@ -187,7 +187,7 @@
 
 
                             <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="faq.html">
+                                <a class="menu-link menu-link-main menu-accrodion" href="#!">
                                     RESOURCES
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
@@ -248,7 +248,7 @@
                                         {{-- STATIC RIGHT SIDE    --}}
                                         {{-- ========================= --}}
                                         <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="{{ route('contact') }}">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('impact')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -259,10 +259,10 @@
                                                     <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
                                                         stroke-linecap="round" />
                                                 </svg>
-                                                Contact Sales
+                                                Our Impact
                                             </a>
 
-                                            <a class="menu-link text-14 fw-300" href="#">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('stories.index')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
@@ -270,10 +270,10 @@
                                                         d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
                                                         stroke="currentColor" stroke-width="1.5" />
                                                 </svg>
-                                                Watch Demo
+                                                Stories
                                             </a>
 
-                                            <a class="menu-link text-14 fw-300" href="#">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('partner_with_us')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
@@ -287,7 +287,7 @@
                                                     <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                     <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                 </svg>
-                                                Webinars
+                                                Partner with us
                                             </a>
                                         </li>
 
@@ -321,7 +321,7 @@
                                                 @foreach($category->materials->take(5) as $material)
                                                 <li class="nav-item">
                                                     <a class="menu-link" href="{{ route('materials.show', $material->slug) }}">
-                                                        <div class="heading text-18 fw-500">
+                                                        <div class="heading text-16 fw-300">
                                                             {{ $material->title }}
                                                         </div>
                                                     </a>
@@ -397,9 +397,7 @@
                                                             Partner with us
                                                         </div>
                                                         <div class="text text-14">
-                                                            Links customers with trusted Partners who help
-                                                            them realize greater value—faster—through
-                                                            Consulo.
+                                                            Through Partners and collaborators we can make impact to the communities
                                                         </div>
                                                     </a>
                                                 </li>
@@ -409,7 +407,7 @@
                                                             Contact US
                                                         </div>
                                                         <div class="text text-14">
-                                                            Let's get in touch.
+                                                            Let's get in touch to Build a strong community Together.
                                                         </div>
                                                     </a>
                                                 </li>
@@ -419,20 +417,19 @@
                                                             Make a donation
                                                         </div>
                                                         <div class="text text-14">
-                                                            Speed up innovation to enable quicker,
-                                                            effective team-driven product launches.
+                                                            Your support can make a difference. Donate today to help us continue our mission.
                                                         </div>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="project.html">
-                                                FEATURED CASE STUDY
+                                            <a class="menu-link heading fw-300" href="{{ route('news.index')}}">
+                                                Our recent news and stories
                                             </a>
                                             <ul class="reset-submenu list-unstyled submenu-color">
                                                 <li class="nav-item">
-                                                    <a class="menu-link megamenu-image-wrap" href="project-details.html">
+                                                    <a class="menu-link megamenu-image-wrap" href="{{ route('news.index')}}">
                                                         <picture>
                                                             <source media="(max-width: 575px)" srcset="assets/img/menu/575.jpg">
                                                             <img src="assets/img/menu/1.jpg" width="1000" height="668" loading="lazy"
@@ -441,11 +438,10 @@
                                                         <div class="content">
                                                             <div class="heading text-20">
                                                                 <div class="heading text-20">
-                                                                    Consulo Subscriptions
+                                                                    Rwanda diabetes success stories
                                                                 </div>
                                                                 <div class="text text-14">
-                                                                    Hundreds of emerging brands thrive with
-                                                                    Consulo. Discover their journeys.
+                                                                    Read about the inspiring stories of individuals and communities in Rwanda who have successfully managed diabetes through education, support, and access to healthcare.
                                                                 </div>
                                                             </div>
                                                             <div class="button button--primary">
@@ -475,9 +471,9 @@
                                                     <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
                                                         stroke-linecap="round" />
                                                 </svg>
-                                                Contact Sales
+                                                Get Help
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="project-details.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('impact') }}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
@@ -485,9 +481,9 @@
                                                         d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
                                                         stroke="currentColor" stroke-width="1.5" />
                                                 </svg>
-                                                Watch Demo
+                                                our Impact
                                             </a>
-                                            <a class="menu-link text-14 fw-300" href="team.html">
+                                            <a class="menu-link text-14 fw-300" href="{{ route('our-team')}}">
                                                 <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
@@ -501,7 +497,7 @@
                                                     <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                     <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                 </svg>
-                                                Webinars
+                                                our Team
                                             </a>
                                         </li>
                                     </ul>
@@ -532,7 +528,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                                             </svg>
-                                            Kigali City, Rwanda
+                                            64KN 8 Avenue, Kigali
                                         </div>
                                     </li>
                                     <li class="nav-item">
@@ -542,7 +538,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
                                             </svg>
-                                            +01234567890
+                                            +0788 224 628
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -596,7 +592,7 @@
 
 <div class="theme-drawer drawer-additional" data-position="right">
     <div class="drawer-headings">
-        <a class="header-logo" href="{{ route('home') }}" aria-label="Consulo">
+        <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
             <img src="{{ asset('assets/img/logo-rda.png') }}" alt="rwanda Logo" width="189" height="32" loading="lazy">
         </a>
         <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-additional">
@@ -632,17 +628,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                         </svg>
-                        Kigali City, Rwanda
+                        64KN 8 Avenue, Kigali
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-link" href="tel:+001234567890">
+                    <a class="menu-link" href="tel:0788 224 628">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
                         </svg>
-                        +01234567890
+                        0788 224 628
                     </a>
                 </li>
                 <li class="nav-item">

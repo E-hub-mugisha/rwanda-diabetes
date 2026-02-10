@@ -899,11 +899,11 @@
     display: none;
   }
   .sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link.active {
-    color: #197FC5;
+    color: #054468;
     font-weight: bold;
   }
   .sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-    color: #197FC5;
+    color: #054468;
   }
   .rtl.sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link {
     text-align: right;

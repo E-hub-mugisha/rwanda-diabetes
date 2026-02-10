@@ -57,15 +57,7 @@
                     <!-- Google Map -->
                     <div class="google-map">
                         <div class="iframe-wrapper">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.83988672637!2d-0.2664034848794909!3d51.528739805029666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sbd!4v1754748838084!5m2!1sen!2sbd"
-                                title="Google map"
-                                width="1920"
-                                height="600"
-                                style="border: 0"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.4462098724225!2d30.09644067479381!3d-1.9758321367681504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca5d08300cdef%3A0x1304c918f4e3d5c0!2sRwanda%20Diabetes%20Association!5e0!3m2!1sen!2srw!4v1770726554466!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div class="contact-info-list">
@@ -81,7 +73,7 @@
                                     Our Address
                                 </h2>
                                 <p class="text text-20">
-                                    Kigali City, Rwanda
+                                    64KN 8 Avenue, Kigali, Rwanda
                                 </p>
                             </div>
                         </div>
@@ -96,16 +88,16 @@
                                     Call Us
                                 </h2>
                                 <a
-                                    href="tel:+1 (416) 555-1234"
+                                    href="tel:0788 224 628"
                                     class="text text-20"
                                     aria-label="Call us">
-                                    +1 (416) 555-1234
+                                    0788 224 628
                                 </a>
                                 <a
-                                    href="tel:+1 (416) 555-5678"
+                                    href="tel:0788 224 628"
                                     class="text text-20"
                                     aria-label="Call us">
-                                    +1 (416) 555-5678
+                                    0788 224 628
                                 </a>
                             </div>
                         </div>
@@ -215,29 +207,29 @@
                             </p>
                         </div>
                         <form action="{{ route('contact.submit') }}" method="POST" class="form contact-form" data-aos="fade-up">
-    @csrf
-    <div class="field">
-        <input type="text" name="name" placeholder="Your Name *" required>
-    </div>
+                            @csrf
+                            <div class="field">
+                                <input type="text" name="name" placeholder="Your Name *" required>
+                            </div>
 
-    <div class="field">
-        <input type="email" name="email" placeholder="Email Here *" required>
-    </div>
+                            <div class="field">
+                                <input type="email" name="email" placeholder="Email Here *" required>
+                            </div>
 
-    <div class="field">
-        <input type="text" name="service" placeholder="Service Type *" required>
-    </div>
+                            <div class="field">
+                                <input type="text" name="service" placeholder="Service Type *" required>
+                            </div>
 
-    <div class="field">
-        <textarea name="message" rows="4" placeholder="Your Comment *" required></textarea>
-    </div>
+                            <div class="field">
+                                <textarea name="message" rows="4" placeholder="Your Comment *" required></textarea>
+                            </div>
 
-    <div class="form-button">
-        <button type="submit" class="button button--secondary">
-            Send Message
-        </button>
-    </div>
-</form>
+                            <div class="form-button">
+                                <button type="submit" class="button button--secondary">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>

@@ -38,17 +38,6 @@
             </div>
         </div>
     </div>
-    <div class="section-content">
-        <div class="banner-wrapper">
-            <picture class="media media-bg d-flex">
-                <img src="assets/img/6.jpg" width="1920" height="1000" loading="lazy" alt="Hero Image">
-            </picture>
-            <div class="content-absolute">
-                <div class="container-fluid d-flex align-items-end height-100">
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="image-text image-text-video mt-100 overflow-x-hidden">
@@ -84,7 +73,7 @@
                                     </svg>
                                 </span>
                                 <video class="video-frame" width="1280" height="720" controls="">
-                                    <source src="assets/img/video/video.mp4" type="video/mp4">
+                                    <source src="{{ asset('assets/img/video/video.mp4') }}" type="video/mp4">
                                 </video>
                             </div>
                         </div>
@@ -115,24 +104,71 @@
     </div>
 </div>
 
-<div class="brand brand-bg section-padding mt-100">
+<div class="running-content running-content-bg my-4">
+
     <div class="container">
-        <div class="section-headings text-center aos-init aos-animate" data-aos="fade-up">
-            <h2 class="heading text-50">Our Trusted Partners</h2>
-        </div>
-        <div class="section-content">
-            <div class="row product-grid">
-                @foreach($partners as $partner)
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="brand-logo aos-init aos-animate" data-aos="fade-up">
-                        <a href="about.html" class="content-link">
-                            <img src="assets/img/brand/b1.png" width="108" height="36" loading="lazy" alt="Brand Image">
-                        </a>
-                    </div>
-                </div>
-                @endforeach
+        <div class="section-headings section-headings-horizontal">
+            <div class="section-headings-left">
+
+                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
+                    Recent Partners and collaborators
+                </h2>
+                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
+                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
+                </p>
+            </div>
+            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
+                <a href="{{ route('partner_with_us')}}" class="button button--primary" aria-label="See All Post">
+                    Partner with Us
+                    <span class="svg-wrapper">
+                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                </a>
             </div>
         </div>
+        @if($partners && $partners->count())
+        <div class="content-inner radius18 mt-4">
+            <div class="logos-background p-5 overflow-hidden">
+                <div class="content-lists running-animation d-flex">
+                    <div class="content-item d-flex align-items-center">
+                        @foreach($partners as $partner)
+                        <a href="{{ $partner->website }}"
+                            class="content-link mx-4"
+                            target="_blank"
+                            rel="noopener">
+
+                            <img src="{{ asset('storage/partners/'.$partner->logo) }}"
+                                width="108"
+                                height="36"
+                                loading="lazy"
+                                alt="{{ $partner->name }}">
+                        </a>
+                        @endforeach
+                    </div>
+
+                    {{-- Duplicate for seamless loop --}}
+                    <div class="content-item d-flex align-items-center">
+                        @foreach($partners as $partner)
+                        <a href="{{ $partner->website }}"
+                            class="content-link mx-4"
+                            target="_blank"
+                            rel="noopener">
+
+                            <img src="{{ asset('storage/partners/'.$partner->logo) }}"
+                                width="108"
+                                height="36"
+                                loading="lazy"
+                                alt="{{ $partner->name }}">
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </div>
 </div>
 
@@ -189,9 +225,9 @@
                                 </div>
                             </div>
                             <div class="promotion-text text text-16">
-                                Email: partnerships@rdo.rw
+                                Email: info@rwandadiabetes.rw
 
-                                Phone: +250 XXX XXX XXX
+                                Phone: +250 788 224 628
                                 Office: Kigali, Rwanda
                             </div>
                         </li>
