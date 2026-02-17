@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('position');
             $table->string('role')->nullable();
+            $table->enum('category', ['leadership', 'board', 'other'])->default('other');
             $table->string('photo')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

@@ -32,8 +32,20 @@ class TestimonialController extends Controller
         $data['is_active'] = $request->is_active ? 1 : 0;
 
         // Upload photo
-        if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('testimonials', 'public');
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/testimony/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['photo'] = "$fileName";
         }
 
         Testimonial::create($data);
@@ -59,8 +71,20 @@ class TestimonialController extends Controller
         $data = $request->only('name', 'title', 'story');
         $data['is_active'] = $request->is_active ? 1 : 0;
 
-        if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('testimonials', 'public');
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/testimony/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['photo'] = "$fileName";
         }
 
         $testimonial->update($data);

@@ -21,7 +21,7 @@
     <div class="page-banner-content">
         <div class="container text-center">
             <h1 class="heading text-80 fw-700" data-aos="fade-up">
-                Details
+                {{ $new->title }}
             </h1>
             <ul
                 class="breadcrumb list-unstyled"
@@ -29,7 +29,7 @@
                 data-aos-delay="100">
                 <li>
                     <a
-                        href="index.html"
+                        href="/"
                         class="text text-18"
                         aria-label="Home Page">
                         Home
@@ -80,13 +80,13 @@
             Filter
         </drawer-opener>
         <div class="row">
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-12">
                 <div class="blog-details">
                     <div class="card-blog-list" data-aos="fade-up">
                         <div class="card-blog-list-media radius18">
                             <div class="media">
                                 <img
-                                    src="assets/img/blog/1.jpg"
+                                    src="{{ asset('assets/img/3.jpg') }}"
                                     alt="blog image"
                                     width="1000"
                                     height="707"
@@ -112,7 +112,7 @@
                                             stroke="currentColor"
                                             stroke-width="1.3" />
                                     </svg>
-                                    Admin
+                                    {{ $new->author->name}}
                                 </div>
                                 <div class="card-blog-meta-item text text-18">
                                     <svg
@@ -127,7 +127,7 @@
                                             stroke-linecap="round"
                                             stroke-linejoin="round" />
                                     </svg>
-                                    October 2, 2025
+                                    {{ $new->created_at->format('M d, Y') }}
                                 </div>
                                 <a
                                     class="card-blog-meta-item text text-18"
@@ -184,65 +184,22 @@
                             </div>
 
                             <h2 class="card-blog-heading heading text-50">
-                                Empowering entrepreneu fueling growth knowledge
+                                {{ $new->title }}
                             </h2>
 
                             <div class="blog-description">
                                 <p>
-                                    Consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore of magna aliqua. Ut enim
-                                    ad minim veniam, made of owl the quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea dolor
-                                    commodo consequat. Duis aute irure and dolor in
-                                    reprehenderit.
-                                </p>
-
-                                <p>
-                                    Use both direct conversations and indirect observations
-                                    to get visibility into employees challenges and
-                                    concerns. Use every opportunity to make clear to
-                                    employees that you support and care them. To facilitate
-                                    regular conversations between managers and employees,
-                                    provide.
+                                    {{ $new->excerpt }}
                                 </p>
 
                                 <div class="blog-paired-image">
-                                    <img
-                                        src="assets/img/blog/d1.jpg"
-                                        alt="blog image"
-                                        width="768"
-                                        height="700"
-                                        loading="lazy">
-                                    <img
-                                        src="assets/img/blog/d2.jpg"
-                                        alt="blog image"
-                                        width="768"
-                                        height="700"
-                                        loading="lazy">
+                                    <img src="{{ asset('assets/img/3.jpg') }}" alt="blog image" width="768" height="700" loading="lazy">
+                                    <img src="{{ asset('assets/img/2.jpg') }}" alt="blog image" width="768" height="700" loading="lazy">
                                 </div>
 
-                                <blockquote>
-                                    We appreciate the consistent high-quality service
-                                    provided by their team goes above and beyond concerns
-                                    promptly
-                                </blockquote>
 
                                 <p>
-                                    The third Monday of January is supposed to be the most
-                                    depressing day of the year. Whether you believe that or
-                                    not, the long nights, cold weather, and trying to keep
-                                    to new year resolutions are all probably getting to you
-                                    a little by now. To make matters worse many will still
-                                    be recovering from their Christmas spending. So how can
-                                    you make today
-                                </p>
-
-                                <p>
-                                    Vast numbers of employees now work remotely, and it's
-                                    too late to develop a set of remote-work policies if you
-                                    didn't already have one. But there are ways to make the
-                                    remote-work experience productive and engaging for
-                                    employees
+                                    {{ $new->content }}
                                 </p>
                             </div>
                         </div>
@@ -256,25 +213,9 @@
                             <li>
                                 <a
                                     class="subheading subheading-bg text-18"
-                                    href="blog-details.html"
+                                    href="#"
                                     aria-label="tag">
-                                    Agency
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="subheading subheading-bg text-18"
-                                    href="blog-details.html"
-                                    aria-label="tag">
-                                    Business
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="subheading subheading-bg text-18"
-                                    href="blog-details.html"
-                                    aria-label="tag">
-                                    Design
+                                    {{ $new->tags }}
                                 </a>
                             </li>
                         </ul>
@@ -353,542 +294,8 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="comments-section scroll-margin" id="blog-comments">
-                    <h2
-                        class="comment-section-heading heading text-36"
-                        data-aos="fade-up">
-                        2 Comments
-                    </h2>
-                    <ul class="comments-area list-unstyled">
-                        <li class="comments-item" data-aos="fade-up">
-                            <div class="commentator-img">
-                                <img
-                                    src="assets/img/blog/c1.jpg"
-                                    alt="image"
-                                    width="110"
-                                    height="110"
-                                    loading="lazy">
-                            </div>
-
-                            <div class="comment-details">
-                                <div class="comments-top">
-                                    <div class="comments-meta">
-                                        <div class="comment-date text text-16">
-                                            Aug 28, 2025
-                                        </div>
-                                        <h2 class="commentator-name heading text-22">
-                                            Ralph Edwards
-                                        </h2>
-                                    </div>
-                                    <div class="button-reply text text-16 fw-500">
-                                        <svg
-                                            viewBox="0 0 18 14"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.16927 13.6615L0.835938 6.99479L9.16927 0.328125V4.49479C13.7716 4.49479 17.5026 8.22579 17.5026 12.8281C17.5026 13.0555 17.4935 13.2809 17.4756 13.5037C16.2197 11.12 13.7176 9.49479 10.8359 9.49479H9.16927V13.6615Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                        Reply
-                                    </div>
-                                </div>
-                                <p class="comment-bottom text text-16">
-                                    Our advanced energy storage solutions allow you to store
-                                    excess energy generated from renewable sources like
-                                    solar and wind. This enables a constant.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="comments-item replied-item" data-aos="fade-up">
-                            <div class="commentator-img">
-                                <img
-                                    src="assets/img/blog/c2.jpg"
-                                    alt="image"
-                                    width="110"
-                                    height="110"
-                                    loading="lazy">
-                            </div>
-
-                            <div class="comment-details">
-                                <div class="comments-top">
-                                    <div class="comments-meta">
-                                        <div class="comment-date text text-16">
-                                            Aug 28, 2025
-                                        </div>
-                                        <h2 class="commentator-name heading text-22">
-                                            Sara Joseph
-                                        </h2>
-                                    </div>
-                                    <div class="button-reply text text-16 fw-500">
-                                        <svg
-                                            viewBox="0 0 18 14"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.16927 13.6615L0.835938 6.99479L9.16927 0.328125V4.49479C13.7716 4.49479 17.5026 8.22579 17.5026 12.8281C17.5026 13.0555 17.4935 13.2809 17.4756 13.5037C16.2197 11.12 13.7176 9.49479 10.8359 9.49479H9.16927V13.6615Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                        Reply
-                                    </div>
-                                </div>
-                                <p class="comment-bottom text text-16">
-                                    Our advanced energy storage solutions allow you to store
-                                    excess energy generated from renewable sources like
-                                    solar and wind. This enables a constant.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="comments-item" data-aos="fade-up">
-                            <div class="commentator-img">
-                                <img
-                                    src="assets/img/blog/c3.jpg"
-                                    alt="image"
-                                    width="110"
-                                    height="110"
-                                    loading="lazy">
-                            </div>
-
-                            <div class="comment-details">
-                                <div class="comments-top">
-                                    <div class="comments-meta">
-                                        <div class="comment-date text text-16">
-                                            Aug 28, 2025
-                                        </div>
-                                        <h2 class="commentator-name heading text-22">
-                                            Andrew Naeem
-                                        </h2>
-                                    </div>
-                                    <div class="button-reply text text-16 fw-500">
-                                        <svg
-                                            viewBox="0 0 18 14"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.16927 13.6615L0.835938 6.99479L9.16927 0.328125V4.49479C13.7716 4.49479 17.5026 8.22579 17.5026 12.8281C17.5026 13.0555 17.4935 13.2809 17.4756 13.5037C16.2197 11.12 13.7176 9.49479 10.8359 9.49479H9.16927V13.6615Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                        Reply
-                                    </div>
-                                </div>
-                                <p class="comment-bottom text text-16">
-                                    Our advanced energy storage solutions allow you to store
-                                    excess energy generated from renewable sources like
-                                    solar and wind. This enables a constant.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="comments-form">
-                    <div class="comments-form-headings">
-                        <h2 class="heading text-36" data-aos="fade-up">
-                            Leave a reply
-                        </h2>
-                        <p class="text text-16" data-aos="fade-up">
-                            Your email address will not be published. Required fields
-                            are marked *
-                        </p>
-                    </div>
-                    <form action="#" class="form contact-form">
-                        <div class="field w-half" data-aos="fade-up">
-                            <label for="CommentFormname" class="visually-hidden">
-                                Your Name
-                            </label>
-                            <input
-                                id="CommentFormname"
-                                class="text text-16"
-                                type="text"
-                                placeholder="Your Name*"
-                                name="name"
-                                required>
-                        </div>
-                        <div class="field w-half" data-aos="fade-up">
-                            <label for="CommentFormemail" class="visually-hidden">
-                                Your Email
-                            </label>
-                            <input
-                                id="CommentFormemail"
-                                class="text text-16"
-                                type="text"
-                                placeholder="Your Email*"
-                                name="email"
-                                required>
-                        </div>
-                        <div class="field" data-aos="fade-up">
-                            <label for="CommentFormWebsite" class="visually-hidden">
-                                Your Email
-                            </label>
-                            <input
-                                id="CommentFormWebsite"
-                                class="text text-16"
-                                type="text"
-                                placeholder="Your Website*"
-                                name="website">
-                        </div>
-                        <div class="field" data-aos="fade-up">
-                            <label for="CommentFormbody" class="visually-hidden">
-                                Type your message
-                            </label>
-                            <textarea
-                                id="CommentFormbody"
-                                class="text text-16"
-                                rows="4"
-                                placeholder="Type your message"
-                                name="message"
-                                required></textarea>
-                        </div>
-                        <div class="form-button" data-aos="fade-up">
-                            <button
-                                type="submit"
-                                class="button button--primary"
-                                aria-label="Post Comment">
-                                Post Comment
-                                <span class="svg-wrapper">
-                                    <svg
-                                        class="icon-20"
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                            fill="currentColor"></path>
-                                    </svg>
-                                </span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
-            <div class="col-12 col-lg-5">
-                <div class="sidebar-filter drawer-blog-sidebar">
-                    <div class="drawer-headings d-lg-none" data-aos="fade-up">
-                        <div class="heading text-24">Filter</div>
-                        <drawer-opener
-                            class="svg-wrapper menu-close"
-                            data-drawer=".drawer-blog-sidebar">
-                            <svg
-                                width="30px"
-                                height="30px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.00386 9.41816C7.61333 9.02763 7.61334 8.39447 8.00386 8.00395C8.39438 7.61342 9.02755 7.61342 9.41807 8.00395L12.0057 10.5916L14.5907 8.00657C14.9813 7.61605 15.6144 7.61605 16.0049 8.00657C16.3955 8.3971 16.3955 9.03026 16.0049 9.42079L13.4199 12.0058L16.0039 14.5897C16.3944 14.9803 16.3944 15.6134 16.0039 16.0039C15.6133 16.3945 14.9802 16.3945 14.5896 16.0039L12.0057 13.42L9.42097 16.0048C9.03045 16.3953 8.39728 16.3953 8.00676 16.0048C7.61624 15.6142 7.61624 14.9811 8.00676 14.5905L10.5915 12.0058L8.00386 9.41816Z"
-                                    fill="currentColor"></path>
-                                <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </drawer-opener>
-                    </div>
-                    <aside class="blog-sidebar">
-                        <div class="sidebar-widget radius18" data-aos="fade-up">
-                            <h2 class="sidebar-heading heading text-24">Search Here</h2>
-                            <form action="#" class="form-blog-search">
-                                <label for="blog-search-input" class="visually-hidden">
-                                    Search blog
-                                </label>
-                                <input
-                                    type="text"
-                                    id="blog-search-input"
-                                    name="blog-search"
-                                    placeholder="Search here"
-                                    class="text-18">
-                                <button
-                                    type="submit"
-                                    class="button button--primary"
-                                    aria-label="Search blog">
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_9060_14029)">
-                                            <path
-                                                d="M2.5 8.33333C2.5 9.09938 2.65088 9.85792 2.94404 10.5657C3.23719 11.2734 3.66687 11.9164 4.20854 12.4581C4.75022 12.9998 5.39328 13.4295 6.10101 13.7226C6.80875 14.0158 7.56729 14.1667 8.33333 14.1667C9.09938 14.1667 9.85792 14.0158 10.5657 13.7226C11.2734 13.4295 11.9164 12.9998 12.4581 12.4581C12.9998 11.9164 13.4295 11.2734 13.7226 10.5657C14.0158 9.85792 14.1667 9.09938 14.1667 8.33333C14.1667 7.56729 14.0158 6.80875 13.7226 6.10101C13.4295 5.39328 12.9998 4.75022 12.4581 4.20854C11.9164 3.66687 11.2734 3.23719 10.5657 2.94404C9.85792 2.65088 9.09938 2.5 8.33333 2.5C7.56729 2.5 6.80875 2.65088 6.10101 2.94404C5.39328 3.23719 4.75022 3.66687 4.20854 4.20854C3.66687 4.75022 3.23719 5.39328 2.94404 6.10101C2.65088 6.80875 2.5 7.56729 2.5 8.33333Z"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path
-                                                d="M17.5 17.5L12.5 12.5"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9060_14029">
-                                                <rect
-                                                    width="20"
-                                                    height="20"
-                                                    fill="currentColor" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="sidebar-widget radius18" data-aos="fade-up">
-                            <h2 class="sidebar-heading heading text-24">Categories</h2>
-                            <ul class="blog-categories list-unstyled">
-                                <li>
-                                    <a
-                                        class="blog-category subheading subheading-bg text-18 fw-400"
-                                        href="blog.html"
-                                        aria-label="blog category">
-                                        Branding
-                                        <svg
-                                            viewBox="0 0 18 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.6895 7.25095H0.75C0.551088 7.25095 0.360322 7.32997 0.21967 7.47062C0.0790178 7.61127 0 7.80203 0 8.00095C0 8.19986 0.0790178 8.39063 0.21967 8.53128C0.360322 8.67193 0.551088 8.75095 0.75 8.75095H14.6895L9.219 14.2199C9.07817 14.3608 8.99905 14.5518 8.99905 14.7509C8.99905 14.9501 9.07817 15.1411 9.219 15.2819C9.35983 15.4228 9.55084 15.5019 9.75 15.5019C9.94916 15.5019 10.1402 15.4228 10.281 15.2819L17.031 8.53195C17.1008 8.46228 17.1563 8.37951 17.1941 8.2884C17.2319 8.19728 17.2513 8.0996 17.2513 8.00095C17.2513 7.9023 17.2319 7.80462 17.1941 7.7135C17.1563 7.62238 17.1008 7.53962 17.031 7.46995L10.281 0.719947C10.1402 0.579117 9.94916 0.5 9.75 0.5C9.55084 0.5 9.35983 0.579117 9.219 0.719947C9.07817 0.860777 8.99905 1.05178 8.99905 1.25095C8.99905 1.45011 9.07817 1.64112 9.219 1.78195L14.6895 7.25095Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="blog-category subheading subheading-bg text-18 fw-400"
-                                        href="blog.html"
-                                        aria-label="blog category">
-                                        Consulting
-                                        <svg
-                                            viewBox="0 0 18 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.6895 7.25095H0.75C0.551088 7.25095 0.360322 7.32997 0.21967 7.47062C0.0790178 7.61127 0 7.80203 0 8.00095C0 8.19986 0.0790178 8.39063 0.21967 8.53128C0.360322 8.67193 0.551088 8.75095 0.75 8.75095H14.6895L9.219 14.2199C9.07817 14.3608 8.99905 14.5518 8.99905 14.7509C8.99905 14.9501 9.07817 15.1411 9.219 15.2819C9.35983 15.4228 9.55084 15.5019 9.75 15.5019C9.94916 15.5019 10.1402 15.4228 10.281 15.2819L17.031 8.53195C17.1008 8.46228 17.1563 8.37951 17.1941 8.2884C17.2319 8.19728 17.2513 8.0996 17.2513 8.00095C17.2513 7.9023 17.2319 7.80462 17.1941 7.7135C17.1563 7.62238 17.1008 7.53962 17.031 7.46995L10.281 0.719947C10.1402 0.579117 9.94916 0.5 9.75 0.5C9.55084 0.5 9.35983 0.579117 9.219 0.719947C9.07817 0.860777 8.99905 1.05178 8.99905 1.25095C8.99905 1.45011 9.07817 1.64112 9.219 1.78195L14.6895 7.25095Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="blog-category subheading subheading-bg text-18 fw-400"
-                                        href="blog.html"
-                                        aria-label="blog category">
-                                        Innovations
-                                        <svg
-                                            viewBox="0 0 18 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.6895 7.25095H0.75C0.551088 7.25095 0.360322 7.32997 0.21967 7.47062C0.0790178 7.61127 0 7.80203 0 8.00095C0 8.19986 0.0790178 8.39063 0.21967 8.53128C0.360322 8.67193 0.551088 8.75095 0.75 8.75095H14.6895L9.219 14.2199C9.07817 14.3608 8.99905 14.5518 8.99905 14.7509C8.99905 14.9501 9.07817 15.1411 9.219 15.2819C9.35983 15.4228 9.55084 15.5019 9.75 15.5019C9.94916 15.5019 10.1402 15.4228 10.281 15.2819L17.031 8.53195C17.1008 8.46228 17.1563 8.37951 17.1941 8.2884C17.2319 8.19728 17.2513 8.0996 17.2513 8.00095C17.2513 7.9023 17.2319 7.80462 17.1941 7.7135C17.1563 7.62238 17.1008 7.53962 17.031 7.46995L10.281 0.719947C10.1402 0.579117 9.94916 0.5 9.75 0.5C9.55084 0.5 9.35983 0.579117 9.219 0.719947C9.07817 0.860777 8.99905 1.05178 8.99905 1.25095C8.99905 1.45011 9.07817 1.64112 9.219 1.78195L14.6895 7.25095Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="blog-category subheading subheading-bg text-18 fw-400"
-                                        href="blog.html"
-                                        aria-label="blog category">
-                                        Managements
-                                        <svg
-                                            viewBox="0 0 18 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.6895 7.25095H0.75C0.551088 7.25095 0.360322 7.32997 0.21967 7.47062C0.0790178 7.61127 0 7.80203 0 8.00095C0 8.19986 0.0790178 8.39063 0.21967 8.53128C0.360322 8.67193 0.551088 8.75095 0.75 8.75095H14.6895L9.219 14.2199C9.07817 14.3608 8.99905 14.5518 8.99905 14.7509C8.99905 14.9501 9.07817 15.1411 9.219 15.2819C9.35983 15.4228 9.55084 15.5019 9.75 15.5019C9.94916 15.5019 10.1402 15.4228 10.281 15.2819L17.031 8.53195C17.1008 8.46228 17.1563 8.37951 17.1941 8.2884C17.2319 8.19728 17.2513 8.0996 17.2513 8.00095C17.2513 7.9023 17.2319 7.80462 17.1941 7.7135C17.1563 7.62238 17.1008 7.53962 17.031 7.46995L10.281 0.719947C10.1402 0.579117 9.94916 0.5 9.75 0.5C9.55084 0.5 9.35983 0.579117 9.219 0.719947C9.07817 0.860777 8.99905 1.05178 8.99905 1.25095C8.99905 1.45011 9.07817 1.64112 9.219 1.78195L14.6895 7.25095Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="blog-category subheading subheading-bg text-18 fw-400"
-                                        href="blog.html"
-                                        aria-label="blog category">
-                                        Marketing
-                                        <svg
-                                            viewBox="0 0 18 16"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.6895 7.25095H0.75C0.551088 7.25095 0.360322 7.32997 0.21967 7.47062C0.0790178 7.61127 0 7.80203 0 8.00095C0 8.19986 0.0790178 8.39063 0.21967 8.53128C0.360322 8.67193 0.551088 8.75095 0.75 8.75095H14.6895L9.219 14.2199C9.07817 14.3608 8.99905 14.5518 8.99905 14.7509C8.99905 14.9501 9.07817 15.1411 9.219 15.2819C9.35983 15.4228 9.55084 15.5019 9.75 15.5019C9.94916 15.5019 10.1402 15.4228 10.281 15.2819L17.031 8.53195C17.1008 8.46228 17.1563 8.37951 17.1941 8.2884C17.2319 8.19728 17.2513 8.0996 17.2513 8.00095C17.2513 7.9023 17.2319 7.80462 17.1941 7.7135C17.1563 7.62238 17.1008 7.53962 17.031 7.46995L10.281 0.719947C10.1402 0.579117 9.94916 0.5 9.75 0.5C9.55084 0.5 9.35983 0.579117 9.219 0.719947C9.07817 0.860777 8.99905 1.05178 8.99905 1.25095C8.99905 1.45011 9.07817 1.64112 9.219 1.78195L14.6895 7.25095Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-widget radius18" data-aos="fade-up">
-                            <h2 class="sidebar-heading heading text-24">Recent Post</h2>
-                            <ul class="recent-post list-unstyled">
-                                <li>
-                                    <div class="card-blog-list">
-                                        <div class="card-blog-list-media">
-                                            <div class="media">
-                                                <img
-                                                    src="assets/img/blog/1.jpg"
-                                                    alt="blog image"
-                                                    width="1000"
-                                                    height="707"
-                                                    loading="lazy">
-                                            </div>
-                                        </div>
-
-                                        <div class="card-blog-content">
-                                            <div class="card-blog-meta">
-                                                <div class="card-blog-meta-item text text-16">
-                                                    October 12, 2025
-                                                </div>
-                                            </div>
-
-                                            <h2 class="card-blog-heading heading text-20">
-                                                <a
-                                                    href="blog-details.html"
-                                                    class="heading text-20">
-                                                    Empowering entrepreneu fueling growth knowledge
-                                                </a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="card-blog-list">
-                                        <div class="card-blog-list-media">
-                                            <div class="media">
-                                                <img
-                                                    src="assets/img/blog/2.jpg"
-                                                    alt="blog image"
-                                                    width="1000"
-                                                    height="707"
-                                                    loading="lazy">
-                                            </div>
-                                        </div>
-
-                                        <div class="card-blog-content">
-                                            <div class="card-blog-meta">
-                                                <div class="card-blog-meta-item text text-16">
-                                                    October 15, 2025
-                                                </div>
-                                            </div>
-
-                                            <h2 class="card-blog-heading heading text-20">
-                                                <a
-                                                    href="blog-details.html"
-                                                    class="heading text-20">
-                                                    Grow Your Business, Cut Office Costs by 70%
-                                                </a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="card-blog-list">
-                                        <div class="card-blog-list-media">
-                                            <div class="media">
-                                                <img
-                                                    src="assets/img/blog/3.jpg"
-                                                    alt="blog image"
-                                                    width="1000"
-                                                    height="707"
-                                                    loading="lazy">
-                                            </div>
-                                        </div>
-
-                                        <div class="card-blog-content">
-                                            <div class="card-blog-meta">
-                                                <div class="card-blog-meta-item text text-16">
-                                                    October 15, 2025
-                                                </div>
-                                            </div>
-
-                                            <h2 class="card-blog-heading heading text-20">
-                                                <a
-                                                    href="blog-details.html"
-                                                    class="heading text-20">
-                                                    Powering Business—Always On, Always Ready.
-                                                </a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-widget radius18" data-aos="fade-up">
-                            <h2 class="sidebar-heading heading text-24">Tags</h2>
-                            <ul class="sidebar-tags list-unstyled">
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Agency
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Business
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Design
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Marketing
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Planting
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Trend
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        Mobile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        class="subheading subheading-bg text-18"
-                                        href="blog-details.html"
-                                        aria-label="tag">
-                                        All Project
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

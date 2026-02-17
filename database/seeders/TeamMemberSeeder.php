@@ -3,98 +3,125 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use App\Models\TeamMember;
 
 class TeamMemberSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $members = [
+
             [
-                'name' => 'Dr. Jeanette Uwase',
+                'name' => 'Jonas Ruzirakuvuka',
+                'slug' => Str::slug('Jonas Ruzirakuvuka'),
+                'position' => 'Nutrition Expert',
+                'role' => 'Diabetes Prevention & Management Specialist',
+                'category' => 'Other',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Jonas Ruzirakuvuka is a Nutrition Expert at the Rwanda Diabetes Association (RDA). He holds a Bachelor's degree in Human Nutrition and Dietetics and is pursuing a Master of Science in Human Nutrition.",
+                'status' => 'active',
+                'linkedin' => null,
+                'twitter' => null,
+                'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'name' => 'Aime Manzi',
+                'slug' => Str::slug('Aime Manzi'),
+                'position' => 'Clinical & Advocacy Program Director',
+                'role' => 'Medical Doctor & Epidemiology Candidate',
+                'category' => 'Leadership',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Aime Manzi is a medical doctor and Epidemiology candidate at the University of Rwanda. He serves as Clinical and Advocacy Program Director at RDA.",
+                'status' => 'active',
+                'linkedin' => null,
+                'twitter' => null,
+                'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'name' => 'Niyonshuti Dusengimana Dieudonné',
+                'slug' => Str::slug('Niyonshuti Dusengimana Dieudonné'),
+                'position' => 'Responsible Pharmacist',
+                'role' => 'Pharmaceutical Operations & QA',
+                'category' => 'Other',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Responsible Pharmacist at Rwanda Diabetes Association overseeing pharmaceutical coordination and compliance.",
+                'status' => 'active',
+                'linkedin' => null,
+                'twitter' => null,
+                'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'name' => 'Alivera Mukamazimpaka',
+                'slug' => Str::slug('Alivera Mukamazimpaka'),
+                'position' => 'Senior Nurse – Type 1 Diabetes Education',
+                'role' => 'T1D Education & Patient Support',
+                'category' => 'Other',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Senior Nurse in charge of Type 1 Diabetes Education with 25 years of service at RDA.",
+                'status' => 'active',
+                'linkedin' => null,
+                'twitter' => null,
+                'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'name' => 'Etienne Uwingabire',
+                'slug' => Str::slug('Etienne Uwingabire'),
                 'position' => 'Executive Director',
-                'role' => 'Leadership',
-                'photo' => 'team/jeanette.jpg',
-                'email' => 'jeanette@rdo.org',
-                'phone' => '+250780000001',
-                'bio' => 'Dr. Uwase leads the organization’s strategic direction and partnerships, with over 15 years of experience in diabetes care and public health.',
-                'status' => 'active',
-                'linkedin' => 'https://linkedin.com/in/jeanette',
-                'twitter' => 'https://twitter.com/jeanette',
-                'instagram' => null,
-            ],
-            [
-                'name' => 'Dr. Paul Nkurikiyinka',
-                'position' => 'Medical Programs Coordinator',
-                'role' => 'Programs',
-                'photo' => 'team/paul.jpg',
-                'email' => 'paul@rdo.org',
-                'phone' => '+250780000002',
-                'bio' => 'Dr. Paul oversees clinical programs, screening campaigns, and training of healthcare professionals across Rwanda.',
-                'status' => 'active',
-                'linkedin' => null,
-                'twitter' => 'https://twitter.com/drpaul',
-                'instagram' => null,
-            ],
-            [
-                'name' => 'Alice Mukamana',
-                'position' => 'Community Outreach Manager',
-                'role' => 'Community Engagement',
-                'photo' => 'team/alice.jpg',
-                'email' => 'alice@rdo.org',
-                'phone' => '+250780000003',
-                'bio' => 'Alice manages community education programs, school partnerships, and awareness campaigns.',
-                'status' => 'active',
-                'linkedin' => 'https://linkedin.com/in/alicem',
-                'twitter' => null,
-                'instagram' => 'https://instagram.com/alicem',
-            ],
-            [
-                'name' => 'Mugisha Eric',
-                'position' => 'Technology & Digital Systems Lead',
-                'role' => 'Technology',
-                'photo' => 'team/eric.jpg',
-                'email' => 'eric@rdo.org',
-                'phone' => '+250780000004',
-                'bio' => 'Eric leads digital platforms, data systems, and technology solutions to support diabetes care and monitoring.',
-                'status' => 'active',
-                'linkedin' => 'https://linkedin.com/in/eric',
-                'twitter' => null,
-                'instagram' => 'https://instagram.com/eric',
-            ],
-            [
-                'name' => 'Marie Claire Ndahiro',
-                'position' => 'Nutrition Specialist',
-                'role' => 'Health Education',
-                'photo' => 'team/marie.jpg',
-                'email' => 'marie@rdo.org',
-                'phone' => '+250780000005',
-                'bio' => 'Marie Claire provides nutrition guidance and develops diabetes-friendly meal plans for communities.',
+                'role' => 'Public Health Advocate & NCD Leader',
+                'category' => 'Leadership',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Executive Director of Rwanda Diabetes Association leading national diabetes prevention and management initiatives.",
                 'status' => 'active',
                 'linkedin' => null,
                 'twitter' => null,
-                'instagram' => 'https://instagram.com/marie',
+                'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
+
             [
-                'name' => 'John Bosco Habimana',
-                'position' => 'Finance & Administration Officer',
-                'role' => 'Finance',
-                'photo' => 'team/john.jpg',
-                'email' => 'john@rdo.org',
-                'phone' => '+250780000006',
-                'bio' => 'John oversees financial management, reporting, and administrative operations.',
+                'name' => 'Claudine Mugiraneza',
+                'slug' => Str::slug('Claudine Mugiraneza'),
+                'position' => 'Executive Secretary',
+                'role' => 'Administration & Program Coordination',
+                'category' => 'Leadership',
+                'photo' => null,
+                'email' => null,
+                'phone' => null,
+                'bio' => "Executive Secretary at Rwanda Diabetes Association overseeing operations and program coordination.",
                 'status' => 'active',
-                'linkedin' => 'https://linkedin.com/in/johnbosco',
+                'linkedin' => null,
                 'twitter' => null,
                 'instagram' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
+
         ];
 
-        foreach ($members as $member) {
-            TeamMember::create(array_merge($member, [
-                'slug' => Str::slug($member['name']),
-            ]));
-        }
+        DB::table('team_members')->insert($members);
     }
 }

@@ -78,8 +78,20 @@ class AdminPartnershipController extends Controller
         ]);
 
         // Upload logo
-        if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('partners', 'public');
+        if ($image = $request->file('logo')) {
+            $destinationPath = 'image/partners/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $validated['logo'] = "$fileName";
         }
 
         $validated['slug'] = Str::slug($request->name);

@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', $article->title)
+@section('title', $material->title)
 @section('content')
 
 
@@ -24,16 +24,16 @@
                         <div class="card-blog-content">
 
                             <h2 class="card-blog-heading heading text-50">
-                                {{ $article->title }}
+                                {{ $material->title }}
                             </h2>
 
                             <div class="blog-description">
                                 <p>
-                                    {{ $article->short_description }}
+                                    {{ $material->short_description }}
                                 </p>
 
                                 <p>
-                                    {{ $article->content }}
+                                    {{ $material->content }}
                                 </p>
 
                                 <div class="blog-paired-image">
@@ -51,7 +51,7 @@
                         <ul class="sidebar-tags list-unstyled">
                             <li>
                                 <a class="subheading subheading-bg text-18" href="#" aria-label="tag">
-                                    {{ $article->category->name }}
+                                    {{ $material->category->name }}
                                 </a>
                             </li>
                         </ul>

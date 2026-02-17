@@ -52,15 +52,15 @@
                 <div class="col-lg-5 col-12">
                     <modal-video class="video-wrap height-100">
                         <div class="image radius18 height-100 aos-init aos-animate" data-aos="fade-right">
-                            <img src="assets/img/8.jpg" width="1000" height="742" loading="lazy" alt="Image">
+                            <img src="{{ asset('assets/img/2.jpg') }}" width="1000" height="742" loading="lazy" alt="Image">
                             <div class="content-absolute">
                                 <div class="flex-banner height-inherit d-flex align-items-center justify-content-center">
                                     <div class="content-box">
-                                        <div class="button button--secondary open-video">
+                                        <!-- <div class="button button--secondary open-video">
                                             <svg class="icon-24" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M10.858 5.1281C11.5377 5.51041 11.5377 6.48895 10.858 6.87125L2.04588 11.8281C1.37927 12.203 0.555618 11.7213 0.555618 10.9565V1.04285C0.555618 0.278027 1.37928 -0.203685 2.04588 0.171279L10.858 5.1281Z" fill="currentColor"></path>
                                             </svg>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                             target="_blank"
                             rel="noopener">
 
-                            <img src="{{ asset('storage/partners/'.$partner->logo) }}"
+                            <img src="{{asset('image/partners')}}/{{ $partner->logo }}"
                                 width="108"
                                 height="36"
                                 loading="lazy"
@@ -156,7 +156,7 @@
                             target="_blank"
                             rel="noopener">
 
-                            <img src="{{ asset('storage/partners/'.$partner->logo) }}"
+                            <img src="{{asset('image/partners')}}/{{ $partner->logo }}"
                                 width="108"
                                 height="36"
                                 loading="lazy"

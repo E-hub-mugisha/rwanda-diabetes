@@ -40,7 +40,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>
                     @if($partner->logo)
-                    <img src="{{ asset('storage/'.$partner->logo) }}" width="60">
+                    <img src="{{asset('image/partners')}}/{{ $partner->logo }}" width="60">
                     @else
                     <span class="text-muted">No logo</span>
                     @endif

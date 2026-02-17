@@ -6,7 +6,7 @@
     <div class="row flex-row-reverse">
         <div class="col-lg-5 col-12">
             <div class="service-content-image height-100 aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
-                <img src="assets/img/8.jpg" width="1000" height="929" loading="lazy" alt="Service Image">
+                <img src="{{ asset('assets/img/1.jpg') }}" width="1000" height="929" loading="lazy" alt="Service Image">
             </div>
         </div>
         <div class="col-lg-7 col-12">

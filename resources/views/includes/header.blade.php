@@ -6,7 +6,8 @@
         <div class="container-fluid">
             <div class="header-grid">
                 <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
-                    <img src="{{ asset('assets/img/logo-1.png') }}" alt="Rwanda diabetes Logo" width="189" height="32">
+                    <img src="{{ asset('assets/img/logo-1.png') }}" alt="Rwanda diabetes Logo" width="189" height="32" style="width: 50px; height:50px">
+                    <span class="text-white px-4"> Rwanda Diabetes Association </span>
                 </a>
                 <drawer-menu>
                     <nav class="header-nav drawer-menu">

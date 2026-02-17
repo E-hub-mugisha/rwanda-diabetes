@@ -17,7 +17,8 @@ class TeamMember extends Model
         'phone',
         'bio',
         'order',
-        'status'
+        'status',
+        'category'
     ];
 
     protected static function boot()

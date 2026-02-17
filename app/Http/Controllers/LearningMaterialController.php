@@ -55,12 +55,36 @@ class LearningMaterialController extends Controller
         $data = $request->all();
         $data['author_id'] = auth()->id();
 
-        if ($request->hasFile('file')) {
-            $data['file'] = $request->file('file')->store('materials/files');
+        if ($image = $request->file('thumbnail')) {
+            $destinationPath = 'image/material/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['thumbnail'] = "$fileName";
         }
 
-        if ($request->hasFile('thumbnail')) {
-            $data['thumbnail'] = $request->file('thumbnail')->store('materials/thumbnails');
+        if ($image = $request->file('file')) {
+            $destinationPath = 'image/material/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['file'] = "$fileName";
         }
 
         LearningMaterial::create($data);
@@ -94,14 +118,36 @@ class LearningMaterialController extends Controller
 
         $data = $request->all();
 
-        if ($request->hasFile('file')) {
-            Storage::delete($material->file);
-            $data['file'] = $request->file('file')->store('materials/files');
+        if ($image = $request->file('thumbnail')) {
+            $destinationPath = 'image/material/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['thumbnail'] = "$fileName";
         }
 
-        if ($request->hasFile('thumbnail')) {
-            Storage::delete($material->thumbnail);
-            $data['thumbnail'] = $request->file('thumbnail')->store('materials/thumbnails');
+        if ($image = $request->file('file')) {
+            $destinationPath = 'image/material/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['file'] = "$fileName";
         }
 
         $material->update($data);

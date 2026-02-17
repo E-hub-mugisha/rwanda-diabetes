@@ -46,7 +46,9 @@ class PageController extends Controller
 
     public function impact()
     {
-        return view('pages.impact');
+        $stories = Story::where('status', 'published')
+            ->latest()->paginate(6);
+        return view('pages.impact',compact('stories'));
     }
 
     public function contact()
@@ -93,8 +95,10 @@ class PageController extends Controller
     }
     public function TeamMember()
     {
-        $teams = TeamMember::where('status', 'active')->get();
-        return view('pages.our_teams', compact('teams'));
+        $leadership = TeamMember::where('category', 'Leadership')->where('status', 'active')->get();
+        $board = TeamMember::where('category', 'Board')->where('status', 'active')->get();
+        $others = TeamMember::where('category', 'Other')->where('status', 'active')->get();
+        return view('pages.our_teams', compact('leadership', 'board', 'others'));
     }
 
     public function showTeam($slug)
@@ -130,7 +134,7 @@ class PageController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         $programs = $category->programs()->where('status', 'published')->latest()->paginate(10);
-        return view('programs.category', compact('category', 'programs'));
+        return view('pages.program_categories', compact('category', 'programs'));
     }
 
     // Show single program

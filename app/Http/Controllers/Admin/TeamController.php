@@ -28,6 +28,7 @@ class TeamController extends Controller
             'name'      => 'required|string|max:255',
             'position'  => 'required|string|max:255',
             'role'      => 'required|string|max:255',
+            'category' => 'required',
             'email'     => 'nullable|email',
             'phone'     => 'nullable|string|max:50',
             'status'    => 'required|in:active,inactive',
@@ -36,18 +37,33 @@ class TeamController extends Controller
         ]);
 
         // Upload photo
-        $photoPath = $request->file('photo')->store('team', 'public');
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/team/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data = "$fileName";
+        }
 
         TeamMember::create([
             'name'      => $request->name,
             'slug'      => Str::slug($request->name),
             'position'  => $request->position,
             'role'      => $request->role,
+            'category'  => $request->category,
             'email'     => $request->email,
             'phone'     => $request->phone,
             'bio'       => $request->bio,
             'status'    => $request->status,
-            'photo'     => $photoPath,
+            'photo'     => $data,
             'linkedin'  => $request->linkedin,
             'twitter'   => $request->twitter,
             'instagram' => $request->instagram,
@@ -76,6 +92,7 @@ class TeamController extends Controller
             'name'      => 'required|string|max:255',
             'position'  => 'required|string|max:255',
             'role'      => 'required|string|max:255',
+            'category' => 'required',
             'email'     => 'nullable|email',
             'phone'     => 'nullable|string|max:50',
             'status'    => 'required|in:active,inactive',
@@ -83,18 +100,20 @@ class TeamController extends Controller
             'photo'     => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $photoPath = $member->photo;
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/team/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-        // If new image uploaded → replace old one
-        if ($request->hasFile('photo')) {
-
-            // delete old photo
-            if ($member->photo && Storage::disk('public')->exists($member->photo)) {
-                Storage::disk('public')->delete($member->photo);
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
 
-            // upload new
-            $photoPath = $request->file('photo')->store('team', 'public');
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data = "$fileName";
         }
 
         // Update member
@@ -103,11 +122,12 @@ class TeamController extends Controller
             'slug'      => Str::slug($request->name),
             'position'  => $request->position,
             'role'      => $request->role,
+            'category'  => $request->category,
             'email'     => $request->email,
             'phone'     => $request->phone,
             'bio'       => $request->bio,
             'status'    => $request->status,
-            'photo'     => $photoPath,
+            'photo'     => $data,
             'linkedin'  => $request->linkedin,
             'twitter'   => $request->twitter,
             'instagram' => $request->instagram,
@@ -122,11 +142,6 @@ class TeamController extends Controller
     public function destroy($id)
     {
         $member = TeamMember::findOrFail($id);
-
-        // Delete photo from storage
-        if ($member->photo && Storage::disk('public')->exists($member->photo)) {
-            Storage::disk('public')->delete($member->photo);
-        }
 
         $member->delete();
 

@@ -26,8 +26,20 @@ class ProgramController extends Controller
             'category_id' => 'nullable',
         ]);
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('programs', 'public');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/program/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $validated['image'] = "$fileName";
         }
 
         Program::create($validated);
@@ -45,8 +57,20 @@ class ProgramController extends Controller
             'category_id' => 'nullable',
         ]);
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('programs', 'public');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/program/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $validated['image'] = "$fileName";
         }
 
         $program->update($validated);

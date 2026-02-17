@@ -51,8 +51,20 @@ class PostController extends Controller
             'published_at' => 'nullable|date',
         ]);
 
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('posts', 'public');
+        if ($image = $request->file('featured_image')) {
+            $destinationPath = 'image/posts/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['featured_image'] = "$fileName";
         }
 
         $data['slug'] = Str::slug($data['title']);
@@ -74,37 +86,49 @@ class PostController extends Controller
     }
 
     // Admin: update post
-public function update(Request $request, Post $post)
-{
-    $data = $request->validate([
-        'title' => 'required|string|max:255',
-        'excerpt' => 'nullable|string',
-        'content' => 'required|string',
-        'featured_image' => 'nullable|image',
-        'category_id' => 'nullable|exists:categories,id',
-        'tags' => 'nullable|string', // string NOT array
-        'status' => 'required|in:draft,published,archived',
-        'published_at' => 'nullable|date',
-    ]);
+    public function update(Request $request, Post $post)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'excerpt' => 'nullable|string',
+            'content' => 'required|string',
+            'featured_image' => 'nullable|image',
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|string', // string NOT array
+            'status' => 'required|in:draft,published,archived',
+            'published_at' => 'nullable|date',
+        ]);
 
-    // Convert tags from string to array
-    $data['tags'] = $request->tags
-        ? array_map('trim', explode(',', $request->tags))
-        : [];
+        // Convert tags from string to array
+        $data['tags'] = $request->tags
+            ? array_map('trim', explode(',', $request->tags))
+            : [];
 
-    // Save image if exists
-    if ($request->hasFile('featured_image')) {
-        $data['featured_image'] = $request->file('featured_image')->store('posts', 'public');
+        // Save image if exists
+        if ($image = $request->file('featured_image')) {
+            $destinationPath = 'image/posts/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['featured_image'] = "$fileName";
+        }
+
+        // Generate slug
+        $data['slug'] = Str::slug($data['title']);
+
+        // Update post
+        $post->update($data);
+
+        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
     }
-
-    // Generate slug
-    $data['slug'] = Str::slug($data['title']);
-
-    // Update post
-    $post->update($data);
-
-    return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
-}
 
 
     // Admin: delete post

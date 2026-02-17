@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="hero-banner-2 about-us-2 mt-100">
+<div class="hero-banner-2 about-us-2 mt-100" style="padding-top: 100px;">
     <div class="container">
         <div class="section-headings section-headings-horizontal">
             <div class="section-headings-left">
@@ -29,14 +29,14 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="#summary" class="button button--secondary" aria-label="hero button">
+                    <!-- <a href="#summary" class="button button--secondary" aria-label="hero button">
                         Summary
                         <span class="svg-wrapper">
                             <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
                             </svg>
                         </span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
 </counter-up>
 
 
-<div class="our-services section-padding mt-10">
+<!-- <div class="our-services section-padding mt-10">
     <div class="container">
         <div class="section-headings section-headings-horizontal">
             <div class="section-headings-left">
@@ -237,7 +237,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <div class="testimonial-3 mt-100 overflow-x-hidden">
@@ -269,12 +269,12 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="heading text-50">
-                            See what our customers have to say about us
+                        <h2 class="heading" style="height: 3rem;">
+                            Success story from our community outreach
                         </h2>
                     </div>
                     <div class="section-headings-bottom section-headings-horizontal">
-                        <div class="text text-18">Discover how we've helped businesses like yours succeed through real feedback, genuine experiences, and proven results from our valued clients.</div>
+                        <div class="text text-18">Real stories from individuals whose lives have been transformed through early detection, education, and support.</div>
                     </div>
                 </div>
             </div>
@@ -282,7 +282,8 @@
                 <testicolumn-slider class="team-slider testicolumn-slider aos-init aos-animate" data-aos="fade-left">
                     <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
                         <div class="swiper-wrapper" id="swiper-wrapper-1b25cdeb34f748bb" aria-live="polite">
-                            <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 3" style="width: 556px; margin-right: 20px;">
+                            @foreach($stories as $story)
+                            <div class="swiper-slide">
                                 <div class="card-testimonial radius18">
                                     <ul class="rating-list list-unstyled">
                                         <li class="rating-icon">
@@ -312,20 +313,16 @@
                                         </li>
                                     </ul>
                                     <p class="text text-24">
-                                        “ Working with several word themes and templates the last
-                                        years only can say this is best in every level use it for
-                                        my reviews that I have already are company and the reviews
-                                        that I have already are all excellent. Not only the design
-                                        but the are company and the reviews code ”
+                                        “ {{ $story->excerpt }}”
                                     </p>
                                     <div class="user-info-wrap">
                                         <div class="user-info">
                                             <div class="user-img">
-                                                <img src="assets/img/testimonial/1.jpg" width="80" height="80" loading="lazy" alt="image">
+                                                <img src="assets/img/image.png" width="80" height="80" loading="lazy" alt="image">
                                             </div>
                                             <div class="user-name-desig">
                                                 <h2 class="user-name heading text-24">
-                                                    Marvin Kinney
+                                                    {{ $story->title }}
                                                 </h2>
                                                 <div class="user-desig text text-18">
                                                     Product Manager
@@ -340,118 +337,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 3" style="width: 556px; margin-right: 20px;">
-                                <div class="card-testimonial radius18">
-                                    <ul class="rating-list list-unstyled">
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                    </ul>
-                                    <p class="text text-24">
-                                        “ Working with several word themes and templates the last
-                                        years only can say this is best in every level use it for
-                                        my reviews that I have already are company and the reviews
-                                        that I have already are all excellent. Not only the design
-                                        but the are company and the reviews code ”
-                                    </p>
-                                    <div class="user-info-wrap">
-                                        <div class="user-info">
-                                            <div class="user-img">
-                                                <img src="assets/img/testimonial/2.jpg" width="80" height="80" loading="lazy" alt="image">
-                                            </div>
-                                            <div class="user-name-desig">
-                                                <h2 class="user-name heading text-24">
-                                                    Charlize Theron
-                                                </h2>
-                                                <div class="user-desig text text-18">
-                                                    Product Manager
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="icon-quote">
-                                            <svg class="icon icon-62" width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.5312 9.41406C6.51702 9.41406 0 15.9329 0 23.9453C0 31.2606 5.43154 37.3306 12.4771 38.3311C11.9131 42.4287 10.3486 46.3275 7.90415 49.7085C7.42874 50.3683 7.44654 51.2624 7.9538 51.9009C8.4515 52.5292 9.31635 52.7674 10.0754 52.4473C21.6088 47.6332 29.0625 36.4438 29.0625 23.9453C29.0625 15.9329 22.5455 9.41406 14.5312 9.41406ZM47.4688 9.41406C39.4545 9.41406 32.9375 15.9329 32.9375 23.9453C32.9375 31.2606 38.369 37.3306 45.4146 38.3311C44.8506 42.4287 43.2861 46.3275 40.8417 49.7085C40.3662 50.3683 40.384 51.2624 40.8913 51.9009C41.389 52.5292 42.2538 52.7674 43.0129 52.4473C54.5463 47.6332 62 36.4438 62 23.9453C62 15.9329 55.483 9.41406 47.4688 9.41406Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide" role="group" aria-label="3 / 3" style="width: 556px; margin-right: 20px;">
-                                <div class="card-testimonial radius18">
-                                    <ul class="rating-list list-unstyled">
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                    </ul>
-                                    <p class="text text-24">
-                                        “ Working with several word themes and templates the last
-                                        years only can say this is best in every level use it for
-                                        my reviews that I have already are company and the reviews
-                                        that I have already are all excellent. Not only the design
-                                        but the are company and the reviews code ”
-                                    </p>
-                                    <div class="user-info-wrap">
-                                        <div class="user-info">
-                                            <div class="user-img">
-                                                <img src="assets/img/testimonial/3.jpg" width="80" height="80" loading="lazy" alt="image">
-                                            </div>
-                                            <div class="user-name-desig">
-                                                <h2 class="user-name heading text-24">Tondu Hosen</h2>
-                                                <div class="user-desig text text-18">Ceo &amp; Owner</div>
-                                            </div>
-                                        </div>
-                                        <div class="icon-quote">
-                                            <svg class="icon icon-62" width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.5312 9.41406C6.51702 9.41406 0 15.9329 0 23.9453C0 31.2606 5.43154 37.3306 12.4771 38.3311C11.9131 42.4287 10.3486 46.3275 7.90415 49.7085C7.42874 50.3683 7.44654 51.2624 7.9538 51.9009C8.4515 52.5292 9.31635 52.7674 10.0754 52.4473C21.6088 47.6332 29.0625 36.4438 29.0625 23.9453C29.0625 15.9329 22.5455 9.41406 14.5312 9.41406ZM47.4688 9.41406C39.4545 9.41406 32.9375 15.9329 32.9375 23.9453C32.9375 31.2606 38.369 37.3306 45.4146 38.3311C44.8506 42.4287 43.2861 46.3275 40.8417 49.7085C40.3662 50.3683 40.384 51.2624 40.8913 51.9009C41.389 52.5292 42.2538 52.7674 43.0129 52.4473C54.5463 47.6332 62 36.4438 62 23.9453C62 15.9329 55.483 9.41406 47.4688 9.41406Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
