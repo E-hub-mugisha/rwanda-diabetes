@@ -135,7 +135,7 @@
                             </li>
                             <li class="nav-item nav-item-static">
                                 <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    PROGRAMS & INITIATIVES
+                                    PROGRAMS
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
                                     </svg>
@@ -352,7 +352,7 @@
 
                             <li class="nav-item">
                                 <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    NEWS & STORIES
+                                    NEWS
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
                                     </svg>
