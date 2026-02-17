@@ -61,7 +61,7 @@
             <div class="swiper-slide">
                 <div class="slider-card overlay">
                     <picture class="slider-media">
-                        <img src="assets/img/banner.jpg" width="1920" height="1000" loading="eager" alt="Hero Image">
+                        <img src="assets/img/banner.jpeg" width="1920" height="1000" loading="eager" alt="Hero Image">
                     </picture>
                     <div class="slider-content">
                         <div class="container height-100 d-flex align-items-center">
