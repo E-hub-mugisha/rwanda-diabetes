@@ -38,7 +38,7 @@
                 </p>
             </div>
             <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="{{ route('our_team') }}" class="button button--primary" aria-label="See All Post">
+                <a href="#!" class="button button--primary" aria-label="See All Post">
                     Discover More
                     <span class="svg-wrapper">
                         <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@
             <div class="col-md-6 col-12 td-column">
                 <div class="td-media-wrap" data-aos="fade-up">
                     <div class="td-media radius18">
-                        <img src="{{ asset('storage/' . $member->photo) }}"
+                        <img src="{{asset('image/teams')}}/{{ $member->photo }}"
                             width="1000" height="1133" loading="lazy"
                             alt="{{ $member->name }}">
                     </div>
