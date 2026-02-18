@@ -86,7 +86,7 @@
                         <div class="card-blog-list-media radius18">
                             <div class="media">
                                 <img
-                                    src="{{ asset('assets/img/3.jpg') }}"
+                                    src="{{asset('image/posts')}}/{{ $new->featured_image }}"
                                     alt="blog image"
                                     width="1000"
                                     height="707"
