@@ -215,7 +215,7 @@
                                     class="subheading subheading-bg text-18"
                                     href="#"
                                     aria-label="tag">
-                                    {{ $new->tags }}
+                                    {{ implode(', ', $new->tags ?? []) }}
                                 </a>
                             </li>
                         </ul>
@@ -295,7 +295,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
