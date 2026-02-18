@@ -199,7 +199,7 @@
 
 
                                 <p>
-                                    {{ $new->content }}
+                                    {!! $new->content !!}
                                 </p>
                             </div>
                         </div>
