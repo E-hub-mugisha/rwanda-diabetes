@@ -186,7 +186,7 @@
                 @foreach( $programs as $program)
                 <div class="col-xl-4 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up">
                     <div class="multicolumn-card">
-                        <div class="card-icon">
+                        <!-- <div class="card-icon">
                             <svg class="icon-40" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                                 <g clip-path="url(#clip0_9088_5407)">
                                     <path d="M34.1323 16.6016H24.0586C23.735 16.6016 23.4727 16.8639 23.4727 17.1875C23.4727 17.5111 23.735 17.7734 24.0586 17.7734H34.1323C34.4559 17.7734 34.7183 17.5111 34.7183 17.1875C34.7183 16.8639 34.4559 16.6016 34.1323 16.6016Z" fill="CurrentColor"></path>
@@ -208,7 +208,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </div>
+                        </div> -->
                         <h2 class="heading text-28">{{ $program->title }}</h2>
                         <div class="text text-16">
                             {{ $program->short_description }}.
