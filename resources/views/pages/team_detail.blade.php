@@ -38,8 +38,8 @@
                 </p>
             </div>
             <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="#!" class="button button--primary" aria-label="See All Post">
-                    Discover More
+                <a href="{{ route('our-team')}}" class="button button--primary" aria-label="See All Post">
+                    other members
                     <span class="svg-wrapper">
                         <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="row align-items-center" id="team-section">
-            <div class="col-md-6 col-12 td-column">
+            <div class="col-md-5 td-column">
                 <div class="td-media-wrap" data-aos="fade-up">
                     <div class="td-media radius18">
                         <img src="{{asset('image/teams')}}/{{ $member->photo }}"
@@ -59,21 +59,16 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-12">
+            <div class="col-md-7">
                 <div class="content-info">
                     <h2 class="heading text-50" data-aos="fade-up">
                         {{ $member->name }}
                     </h2>
 
                     <div class="info-desig heading text-18" data-aos="fade-up" data-aos-delay="50">
-                        Position: {{ $member->position }}
+                        {{ $member->position }}
                     </div>
                     
-                    @if($member->role)
-                    <div class="info-desig text-18">
-                        Role: {{ $member->role }}
-                    </div>
-                    @endif
 
                     @if($member->bio)
                     <p class="info-desc text text-18" data-aos="fade-up" data-aos-delay="100">
