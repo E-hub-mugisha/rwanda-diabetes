@@ -33,7 +33,7 @@
                                 </p>
 
                                 <p>
-                                    {{ $article->content }}
+                                    {!! $article->content !!}
                                 </p>
 
                                 <div class="blog-paired-image">

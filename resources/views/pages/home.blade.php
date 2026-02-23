@@ -738,7 +738,7 @@
                                 </a>
                             </h2>
                         </div>
-                        <!-- <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
+                        <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
                             <span class="blog-tag subheading subheading-bg text-16 fw-500">{{ $new->category->name }}</span>
                             <div class="media">
                                 <img src="{{asset('image/posts')}}/{{ $new->featured_image }}" alt="blog image" width="1000" height="707" loading="lazy">
@@ -751,7 +751,7 @@
                                     </svg>
                                 </div>
                             </div>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
                 @endforeach

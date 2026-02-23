@@ -39,10 +39,17 @@
                             </div>
 
                             {{-- Content (Quill Editor) --}}
+                            {{-- Content (Quill Editor) --}}
                             <div class="mb-4">
                                 <label class="form-label fw-bold">Content</label>
 
-                                <textarea name="content" class="form-control" id="content" style="height: 250px;">{{ old('content') }}</textarea>
+                                <!-- Quill Editor -->
+                                <div id="quillEditor" style="height: 250px;">
+                                    {!! old('content') !!}
+                                </div>
+
+                                <!-- Hidden input -->
+                                <input type="hidden" name="content" id="content">
 
                                 @error('content') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
@@ -108,13 +115,23 @@
 
 <script>
     var quill = new Quill('#quillEditor', {
-        theme: 'snow'
+        theme: 'snow',
+        placeholder: 'Write your post content here...',
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
     });
 
-    // Sync content to hidden input on submit
-    document.querySelector("form").onsubmit = function() {
+    // Sync Quill content to hidden input before submit
+    document.querySelector("form").addEventListener("submit", function () {
         document.querySelector("#content").value = quill.root.innerHTML;
-    };
+    });
 </script>
 
 @endsection

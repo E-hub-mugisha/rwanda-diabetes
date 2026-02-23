@@ -17,7 +17,7 @@
                     <div class="card-blog-list aos-init aos-animate" data-aos="fade-up">
                         <div class="card-blog-list-media radius18">
                             <div class="media">
-                                <img src="{{ asset('assets/img/1.jpg') }}" alt="blog image" width="1000" height="707" loading="lazy">
+                                <img src="{{asset('image/programs')}}/{{ $program->image }}" alt="blog image" width="1000" height="707" loading="lazy">
                             </div>
                         </div>
 
@@ -33,13 +33,9 @@
                                 </p>
 
                                 <p>
-                                    {{ $program->content }}
+                                    {!! $program->content !!}
                                 </p>
 
-                                <div class="blog-paired-image">
-                                    <img src="{{ asset('assets/img/3.jpg') }}" alt="blog image" width="768" height="700" loading="lazy">
-                                    <img src="{{ asset('assets/img/2.jpg') }}" alt="blog image" width="768" height="700" loading="lazy">
-                                </div>
                             </div>
                         </div>
                     </div>

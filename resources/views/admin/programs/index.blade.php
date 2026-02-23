@@ -49,7 +49,7 @@
 
                                             <td>
                                                 @if($program->image)
-                                                <img src="{{ asset('storage/' . $program->image) }}" width="60" class="rounded">
+                                                <img src="{{asset('image/programs')}}/{{ $program->image }}" width="60" class="rounded">
                                                 @else
                                                 <span class="text-muted">No image</span>
                                                 @endif
@@ -126,9 +126,19 @@
                                                                 <textarea name="short_description" class="form-control" rows="3">{{ $program->short_description }}</textarea>
                                                             </div>
 
-                                                            <div class="mb-3">
-                                                                <label>Content</label>
-                                                                <textarea name="content" class="form-control" rows="6">{{ $program->content }}</textarea>
+                                                            {{-- Content (Quill Editor) --}}
+                                                            <div class="mb-4">
+                                                                <label class="form-label fw-bold">Content</label>
+
+                                                                <!-- Quill Editor -->
+                                                                <div id="quillEditor" style="height: 250px;">
+                                                                    {!! old('content', $program->content) !!}
+                                                                </div>
+
+                                                                <!-- Hidden input -->
+                                                                <input type="hidden" name="content" id="content">
+
+                                                                @error('content') <div class="text-danger small">{{ $message }}</div> @enderror
                                                             </div>
 
                                                             <div class="mb-3">
@@ -193,9 +203,19 @@
                         <textarea name="short_description" class="form-control" rows="3"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Content</label>
-                        <textarea name="content" class="form-control" rows="6"></textarea>
+                    {{-- Content (Quill Editor) --}}
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Content</label>
+
+                        <!-- Quill Editor -->
+                        <div id="quillEditor" style="height: 250px;">
+                            {!! old('content') !!}
+                        </div>
+
+                        <!-- Hidden input -->
+                        <input type="hidden" name="content" id="content">
+
+                        @error('content') <div class="text-danger small">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-3">
@@ -253,6 +273,37 @@
         </form>
     </div>
 </div>
+
+<!-- Include Quill -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    var quill = new Quill('#quillEditor', {
+        theme: 'snow',
+        placeholder: 'Write your post content here...',
+        modules: {
+            toolbar: [
+                [{
+                    header: [1, 2, 3, false]
+                }],
+                ['bold', 'italic', 'underline'],
+                [{
+                    list: 'ordered'
+                }, {
+                    list: 'bullet'
+                }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Sync Quill content to hidden input before submit
+    document.querySelector("form").addEventListener("submit", function() {
+        document.querySelector("#content").value = quill.root.innerHTML;
+    });
+</script>
 
 @endsection
 

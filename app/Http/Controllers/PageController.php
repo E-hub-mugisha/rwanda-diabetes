@@ -58,7 +58,7 @@ class PageController extends Controller
     }
     public function news()
     {
-        $news = Post::with('category')->get();
+        $news = Post::with('category')->orderBy('created_at', 'desc')->paginate(6);
         return view('pages.news', compact('news'));
     }
     public function newsDetail($id)
@@ -154,7 +154,7 @@ class PageController extends Controller
 
     public function articles()
     {
-        $articles = Article::with('category')->get();
+        $articles = Article::with('category')->orderBy('created_at', 'desc')->get();
         return view('pages.articles', compact('articles'));
     }
     public function articlesDetail($id)
@@ -236,7 +236,7 @@ class PageController extends Controller
         $contact = Contact::create($validated);
 
         // Send email
-        Mail::to('your-email@example.com')->send(new ContactMail($contact));
+        Mail::to('info@rwandadiabetes.rw')->send(new ContactMail($contact));
 
         return back()->with('success', 'Your message has been sent successfully!');
     }

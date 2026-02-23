@@ -11,7 +11,7 @@
                 <div class="card-body">
                     {{-- Program Image --}}
                     @if($program->image)
-                    <img src="{{ asset('storage/' . $program->image) }}" alt="{{ $program->title }}" class="img-fluid rounded mb-4">
+                    <img src="{{asset('image/programs')}}/{{ $program->image }}" alt="{{ $program->title }}" class="img-fluid rounded mb-4">
                     @endif
 
                     {{-- Title --}}

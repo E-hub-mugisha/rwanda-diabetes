@@ -4,21 +4,29 @@
         <div class="mb-3">
             <label class="form-label">Title</label>
             <input type="text" name="title" class="form-control"
-                   value="{{ old('title', $learning_material->title ?? '') }}">
+                value="{{ old('title', $learning_material->title ?? '') }}">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Excerpt</label>
             <textarea name="excerpt" class="form-control" rows="3">
-                {{ old('excerpt', $learning_material->excerpt ?? '') }}
+            {{ old('excerpt', $learning_material->excerpt ?? '') }}
             </textarea>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <textarea name="content" class="form-control" rows="6">
-                {{ old('content', $learning_material->content ?? '') }}
-            </textarea>
+        {{-- Content (Quill Editor) --}}
+        <div class="mb-4">
+            <label class="form-label fw-bold">Content</label>
+
+            <!-- Quill Editor -->
+            <div id="quillEditor" style="height: 250px;">
+                {!! old('content', $learning_material->content ?? '') !!}
+            </div>
+
+            <!-- Hidden input -->
+            <input type="hidden" name="content" id="content">
+
+            @error('content') <div class="text-danger small">{{ $message }}</div> @enderror
         </div>
     </div>
 
@@ -39,10 +47,10 @@
             <select name="category_id" class="form-control">
                 <option value="">-- None --</option>
                 @foreach($categories as $cat)
-                    <option value="{{ $cat->id }}"
-                        @selected(old('category_id', $learning_material->category_id ?? '') == $cat->id)>
-                        {{ $cat->name }}
-                    </option>
+                <option value="{{ $cat->id }}"
+                    @selected(old('category_id', $learning_material->category_id ?? '') == $cat->id)>
+                    {{ $cat->name }}
+                </option>
                 @endforeach
             </select>
         </div>
@@ -57,7 +65,7 @@
             <input type="file" name="thumbnail" class="form-control">
 
             @if(isset($learning_material) && $learning_material->thumbnail)
-                <img src="{{ asset('storage/'.$learning_material->thumbnail) }}" width="90" class="mt-2">
+            <img src="{{ asset('storage/'.$learning_material->thumbnail) }}" width="90" class="mt-2">
             @endif
         </div>
 
@@ -71,3 +79,33 @@
 
     </div>
 </div>
+<!-- Include Quill -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    var quill = new Quill('#quillEditor', {
+        theme: 'snow',
+        placeholder: 'Write your post content here...',
+        modules: {
+            toolbar: [
+                [{
+                    header: [1, 2, 3, false]
+                }],
+                ['bold', 'italic', 'underline'],
+                [{
+                    list: 'ordered'
+                }, {
+                    list: 'bullet'
+                }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Sync Quill content to hidden input before submit
+    document.querySelector("form").addEventListener("submit", function() {
+        document.querySelector("#content").value = quill.root.innerHTML;
+    });
+</script>

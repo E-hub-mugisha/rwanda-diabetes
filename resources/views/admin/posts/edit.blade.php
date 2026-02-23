@@ -34,10 +34,19 @@
                                 <label class="form-label">Excerpt</label>
                                 <textarea name="excerpt" class="form-control">{{ old('excerpt', $post->excerpt) }}</textarea>
                             </div>
+                            {{-- Content (Quill Editor) --}}
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Content</label>
 
-                            <div class="mb-3">
-                                <label class="form-label">Content</label>
-                                <textarea name="content" class="form-control" rows="8" required>{{ old('content', $post->content) }}</textarea>
+                                <!-- Quill Editor -->
+                                <div id="quillEditor" style="height: 250px;">
+                                    {!! old('content', $post->content) !!}
+                                </div>
+
+                                <!-- Hidden input -->
+                                <input type="hidden" name="content" id="content">
+
+                                @error('content') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
@@ -54,7 +63,8 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Tags (comma separated)</label>
-                                <input type="text" name="tags" class="form-control" value="{{ old('tags', $post->tags ? implode(',', $post->tags) : '') }}">
+                                <input type="text" name="tags" class="form-control"
+       value="{{ old('tags', $post->tags) }}">
                             </div>
 
                             <div class="mb-3">
@@ -90,4 +100,36 @@
         </div>
     </div>
 </div>
+
+<!-- Include Quill -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    var quill = new Quill('#quillEditor', {
+        theme: 'snow',
+        placeholder: 'Write your post content here...',
+        modules: {
+            toolbar: [
+                [{
+                    header: [1, 2, 3, false]
+                }],
+                ['bold', 'italic', 'underline'],
+                [{
+                    list: 'ordered'
+                }, {
+                    list: 'bullet'
+                }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Sync Quill content to hidden input before submit
+    document.querySelector("form").addEventListener("submit", function() {
+        document.querySelector("#content").value = quill.root.innerHTML;
+    });
+</script>
+
 @endsection

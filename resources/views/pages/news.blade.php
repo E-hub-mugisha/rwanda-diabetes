@@ -73,59 +73,88 @@
                             </a>
                         </h2>
                     </div>
-                    
+                    <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
+                        <span class="blog-tag subheading subheading-bg text-16 fw-500">{{ $new->category->name }}</span>
+                        <div class="media">
+                            <img src="{{asset('image/posts')}}/{{ $new->featured_image }}" alt="blog image" width="1000" height="707" loading="lazy">
+                        </div>
+                        <div class="buttons">
+                            <div class="button button--primary">
+                                Read More
+                                <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
             @endforeach
         </div>
 
+        @if ($news->hasPages())
         <nav class="pagination">
-            <ul class="list-unstyled pagintaion-list aos-init" data-aos="fade-up">
-                <!-- <li>
-                <a
-                  role="link"
-                  class="pagination-link"
-                  aria-disabled="true"
-                  aria-label="Previous page link"
-                >
-                  <svg
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015C5.70175 11.3811 5.7937 11.4446 5.89537 11.4883C5.99704 11.532 6.10639 11.5549 6.21704 11.5559C6.32769 11.5569 6.43742 11.5358 6.53984 11.4939C6.64225 11.452 6.7353 11.3901 6.81354 11.3119C6.89178 11.2336 6.95366 11.1406 6.99556 11.0382C7.03746 10.9357 7.05855 10.826 7.05759 10.7154C7.05662 10.6047 7.03364 10.4954 6.98996 10.3937C6.94629 10.292 6.8828 10.2001 6.80321 10.1232L2.67821 5.9982L6.80321 1.8732C6.95501 1.71603 7.039 1.50553 7.03711 1.28703C7.03521 1.06853 6.94757 0.859522 6.79306 0.705015C6.63855 0.550508 6.42954 0.462868 6.21104 0.460969C5.99255 0.45907 5.78205 0.543066 5.62488 0.694864L0.910711 5.40903Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </a>
-              </li> -->
-                <li>
-                    <a href="#" class="pagination-link active" aria-label="Page 1 link">
-                        1
-                    </a>
+            <ul class="list-unstyled pagintaion-list">
+
+                {{-- PREVIOUS --}}
+                @if ($news->onFirstPage())
+                <li class="disabled">
+                    <span class="pagination-link" aria-disabled="true">
+                        {{-- LEFT SVG --}}
+                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015C5.70175 11.3811 5.7937 11.4446 5.89537 11.4883C5.99704 11.532 6.10639 11.5549 6.21704 11.5559C6.32769 11.5569 6.43742 11.5358 6.53984 11.4939C6.64225 11.452 6.7353 11.3901 6.81354 11.3119C6.89178 11.2336 6.95366 11.1406 6.99556 11.0382C7.03746 10.9357 7.05855 10.826 7.05759 10.7154C7.05662 10.6047 7.03364 10.4954 6.98996 10.3937C6.94629 10.292 6.8828 10.2001 6.80321 10.1232L2.67821 5.9982L6.80321 1.8732Z" />
+                        </svg>
+                    </span>
                 </li>
+                @else
                 <li>
-                    <a href="#" class="pagination-link" aria-label="Page 2 link">
-                        2
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination-link" aria-label="Page 3 link">
-                        3
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination-link" aria-label="Next page link">
-                        <svg viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015C2.29825 11.3811 2.2063 11.4446 2.10463 11.4883C2.00296 11.532 1.89361 11.5549 1.78296 11.5559C1.67231 11.5569 1.56258 11.5358 1.46016 11.4939C1.35775 11.452 1.2647 11.3901 1.18646 11.3119C1.10822 11.2336 1.04634 11.1406 1.00444 11.0382C0.962537 10.9357 0.941453 10.826 0.942414 10.7154C0.943376 10.6047 0.966364 10.4954 1.01004 10.3937C1.05371 10.292 1.1172 10.2001 1.19679 10.1232L5.32179 5.9982L1.19679 1.8732C1.04499 1.71603 0.960996 1.50553 0.962894 1.28703C0.964793 1.06853 1.05243 0.859522 1.20694 0.705015C1.36145 0.550508 1.57046 0.462868 1.78896 0.460969C2.00745 0.45907 2.21795 0.543066 2.37512 0.694864L7.08929 5.40903Z" fill="currentColor"></path>
+                    <a href="{{ $news->previousPageUrl() }}" class="pagination-link">
+                        {{-- LEFT SVG --}}
+                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015L2.67821 5.9982L6.80321 1.8732Z" />
                         </svg>
                     </a>
                 </li>
+                @endif
+
+                {{-- PAGE NUMBERS --}}
+                @foreach ($news->getUrlRange(1, $news->lastPage()) as $page => $url)
+                <li>
+                    <a href="{{ $url }}"
+                        class="pagination-link {{ $news->currentPage() == $page ? 'active' : '' }}">
+                        {{ $page }}
+                    </a>
+                </li>
+                @endforeach
+
+                {{-- NEXT --}}
+                @if ($news->hasMorePages())
+                <li>
+                    <a href="{{ $news->nextPageUrl() }}" class="pagination-link">
+                        {{-- RIGHT SVG --}}
+                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015L5.32179 5.9982L1.19679 1.8732Z" />
+                        </svg>
+                    </a>
+                </li>
+                @else
+                <li class="disabled">
+                    <span class="pagination-link" aria-disabled="true">
+                        {{-- RIGHT SVG --}}
+                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015Z" />
+                        </svg>
+                    </span>
+                </li>
+                @endif
+
             </ul>
         </nav>
+        @endif
     </div>
 </div>
 
