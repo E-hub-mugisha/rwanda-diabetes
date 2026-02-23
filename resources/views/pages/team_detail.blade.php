@@ -68,13 +68,7 @@
                     <div class="info-desig heading text-18" data-aos="fade-up" data-aos-delay="50">
                         {{ $member->position }}
                     </div>
-                    
-
-                    @if($member->bio)
-                    <p class="info-desc text text-18" data-aos="fade-up" data-aos-delay="100">
-                        {!! $member->bio !!}
-                    </p>
-                    @endif
+                
 
                     @if($member->phone)
                     <div class="phn-number text text-18" data-aos="fade-up" data-aos-delay="150">
