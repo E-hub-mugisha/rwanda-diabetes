@@ -56,12 +56,6 @@
                             width="1000" height="1133" loading="lazy"
                             alt="{{ $member->name }}">
                     </div>
-
-                    @if($member->role)
-                    <div class="text-absolute heading text-24">
-                        {{ $member->role }}
-                    </div>
-                    @endif
                 </div>
             </div>
 
@@ -71,13 +65,19 @@
                         {{ $member->name }}
                     </h2>
 
-                    <div class="info-desig heading text-22" data-aos="fade-up" data-aos-delay="50">
-                        {{ $member->position }}
+                    <div class="info-desig heading text-18" data-aos="fade-up" data-aos-delay="50">
+                        Position: {{ $member->position }}
                     </div>
+                    
+                    @if($member->role)
+                    <div class="info-desig text-18">
+                        Role: {{ $member->role }}
+                    </div>
+                    @endif
 
                     @if($member->bio)
                     <p class="info-desc text text-18" data-aos="fade-up" data-aos-delay="100">
-                        {{ $member->bio }}
+                        {!! $member->bio !!}
                     </p>
                     @endif
 
