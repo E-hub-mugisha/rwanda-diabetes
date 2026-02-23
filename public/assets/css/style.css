@@ -3789,8 +3789,8 @@ form textarea {
 }
 
 .multicolumn .card-icon {
-  width: 70px;
-  height: 70px;
+  /* width: 70px;
+  height: 70px; */
   color: var(--color-foreground);
   background-color: var(--color-background);
   border-radius: 10px;
@@ -4911,7 +4911,7 @@ form textarea {
 
 @media (min-width: 992px) {
   .promotion-img {
-    height: 100%;
+    /* height: 100%; */
   }
 
   .promtion-content {
@@ -4932,7 +4932,7 @@ form textarea {
   }
 
   .promotion-img {
-    height: 100%;
+    /* height: 100%; */
   }
 }
 

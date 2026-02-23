@@ -29,22 +29,12 @@
                         </defs>
                     </svg>
                 </div>
-                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
+                <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
                     Latest Stories & Testimonials
                 </h2>
                 <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
                     Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
                 </p>
-            </div>
-            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="#" class="button button--primary" aria-label="See All Post">
-                    Discover More
-                    <span class="svg-wrapper">
-                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
-                        </svg>
-                    </span>
-                </a>
             </div>
         </div>
         <div class="row product-grid mt-4">

@@ -7,7 +7,7 @@
                 <div class="row footer-custom-row">
                     <div class="col-12 col-md-6">
                         <div class="footer-widget footer-widget-brand" data-aos="fade-up" data-aos-anchor=".footer-top">
-                            <a class="footer-logo" href="{{ route('home') }}" aria-label="Consulo Logo">
+                            <a class="footer-logo" href="{{ route('home') }}" aria-label="rwanda diabetes Logo">
                                 <img src="{{ asset('assets/img/logo-1.png') }}" width="189" height="32" style="width: 50px; height:50px" loading="lazy">
                                 <span class="text-white px-4"> Rwanda Diabetes Association </span>
                             </a>

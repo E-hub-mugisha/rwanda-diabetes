@@ -6,13 +6,13 @@
     <div class="container">
         <div class="section-headings section-headings-horizontal align-items-start overflow-hidden">
             <div class="section-headings-left">
-                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right">
-                    Get to know about {{ $category->name }}
+                <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right">
+                    Learn about {{ $category->name }}
                 </h2>
             </div>
             
         </div>
-        <div class="multicolumn-inner">
+        <div class="multicolumn-inner mt-3">
             <div class="row product-grid">
                 @foreach( $programs as $program)
                 <div class="col-xl-4 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up">
@@ -40,7 +40,7 @@
                                 </defs>
                             </svg>
                         </div> -->
-                        <h2 class="heading text-28">{{ $program->title }}</h2>
+                        <h2 class="heading text-20">{{ $program->title }}</h2>
                         <div class="text text-16">
                             {{ $program->short_description }}.
                         </div>

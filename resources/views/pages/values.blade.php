@@ -6,37 +6,14 @@
     <div class="row flex-row-reverse">
         <div class="col-lg-5 col-12">
             <div class="service-content-image height-100 aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
-                <img src="{{ asset('assets/img/1.jpg') }}" width="1000" height="929" loading="lazy" alt="Service Image">
+                <img src="{{ asset('assets/img/C66A9303.jpg') }}" width="1000" height="929" loading="lazy" alt="Service Image">
             </div>
         </div>
         <div class="col-lg-7 col-12">
             <div class="service-content-left">
                 <div class="section-headings headings-width">
-                    <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span>Get to know</span>
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                        Get to know more about
+                    <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
+                        Get to know our Mission, Vision & Objective
                     </h2>
                     <div class="service-list">
                         <div class="row product-grid">

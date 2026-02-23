@@ -6,17 +6,10 @@
     <div class="container">
         <div class="section-headings section-headings-horizontal">
             <div class="section-headings-left">
-                <h2 class="heading text-64 fw-700 aos-init aos-animate" data-aos="fade-up">Partner With Us</h2>
+                <h2 class="heading text-30 fw-700 aos-init aos-animate" data-aos="fade-up">Partner With Us</h2>
                 <p class="text text-18 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Together, we can transform diabetes awareness, prevention, and access to care across Rwanda.</p>
             </div>
             <div class="section-headings-right">
-                <div class="text-wrapper aos-init aos-animate" data-aos="fade-up">
-                    <div class="d-flex align-items-start">
-                        <h2 class="heading text-80">25</h2>
-                        <div class="heading text-24">+</div>
-                    </div>
-                    <div class="text text-18 fw-500">Trusted <br> Partners</div>
-                </div>
                 <div class="buttons d-flex gap-4 flex-wrap aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                     <a role="button" data-bs-toggle="modal" data-bs-target="#partnerModal" class="button button--primary" aria-label="hero button">
                         Become a Partner Today
@@ -43,7 +36,7 @@
 <div class="image-text image-text-video mt-100 overflow-x-hidden">
     <div class="container">
         <div class="headings-width">
-            <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-down">
+            <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-down">
                 Why Partner With Rwanda Diabetes Organization?
             </h2>
         </div>
@@ -52,7 +45,7 @@
                 <div class="col-lg-5 col-12">
                     <modal-video class="video-wrap height-100">
                         <div class="image radius18 height-100 aos-init aos-animate" data-aos="fade-right">
-                            <img src="{{ asset('assets/img/2.jpg') }}" width="1000" height="742" loading="lazy" alt="Image">
+                            <img src="{{ asset('assets/img/C66A9639.jpg') }}" width="1000" height="742" loading="lazy" alt="Image">
                             <div class="content-absolute">
                                 <div class="flex-banner height-inherit d-flex align-items-center justify-content-center">
                                     <div class="content-box">
@@ -110,7 +103,7 @@
         <div class="section-headings section-headings-horizontal">
             <div class="section-headings-left">
 
-                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
+                <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
                     Recent Partners and collaborators
                 </h2>
                 <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
@@ -177,30 +170,7 @@
         <div class="row">
             <div class="col-lg-7 col-12">
                 <div class="promtion-content section-headings">
-                    <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-right">
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span>Why Choose Us</span>
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
                         Get Involved Today
                     </h2>
                     <div class="text text-18 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
@@ -225,10 +195,7 @@
                                 </div>
                             </div>
                             <div class="promotion-text text text-16">
-                                Email: info@rwandadiabetes.rw
-
-                                Phone: +250 788 224 628
-                                Office: Kigali, Rwanda
+                                Email: info@rwandadiabetes.rw | Phone: +250 788 224 628 | Office: Kigali, Rwanda
                             </div>
                         </li>
                     </ul>
@@ -246,7 +213,7 @@
             </div>
             <div class="col-lg-5 col-12">
                 <div class="promotion-img radius18 aos-init aos-animate" data-aos="flip-left">
-                    <img src="assets/img/1.jpg" width="1000" height="1469" loading="lazy" alt="Promotion image">
+                    <img src="{{ asset('assets/img/C66A9353.jpg') }}" width="1000" height="1469" loading="lazy" alt="Promotion image">
                 </div>
             </div>
         </div>
@@ -261,12 +228,7 @@
             <!-- Left Side -->
             <div class="col-lg-6 col-12">
                 <div class="section-headings">
-
-                    <div class="subheading text-20 subheading-bg">
-                        <span>Questions</span>
-                    </div>
-
-                    <h2 class="heading text-50">
+                    <h2 class="heading text-30">
                         Have any questions? Here are some answers
                     </h2>
 
@@ -293,7 +255,7 @@
 
                         @foreach($faqs as $faq)
                         <div class="accordion-block">
-                            <div class="accordion-opener heading text-22">
+                            <div class="accordion-opener heading text-18">
                                 {{ $faq->question }}
                                 <div class="svg-wrapper">
                                     <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24">
@@ -303,7 +265,7 @@
                             </div>
 
                             <div class="accordion-content">
-                                <div class="accordion-content-inner text text-18">
+                                <div class="accordion-content-inner text text-16">
                                     {{ $faq->answer }}
                                 </div>
                             </div>

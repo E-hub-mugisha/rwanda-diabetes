@@ -47,7 +47,7 @@
                     </defs>
                 </svg>
             </div>
-            <h2 class="heading text-50" data-aos="fade-up">
+            <h2 class="heading text-30" data-aos="fade-up">
                 Let's Build a strong community Together
             </h2>
         </div>
@@ -72,7 +72,7 @@
                                 <h2 class="heading text-16 fw-500">
                                     Our Address
                                 </h2>
-                                <p class="text text-20">
+                                <p class="text text-16">
                                     64KN 8 Avenue, Kigali, Rwanda
                                 </p>
                             </div>
@@ -89,13 +89,13 @@
                                 </h2>
                                 <a
                                     href="tel:0788 224 628"
-                                    class="text text-20"
+                                    class="text text-16"
                                     aria-label="Call us">
                                     0788 224 628
                                 </a>
                                 <a
                                     href="tel:0788 224 628"
-                                    class="text text-20"
+                                    class="text text-16"
                                     aria-label="Call us">
                                     0788 224 628
                                 </a>
@@ -113,7 +113,7 @@
                                 </h2>
                                 <a
                                     href="mailto:info@rwandadiabetes.rw"
-                                    class="text text-20"
+                                    class="text text-16"
                                     aria-label="Email us">
                                     info@rwandadiabetes.rw
                                 </a>
@@ -199,7 +199,7 @@
                 <div class="col-12 col-lg-6 col-contact-form">
                     <div class="contact-form-wrap radius18">
                         <div class="contact-form-headings">
-                            <h2 class="heading text-32" data-aos="fade-up">
+                            <h2 class="heading text-24" data-aos="fade-up">
                                 Make an Appointment
                             </h2>
                             <p class="text text-16" data-aos="fade-up">
@@ -247,15 +247,11 @@
             <div class="col-lg-6 col-12">
                 <div class="section-headings">
 
-                    <div class="subheading text-20 subheading-bg">
-                        <span>Questions</span>
-                    </div>
-
-                    <h2 class="heading text-50">
+                    <h2 class="heading text-30">
                         Have any questions? Here are some answers
                     </h2>
 
-                    <div class="text text-18">
+                    <div class="text text-16">
                         Here are some of the questions we often receive from our community.
                     </div>
 
@@ -288,7 +284,7 @@
                             </div>
 
                             <div class="accordion-content">
-                                <div class="accordion-content-inner text text-18">
+                                <div class="accordion-content-inner text text-16">
                                     {{ $faq->answer }}
                                 </div>
                             </div>
