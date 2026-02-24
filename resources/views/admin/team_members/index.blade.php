@@ -10,7 +10,16 @@
             <i class="ti ti-plus"></i> Add Member
         </button>
     </div>
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>There were some errors:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Team Table -->
     <div class="card">
         <div class="card-body table-responsive">
@@ -285,38 +294,36 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Initialize all editors
-        document.querySelectorAll('.quill-editor').forEach(function(editorDiv) {
-            var quill = new Quill(editorDiv, {
-                theme: 'snow',
-                placeholder: 'Write your bio here...',
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, 3, false]
-                        }],
-                        ['bold', 'italic', 'underline'],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'image'],
-                        ['clean']
-                    ]
-                }
-            });
+document.addEventListener("DOMContentLoaded", function () {
 
-            // Find the corresponding hidden input
-            var hiddenInputId = editorDiv.id.replace('quillEditor', 'bio');
-            var hiddenInput = document.getElementById(hiddenInputId);
+    const editors = {};
 
-            // Sync Quill content on form submit
-            editorDiv.closest('form').addEventListener('submit', function() {
-                hiddenInput.value = quill.root.innerHTML;
-            });
+    document.querySelectorAll('.quill-editor').forEach(function (editorDiv) {
+
+        const quill = new Quill(editorDiv, {
+            theme: 'snow',
+            placeholder: 'Write your bio here...',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['link'],
+                    ['clean']
+                ]
+            }
+        });
+
+        editors[editorDiv.id] = quill;
+
+        const form = editorDiv.closest('form');
+        const hiddenInput = form.querySelector('input[name="bio"]');
+
+        form.addEventListener('submit', function () {
+            hiddenInput.value = quill.root.innerHTML.trim();
         });
     });
+
+});
 </script>
 @endsection
