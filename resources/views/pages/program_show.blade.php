@@ -17,7 +17,7 @@
                     <div class="card-blog-list aos-init aos-animate" data-aos="fade-up">
                         <div class="card-blog-list-media radius18">
                             <div class="media">
-                                <img src="{{asset('image/programs')}}/{{ $program->image }}" alt="blog image" width="1000" height="707" loading="lazy">
+                                <img src="{{asset('image/program')}}/{{ $program->image }}" alt="blog image" width="1000" height="707" loading="lazy">
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
 
                             <div class="blog-description">
                                 <p>
-                                    {{ $program->short_description }}
+                                    {!! $program->short_description !!}
                                 </p>
 
                                 <p>

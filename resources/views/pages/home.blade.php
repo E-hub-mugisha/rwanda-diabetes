@@ -187,11 +187,11 @@
                 <div class="col-xl-4 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up">
                     <div class="multicolumn-card">
                         <div class="card-icon">
-                             <img src="{{asset('image/programs')}}/{{ $program->image }}" alt="{{ $program->title }}" width="1000" height="742" loading="lazy">
+                             <img src="{{asset('image/program')}}/{{ $program->image }}" alt="{{ $program->title }}" width="1000" height="742" loading="lazy">
                         </div>
                         <h2 class="heading text-28">{{ $program->title }}</h2>
                         <div class="text text-16">
-                            {{ $program->short_description }}.
+                            {{ \Illuminate\Support\Str::limit($program->short_description, 120) }}
                         </div>
                         <a href="{{ route('programs.show', $program->slug) }}" class="button button--primary mt-4" aria-label="More About Us">
                             Learn More
