@@ -109,7 +109,7 @@
         <div class="team-bio mt-100">
             <h2 class="heading text-36" data-aos="fade-up">About {{ $member->name }}</h2>
             <p class="text text-18" data-aos="fade-up" data-aos-delay="50">
-                {{ $member->bio }}
+                {!! $member->bio !!}
             </p>
         </div>
     </div>
