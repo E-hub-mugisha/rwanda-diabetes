@@ -95,9 +95,9 @@ class PageController extends Controller
     }
     public function TeamMember()
     {
-        $leadership = TeamMember::where('category', 'Leadership')->where('status', 'active')->get();
-        $board = TeamMember::where('category', 'Board')->where('status', 'active')->get();
-        $others = TeamMember::where('category', 'Other')->where('status', 'active')->get();
+        $leadership = TeamMember::where('category', 'Leadership')->where('status', 'active')->latest()->get();
+        $board = TeamMember::where('category', 'Board')->where('status', 'active')->latest()->get();
+        $others = TeamMember::where('category', 'Other')->where('status', 'active')->latest()->get();
         return view('pages.our_teams', compact('leadership', 'board', 'others'));
     }
 

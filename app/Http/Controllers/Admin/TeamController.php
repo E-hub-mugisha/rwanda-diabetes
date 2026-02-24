@@ -38,7 +38,7 @@ class TeamController extends Controller
 
         // Upload photo
         if ($image = $request->file('photo')) {
-            $destinationPath = 'image/team/';
+            $destinationPath = 'image/teams/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
             // Create folder if it doesn't exist
@@ -101,7 +101,7 @@ class TeamController extends Controller
         ]);
 
         if ($image = $request->file('photo')) {
-            $destinationPath = 'image/team/';
+            $destinationPath = 'image/teams/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
             // Create folder if it doesn't exist
