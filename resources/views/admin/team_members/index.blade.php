@@ -235,7 +235,10 @@
                         <label>Position</label>
                         <input type="text" name="position" class="form-control" required>
                     </div>
-
+<div class="col-md-6">
+                        <label>category</label>
+                        <input type="text" name="category" class="form-control" required>
+                    </div>
                     <div class="col-md-6 mt-2">
                         <label>Role</label>
                         <input type="text" name="role" class="form-control" required>
