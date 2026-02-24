@@ -85,7 +85,20 @@
                                 </td>
                             </tr>
 
-                            {{-- EDIT MODAL --}}
+                            
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach ($programs as $program)
+{{-- EDIT MODAL --}}
                             <div class="modal fade" id="editProgramModal{{ $program->id }}" tabindex="-1">
                                 <div class="modal-dialog modal-lg">
                                     <form action="{{ route('admin.programs.update', $program) }}"
@@ -158,16 +171,6 @@
                                 </div>
                             </div>
                             @endforeach
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 {{-- CREATE MODAL --}}
 <div class="modal fade" id="createProgramModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
