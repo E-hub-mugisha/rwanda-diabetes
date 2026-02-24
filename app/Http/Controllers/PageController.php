@@ -27,7 +27,7 @@ class PageController extends Controller
         $news = Post::where('status', 'published')->orderBy('published_at', 'desc')->take(3)->get();
         $stories = Story::where('status', 'published')
             ->latest()->paginate(6);
-        $programs = Program::with('category')->get()->take(3);
+        $programs = Program::with('category')->get();
         // Latest 6 research items across all categories
         $latestItems = ResearchItem::where('status', 'published')
             ->latest()
