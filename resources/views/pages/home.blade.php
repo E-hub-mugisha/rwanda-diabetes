@@ -434,7 +434,7 @@
             <div class="section-headings-left">
 
                 <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Recent Partners and collaborators
+                    Partners and collaborators
                 </h2>
                 <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
                     Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.

@@ -57,7 +57,7 @@
                     <!-- Google Map -->
                     <div class="google-map">
                         <div class="iframe-wrapper">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.4462098724225!2d30.09644067479381!3d-1.9758321367681504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca5d08300cdef%3A0x1304c918f4e3d5c0!2sRwanda%20Diabetes%20Association!5e0!3m2!1sen!2srw!4v1770726554466!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d715.2156446963118!2d30.069160821609515!3d-1.9302546071539262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca6a90ac2c089%3A0xb8c2041d2b11deaa!2s64%20KN%208%20Ave%2C%20Kigali!5e1!3m2!1sen!2srw!4v1772540276961!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div class="contact-info-list">

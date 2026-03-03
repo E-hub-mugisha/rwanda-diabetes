@@ -34,7 +34,7 @@
                                         </svg>
                                     </div>
                                     <h2 class="heading text-24">Our Mission</h2>
-                                    <div class="text text-16">To enhance the well-being of people living with diabetes in Rwanda through education, early detection, advocacy, and accessible care.
+                                    <div class="text text-16">To improve the well-being of people living with diabetes in Rwanda through education, early detection, advocacy, and accessible care.
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <h2 class="heading text-24">Our Vision</h2>
                                     <div class="text text-16">
-                                        A Rwanda where no one dies or suffers complications from diabetes.
+                                        No one dies or suffers complications from diabetes.
                                     </div>
                                 </div>
                             </div>

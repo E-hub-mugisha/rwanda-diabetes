@@ -243,7 +243,58 @@
                                                 @endforeach
                                             </ul>
                                         </li>
+                                        <li class="nav-item nav-item-static">
+                                            <a class="menu-link menu-link-main menu-accrodion" href="#">
+                                                LEARNING TIPS
+                                                <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                                </svg>
+                                            </a>
 
+                                            <div class="header-megamenu header-submenu menu-absolute submenu-color">
+                                                <ul class="list-unstyled">
+                                                    @foreach(\App\Models\Category::with('materials')->get() as $category)
+                                                    <li class="nav-item">
+
+                                                        <!-- Category Name -->
+                                                        <a class="menu-link heading fw-300"
+                                                            href="{{ route('materials.category', $category->slug) }}">
+                                                            {{ $category->name }}
+                                                        </a>
+
+                                                        @if($category->materials->count() > 0)
+                                                        <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+
+                                                            <!-- Show max 5 materials -->
+                                                            @foreach($category->materials->take(5) as $material)
+                                                            <li class="nav-item">
+                                                                <a class="menu-link" href="{{ route('materials.show', $material->slug) }}">
+                                                                    <div class="heading text-16 fw-300">
+                                                                        {{ $material->title }}
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            @endforeach
+
+                                                            <!-- “See all” -->
+                                                            @if($category->materials->count() > 5)
+                                                            <li class="nav-item">
+                                                                <a class="menu-link" href="{{ route('materials.category', $category->slug) }}">
+                                                                    <div class="heading text-18 fw-500">
+                                                                        See all
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            @endif
+
+                                                        </ul>
+                                                        @endif
+
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
 
                                         {{-- ========================= --}}
                                         {{-- STATIC RIGHT SIDE    --}}
@@ -681,10 +732,10 @@
                     <!-- Suggested Quick Amounts -->
                     <div class="d-flex gap-2 mb-3 flex-wrap justify-content-center">
                         @foreach([5000, 10000, 20000, 50000] as $amount)
-                            <button type="button" class="btn btn-outline-primary rounded-pill px-3 quick-amount"
-                                data-amount="{{ $amount }}">
-                                {{ number_format($amount) }} RWF
-                            </button>
+                        <button type="button" class="btn btn-outline-primary rounded-pill px-3 quick-amount"
+                            data-amount="{{ $amount }}">
+                            {{ number_format($amount) }} RWF
+                        </button>
                         @endforeach
                     </div>
 
@@ -694,7 +745,7 @@
                             <i class="bi bi-person"></i>
                         </span>
                         <input type="text" name="name" placeholder="Full Name"
-                               class="form-control border-start-0" required>
+                            class="form-control border-start-0" required>
                     </div>
 
                     <!-- Email -->
@@ -703,7 +754,7 @@
                             <i class="bi bi-envelope"></i>
                         </span>
                         <input type="email" name="email" placeholder="Email (optional)"
-                               class="form-control border-start-0">
+                            class="form-control border-start-0">
                     </div>
 
                     <!-- Phone -->
@@ -712,7 +763,7 @@
                             <i class="bi bi-telephone"></i>
                         </span>
                         <input type="text" name="phone" placeholder="Phone Number"
-                               class="form-control border-start-0">
+                            class="form-control border-start-0">
                     </div>
 
                     <!-- Amount -->
@@ -721,8 +772,8 @@
                             <i class="bi bi-cash-stack"></i>
                         </span>
                         <input type="number" name="amount" id="donationAmount"
-                               placeholder="Enter Amount (RWF)" class="form-control border-start-0"
-                               min="100" required>
+                            placeholder="Enter Amount (RWF)" class="form-control border-start-0"
+                            min="100" required>
                     </div>
 
                     <small class="text-muted">
@@ -759,7 +810,7 @@
     });
 
     // Handle submission and run inline Flutterwave payment
-    document.getElementById('donationForm').addEventListener('submit', function (e) {
+    document.getElementById('donationForm').addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent form submit
 
         let name = document.querySelector('input[name="name"]').value;
@@ -788,11 +839,11 @@
                 description: "Support Our Mission",
                 logo: "{{ asset('logo.png') }}"
             },
-            callback: function (response) {
+            callback: function(response) {
                 // Redirect to backend verification route
                 window.location.href = "/donation/verify?transaction_id=" + response.transaction_id;
             },
-            onclose: function () {
+            onclose: function() {
                 console.log("Payment closed");
             }
         });
