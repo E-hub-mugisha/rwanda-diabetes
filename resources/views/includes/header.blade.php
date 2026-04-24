@@ -1,712 +1,1110 @@
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
-@php 
-$researchCategories = App\Models\ResearchCategory::where('type', 'research')->get(); 
+@php
+$researchCategories = App\Models\ResearchCategory::where('type', 'research')->get();
 $downloadCategories = App\Models\ResearchCategory::where('type', 'download')->get();
 $learningCategories = App\Models\Category::with('materials')->get();
 @endphp
-<!-- Header 3 -->
-<sticky-header data-sticky-type="always">
-    <header class="header-1 header-floating">
-        <div class="container-fluid">
-            <div class="header-grid">
-                <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
-                    <img src="{{ asset('assets/img/logo-1.png') }}" alt="Rwanda diabetes Logo" width="189" height="32" style="width: 50px; height:50px">
-                    <span class="text-white px-4"> Rwanda Diabetes Association </span>
-                </a>
-                <drawer-menu>
-                    <nav class="header-nav drawer-menu">
-                        <div class="d-lg-none header-nav-headings">
-                            <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
-                                <img src="{{ asset('assets/img/logo-rda.png') }}" alt="Rwanda diabetes Logo" width="189" height="32" loading="lazy">
-                            </a>
-                            <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-menu">
-                                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8.00386 9.41816C7.61333 9.02763 7.61334 8.39447 8.00386 8.00395C8.39438 7.61342 9.02755 7.61342 9.41807 8.00395L12.0057 10.5916L14.5907 8.00657C14.9813 7.61605 15.6144 7.61605 16.0049 8.00657C16.3955 8.3971 16.3955 9.03026 16.0049 9.42079L13.4199 12.0058L16.0039 14.5897C16.3944 14.9803 16.3944 15.6134 16.0039 16.0039C15.6133 16.3945 14.9802 16.3945 14.5896 16.0039L12.0057 13.42L9.42097 16.0048C9.03045 16.3953 8.39728 16.3953 8.00676 16.0048C7.61624 15.6142 7.61624 14.9811 8.00676 14.5905L10.5915 12.0058L8.00386 9.41816Z"
-                                        fill="currentColor" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </drawer-opener>
-                        </div>
-                        <ul class="header-menu list-unstyled">
 
-                            <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    ABOUT US
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300">Organization</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('about')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            who we are
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('values')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            Mission, Vision & objectives
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('our-team')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            Our Team
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="#">Partnerships</a>
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('partner_with_us')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            Our Partners
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('impact')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            Our Impact
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('stories.index')}}">
-                                                        <div class="heading text-18 fw-500">
-                                                            Success Stories
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="{{ route('contact')}}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path opacity="0.5" d="M8 10.5H16" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                    <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                </svg>
-                                                Get Help
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="{{ route('news.index')}}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                </svg>
-                                                Latest News
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="{{ route('articles.index')}}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M13 15C13 16.1046 13 17 9 17C5 17 5 16.1046 5 15C5 13.8954 6.79086 13 9 13C11.2091 13 13 13.8954 13 15Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C21.298 5.64118 21.5794 6.2255 21.748 7"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                </svg>
-                                                Articles
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    PROGRAMS
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
+<style>
+/* =============================================
+   NAVBAR — Rwanda Diabetes Association
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
 
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
+:root {
+  --nav-navy:    #0B2740;
+  --nav-teal:    #0E6B6B;
+  --nav-teal-lt: #14908E;
+  --nav-gold:    #C8973A;
+  --nav-cream:   #F8F5F0;
+  --nav-white:   #FFFFFF;
+  --nav-gray:    #9AAAB8;
+  --nav-gray-lt: #E8ECF0;
+  --nav-shadow:  0 4px 32px rgba(11,39,64,.14);
+  --nav-trans:   all .25s cubic-bezier(.4,0,.2,1);
+}
 
-                                        @foreach(\App\Models\Category::whereHas('programs')->with('programs')->get() as $category)
-                                        <li class="nav-item">
+/* ── BASE ── */
+.rda-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: var(--nav-trans);
+  font-family: 'DM Sans', sans-serif;
+}
 
-                                            <!-- Category name -->
-                                            <a class="menu-link heading fw-300"
-                                                href="{{ route('programs.category', $category->slug) }}">
-                                                {{ $category->name }}
-                                            </a>
+/* Scrolled state (JS adds .scrolled) */
+.rda-header.scrolled {
+  background: rgba(11,39,64,.97);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--nav-shadow);
+}
+/* Default: transparent/frosted over hero */
+.rda-header:not(.scrolled) {
+  background: linear-gradient(180deg, rgba(11,39,64,.75) 0%, transparent 100%);
+}
 
-                                            <ul class="submenu-lists reset-submenu list-unstyled submenu-color">
+.rda-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-                                                <!-- Show only first 5 programs -->
-                                                @foreach($category->programs->take(5) as $program)
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('programs.show', $program->slug) }}">
-                                                        <div class="heading text-16 fw-300">
-                                                            {{ $program->title }}
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                @endforeach
+/* ── LOGO ── */
+.rda-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.rda-logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.rda-logo__text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nav-white);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.rda-logo__sub {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 
-                                                <!-- See all link -->
-                                                @if($category->programs->count() > 5)
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('programs.category', $category->slug) }}">
-                                                        <div class="heading text-18 fw-500">
-                                                            See all
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                @endif
+/* ── NAV ── */
+.rda-nav { display: flex; align-items: center; gap: 4px; }
 
-                                            </ul>
+.rda-nav__item { position: relative; }
 
-                                        </li>
-                                        @endforeach
+.rda-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--nav-trans);
+  white-space: nowrap;
+}
+.rda-nav__link:hover, .rda-nav__item:hover > .rda-nav__link {
+  color: var(--nav-white);
+  background: rgba(255,255,255,.08);
+}
+.rda-nav__caret {
+  width: 10px;
+  opacity: .7;
+  transition: transform .2s ease;
+}
+.rda-nav__item:hover .rda-nav__caret { transform: rotate(180deg); }
 
-                                    </ul>
-                                </div>
-                            </li>
+/* ── DROPDOWN ── */
+.rda-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  background: var(--nav-white);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(11,39,64,.18), 0 0 0 1px rgba(11,39,64,.06);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  pointer-events: none;
+}
+.rda-nav__item:hover .rda-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
 
+/* Arrow */
+.rda-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 6px;
+  background: var(--nav-white);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
 
-                            <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#!">
-                                    RESOURCES
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color py-4">
-                                    <div class="container">
-                                        <div class="row ">
+.rda-dropdown__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--nav-navy);
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--nav-trans);
+  line-height: 1.3;
+}
+.rda-dropdown__item:hover {
+  background: var(--nav-cream);
+  color: var(--nav-teal);
+}
+.rda-dropdown__item-icon {
+  width: 30px; height: 30px;
+  border-radius: 7px;
+  background: rgba(14,107,107,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--nav-teal);
+}
+.rda-dropdown__item-text { font-size: 12px; color: var(--nav-gray); font-weight: 400; }
+.rda-dropdown__divider {
+  height: 1px;
+  background: var(--nav-gray-lt);
+  margin: 6px 8px;
+}
+.rda-dropdown__group-label {
+  padding: 8px 12px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nav-gray);
+}
 
-                                            {{-- ===================== --}}
-                                            {{-- COLUMN 1: RESEARCH   --}}
-                                            {{-- ===================== --}}
-                                            <div class="col-lg-4 col-md-6">
-                                                <h6 class="text-uppercase fw-600 mb-3">Research</h6>
-                                                <ul class="list-unstyled">
-                                                    @foreach ($researchCategories as $cat)
-                                                    <li class="mb-2">
-                                                        <a class="menu-link d-block"
-                                                            href="{{ route('research.category', $cat->slug) }}">
-                                                            {{ $cat->name }}
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+/* ── MEGAMENU ── */
+.rda-mega {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nav-white);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(11,39,64,.18), 0 0 0 1px rgba(11,39,64,.06);
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  pointer-events: none;
+  width: 680px;
+}
+.rda-nav__item:hover .rda-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.rda-mega::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 6px;
+  background: var(--nav-white);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.rda-mega__cols { display: grid; gap: 8px; }
+.rda-mega__cols--2 { grid-template-columns: 1fr 1fr; }
+.rda-mega__cols--3 { grid-template-columns: 1fr 1fr 1fr; }
+.rda-mega__col-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nav-gray);
+  padding: 0 4px 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--nav-gray-lt);
+}
 
-                                            {{-- ===================== --}}
-                                            {{-- COLUMN 2: DOWNLOADS  --}}
-                                            {{-- ===================== --}}
-                                            <div class="col-lg-4 col-md-6">
-                                                <h6 class="text-uppercase fw-600 mb-3">Downloads</h6>
-                                                <ul class="list-unstyled">
-                                                    @foreach ($downloadCategories as $cat)
-                                                    <li class="mb-2">
-                                                        <a class="menu-link d-block"
-                                                            href="{{ route('downloads.category', $cat->slug) }}">
-                                                            {{ $cat->name }}
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+/* Featured card inside mega */
+.rda-mega__feature {
+  background: linear-gradient(135deg, var(--nav-navy) 0%, #103C5C 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rda-mega__feature-title { font-size: 15px; font-weight: 600; }
+.rda-mega__feature-text { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.5; }
+.rda-mega__feature-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nav-white);
+  background: var(--nav-teal);
+  padding: 7px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-top: 4px;
+  transition: var(--nav-trans);
+}
+.rda-mega__feature-cta:hover { background: var(--nav-teal-lt); }
 
-                                            {{-- ===================== --}}
-                                            {{-- COLUMN 3: LEARNING   --}}
-                                            {{-- ===================== --}}
-                                            <div class="col-lg-4 col-md-6">
-                                                <h6 class="text-uppercase fw-600 mb-3">Learning Tips</h6>
-                                                <ul class="list-unstyled">
-                                                    @foreach ($learningCategories as $category)
-                                                    <li class="mb-2">
-                                                        <a class="menu-link d-block"
-                                                            href="{{ route('learning.category', $category->slug) }}">
-                                                            {{ $category->name }}
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+/* ── ACTIONS ── */
+.rda-header__actions { display: flex; align-items: center; gap: 12px; }
 
-                                        </div>
-                                    </div>
-                                </div>
+.rda-donate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--nav-teal);
+  color: var(--nav-white);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--nav-trans);
+  box-shadow: 0 4px 16px rgba(14,107,107,.35);
+}
+.rda-donate-btn:hover {
+  background: var(--nav-teal-lt);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(14,107,107,.45);
+  color: white;
+}
 
-                            </li>
+.rda-menu-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--nav-trans);
+  flex-shrink: 0;
+}
+.rda-menu-btn:hover { background: rgba(255,255,255,.2); }
 
+/* ── MOBILE DRAWER ── */
+.rda-drawer {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 340px;
+  height: 100vh;
+  background: var(--nav-white);
+  z-index: 2000;
+  transition: right .35s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  box-shadow: -20px 0 60px rgba(11,39,64,.2);
+}
+.rda-drawer.open { right: 0; }
 
-                            <li class="nav-item">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    NEWS
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                                <div class="header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="{{ route('news.index')}}">Latest News</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="{{ route('articles.index')}}">
-                                                Articles (Health + Research)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="{{ route('stories.index')}}">Stories & Testimonials</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="{{ route('media.index')}}">
-                                                Media Gallery (Photos & Videos)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item nav-item-static">
-                                <a class="menu-link menu-link-main menu-accrodion" href="#">
-                                    GET INVOLVED
-                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
-                                    </svg>
-                                </a>
-                                <div class="header-megamenu header-submenu menu-absolute submenu-color">
-                                    <ul class="list-unstyled">
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="blog.html">
-                                                GET INVOLVED
-                                            </a>
-                                            <ul class="reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('partner_with_us')}}">
-                                                        <div class="heading text-20">
-                                                            Partner with us
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Through Partners and collaborators we can make impact to the communities
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" href="{{ route('contact')}}">
-                                                        <div class="heading text-20">
-                                                            Contact US
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Let's get in touch to Build a strong community Together.
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="menu-link" role="button" data-bs-toggle="modal" data-bs-target="#donationModal">
-                                                        <div class="heading text-20">
-                                                            Make a donation
-                                                        </div>
-                                                        <div class="text text-14">
-                                                            Your support can make a difference. Donate today to help us continue our mission.
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="menu-link heading fw-300" href="{{ route('news.index')}}">
-                                                Our recent news and stories
-                                            </a>
-                                            <ul class="reset-submenu list-unstyled submenu-color">
-                                                <li class="nav-item">
-                                                    <a class="menu-link megamenu-image-wrap" href="{{ route('news.index')}}">
-                                                        <picture>
-                                                            <source media="(max-width: 575px)" srcset="assets/img/menu/575.jpg">
-                                                            <img src="assets/img/menu/1.jpg" width="1000" height="668" loading="lazy"
-                                                                alt="Hero Image">
-                                                        </picture>
-                                                        <div class="content">
-                                                            <div class="heading text-20">
-                                                                <div class="heading text-20">
-                                                                    Rwanda diabetes success stories
-                                                                </div>
-                                                                <div class="text text-14">
-                                                                    Read about the inspiring stories of individuals and communities in Rwanda who have successfully managed diabetes through education, support, and access to healthcare.
-                                                                </div>
-                                                            </div>
-                                                            <div class="button button--primary">
-                                                                <span class="svg-wrapper">
-                                                                    <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                                            fill="currentColor"></path>
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item megamenu-links">
-                                            <a class="menu-link text-14 fw-300" href="{{ route('contact')}}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path opacity="0.5" d="M8 10.5H16" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                    <path opacity="0.5" d="M8 14H13.5" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" />
-                                                </svg>
-                                                Get Help
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="{{ route('impact') }}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                </svg>
-                                                our Impact
-                                            </a>
-                                            <a class="menu-link text-14 fw-300" href="{{ route('our-team')}}">
-                                                <svg class="icon-18" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M13 15C13 16.1046 13 17 9 17C5 17 5 16.1046 5 15C5 13.8954 6.79086 13 9 13C11.2091 13 13 13.8954 13 15Z"
-                                                        stroke="currentColor" stroke-width="1.5" />
-                                                    <path
-                                                        d="M22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C21.298 5.64118 21.5794 6.2255 21.748 7"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M19 15H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                </svg>
-                                                our Team
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
+.rda-drawer__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,39,64,.5);
+  z-index: 1999;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--nav-trans);
+  backdrop-filter: blur(4px);
+}
+.rda-drawer__overlay.open { opacity: 1; visibility: visible; }
 
-                        <div class="drawer-content d-lg-none">
-                            <div class="drawer-block">
-                                <div class="drawer-heading text text-18">PROGRAMS & INITIATIVES</div>
-                                <ul class="drawer-additional-menu list-unstyled flex-direction-column">
-                                    @foreach(\App\Models\Category::whereHas('programs')->with('programs')->get() as $category)
-                                    <li class="nav-item">
-                                        <a class="menu-link" href="{{ route('programs.category', $category->slug) }}">{{ $category->name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="drawer-block drawer-block-contact">
-                                <div class="drawer-heading text text-18">Quick Contact</div>
-                                <ul class="drawer-additional-menu list-unstyled flex-direction-column">
-                                    <li class="nav-item">
-                                        <div class="menu-link no-hover">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                stroke="currentColor" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                                            </svg>
-                                            64KN 8 Avenue, Kigali
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="menu-link" href="tel:+001234567890">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                stroke="currentColor" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
-                                            </svg>
-                                            +0788 224 628
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="menu-link" href="mailto:info@rwandadiabetes.rw">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                stroke="currentColor" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
-                                            </svg>
-                                            info@rwandadiabetes.rw
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </drawer-menu>
-                <div class="header-actions d-flex align-items-center">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#donationModal" aria-label="contact us" class="button button--primary button--slim">
-                        Donate
-                        <span class="svg-wrapper">
-                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </span>
-                    </a>
-                    <drawer-opener class="svg-wrapper menu-open d-lg-none" data-drawer=".drawer-menu">
-                        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="26" cy="26" r="25.5" fill="white" stroke="currentColor" />
-                            <path
-                                d="M32.5 18.2857C32.5 17.5757 31.9179 17 31.2 17H14.3C13.5821 17 13 17.5757 13 18.2857C13 18.9958 13.5821 19.5714 14.3 19.5714H31.2C31.9179 19.5714 32.5 18.9957 32.5 18.2857ZM14.3 24.7143H37.7C38.4179 24.7143 39 25.29 39 26C39 26.7101 38.4179 27.2857 37.7 27.2857H14.3C13.5821 27.2857 13 26.7101 13 26C13 25.29 13.5821 24.7143 14.3 24.7143ZM14.3 32.4286H26C26.7179 32.4286 27.3 33.0042 27.3 33.7143C27.3 34.4243 26.7179 35 26 35H14.3C13.5821 35 13 34.4243 13 33.7143C13 33.0042 13.5821 32.4286 14.3 32.4286Z"
-                                fill="currentColor" />
-                        </svg>
-                    </drawer-opener>
-                    <drawer-opener class="svg-wrapper menu-open d-none d-lg-flex" data-drawer=".drawer-additional">
-                        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="26" cy="26" r="25.5" fill="white" stroke="currentColor" />
-                            <path
-                                d="M32.5 18.2857C32.5 17.5757 31.9179 17 31.2 17H14.3C13.5821 17 13 17.5757 13 18.2857C13 18.9958 13.5821 19.5714 14.3 19.5714H31.2C31.9179 19.5714 32.5 18.9957 32.5 18.2857ZM14.3 24.7143H37.7C38.4179 24.7143 39 25.29 39 26C39 26.7101 38.4179 27.2857 37.7 27.2857H14.3C13.5821 27.2857 13 26.7101 13 26C13 25.29 13.5821 24.7143 14.3 24.7143ZM14.3 32.4286H26C26.7179 32.4286 27.3 33.0042 27.3 33.7143C27.3 34.4243 26.7179 35 26 35H14.3C13.5821 35 13 34.4243 13 33.7143C13 33.0042 13.5821 32.4286 14.3 32.4286Z"
-                                fill="currentColor" />
-                        </svg>
-                    </drawer-opener>
-                </div>
-            </div>
-        </div>
-    </header>
-</sticky-header>
+.rda-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--nav-gray-lt);
+  background: var(--nav-navy);
+}
+.rda-drawer__close {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--nav-trans);
+}
+.rda-drawer__close:hover { background: rgba(255,255,255,.2); }
 
-<div class="theme-drawer drawer-additional" data-position="right">
-    <div class="drawer-headings">
-        <a class="header-logo" href="{{ route('home') }}" aria-label="Rwanda diabetes">
-            <img src="{{ asset('assets/img/logo-rda.png') }}" alt="rwanda Logo" width="189" height="32" loading="lazy">
+.rda-drawer__body { padding: 24px; }
+
+.rda-drawer__section { margin-bottom: 28px; }
+.rda-drawer__section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--nav-gray);
+  margin-bottom: 10px;
+}
+.rda-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--nav-navy);
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--nav-trans);
+  margin-bottom: 2px;
+}
+.rda-drawer__link:hover { background: var(--nav-cream); color: var(--nav-teal); }
+.rda-drawer__link svg { opacity: .5; flex-shrink: 0; }
+
+.rda-drawer__contact-card {
+  background: var(--nav-cream);
+  border-radius: 12px;
+  padding: 16px;
+}
+.rda-drawer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--nav-navy);
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+.rda-drawer__contact-item:last-child { margin-bottom: 0; }
+.rda-drawer__contact-item svg { color: var(--nav-teal); flex-shrink: 0; }
+
+/* ── DONATION MODAL ── */
+.rda-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,39,64,.6);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--nav-trans);
+  backdrop-filter: blur(6px);
+}
+.rda-modal-overlay.open { opacity: 1; visibility: visible; }
+
+.rda-modal {
+  background: var(--nav-white);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 30px 80px rgba(11,39,64,.3);
+  overflow: hidden;
+  transform: scale(.96) translateY(8px);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.rda-modal-overlay.open .rda-modal { transform: scale(1) translateY(0); }
+
+.rda-modal__head {
+  background: linear-gradient(135deg, var(--nav-navy) 0%, #103C5C 100%);
+  padding: 32px 32px 28px;
+  text-align: center;
+  position: relative;
+}
+.rda-modal__head-icon {
+  width: 56px; height: 56px;
+  background: rgba(255,255,255,.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 26px;
+}
+.rda-modal__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--nav-white);
+  margin: 0 0 8px;
+}
+.rda-modal__subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+  margin: 0;
+}
+.rda-modal__close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--nav-trans);
+}
+.rda-modal__close:hover { background: rgba(255,255,255,.2); }
+
+.rda-modal__body { padding: 28px 32px 32px; }
+
+/* Quick amounts */
+.rda-amounts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.rda-amount-btn {
+  padding: 10px 6px;
+  border: 1.5px solid var(--nav-gray-lt);
+  border-radius: 10px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nav-navy);
+  cursor: pointer;
+  transition: var(--nav-trans);
+  text-align: center;
+  line-height: 1.2;
+}
+.rda-amount-btn:hover, .rda-amount-btn.active {
+  border-color: var(--nav-teal);
+  background: rgba(14,107,107,.08);
+  color: var(--nav-teal);
+}
+.rda-amount-btn small { display: block; font-size: 10px; font-weight: 400; color: var(--nav-gray); }
+
+/* Input fields */
+.rda-field {
+  position: relative;
+  margin-bottom: 14px;
+}
+.rda-field__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nav-gray);
+  pointer-events: none;
+}
+.rda-field input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1.5px solid var(--nav-gray-lt);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--nav-navy);
+  background: var(--nav-white);
+  transition: var(--nav-trans);
+  outline: none;
+}
+.rda-field input:focus {
+  border-color: var(--nav-teal);
+  box-shadow: 0 0 0 3px rgba(14,107,107,.1);
+}
+.rda-field input::placeholder { color: var(--nav-gray); }
+
+/* Trust row */
+.rda-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #22a06b;
+  font-weight: 500;
+  margin: 14px 0;
+}
+
+/* Submit btn */
+.rda-donate-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--nav-teal);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: var(--nav-trans);
+  box-shadow: 0 4px 20px rgba(14,107,107,.3);
+}
+.rda-donate-submit:hover {
+  background: var(--nav-teal-lt);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(14,107,107,.4);
+}
+
+.rda-payment-methods {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.rda-payment-badge {
+  padding: 4px 10px;
+  border: 1px solid var(--nav-gray-lt);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nav-gray);
+}
+
+@media (max-width: 991px) {
+  .rda-nav { display: none; }
+  .rda-drawer { width: 300px; }
+}
+@media (min-width: 992px) {
+  .rda-mobile-only { display: none !important; }
+}
+</style>
+
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header class="rda-header" id="rdaHeader">
+  <div class="rda-header__inner">
+
+    <!-- Logo -->
+    <a class="rda-logo" href="{{ route('home') }}" aria-label="Rwanda Diabetes Association">
+      <img src="{{ asset('assets/img/logo-1.png') }}" alt="RDA Logo">
+      <span class="rda-logo__text">
+        Rwanda Diabetes
+        <span class="rda-logo__sub">Association</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="rda-nav" role="navigation">
+
+      <!-- ABOUT US -->
+      <div class="rda-nav__item">
+        <a class="rda-nav__link" href="#">
+          About Us
+          <svg class="rda-nav__caret" viewBox="0 0 10 5" fill="none"><path d="M5 5L0 0H10L5 5Z" fill="currentColor"/></svg>
         </a>
-        <drawer-opener class="svg-wrapper menu-close" data-drawer=".drawer-additional">
-            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M8.00386 9.41816C7.61333 9.02763 7.61334 8.39447 8.00386 8.00395C8.39438 7.61342 9.02755 7.61342 9.41807 8.00395L12.0057 10.5916L14.5907 8.00657C14.9813 7.61605 15.6144 7.61605 16.0049 8.00657C16.3955 8.3971 16.3955 9.03026 16.0049 9.42079L13.4199 12.0058L16.0039 14.5897C16.3944 14.9803 16.3944 15.6134 16.0039 16.0039C15.6133 16.3945 14.9802 16.3945 14.5896 16.0039L12.0057 13.42L9.42097 16.0048C9.03045 16.3953 8.39728 16.3953 8.00676 16.0048C7.61624 15.6142 7.61624 14.9811 8.00676 14.5905L10.5915 12.0058L8.00386 9.41816Z"
-                    fill="currentColor" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
-                    fill="currentColor" />
-            </svg>
-        </drawer-opener>
-    </div>
-    <div class="drawer-content">
-        <div class="drawer-block">
-            <div class="drawer-heading text text-18">Our Programs</div>
-            <ul class="drawer-additional-menu list-unstyled flex-direction-column">
-                @foreach(\App\Models\Category::whereHas('programs')->with('programs')->get() as $category)
-                <li class="nav-item">
-                    <a class="menu-link" href="{{ route('programs.category', $category->slug) }}">{{ $category->name }}</a>
-                </li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="drawer-block drawer-block-contact">
-            <div class="drawer-heading text text-18">Quick Contact</div>
-            <ul class="drawer-additional-menu list-unstyled flex-direction-column">
-                <li class="nav-item">
-                    <div class="menu-link no-hover">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                        </svg>
-                        64KN 8 Avenue, Kigali
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="menu-link" href="tel:0788 224 628">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
-                        </svg>
-                        0788 224 628
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="menu-link" href="mailto:info@rwandadiabetes.rw">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
-                        </svg>
-                        info@rwandadiabetes.rw
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- Modern Donation Modal -->
-<div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content shadow-lg border-0 rounded-4">
-
-            <!-- Header -->
-            <div class="modal-header border-0 text-center d-block pb-0">
-                <h4 class="modal-title fw-bold text-primary" id="donationModalLabel">
-                    Support Our Mission 💙
-                </h4>
-                <p class="text-muted mt-1 mb-0">
-                    Your contribution helps us continue our programs & community outreach.
-                </p>
+        <div class="rda-mega" style="width:560px;">
+          <div class="rda-mega__cols rda-mega__cols--2" style="gap:16px;">
+            <div>
+              <div class="rda-mega__col-label">Organization</div>
+              <a class="rda-dropdown__item" href="{{ route('about') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+                </div>
+                <div>
+                  Who We Are
+                  <div class="rda-dropdown__item-text">Our story, values, and commitment</div>
+                </div>
+              </a>
+              <a class="rda-dropdown__item" href="{{ route('values') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  Mission, Vision & Objectives
+                  <div class="rda-dropdown__item-text">Our guiding principles</div>
+                </div>
+              </a>
+              <a class="rda-dropdown__item" href="{{ route('our-team') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  Our Team
+                  <div class="rda-dropdown__item-text">Meet the people behind RDA</div>
+                </div>
+              </a>
             </div>
-
-            <form id="donationForm" method="POST" action="{{ route('donate.pay') }}">
-                @csrf
-
-                <!-- Body -->
-                <div class="modal-body px-4">
-
-                    <!-- Suggested Quick Amounts -->
-                    <div class="d-flex gap-2 mb-3 flex-wrap justify-content-center">
-                        @foreach([5000, 10000, 20000, 50000] as $amount)
-                        <button type="button" class="btn btn-outline-primary rounded-pill px-3 quick-amount"
-                            data-amount="{{ $amount }}">
-                            {{ number_format($amount) }} RWF
-                        </button>
-                        @endforeach
-                    </div>
-
-                    <!-- Name -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-person"></i>
-                        </span>
-                        <input type="text" name="name" placeholder="Full Name"
-                            class="form-control border-start-0" required>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-envelope"></i>
-                        </span>
-                        <input type="email" name="email" placeholder="Email (optional)"
-                            class="form-control border-start-0">
-                    </div>
-
-                    <!-- Phone -->
-                    <div class="input-group mb-3">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-telephone"></i>
-                        </span>
-                        <input type="text" name="phone" placeholder="Phone Number"
-                            class="form-control border-start-0">
-                    </div>
-
-                    <!-- Amount -->
-                    <div class="input-group mb-2">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-cash-stack"></i>
-                        </span>
-                        <input type="number" name="amount" id="donationAmount"
-                            placeholder="Enter Amount (RWF)" class="form-control border-start-0"
-                            min="100" required>
-                    </div>
-
-                    <small class="text-muted">
-                        Payments via Flutterwave – Card, MTN Mobile Money, Airtel Money.
-                    </small>
-
-                    <!-- Trust Badge -->
-                    <div class="text-center mt-3">
-                        <small class="text-success fw-semibold">
-                            <i class="bi bi-shield-check"></i> Secure & Encrypted Payment
-                        </small>
-                    </div>
-
+            <div>
+              <div class="rda-mega__col-label">Impact</div>
+              <a class="rda-dropdown__item" href="{{ route('partner_with_us') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9a1.994 1.994 0 0 1-1.414-.586" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 2h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.8"/></svg>
                 </div>
-
-                <!-- Footer -->
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold rounded-pill">
-                        Donate Now ❤️
-                    </button>
+                <div>
+                  Our Partners
+                  <div class="rda-dropdown__item-text">Organizations we work with</div>
                 </div>
-            </form>
-
+              </a>
+              <a class="rda-dropdown__item" href="{{ route('impact') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  Our Impact
+                  <div class="rda-dropdown__item-text">Measurable community change</div>
+                </div>
+              </a>
+              <a class="rda-dropdown__item" href="{{ route('stories.index') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  Success Stories
+                  <div class="rda-dropdown__item-text">Real lives, real change</div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- PROGRAMS -->
+      <div class="rda-nav__item">
+        <a class="rda-nav__link" href="#">
+          Programs
+          <svg class="rda-nav__caret" viewBox="0 0 10 5" fill="none"><path d="M5 5L0 0H10L5 5Z" fill="currentColor"/></svg>
+        </a>
+        <div class="rda-mega" style="width:520px;">
+          <div class="rda-mega__cols" style="grid-template-columns: 1fr 1fr; gap:16px;">
+            @foreach(\App\Models\Category::whereHas('programs')->with('programs')->get() as $category)
+            <div>
+              <div class="rda-mega__col-label">{{ $category->name }}</div>
+              @foreach($category->programs->take(4) as $program)
+              <a class="rda-dropdown__item" href="{{ route('programs.show', $program->slug) }}"
+                 style="padding:8px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:var(--nav-teal);flex-shrink:0;margin-top:4px;"></div>
+                <span style="font-size:13px;">{{ $program->title }}</span>
+              </a>
+              @endforeach
+              @if($category->programs->count() > 4)
+              <a class="rda-dropdown__item" href="{{ route('programs.category', $category->slug) }}"
+                 style="padding:6px 10px;color:var(--nav-teal);font-size:12px;">
+                View all →
+              </a>
+              @endif
+            </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+
+      <!-- RESOURCES -->
+      <div class="rda-nav__item">
+        <a class="rda-nav__link" href="#">
+          Resources
+          <svg class="rda-nav__caret" viewBox="0 0 10 5" fill="none"><path d="M5 5L0 0H10L5 5Z" fill="currentColor"/></svg>
+        </a>
+        <div class="rda-mega" style="width:620px;">
+          <div class="rda-mega__cols rda-mega__cols--3" style="gap:20px;">
+            <div>
+              <div class="rda-mega__col-label">Research</div>
+              @foreach($researchCategories as $cat)
+              <a class="rda-dropdown__item" href="{{ route('research.category', $cat->slug) }}" style="padding:8px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:var(--nav-teal);flex-shrink:0;margin-top:4px;"></div>
+                <span style="font-size:13px;">{{ $cat->name }}</span>
+              </a>
+              @endforeach
+            </div>
+            <div>
+              <div class="rda-mega__col-label">Downloads</div>
+              @foreach($downloadCategories as $cat)
+              <a class="rda-dropdown__item" href="{{ route('downloads.category', $cat->slug) }}" style="padding:8px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:var(--nav-navy);flex-shrink:0;margin-top:4px;opacity:.4;"></div>
+                <span style="font-size:13px;">{{ $cat->name }}</span>
+              </a>
+              @endforeach
+            </div>
+            <div>
+              <div class="rda-mega__col-label">Learning Tips</div>
+              @foreach($learningCategories as $cat)
+              <a class="rda-dropdown__item" href="{{ route('materials.category', $cat->slug) }}" style="padding:8px 10px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:var(--nav-gold);flex-shrink:0;margin-top:4px;"></div>
+                <span style="font-size:13px;">{{ $cat->name }}</span>
+              </a>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWS -->
+      <div class="rda-nav__item">
+        <a class="rda-nav__link" href="#">
+          News
+          <svg class="rda-nav__caret" viewBox="0 0 10 5" fill="none"><path d="M5 5L0 0H10L5 5Z" fill="currentColor"/></svg>
+        </a>
+        <div class="rda-dropdown" style="min-width:220px;">
+          <a class="rda-dropdown__item" href="{{ route('news.index') }}">
+            <div class="rda-dropdown__item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Latest News
+          </a>
+          <a class="rda-dropdown__item" href="{{ route('articles.index') }}">
+            <div class="rda-dropdown__item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Articles
+          </a>
+          <a class="rda-dropdown__item" href="{{ route('stories.index') }}">
+            <div class="rda-dropdown__item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            Stories & Testimonials
+          </a>
+          <a class="rda-dropdown__item" href="{{ route('media.index') }}">
+            <div class="rda-dropdown__item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.8"/><polyline points="21 15 16 10 5 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Media Gallery
+          </a>
+        </div>
+      </div>
+
+      <!-- GET INVOLVED -->
+      <div class="rda-nav__item">
+        <a class="rda-nav__link" href="#">
+          Get Involved
+          <svg class="rda-nav__caret" viewBox="0 0 10 5" fill="none"><path d="M5 5L0 0H10L5 5Z" fill="currentColor"/></svg>
+        </a>
+        <div class="rda-mega" style="width:480px;">
+          <div class="rda-mega__cols" style="grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <div class="rda-mega__col-label">Take Action</div>
+              <a class="rda-dropdown__item" href="{{ route('partner_with_us') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2v4l-4-4H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 2h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.8"/></svg>
+                </div>
+                <div>
+                  Partner with Us
+                  <div class="rda-dropdown__item-text">Join our mission network</div>
+                </div>
+              </a>
+              <a class="rda-dropdown__item" href="{{ route('contact') }}">
+                <div class="rda-dropdown__item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  Contact Us
+                  <div class="rda-dropdown__item-text">Get in touch today</div>
+                </div>
+              </a>
+              <button class="rda-dropdown__item" onclick="openDonationModal()" style="border:none;background:none;width:100%;text-align:left;cursor:pointer;">
+                <div class="rda-dropdown__item-icon" style="background:rgba(200,151,58,.12);color:var(--nav-gold);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  Make a Donation
+                  <div class="rda-dropdown__item-text">Support our community programs</div>
+                </div>
+              </button>
+            </div>
+            <div>
+              <div class="rda-mega__feature">
+                <div style="font-size:22px;">🌍</div>
+                <div class="rda-mega__feature-title">Together We Fight Diabetes</div>
+                <div class="rda-mega__feature-text">40,000+ people reached. Join us in building healthier communities across Rwanda.</div>
+                <a href="{{ route('impact') }}" class="rda-mega__feature-cta">
+                  See Our Impact →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Actions -->
+    <div class="rda-header__actions">
+      <button class="rda-donate-btn" onclick="openDonationModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/></svg>
+        Donate
+      </button>
+      <!-- Mobile menu toggle -->
+      <button class="rda-menu-btn rda-mobile-only" id="rdaMenuBtn" aria-label="Open menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 1h16M1 7h12M1 13h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
+
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     MOBILE DRAWER
+══════════════════════════════════ -->
+<div class="rda-drawer__overlay" id="rdaOverlay" onclick="closeDrawer()"></div>
+<div class="rda-drawer" id="rdaDrawer">
+  <div class="rda-drawer__head">
+    <a href="{{ route('home') }}" class="rda-logo">
+      <img src="{{ asset('assets/img/logo-1.png') }}" alt="RDA">
+      <span class="rda-logo__text" style="color:white;">
+        Rwanda Diabetes
+        <span class="rda-logo__sub">Association</span>
+      </span>
+    </a>
+    <button class="rda-drawer__close" onclick="closeDrawer()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="rda-drawer__body">
+    <div class="rda-drawer__section">
+      <div class="rda-drawer__section-label">About</div>
+      <a class="rda-drawer__link" href="{{ route('about') }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+        Who We Are
+      </a>
+      <a class="rda-drawer__link" href="{{ route('values') }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Mission & Vision
+      </a>
+      <a class="rda-drawer__link" href="{{ route('our-team') }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+        Our Team
+      </a>
+      <a class="rda-drawer__link" href="{{ route('impact') }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Our Impact
+      </a>
+    </div>
+
+    <div class="rda-drawer__section">
+      <div class="rda-drawer__section-label">Programs</div>
+      @foreach(\App\Models\Category::whereHas('programs')->with('programs')->get() as $cat)
+      <a class="rda-drawer__link" href="{{ route('programs.category', $cat->slug) }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        {{ $cat->name }}
+      </a>
+      @endforeach
+    </div>
+
+    <div class="rda-drawer__section">
+      <div class="rda-drawer__section-label">News</div>
+      <a class="rda-drawer__link" href="{{ route('news.index') }}">Latest News</a>
+      <a class="rda-drawer__link" href="{{ route('articles.index') }}">Articles</a>
+      <a class="rda-drawer__link" href="{{ route('stories.index') }}">Stories & Testimonials</a>
+      <a class="rda-drawer__link" href="{{ route('media.index') }}">Media Gallery</a>
+    </div>
+
+    <div class="rda-drawer__section">
+      <button class="rda-donate-btn" onclick="openDonationModal();closeDrawer();" style="width:100%;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/></svg>
+        Make a Donation
+      </button>
+    </div>
+
+    <div class="rda-drawer__section">
+      <div class="rda-drawer__section-label">Quick Contact</div>
+      <div class="rda-drawer__contact-card">
+        <div class="rda-drawer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+          64KN 8 Avenue, Kigali
+        </div>
+        <a class="rda-drawer__contact-item" href="tel:+0788224628">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +0788 224 628
+        </a>
+        <a class="rda-drawer__contact-item" href="mailto:info@rwandadiabetes.rw">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          info@rwandadiabetes.rw
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Quick Amount Script -->
+<!-- ══════════════════════════════════
+     DONATION MODAL
+══════════════════════════════════ -->
+<div class="rda-modal-overlay" id="rdaDonationModal">
+  <div class="rda-modal">
+
+    <div class="rda-modal__head">
+      <button class="rda-modal__close" onclick="closeDonationModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="rda-modal__head-icon">❤️</div>
+      <h4 class="rda-modal__title">Support Our Mission</h4>
+      <p class="rda-modal__subtitle">Your contribution helps us deliver care and education across Rwanda.</p>
+    </div>
+
+    <div class="rda-modal__body">
+      <form id="donationForm">
+        @csrf
+
+        <!-- Quick amounts -->
+        <div class="rda-amounts">
+          @foreach([5000, 10000, 20000, 50000] as $amount)
+          <button type="button" class="rda-amount-btn" data-amount="{{ $amount }}">
+            {{ number_format($amount) }}
+            <small>RWF</small>
+          </button>
+          @endforeach
+        </div>
+
+        <!-- Name -->
+        <div class="rda-field">
+          <div class="rda-field__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
+          </div>
+          <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+
+        <!-- Email -->
+        <div class="rda-field">
+          <div class="rda-field__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <input type="email" name="email" placeholder="Email Address (optional)">
+        </div>
+
+        <!-- Phone -->
+        <div class="rda-field">
+          <div class="rda-field__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 4.18 2 2 0 0 1 5.09 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <input type="tel" name="phone" placeholder="Phone Number (MTN / Airtel)">
+        </div>
+
+        <!-- Amount -->
+        <div class="rda-field">
+          <div class="rda-field__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <input type="number" name="amount" id="donationAmount" placeholder="Amount in RWF" min="100" required>
+        </div>
+
+        <!-- Trust -->
+        <div class="rda-trust">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity=".1"/></svg>
+          Secure & Encrypted Payment via Flutterwave
+        </div>
+
+        <button type="submit" class="rda-donate-submit">
+          Donate Now
+        </button>
+
+        <div class="rda-payment-methods">
+          <span class="rda-payment-badge">💳 Card</span>
+          <span class="rda-payment-badge">📱 MTN MoMo</span>
+          <span class="rda-payment-badge">📱 Airtel Money</span>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
-    document.querySelectorAll('.quick-amount').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.getElementById('donationAmount').value = btn.getAttribute('data-amount');
-        });
-    });
+// ── HEADER SCROLL EFFECT ──
+const rdaHeader = document.getElementById('rdaHeader');
+window.addEventListener('scroll', () => {
+  rdaHeader.classList.toggle('scrolled', window.scrollY > 30);
+});
 
-    // Handle submission and run inline Flutterwave payment
-    document.getElementById('donationForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent form submit
+// ── MOBILE DRAWER ──
+const rdaDrawer  = document.getElementById('rdaDrawer');
+const rdaOverlay = document.getElementById('rdaOverlay');
+const rdaMenuBtn = document.getElementById('rdaMenuBtn');
 
-        let name = document.querySelector('input[name="name"]').value;
-        let email = document.querySelector('input[name="email"]').value || "donor@example.com";
-        let phone = document.querySelector('input[name="phone"]').value || "";
-        let amount = document.querySelector('input[name="amount"]').value;
+rdaMenuBtn?.addEventListener('click', () => {
+  rdaDrawer.classList.add('open');
+  rdaOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
 
-        if (amount < 100) {
-            alert("Minimum donation is 100 RWF.");
-            return;
-        }
+function closeDrawer() {
+  rdaDrawer.classList.remove('open');
+  rdaOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-        FlutterwaveCheckout({
-            public_key: "{{ env('FLW_PUBLIC_KEY') }}",
-            tx_ref: "DON_" + Date.now(),
-            amount: amount,
-            currency: "RWF",
-            payment_options: "card, mobilemoneyrwanda",
-            customer: {
-                email: email,
-                phone_number: phone,
-                name: name,
-            },
-            customizations: {
-                title: "Donation",
-                description: "Support Our Mission",
-                logo: "{{ asset('logo.png') }}"
-            },
-            callback: function(response) {
-                // Redirect to backend verification route
-                window.location.href = "/donation/verify?transaction_id=" + response.transaction_id;
-            },
-            onclose: function() {
-                console.log("Payment closed");
-            }
-        });
+// ── DONATION MODAL ──
+const donationModal = document.getElementById('rdaDonationModal');
 
-    });
+function openDonationModal() {
+  donationModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDonationModal() {
+  donationModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+donationModal?.addEventListener('click', (e) => {
+  if (e.target === donationModal) closeDonationModal();
+});
+
+// ── QUICK AMOUNT BUTTONS ──
+document.querySelectorAll('.rda-amount-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rda-amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('donationAmount').value = btn.getAttribute('data-amount');
+  });
+});
+
+// ── DONATION FORM SUBMIT ──
+document.getElementById('donationForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name   = this.querySelector('[name="name"]').value.trim();
+  const email  = this.querySelector('[name="email"]').value.trim() || 'donor@example.com';
+  const phone  = this.querySelector('[name="phone"]').value.trim() || '';
+  const amount = parseFloat(this.querySelector('[name="amount"]').value);
+
+  if (!name) { alert('Please enter your name.'); return; }
+  if (amount < 100) { alert('Minimum donation is 100 RWF.'); return; }
+
+  FlutterwaveCheckout({
+    public_key: "{{ env('FLW_PUBLIC_KEY') }}",
+    tx_ref: 'DON_' + Date.now(),
+    amount,
+    currency: 'RWF',
+    payment_options: 'card, mobilemoneyrwanda',
+    customer: { email, phone_number: phone, name },
+    customizations: {
+      title: 'Rwanda Diabetes Association',
+      description: 'Support Our Mission',
+      logo: "{{ asset('logo.png') }}"
+    },
+    callback: function(response) {
+      window.location.href = '/donation/verify?transaction_id=' + response.transaction_id;
+    },
+    onclose: function() {
+      console.log('Payment closed');
+    }
+  });
+});
 </script>

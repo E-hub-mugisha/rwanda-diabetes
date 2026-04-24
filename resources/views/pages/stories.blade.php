@@ -2,120 +2,421 @@
 @section('title', 'Stories & Testimonials')
 @section('content')
 
-<div class="page-blog mt-100">
+{{-- ═══════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════ --}}
+<section class="st-hero">
     <div class="container">
-        <div class="section-headings section-headings-horizontal">
-            <div class="section-headings-left">
-                <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-right" data-aos-delay="10">
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <span>Our Stories & Testimonials</span>
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </div>
-                <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Latest Stories & Testimonials
-                </h2>
-                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
+        <div class="st-hero__inner">
+            <div class="st-hero__text" data-aos="fade-up">
+                <span class="st-eyebrow">Stories &amp; Testimonials</span>
+                <h1 class="st-h1">Real voices. <em>Real change.</em></h1>
+                <p class="st-lead">
+                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization — told through the people we serve.
                 </p>
             </div>
-        </div>
-        <div class="row product-grid mt-4">
-            @foreach( $stories as $story)
-            <div class="col-12 col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-blog radius18">
-                    <div class="card-blog-top">
-                        <div class="card-blog-meta">
-                            <div class="card-blog-meta-item text text-18">
-                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0007 0.046875C6.95088 0.046875 5.94406 0.463912 5.20173 1.20624C4.4594 1.94858 4.04236 2.95539 4.04236 4.00521C4.04236 5.05502 4.4594 6.06184 5.20173 6.80417C5.94406 7.5465 6.95088 7.96354 8.0007 7.96354C9.05051 7.96354 10.0573 7.5465 10.7997 6.80417C11.542 6.06184 11.959 5.05502 11.959 4.00521C11.959 2.95539 11.542 1.94858 10.7997 1.20624C10.0573 0.463912 9.05051 0.046875 8.0007 0.046875ZM5.29236 4.00521C5.29236 3.28691 5.57771 2.59804 6.08562 2.09013C6.59353 1.58222 7.2824 1.29688 8.0007 1.29688C8.71899 1.29688 9.40787 1.58222 9.91578 2.09013C10.4237 2.59804 10.709 3.28691 10.709 4.00521C10.709 4.7235 10.4237 5.41238 9.91578 5.92029C9.40787 6.4282 8.71899 6.71354 8.0007 6.71354C7.2824 6.71354 6.59353 6.4282 6.08562 5.92029C5.57771 5.41238 5.29236 4.7235 5.29236 4.00521ZM8.0007 9.21354C6.0732 9.21354 4.29653 9.65187 2.9807 10.3919C1.68403 11.1219 0.709031 12.2269 0.709031 13.5885V13.6735C0.708198 14.6419 0.707364 15.8569 1.7732 16.7252C2.29736 17.1519 3.03153 17.456 4.0232 17.656C5.01653 17.8577 6.31236 17.9635 8.0007 17.9635C9.68903 17.9635 10.984 17.8577 11.979 17.656C12.9707 17.456 13.704 17.1519 14.229 16.7252C15.2949 15.8569 15.2932 14.6419 15.2924 13.6735V13.5885C15.2924 12.2269 14.3174 11.1219 13.0215 10.3919C11.7049 9.65187 9.92903 9.21354 8.0007 9.21354ZM1.95903 13.5885C1.95903 12.8794 2.47736 12.1094 3.5932 11.4819C4.68986 10.8652 6.24653 10.4635 8.00153 10.4635C9.75486 10.4635 11.3115 10.8652 12.4082 11.4819C13.5249 12.1094 14.0424 12.8794 14.0424 13.5885C14.0424 14.6785 14.009 15.2919 13.439 15.7552C13.1307 16.0069 12.614 16.2527 11.7307 16.431C10.8499 16.6094 9.6457 16.7135 8.0007 16.7135C6.3557 16.7135 5.1507 16.6094 4.2707 16.431C3.38736 16.2527 2.8707 16.0069 2.56236 15.756C1.99236 15.2919 1.95903 14.6785 1.95903 13.5885Z" fill="currentColor"></path>
-                                </svg>
-                                {{ $story->author_name }}
-                            </div>
-                            <div class="card-blog-meta-item text text-18">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.1667 10.6667C13.3877 10.6667 13.5996 10.5789 13.7559 10.4226C13.9122 10.2663 14 10.0543 14 9.83333C14 9.61232 13.9122 9.40036 13.7559 9.24408C13.5996 9.0878 13.3877 9 13.1667 9C12.9457 9 12.7337 9.0878 12.5774 9.24408C12.4211 9.40036 12.3333 9.61232 12.3333 9.83333C12.3333 10.0543 12.4211 10.2663 12.5774 10.4226C12.7337 10.5789 12.9457 10.6667 13.1667 10.6667ZM13.1667 14C13.3877 14 13.5996 13.9122 13.7559 13.7559C13.9122 13.5996 14 13.3877 14 13.1667C14 12.9457 13.9122 12.7337 13.7559 12.5774C13.5996 12.4211 13.3877 12.3333 13.1667 12.3333C12.9457 12.3333 12.7337 12.4211 12.5774 12.5774C12.4211 12.7337 12.3333 12.9457 12.3333 13.1667C12.3333 13.3877 12.4211 13.5996 12.5774 13.7559C12.7337 13.9122 12.9457 14 13.1667 14ZM9.83333 9.83333C9.83333 10.0543 9.74554 10.2663 9.58926 10.4226C9.43297 10.5789 9.22101 10.6667 9 10.6667C8.77899 10.6667 8.56702 10.5789 8.41074 10.4226C8.25446 10.2663 8.16667 10.0543 8.16667 9.83333C8.16667 9.61232 8.25446 9.40036 8.41074 9.24408C8.56702 9.0878 8.77899 9 9 9C9.22101 9 9.43297 9.0878 9.58926 9.24408C9.74554 9.40036 9.83333 9.61232 9.83333 9.83333ZM9.83333 13.1667C9.83333 13.3877 9.74554 13.5996 9.58926 13.7559C9.43297 13.9122 9.22101 14 9 14C8.77899 14 8.56702 13.9122 8.41074 13.7559C8.25446 13.5996 8.16667 13.3877 8.16667 13.1667C8.16667 12.9457 8.25446 12.7337 8.41074 12.5774C8.56702 12.4211 8.77899 12.3333 9 12.3333C9.22101 12.3333 9.43297 12.4211 9.58926 12.5774C9.74554 12.7337 9.83333 12.9457 9.83333 13.1667ZM4.83333 10.6667C5.05435 10.6667 5.26631 10.5789 5.42259 10.4226C5.57887 10.2663 5.66667 10.0543 5.66667 9.83333C5.66667 9.61232 5.57887 9.40036 5.42259 9.24408C5.26631 9.0878 5.05435 9 4.83333 9C4.61232 9 4.40036 9.0878 4.24408 9.24408C4.0878 9.40036 4 9.61232 4 9.83333C4 10.0543 4.0878 10.2663 4.24408 10.4226C4.40036 10.5789 4.61232 10.6667 4.83333 10.6667ZM4.83333 14C5.05435 14 5.26631 13.9122 5.42259 13.7559C5.57887 13.5996 5.66667 13.3877 5.66667 13.1667C5.66667 12.9457 5.57887 12.7337 5.42259 12.5774C5.26631 12.4211 5.05435 12.3333 4.83333 12.3333C4.61232 12.3333 4.40036 12.4211 4.24408 12.5774C4.0878 12.7337 4 12.9457 4 13.1667C4 13.3877 4.0878 13.5996 4.24408 13.7559C4.40036 13.9122 4.61232 14 4.83333 14Z" fill="currentColor"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83268 0.453125C4.99844 0.453125 5.15741 0.518973 5.27462 0.636183C5.39183 0.753394 5.45768 0.912365 5.45768 1.07812V1.71396C6.00935 1.70312 6.61685 1.70312 7.28518 1.70312H10.7127C11.3818 1.70312 11.9893 1.70312 12.541 1.71396V1.07812C12.541 0.912365 12.6069 0.753394 12.7241 0.636183C12.8413 0.518973 13.0003 0.453125 13.166 0.453125C13.3318 0.453125 13.4907 0.518973 13.608 0.636183C13.7252 0.753394 13.791 0.912365 13.791 1.07812V1.76729C14.0077 1.78396 14.2127 1.80479 14.4068 1.83063C15.3835 1.96229 16.1743 2.23896 16.7985 2.86229C17.4218 3.48646 17.6985 4.27729 17.8302 5.25396C17.9577 6.20396 17.9577 7.41646 17.9577 8.94812V10.7081C17.9577 12.2398 17.9577 13.4531 17.8302 14.4023C17.6985 15.379 17.4218 16.1698 16.7985 16.794C16.1743 17.4173 15.3835 17.694 14.4068 17.8256C13.4568 17.9531 12.2443 17.9531 10.7127 17.9531H7.28602C5.75435 17.9531 4.54102 17.9531 3.59185 17.8256C2.61518 17.694 1.82435 17.4173 1.20018 16.794C0.576849 16.1698 0.300182 15.379 0.168516 14.4023C0.0410156 13.4523 0.0410156 12.2398 0.0410156 10.7081V8.94812C0.0410156 7.41646 0.0410156 6.20312 0.168516 5.25396C0.300182 4.27729 0.576849 3.48646 1.20018 2.86229C1.82435 2.23896 2.61518 1.96229 3.59185 1.83063C3.78602 1.80479 3.99185 1.78396 4.20768 1.76729V1.07812C4.20768 0.912365 4.27353 0.753394 4.39074 0.636183C4.50795 0.518973 4.66692 0.453125 4.83268 0.453125ZM3.75768 3.06979C2.92018 3.18229 2.43685 3.39396 2.08435 3.74646C1.73185 4.09896 1.52018 4.58229 1.40768 5.42062C1.38852 5.56229 1.37268 5.71229 1.35935 5.86979H16.6393C16.626 5.71146 16.6102 5.56229 16.591 5.41979C16.4785 4.58229 16.2668 4.09896 15.9143 3.74646C15.5618 3.39396 15.0785 3.18229 14.2402 3.06979C13.3843 2.95479 12.2552 2.95312 10.666 2.95312H7.33268C5.74352 2.95312 4.61518 2.95479 3.75768 3.06979ZM1.29102 8.99479C1.29102 8.28312 1.29102 7.66396 1.30185 7.11979H16.6968C16.7077 7.66396 16.7077 8.28312 16.7077 8.99479V10.6615C16.7077 12.2506 16.706 13.3798 16.591 14.2365C16.4785 15.074 16.2668 15.5573 15.9143 15.9098C15.5618 16.2623 15.0785 16.474 14.2402 16.5865C13.3843 16.7015 12.2552 16.7031 10.666 16.7031H7.33268C5.74352 16.7031 4.61518 16.7015 3.75768 16.5865C2.92018 16.474 2.43685 16.2623 2.08435 15.9098C1.73185 15.5573 1.52018 15.074 1.40768 14.2356C1.29268 13.3798 1.29102 12.2506 1.29102 10.6615V8.99479Z" fill="currentColor"></path>
-                                </svg>
-                                October 2, 2025
-                            </div>
-                        </div>
-                        <h2 class="card-blog-heading heading text-22">
-                            <a href="#" class="heading text-22">
-                                {{ $story->title }}
-                            </a>
-                        </h2>
-                    </div>
+            <div class="st-hero__meta" data-aos="fade-up" data-aos-delay="100">
+                <div class="st-hero__badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span>{{ $stories->count() }} stories shared</span>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
+     STORIES GRID
+═══════════════════════════════════════════ --}}
+<section class="st-grid-section">
+    <div class="container">
+        <div class="st-grid">
+            @foreach($stories as $index => $story)
+            <article class="st-card {{ $index === 0 ? 'st-card--featured' : '' }}"
+                     data-aos="fade-up"
+                     data-aos-delay="{{ ($index % 3) * 70 }}">
+
+                {{-- Top bar --}}
+                <div class="st-card__top">
+                    <div class="st-card__stars">
+                        @for($s = 0; $s < 5; $s++)
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 17l-5.878 3.59 1.598-6.71-4.73-4.09 6.865-.556L12 2.5l2.145 6.734 6.865.556-4.73 4.09 1.598 6.71z"/>
+                        </svg>
+                        @endfor
+                    </div>
+                    @if($index === 0)
+                    <span class="st-card__badge">Featured</span>
+                    @endif
+                </div>
+
+                {{-- Quote mark --}}
+                <div class="st-card__quote-mark">
+                    <svg width="28" height="22" viewBox="0 0 62 46" fill="currentColor">
+                        <path d="M14.531 0C6.517 0 0 6.519 0 14.531c0 7.315 5.432 13.385 12.477 14.386-.564 4.097-2.128 8-4.573 11.377-.474.66-.457 1.554.051 2.193.498.628 1.363.866 2.122.546C21.61 38.22 29.063 27.03 29.063 14.531 29.063 6.519 22.546 0 14.531 0zm32.937 0C39.455 0 32.938 6.519 32.938 14.531c0 7.315 5.431 13.385 12.476 14.386-.564 4.097-2.129 8-4.573 11.377-.474.66-.457 1.554.05 2.193.498.628 1.363.866 2.122.546C54.547 38.22 62 27.03 62 14.531 62 6.519 55.483 0 47.468 0z"/>
+                    </svg>
+                </div>
+
+                {{-- Title --}}
+                <h2 class="st-card__title">
+                    <a href="#">{{ $story->title }}</a>
+                </h2>
+
+                {{-- Excerpt if available --}}
+                @if(isset($story->excerpt) && $story->excerpt)
+                <p class="st-card__excerpt">"{{ Str::limit($story->excerpt, 160) }}"</p>
+                @endif
+
+                {{-- Footer --}}
+                <div class="st-card__footer">
+                    <div class="st-card__author">
+                        <div class="st-card__avatar">
+                            {{ strtoupper(substr($story->author_name ?? $story->title, 0, 1)) }}
+                        </div>
+                        <div class="st-card__author-info">
+                            <span class="st-card__author-name">{{ $story->author_name ?? 'Community Member' }}</span>
+                            <span class="st-card__date">
+                                <svg width="12" height="12" viewBox="0 0 18 18" fill="currentColor" style="margin-right:4px;opacity:.5">
+                                    <path fill-rule="evenodd" d="M4.833 1.703v-.625a.625.625 0 0 0-1.25 0v.625H3.25A3.25 3.25 0 0 0 0 4.953v8.5A3.25 3.25 0 0 0 3.25 16.7h11.5A3.25 3.25 0 0 0 18 13.453v-8.5A3.25 3.25 0 0 0 14.75 1.7h-.333v-.625a.625.625 0 0 0-1.25 0v.625H4.833zm-3.583 5.5h15.5v6.25a2 2 0 0 1-2 2H3.25a2 2 0 0 1-2-2V7.203z"/>
+                                </svg>
+                                {{ isset($story->created_at) ? $story->created_at->format('M j, Y') : 'October 2, 2025' }}
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" class="st-card__read-link">
+                        Read
+                        <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
+                            <path d="M13.336 7.845L6.164 15.017l-1.178-1.178 7.172-7.172H5.836V5H15v9.167h-1.664V7.845Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </article>
             @endforeach
         </div>
 
-        <nav class="pagination">
-            <ul class="list-unstyled pagintaion-list aos-init" data-aos="fade-up">
-                <!-- <li>
-                <a
-                  role="link"
-                  class="pagination-link"
-                  aria-disabled="true"
-                  aria-label="Previous page link"
-                >
-                  <svg
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015C5.70175 11.3811 5.7937 11.4446 5.89537 11.4883C5.99704 11.532 6.10639 11.5549 6.21704 11.5559C6.32769 11.5569 6.43742 11.5358 6.53984 11.4939C6.64225 11.452 6.7353 11.3901 6.81354 11.3119C6.89178 11.2336 6.95366 11.1406 6.99556 11.0382C7.03746 10.9357 7.05855 10.826 7.05759 10.7154C7.05662 10.6047 7.03364 10.4954 6.98996 10.3937C6.94629 10.292 6.8828 10.2001 6.80321 10.1232L2.67821 5.9982L6.80321 1.8732C6.95501 1.71603 7.039 1.50553 7.03711 1.28703C7.03521 1.06853 6.94757 0.859522 6.79306 0.705015C6.63855 0.550508 6.42954 0.462868 6.21104 0.460969C5.99255 0.45907 5.78205 0.543066 5.62488 0.694864L0.910711 5.40903Z"
-                      fill="currentColor"
-                    />
-                  </svg>
+        {{-- ═══════════════════════════════════
+             PAGINATION
+        ═══════════════════════════════════ --}}
+        <nav class="st-pagination" aria-label="Stories pagination" data-aos="fade-up">
+            @if(method_exists($stories, 'links'))
+                {{-- Laravel paginator --}}
+                <div class="st-pagination__inner">
+                    @if($stories->onFirstPage())
+                        <span class="st-page-btn st-page-btn--disabled">
+                            <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor" transform="scale(-1,1) translate(-8,0)"/></svg>
+                        </span>
+                    @else
+                        <a href="{{ $stories->previousPageUrl() }}" class="st-page-btn" aria-label="Previous">
+                            <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor" transform="scale(-1,1) translate(-8,0)"/></svg>
+                        </a>
+                    @endif
+
+                    @foreach($stories->getUrlRange(1, $stories->lastPage()) as $page => $url)
+                        @if($page == $stories->currentPage())
+                            <span class="st-page-btn st-page-btn--active">{{ $page }}</span>
+                        @else
+                            <a href="{{ $url }}" class="st-page-btn">{{ $page }}</a>
+                        @endif
+                    @endforeach
+
+                    @if($stories->hasMorePages())
+                        <a href="{{ $stories->nextPageUrl() }}" class="st-page-btn" aria-label="Next">
+                            <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor"/></svg>
+                        </a>
+                    @else
+                        <span class="st-page-btn st-page-btn--disabled">
+                            <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor"/></svg>
+                        </span>
+                    @endif
+                </div>
+            @else
+            {{-- Static fallback --}}
+            <div class="st-pagination__inner">
+                <span class="st-page-btn st-page-btn--disabled">
+                    <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor" transform="scale(-1,1) translate(-8,0)"/></svg>
+                </span>
+                <a href="#" class="st-page-btn st-page-btn--active">1</a>
+                <a href="#" class="st-page-btn">2</a>
+                <a href="#" class="st-page-btn">3</a>
+                <a href="#" class="st-page-btn">
+                    <svg width="14" height="14" viewBox="0 0 8 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.089 5.41a.833.833 0 0 0 0-1.178L2.375.72A.833.833 0 0 0 1.197 1.9L5.322 6 1.197 10.1a.833.833 0 0 0 1.178 1.178l4.714-4.69z" fill="currentColor"/></svg>
                 </a>
-              </li> -->
-                <li>
-                    <a href="#" class="pagination-link active" aria-label="Page 1 link">
-                        1
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination-link" aria-label="Page 2 link">
-                        2
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination-link" aria-label="Page 3 link">
-                        3
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination-link" aria-label="Next page link">
-                        <svg viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015C2.29825 11.3811 2.2063 11.4446 2.10463 11.4883C2.00296 11.532 1.89361 11.5549 1.78296 11.5559C1.67231 11.5569 1.56258 11.5358 1.46016 11.4939C1.35775 11.452 1.2647 11.3901 1.18646 11.3119C1.10822 11.2336 1.04634 11.1406 1.00444 11.0382C0.962537 10.9357 0.941453 10.826 0.942414 10.7154C0.943376 10.6047 0.966364 10.4954 1.01004 10.3937C1.05371 10.292 1.1172 10.2001 1.19679 10.1232L5.32179 5.9982L1.19679 1.8732C1.04499 1.71603 0.960996 1.50553 0.962894 1.28703C0.964793 1.06853 1.05243 0.859522 1.20694 0.705015C1.36145 0.550508 1.57046 0.462868 1.78896 0.460969C2.00745 0.45907 2.21795 0.543066 2.37512 0.694864L7.08929 5.40903Z" fill="currentColor"></path>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
+            </div>
+            @endif
         </nav>
     </div>
-</div>
+</section>
+
+
+<style>
+/* ── Tokens ─────────────────────────────────────── */
+:root {
+    --st-navy:      #19265d;
+    --st-navy-mid:  #243580;
+    --st-orange:    #D05208;
+    --st-orange-lt: #fdf0ea;
+    --st-teal:      #0e7c6a;
+    --st-teal-lt:   #e4f4f1;
+    --st-text:      #1a1e2e;
+    --st-muted:     #5a6278;
+    --st-border:    #e3e8f0;
+    --st-bg:        #f5f7fc;
+    --st-white:     #ffffff;
+    --ff-h:         'Cormorant Garamond', Georgia, serif;
+    --ff-b:         'DM Sans', system-ui, sans-serif;
+    --r-md:         12px;
+    --r-lg:         20px;
+}
+
+/* ── Helpers ────────────────────────────────────── */
+.st-eyebrow {
+    display: inline-block;
+    font-family: var(--ff-b);
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--st-orange); margin-bottom: 12px;
+}
+.st-h1 {
+    font-family: var(--ff-h);
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 600; line-height: 1.1;
+    color: var(--st-navy); margin: 0 0 20px;
+}
+.st-h1 em { font-style: italic; color: var(--st-orange); }
+.st-lead {
+    font-family: var(--ff-b);
+    font-size: 17px; line-height: 1.75;
+    color: var(--st-muted); margin: 0;
+    max-width: 600px;
+}
+
+/* ─────────────────────────────────────────────── */
+/* HERO                                            */
+/* ─────────────────────────────────────────────── */
+.st-hero {
+    padding: 100px 0 72px;
+    background: var(--st-white);
+    border-bottom: 1px solid var(--st-border);
+}
+.st-hero__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+.st-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--st-teal-lt);
+    color: var(--st-teal);
+    font-family: var(--ff-b);
+    font-size: 13px; font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────── */
+/* GRID                                            */
+/* ─────────────────────────────────────────────── */
+.st-grid-section {
+    padding: 72px 0 100px;
+    background: var(--st-bg);
+}
+.st-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 56px;
+}
+@media (max-width: 960px) { .st-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 580px) { .st-grid { grid-template-columns: 1fr; } }
+
+/* ─────────────────────────────────────────────── */
+/* STORY CARD                                      */
+/* ─────────────────────────────────────────────── */
+.st-card {
+    background: var(--st-white);
+    border: 1px solid var(--st-border);
+    border-radius: var(--r-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.22s, box-shadow 0.22s;
+    position: relative;
+}
+.st-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 44px rgba(25,38,93,0.09);
+}
+.st-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 28px; right: 28px;
+    height: 3px;
+    background: var(--st-border);
+    border-radius: 0 0 4px 4px;
+    transition: background 0.2s;
+}
+.st-card:hover::before { background: var(--st-teal); }
+.st-card--featured::before { background: var(--st-orange); }
+.st-card--featured { border-color: rgba(208,82,8,0.2); }
+
+/* Top bar */
+.st-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.st-card__stars {
+    display: flex; gap: 3px;
+    color: #f59e0b;
+}
+.st-card__badge {
+    font-family: var(--ff-b);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--st-orange);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+
+/* Quote mark */
+.st-card__quote-mark {
+    color: var(--st-border);
+    line-height: 1;
+    margin-top: 4px;
+}
+.st-card--featured .st-card__quote-mark { color: rgba(208,82,8,0.18); }
+
+/* Title */
+.st-card__title {
+    font-family: var(--ff-h);
+    font-size: 20px; font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+.st-card__title a {
+    color: var(--st-navy);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.st-card__title a:hover { color: var(--st-orange); }
+.st-card--featured .st-card__title { font-size: 22px; }
+
+/* Excerpt */
+.st-card__excerpt {
+    font-family: var(--ff-h);
+    font-size: 15px; font-style: italic; font-weight: 500;
+    line-height: 1.7;
+    color: var(--st-muted);
+    margin: 0; flex: 1;
+}
+
+/* Footer */
+.st-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--st-border);
+    margin-top: auto;
+}
+.st-card__author {
+    display: flex; align-items: center; gap: 10px;
+    min-width: 0;
+}
+.st-card__avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--st-navy);
+    color: #fff;
+    font-family: var(--ff-h);
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.st-card--featured .st-card__avatar { background: var(--st-orange); }
+.st-card__author-info {
+    display: flex; flex-direction: column;
+    min-width: 0;
+}
+.st-card__author-name {
+    font-family: var(--ff-b);
+    font-size: 13px; font-weight: 600;
+    color: var(--st-text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.st-card__date {
+    font-family: var(--ff-b);
+    font-size: 11px; color: var(--st-muted);
+    display: flex; align-items: center;
+    margin-top: 2px;
+}
+.st-card__read-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--ff-b);
+    font-size: 12px; font-weight: 600;
+    color: var(--st-teal);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: gap 0.18s, color 0.15s;
+    flex-shrink: 0;
+}
+.st-card--featured .st-card__read-link { color: var(--st-orange); }
+.st-card__read-link:hover { gap: 9px; }
+
+/* ─────────────────────────────────────────────── */
+/* PAGINATION                                      */
+/* ─────────────────────────────────────────────── */
+.st-pagination { display: flex; justify-content: center; }
+.st-pagination__inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--st-white);
+    border: 1px solid var(--st-border);
+    border-radius: var(--r-md);
+    padding: 6px;
+}
+.st-page-btn {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    min-width: 38px; height: 38px;
+    border-radius: 8px;
+    font-family: var(--ff-b);
+    font-size: 14px; font-weight: 500;
+    color: var(--st-muted);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.st-page-btn:hover {
+    background: var(--st-bg);
+    color: var(--st-navy);
+}
+.st-page-btn--active {
+    background: var(--st-navy);
+    color: #fff;
+    font-weight: 600;
+}
+.st-page-btn--active:hover {
+    background: var(--st-navy-mid);
+    color: #fff;
+}
+.st-page-btn--disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+</style>
 
 @endsection

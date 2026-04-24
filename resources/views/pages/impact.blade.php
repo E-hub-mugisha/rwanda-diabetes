@@ -1,167 +1,526 @@
 @extends('layouts.base')
-
 @section('title', 'Our Impact')
-
 @section('content')
 
-<div class="hero-banner-2 about-us-2 mt-100" style="padding-top: 100px;">
+{{-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ --}}
+<section class="imp-hero">
     <div class="container">
-        <div class="section-headings section-headings-horizontal">
-            <div class="section-headings-left">
-                <h2 class="heading text-30 fw-700 aos-init aos-animate" data-aos="fade-up">Our Impact, Trusted Advice, Proven Success</h2>
-                <p class="text text-18 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Transforming Rwanda’s health research ecosystem through mentorship, digital learning,
-                    community programs, and evidence-based research.</p>
+        <div class="imp-hero__grid">
+            <div class="imp-hero__text" data-aos="fade-up">
+                <span class="imp-eyebrow">Our Impact</span>
+                <h1 class="imp-h1">Trusted advice.<br><em>Proven results.</em></h1>
+                <p class="imp-lead">
+                    Transforming Rwanda's health landscape through community programs, evidence-based education, early diabetes detection, and lifesaving support — one person at a time.
+                </p>
+                <a href="{{ route('stories.index') }}" class="imp-btn imp-btn--primary">
+                    Read Success Stories
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M13.336 7.845L6.164 15.017l-1.178-1.178 7.172-7.172H5.836V5H15v9.167h-1.664V7.845Z" fill="currentColor"/></svg>
+                </a>
             </div>
-            <div class="section-headings-right">
-                <div class="buttons d-flex gap-4 flex-wrap aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{ route('stories.index')}}" class="button button--primary" aria-label="hero button">
-                        Success Stories
-                        <span class="svg-wrapper">
-                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
-                            </svg>
-                        </span>
+
+            <div class="imp-hero__cards" data-aos="fade-left" data-aos-delay="100">
+                <div class="imp-hero-card imp-hero-card--orange">
+                    <div class="imp-hero-card__num">50k<span>+</span></div>
+                    <div class="imp-hero-card__label">Lives Impacted</div>
+                    <div class="imp-hero-card__icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                </div>
+                <div class="imp-hero-card imp-hero-card--navy">
+                    <div class="imp-hero-card__num">30<span>+</span></div>
+                    <div class="imp-hero-card__label">Districts Reached</div>
+                    <div class="imp-hero-card__icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+                    </div>
+                </div>
+                <div class="imp-hero-card imp-hero-card--teal">
+                    <div class="imp-hero-card__num">27<span>yrs</span></div>
+                    <div class="imp-hero-card__label">Serving Rwanda</div>
+                    <div class="imp-hero-card__icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
+     STATS STRIP
+═══════════════════════════════════════════ --}}
+<section class="imp-stats">
+    <div class="container">
+        <div class="imp-stats__inner">
+            <div class="imp-stat" data-aos="fade-up" data-aos-delay="0">
+                <div class="imp-stat__num" data-target="20">20<span>+</span></div>
+                <div class="imp-stat__label">Researchers Trained</div>
+                <div class="imp-stat__sub">Equipped with tools and knowledge</div>
+            </div>
+            <div class="imp-stat-divider"></div>
+            <div class="imp-stat" data-aos="fade-up" data-aos-delay="80">
+                <div class="imp-stat__num" data-target="12">12<span>+</span></div>
+                <div class="imp-stat__label">Community Programs</div>
+                <div class="imp-stat__sub">Running nationwide</div>
+            </div>
+            <div class="imp-stat-divider"></div>
+            <div class="imp-stat" data-aos="fade-up" data-aos-delay="160">
+                <div class="imp-stat__num" data-target="25">25<span>+</span></div>
+                <div class="imp-stat__label">Published Studies</div>
+                <div class="imp-stat__sub">Advancing diabetes research</div>
+            </div>
+            <div class="imp-stat-divider"></div>
+            <div class="imp-stat" data-aos="fade-up" data-aos-delay="240">
+                <div class="imp-stat__num">100<span>%</span></div>
+                <div class="imp-stat__label">Non-profit</div>
+                <div class="imp-stat__sub">Community-funded, community-led</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
+     STORIES
+═══════════════════════════════════════════ --}}
+<section class="imp-stories">
+    <div class="container">
+        <div class="imp-stories__header" data-aos="fade-up">
+            <div class="imp-stories__header-text">
+                <span class="imp-eyebrow">Success Stories</span>
+                <h2 class="imp-h2">Voices from our community</h2>
+                <p class="imp-body">
+                    Real stories from individuals whose lives have been transformed through early detection, education, and compassionate support.
+                </p>
+            </div>
+            <a href="{{ route('stories.index') }}" class="imp-btn imp-btn--ghost">
+                All Stories
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M13.336 7.845L6.164 15.017l-1.178-1.178 7.172-7.172H5.836V5H15v9.167h-1.664V7.845Z" fill="currentColor"/></svg>
+            </a>
+        </div>
+
+        {{-- Story cards grid --}}
+        <div class="imp-stories__grid">
+            @foreach($stories as $i => $story)
+            <div class="imp-story-card {{ $i === 0 ? 'imp-story-card--featured' : '' }}"
+                 data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 80 }}">
+
+                {{-- Quote mark --}}
+                <div class="imp-story-card__quote-icon">
+                    <svg width="32" height="24" viewBox="0 0 62 46" fill="none">
+                        <path d="M14.531 0C6.517 0 0 6.519 0 14.531c0 7.315 5.432 13.385 12.477 14.386-.564 4.097-2.128 8-4.573 11.377-.474.66-.457 1.554.051 2.193.498.628 1.363.866 2.122.546C21.61 38.22 29.063 27.03 29.063 14.531 29.063 6.519 22.546 0 14.531 0zm32.937 0C39.455 0 32.938 6.519 32.938 14.531c0 7.315 5.431 13.385 12.476 14.386-.564 4.097-2.129 8-4.573 11.377-.474.66-.457 1.554.05 2.193.498.628 1.363.866 2.122.546C54.547 38.22 62 27.03 62 14.531 62 6.519 55.483 0 47.468 0z" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                {{-- Stars --}}
+                <div class="imp-story-card__stars">
+                    @for($s = 0; $s < 5; $s++)
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17l-5.878 3.59 1.598-6.71-4.73-4.09 6.865-.556L12 2.5l2.145 6.734 6.865.556-4.73 4.09 1.598 6.71z"/></svg>
+                    @endfor
+                </div>
+
+                <p class="imp-story-card__excerpt">"{{ $story->excerpt }}"</p>
+
+                <div class="imp-story-card__author">
+                    <div class="imp-story-card__avatar">
+                        {{ strtoupper(substr($story->title, 0, 1)) }}
+                    </div>
+                    <div>
+                        <div class="imp-story-card__name">{{ $story->title }}</div>
+                        <div class="imp-story-card__meta">Community Member</div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
+     BOTTOM CTA
+═══════════════════════════════════════════ --}}
+<section class="imp-cta">
+    <div class="container">
+        <div class="imp-cta__inner" data-aos="fade-up">
+            <div class="imp-cta__rings">
+                <div class="imp-ring imp-ring--1"></div>
+                <div class="imp-ring imp-ring--2"></div>
+                <div class="imp-ring imp-ring--3"></div>
+                <div class="imp-cta__icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+            </div>
+            <div class="imp-cta__text">
+                <h3 class="imp-cta__title">Be part of the change</h3>
+                <p class="imp-cta__body">Partner with us or donate to help more Rwandans access diabetes education, screening, and care.</p>
+                <div class="imp-cta__actions">
+                    <a href="{{ route('partner_with_us') }}" class="imp-btn imp-btn--white">
+                        Partner with Us
+                        <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M13.336 7.845L6.164 15.017l-1.178-1.178 7.172-7.172H5.836V5H15v9.167h-1.664V7.845Z" fill="currentColor"/></svg>
                     </a>
-                    
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#donationModal" class="imp-btn imp-btn--outline-white">
+                        Donate Now
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<counter-up class="counter-up d-block mt-100 mb-100 " id="summary" style="margin-bottom: 40px;">
-    <div class="container">
-        <div class="counter-up-box radius18">
-            <div class="row product-grid text-center">
-                <div class="col-12 col-md-4 aos-init aos-animate" data-aos="fade-up">
-                    <div class="counter-item">
-                        <h2 class="heading text-50" data-target="20">20<span>+</span>
-                        </h2>
-                        <div class="text text-18 fw-500">Researchers Trained</div>
-                    </div>
-                </div>
 
-                <div class="col-12 col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <div class="counter-item">
-                        <h2 class="heading text-50" data-target="12">12<span>+</span>
-                        </h2>
-                        <div class="text text-18 fw-500">Community Programs</div>
-                    </div>
-                </div>
+<style>
+/* ── Tokens ─────────────────────────────────────── */
+:root {
+    --i-navy:     #19265d;
+    --i-navy-mid: #243580;
+    --i-orange:   #D05208;
+    --i-orange-lt:#fdf0ea;
+    --i-teal:     #0e7c6a;
+    --i-teal-lt:  #e4f4f1;
+    --i-text:     #1a1e2e;
+    --i-muted:    #5a6278;
+    --i-border:   #e3e8f0;
+    --i-bg:       #f5f7fc;
+    --i-white:    #ffffff;
+    --ff-h:       'Cormorant Garamond', Georgia, serif;
+    --ff-b:       'DM Sans', system-ui, sans-serif;
+    --r-md:       12px;
+    --r-lg:       20px;
+}
 
-                <div class="col-12 col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <div class="counter-item">
-                        <h2 class="heading text-50" data-target="25">25<span>+</span>
-                        </h2>
-                        <div class="text text-18 fw-500">Published Studies</div>
-                    </div>
-                </div>
+/* ── Helpers ────────────────────────────────────── */
+.imp-eyebrow {
+    display: inline-block;
+    font-family: var(--ff-b);
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--i-orange); margin-bottom: 12px;
+}
+.imp-h1 {
+    font-family: var(--ff-h);
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 600; line-height: 1.1;
+    color: var(--i-navy); margin: 0 0 20px;
+}
+.imp-h1 em { font-style: italic; color: var(--i-orange); }
+.imp-h2 {
+    font-family: var(--ff-h);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 600; line-height: 1.2;
+    color: var(--i-navy); margin: 0 0 14px;
+}
+.imp-lead {
+    font-family: var(--ff-b);
+    font-size: 17px; line-height: 1.75;
+    color: var(--i-muted); margin: 0 0 32px;
+    max-width: 520px;
+}
+.imp-body {
+    font-family: var(--ff-b);
+    font-size: 15px; line-height: 1.75;
+    color: var(--i-muted); margin: 0;
+}
+.imp-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--ff-b); font-size: 14px; font-weight: 600;
+    padding: 12px 24px; border-radius: 8px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+.imp-btn--primary { background: var(--i-orange); color: #fff; }
+.imp-btn--primary:hover { background: #b3420a; color: #fff; transform: translateY(-1px); }
+.imp-btn--ghost { background: transparent; color: var(--i-navy); border: 1.5px solid var(--i-border); }
+.imp-btn--ghost:hover { border-color: var(--i-navy); background: var(--i-bg); }
+.imp-btn--white { background: #fff; color: var(--i-navy); }
+.imp-btn--white:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+.imp-btn--outline-white {
+    background: transparent; color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.35);
+}
+.imp-btn--outline-white:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-            </div>
-        </div>
-    </div>
-</counter-up>
+/* ─────────────────────────────────────────────── */
+/* HERO                                            */
+/* ─────────────────────────────────────────────── */
+.imp-hero {
+    padding: 100px 0 80px;
+    background: var(--i-white);
+}
+.imp-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 64px;
+    align-items: center;
+}
+@media (max-width: 900px) {
+    .imp-hero__grid { grid-template-columns: 1fr; gap: 48px; }
+}
 
-<div class="testimonial-3 mt-100 overflow-x-hidden">
-    <div class="container">
-        <div class="row product-grid">
-            <div class="col-lg-6 col-12">
-                <div class="section-headings section-headings-vertical aos-init aos-animate" data-aos="fade-right">
-                    <div class="section-headings-top">
-                        <div class="subheading text-20 subheading-bg">
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span>Testimonial</span>
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </div>
-                        <h2 class="heading" style="height: 3rem;">
-                            Success story from our community outreach
-                        </h2>
-                    </div>
-                    <div class="section-headings-bottom section-headings-horizontal">
-                        <div class="text text-18">Real stories from individuals whose lives have been transformed through early detection, education, and support.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12">
-                <testicolumn-slider class="team-slider testicolumn-slider aos-init aos-animate" data-aos="fade-left">
-                    <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-                        <div class="swiper-wrapper" id="swiper-wrapper-1b25cdeb34f748bb" aria-live="polite">
-                            @foreach($stories as $story)
-                            <div class="swiper-slide">
-                                <div class="card-testimonial radius18">
-                                    <ul class="rating-list list-unstyled">
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                    </ul>
-                                    <p class="text text-24">
-                                        “ {{ $story->excerpt }}”
-                                    </p>
-                                    <div class="user-info-wrap">
-                                        <div class="user-info">
-                                            <div class="user-name-desig">
-                                                <h2 class="user-name heading text-18">
-                                                    {{ $story->title }}
-                                                </h2>
-                                            </div>
-                                        </div>
-                                        <div class="icon-quote">
-                                            <svg class="icon icon-62" width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.5312 9.41406C6.51702 9.41406 0 15.9329 0 23.9453C0 31.2606 5.43154 37.3306 12.4771 38.3311C11.9131 42.4287 10.3486 46.3275 7.90415 49.7085C7.42874 50.3683 7.44654 51.2624 7.9538 51.9009C8.4515 52.5292 9.31635 52.7674 10.0754 52.4473C21.6088 47.6332 29.0625 36.4438 29.0625 23.9453C29.0625 15.9329 22.5455 9.41406 14.5312 9.41406ZM47.4688 9.41406C39.4545 9.41406 32.9375 15.9329 32.9375 23.9453C32.9375 31.2606 38.369 37.3306 45.4146 38.3311C44.8506 42.4287 43.2861 46.3275 40.8417 49.7085C40.3662 50.3683 40.384 51.2624 40.8913 51.9009C41.389 52.5292 42.2538 52.7674 43.0129 52.4473C54.5463 47.6332 62 36.4438 62 23.9453C62 15.9329 55.483 9.41406 47.4688 9.41406Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
-                </testicolumn-slider>
-            </div>
-        </div>
-    </div>
-</div>
+/* Hero stat cards */
+.imp-hero__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.imp-hero-card {
+    border-radius: var(--r-lg);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+}
+.imp-hero-card--orange { background: var(--i-orange); }
+.imp-hero-card--navy   { background: var(--i-navy); }
+.imp-hero-card--teal   { background: var(--i-teal); }
+
+.imp-hero-card__num {
+    font-family: var(--ff-h);
+    font-size: 42px; font-weight: 700;
+    color: #fff; line-height: 1;
+    flex: 1;
+}
+.imp-hero-card__num span {
+    font-size: 24px;
+    opacity: 0.7;
+}
+.imp-hero-card__label {
+    font-family: var(--ff-b);
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-align: right;
+    flex: 1;
+}
+.imp-hero-card__icon {
+    color: rgba(255,255,255,0.35);
+    position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+}
+
+/* ─────────────────────────────────────────────── */
+/* STATS STRIP                                     */
+/* ─────────────────────────────────────────────── */
+.imp-stats {
+    padding: 0 0 80px;
+    background: var(--i-white);
+}
+.imp-stats__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--i-navy);
+    border-radius: var(--r-lg);
+    padding: 48px 56px;
+    gap: 0;
+}
+@media (max-width: 768px) {
+    .imp-stats__inner {
+        flex-direction: column;
+        padding: 36px 28px;
+        gap: 28px;
+        text-align: center;
+    }
+    .imp-stat-divider { width: 80px; height: 1px; background: rgba(255,255,255,0.1); }
+}
+
+.imp-stat { text-align: center; }
+.imp-stat__num {
+    font-family: var(--ff-h);
+    font-size: 48px; font-weight: 700;
+    color: #fff; line-height: 1;
+    margin-bottom: 6px;
+}
+.imp-stat__num span { font-size: 28px; color: var(--i-orange); }
+.imp-stat__label {
+    font-family: var(--ff-b);
+    font-size: 15px; font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 4px;
+}
+.imp-stat__sub {
+    font-family: var(--ff-b);
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+}
+.imp-stat-divider {
+    width: 1px; height: 64px;
+    background: rgba(255,255,255,0.1);
+}
+
+/* ─────────────────────────────────────────────── */
+/* STORIES                                         */
+/* ─────────────────────────────────────────────── */
+.imp-stories {
+    padding: 100px 0;
+    background: var(--i-bg);
+}
+.imp-stories__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 52px;
+    flex-wrap: wrap;
+}
+
+/* Stories masonry-style grid */
+.imp-stories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+@media (max-width: 900px) {
+    .imp-stories__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 580px) {
+    .imp-stories__grid { grid-template-columns: 1fr; }
+}
+
+/* Story card */
+.imp-story-card {
+    background: var(--i-white);
+    border: 1px solid var(--i-border);
+    border-radius: var(--r-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.imp-story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(25,38,93,0.09);
+}
+
+/* Featured first card spans 2 rows */
+.imp-story-card--featured {
+    border-color: var(--i-orange);
+    grid-row: span 1;
+}
+.imp-story-card--featured::before {
+    content: 'Featured Story';
+    position: absolute;
+    top: -1px; left: 28px;
+    font-family: var(--ff-b);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--i-orange);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 0 0 6px 6px;
+}
+
+.imp-story-card__quote-icon {
+    color: var(--i-border);
+    line-height: 1;
+}
+.imp-story-card--featured .imp-story-card__quote-icon { color: var(--i-orange-lt); }
+.imp-story-card--featured .imp-story-card__quote-icon svg { fill: var(--i-orange); opacity: 0.15; }
+
+.imp-story-card__stars {
+    display: flex; gap: 3px;
+    color: #f59e0b;
+}
+.imp-story-card__excerpt {
+    font-family: var(--ff-h);
+    font-size: 17px; font-style: italic; font-weight: 500;
+    line-height: 1.65;
+    color: var(--i-text);
+    margin: 0; flex: 1;
+}
+.imp-story-card--featured .imp-story-card__excerpt {
+    font-size: 19px;
+}
+
+.imp-story-card__author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--i-border);
+    margin-top: auto;
+}
+.imp-story-card__avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--i-navy);
+    color: #fff;
+    font-family: var(--ff-h);
+    font-size: 16px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.imp-story-card--featured .imp-story-card__avatar { background: var(--i-orange); }
+.imp-story-card__name {
+    font-family: var(--ff-b);
+    font-size: 14px; font-weight: 600;
+    color: var(--i-text);
+}
+.imp-story-card__meta {
+    font-family: var(--ff-b);
+    font-size: 12px; color: var(--i-muted);
+}
+
+/* ─────────────────────────────────────────────── */
+/* BOTTOM CTA                                      */
+/* ─────────────────────────────────────────────── */
+.imp-cta {
+    padding: 0 0 100px;
+    background: var(--i-bg);
+}
+.imp-cta__inner {
+    background: linear-gradient(135deg, var(--i-navy) 0%, var(--i-navy-mid) 100%);
+    border-radius: var(--r-lg);
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 56px;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .imp-cta__inner {
+        grid-template-columns: 1fr;
+        padding: 44px 32px;
+        gap: 32px;
+    }
+    .imp-cta__rings { display: none; }
+}
+
+/* Rings visual */
+.imp-cta__rings {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    height: 160px;
+}
+.imp-ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+.imp-ring--1 { width: 160px; height: 160px; }
+.imp-ring--2 { width: 112px; height: 112px; border-color: rgba(255,255,255,0.18); }
+.imp-ring--3 { width: 68px; height: 68px; background: rgba(255,255,255,0.07); }
+.imp-cta__icon {
+    position: relative; z-index: 1;
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+}
+
+.imp-cta__title {
+    font-family: var(--ff-h);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 600; line-height: 1.2;
+    color: #fff; margin: 0 0 10px;
+}
+.imp-cta__body {
+    font-family: var(--ff-b);
+    font-size: 15px; line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    margin: 0 0 28px;
+}
+.imp-cta__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+</style>
 
 @endsection

@@ -1,871 +1,1374 @@
 @extends('layouts.base')
-@section('title', 'Get to know')
+@section('title', 'Rwanda Diabetes Association — Improving Lives Through Care & Education')
 @section('content')
 
 <style>
-    /* Pagination wrapper */
-    .slider-pagination {
-        position: absolute;
-        bottom: 100px;
-        left: 100%;
-        transform: translateX(-50%);
-        z-index: 20;
-        display: flex;
-        gap: 10px;
-    }
+/* =============================================
+   DESIGN SYSTEM — Rwanda Diabetes Association
+   Aesthetic: Refined Medical · Editorial · Warm Authority
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-    /* Dots */
-    .slider-pagination .swiper-pagination-bullet {
-        width: 12px;
-        height: 12px;
-        background: rgb(231, 8, 8);
-        opacity: 1;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-    }
+:root {
+  --navy:      #0B2740;
+  --teal:      #0E6B6B;
+  --teal-lt:   #14908E;
+  --gold:      #C8973A;
+  --gold-lt:   #E8B55A;
+  --cream:     #F8F5F0;
+  --white:     #FFFFFF;
+  --gray-50:   #F4F6F8;
+  --gray-100:  #E8ECF0;
+  --gray-400:  #9AAAB8;
+  --gray-600:  #5A6B7A;
+  --gray-800:  #2A3D4F;
+  --text:      #1E2E3D;
+  --radius-sm: 8px;
+  --radius:    16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 2px 8px rgba(11,39,64,.06);
+  --shadow:    0 8px 32px rgba(11,39,64,.10);
+  --shadow-lg: 0 20px 60px rgba(11,39,64,.15);
+  --transition: all .3s cubic-bezier(.4,0,.2,1);
+}
 
-    /* Active dot */
-    .slider-pagination .swiper-pagination-bullet-active {
-        width: 28px;
-        border-radius: 10px;
-        background: #fff;
-    }
+*, *::before, *::after { box-sizing: border-box; }
 
-    .hero-slider .slider-pagination {
-        position: absolute;
-        bottom: 100px;
-        left: 100%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        display: flex !important;
-    }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
 
-    .hero-slider .swiper-pagination-bullet {
-        width: 12px;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.6);
-        opacity: 1;
-    }
+/* ── UTILITY ── */
+.rda-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+.rda-btn--primary {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: 0 4px 20px rgba(14,107,107,.3);
+}
+.rda-btn--primary:hover {
+  background: var(--teal-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(14,107,107,.4);
+  color: var(--white);
+}
+.rda-btn--outline {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+.rda-btn--outline:hover {
+  background: var(--navy);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.rda-btn--ghost-white {
+  background: rgba(255,255,255,.15);
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,.4);
+  backdrop-filter: blur(8px);
+}
+.rda-btn--ghost-white:hover {
+  background: var(--white);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
 
-    .hero-slider .swiper-pagination-bullet-active {
-        width: 26px;
-        border-radius: 12px;
-        background: #fff;
-    }
+.rda-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(14,107,107,.1);
+  color: var(--teal);
+}
+.rda-tag--white {
+  background: rgba(255,255,255,.2);
+  color: var(--white);
+}
+.rda-tag__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.15;
+}
+
+/* ── HERO ── */
+.rda-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+}
+.rda-hero .swiper, .rda-hero .swiper-wrapper, .rda-hero .swiper-slide {
+  height: 100%;
+}
+.rda-hero__slide {
+  position: relative;
+  height: 100%;
+}
+.rda-hero__slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 7s ease;
+}
+.swiper-slide-active .rda-hero__slide img {
+  transform: scale(1);
+}
+.rda-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(11,39,64,.82) 0%,
+    rgba(11,39,64,.55) 50%,
+    rgba(11,39,64,.25) 100%);
+}
+.rda-hero__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+.rda-hero__inner {
+  max-width: 700px;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .9s ease .3s, transform .9s ease .3s;
+}
+.swiper-slide-active .rda-hero__inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+.rda-hero__heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin: 16px 0 20px;
+}
+.rda-hero__text {
+  font-size: 18px;
+  color: rgba(255,255,255,.82);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 540px;
+}
+.rda-hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Hero nav */
+.rda-hero__nav {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.rda-hero__arrows {
+  display: flex;
+  gap: 10px;
+}
+.rda-hero__arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+.rda-hero__arrow:hover { background: var(--teal); border-color: var(--teal); }
+
+.rda-hero-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.rda-hero-pagination .swiper-pagination-bullet {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.4);
+  opacity: 1;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.rda-hero-pagination .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 4px;
+  background: var(--white);
+}
+
+/* ── PROGRAMS ── */
+.rda-programs {
+  padding: 120px 0 80px;
+  background: var(--white);
+}
+.rda-programs__header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.rda-programs__heading {
+  font-size: clamp(30px, 3.5vw, 44px);
+  color: var(--navy);
+  margin: 0 0 20px;
+}
+.rda-programs__subtext {
+  font-size: 17px;
+  color: var(--gray-600);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.rda-program-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.rda-program-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.rda-program-card__img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.rda-program-card:hover .rda-program-card__img {
+  transform: scale(1.04);
+}
+.rda-program-card__img-wrap {
+  overflow: hidden;
+  height: 220px;
+}
+.rda-program-card__body {
+  padding: 28px 32px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.rda-program-card__title {
+  font-size: 22px;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+.rda-program-card__text {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+/* ── ABOUT ── */
+.rda-about {
+  padding: 100px 0;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.rda-about::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,107,107,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rda-about__img {
+  border-radius: var(--radius-xl);
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+}
+.rda-about__content {
+  padding-left: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.rda-about__heading {
+  font-size: clamp(32px, 3.5vw, 48px);
+  color: var(--navy);
+  margin: 16px 0 24px;
+}
+.rda-about__text {
+  font-size: 17px;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.rda-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+.rda-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 24px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.rda-pillar:hover {
+  box-shadow: var(--shadow);
+  transform: translateX(4px);
+}
+.rda-pillar__icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--teal), var(--teal-lt));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+}
+.rda-pillar__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+.rda-pillar__text {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── IMPACT ── */
+.rda-impact {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--navy) 0%, #0D3555 50%, var(--teal) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.rda-impact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.rda-impact__content { position: relative; }
+.rda-impact__heading {
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--white);
+  margin: 16px 0 16px;
+}
+.rda-impact__subtext {
+  font-size: 17px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+.rda-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.rda-stat {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+.rda-stat:hover {
+  background: rgba(255,255,255,.13);
+  transform: translateY(-3px);
+}
+.rda-stat__number {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--gold-lt);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.rda-stat__label {
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+}
+
+.rda-impact__img-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+}
+.rda-impact__img {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+.rda-impact__img-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rda-impact__img-badge-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-lt));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+.rda-impact__img-badge-text strong {
+  display: block;
+  font-size: 15px;
+  color: var(--navy);
+  font-weight: 600;
+}
+.rda-impact__img-badge-text span {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+/* ── PARTNERS ── */
+.rda-partners {
+  padding: 80px 0;
+  background: var(--gray-50);
+}
+.rda-partners__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rda-partners__heading {
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--navy);
+  margin: 0;
+}
+.rda-partners__subtext {
+  font-size: 15px;
+  color: var(--gray-600);
+  margin: 8px 0 0;
+}
+
+.rda-partners__track-wrap {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 32px 0;
+}
+.rda-partners__track {
+  display: flex;
+  gap: 0;
+}
+.rda-partners__list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: marquee 28s linear infinite;
+}
+.rda-partners__list:nth-child(2) { animation-delay: -14s; }
+.rda-partners__logo {
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--gray-100);
+}
+.rda-partners__logo img {
+  height: 36px;
+  width: auto;
+  filter: grayscale(1) opacity(.5);
+  transition: var(--transition);
+}
+.rda-partners__logo:hover img { filter: grayscale(0) opacity(1); }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ── TESTIMONIALS ── */
+.rda-testimonials {
+  padding: 100px 0;
+  background: var(--white);
+}
+.rda-testimonials__heading {
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--navy);
+  margin: 16px 0 16px;
+}
+.rda-testimonials__subtext {
+  font-size: 16px;
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+.rda-testimonials__left {
+  padding-right: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rda-testi-card {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  position: relative;
+  border: 1px solid var(--gray-100);
+}
+.rda-testi-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 24px; right: 28px;
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  color: var(--teal);
+  opacity: .15;
+  line-height: 1;
+}
+.rda-testi-card__stars { display: flex; gap: 4px; }
+.rda-testi-card__stars svg { color: var(--gold); }
+.rda-testi-card__text {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray-800);
+  font-style: italic;
+  flex: 1;
+}
+.rda-testi-card__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-100);
+}
+.rda-testi-card__author-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--navy));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.rda-testi-card__author-name {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 15px;
+}
+
+/* ── NEWS ── */
+.rda-news {
+  padding: 100px 0;
+  background: var(--gray-50);
+}
+.rda-news__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rda-news__heading {
+  font-size: clamp(28px, 3.5vw, 42px);
+  color: var(--navy);
+  margin: 16px 0 12px;
+}
+.rda-news__subtext {
+  font-size: 16px;
+  color: var(--gray-600);
+  max-width: 440px;
+  line-height: 1.7;
+}
+
+.rda-news-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--gray-100);
+  transition: var(--transition);
+}
+.rda-news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.rda-news-card__img-wrap {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+.rda-news-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.rda-news-card:hover .rda-news-card__img { transform: scale(1.05); }
+.rda-news-card__cat {
+  position: absolute;
+  top: 16px; left: 16px;
+  padding: 5px 14px;
+  background: var(--teal);
+  color: white;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.rda-news-card__body {
+  padding: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.rda-news-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-bottom: 14px;
+}
+.rda-news-card__meta-item { display: flex; align-items: center; gap: 6px; }
+.rda-news-card__title {
+  font-size: 18px;
+  color: var(--navy);
+  margin: 0 0 16px;
+  line-height: 1.4;
+  text-decoration: none;
+  flex: 1;
+  display: block;
+}
+.rda-news-card__title:hover { color: var(--teal); }
+.rda-news-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap .2s ease;
+}
+.rda-news-card__link:hover { gap: 12px; }
+
+/* ── PUBLICATIONS ── */
+.rda-publications {
+  padding: 100px 0;
+  background: var(--white);
+}
+.rda-publications__heading {
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--navy);
+  text-align: center;
+  margin: 16px 0 16px;
+}
+.rda-publications__subtext {
+  text-align: center;
+  font-size: 16px;
+  color: var(--gray-600);
+  margin-bottom: 64px;
+}
+
+.rda-pub-highlight {
+  background: linear-gradient(135deg, var(--navy) 0%, #103C5C 100%);
+  border-radius: var(--radius-xl);
+  padding: 56px 48px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.rda-pub-highlight::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,107,107,.25) 0%, transparent 70%);
+}
+.rda-pub-highlight__heading {
+  font-size: clamp(26px, 3vw, 38px);
+  color: var(--white);
+  margin: 16px 0 20px;
+}
+.rda-pub-highlight__text {
+  font-size: 16px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.rda-pub-list { display: flex; flex-direction: column; gap: 0; }
+.rda-pub-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--transition);
+}
+.rda-pub-item:first-child { padding-top: 0; }
+.rda-pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+.rda-pub-item:hover { padding-left: 8px; }
+.rda-pub-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 600;
+}
+.rda-pub-item__cat {
+  padding: 3px 10px;
+  background: rgba(14,107,107,.1);
+  color: var(--teal);
+  border-radius: 50px;
+}
+.rda-pub-item__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--navy);
+  text-decoration: none;
+  line-height: 1.4;
+  display: block;
+  transition: color .2s;
+}
+.rda-pub-item__title:hover { color: var(--teal); }
+.rda-pub-item__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 991px) {
+  .rda-about__content { padding-left: 0; margin-top: 40px; }
+  .rda-testimonials__left { padding-right: 0; margin-bottom: 40px; }
+  .rda-news__header { align-items: flex-start; }
+  .rda-impact__img-wrap { min-height: 340px; margin-top: 48px; }
+}
+@media (max-width: 767px) {
+  .rda-hero { height: 90vh; }
+  .rda-stats { grid-template-columns: 1fr 1fr; }
+  .rda-pub-highlight { padding: 40px 28px; }
+}
 </style>
-<!-- Hero Slider -->
-<hero-slider class="hero-slider with-floating-header">
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            <!-- Slide -->
-            <div class="swiper-slide">
-                <div class="slider-card overlay">
-                    <picture class="slider-media">
-                        <img src="assets/img/banner.jpeg" width="1920" height="1000" loading="eager" alt="Hero Image">
-                    </picture>
-                    <div class="slider-content">
-                        <div class="container height-100 d-flex align-items-center">
-                            <div class="content-box slider-animation section-headings">
 
-                                <h2 class="heading fw-700">
-                                    Improving diabetes awareness, education, and care across Rwanda
-                                </h2>
-                                <div class="text text-18">
-                                    Our programs focus on early detection, patient care, advocacy, and community outreach to improve lives.
-                                </div>
-                                <div class="buttons">
-                                    <a href="{{ route('about') }}" class="button button--secondary" aria-label="hero button">
-                                        Learn More
-                                        <span class="svg-wrapper">
-                                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                    fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Slide -->
-            <div class="swiper-slide">
-                <div class="slider-card overlay">
-                    <picture class="slider-media">
-                        <img src="assets/img/2.jpg" width="1920" height="1000" loading="lazy" alt="Hero Image">
-                    </picture>
-                    <div class="slider-content">
-                        <div class="container height-100 d-flex align-items-center">
-                            <div class="content-box slider-animation section-headings">
-                                <h2 class="heading fw-700">
-                                    Community outreach to improve lives
-                                </h2>
-                                <div class="text text-18">
-                                    Our programs focus on early detection, patient care, advocacy, and community outreach to improve lives.
-                                </div>
-                                <div class="buttons">
-                                    <a href="{{ route('contact')}}" class="button button--secondary" aria-label="hero button">
-                                        Free Consultation
-                                        <span class="svg-wrapper">
-                                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                                    fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- slider indicator -->
-        <div class="slider-pagination"></div>
+<!-- ══════════════════════════════════════════════
+     HERO SLIDER
+══════════════════════════════════════════════ -->
+<section class="rda-hero">
+  <div class="swiper rda-hero-swiper">
+    <div class="swiper-wrapper">
 
-        <!-- Slider navigation -->
-        <div class="slider-nav">
-            <div class="swiper-button-prev">
-                <svg class="icon icon-32" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                    fill="none">
-                    <path d="M14.6663 25.3359L5.33301 16.0026M5.33301 16.0026L14.6663 6.66927M5.33301 16.0026H26.6663"
-                        stroke="CurrentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+      <div class="swiper-slide">
+        <div class="rda-hero__slide">
+          <img src="assets/img/banner.jpeg" alt="Rwanda Diabetes Association" loading="eager">
+          <div class="rda-hero__overlay"></div>
+          <div class="rda-hero__content">
+            <div class="container">
+              <div class="rda-hero__inner">
+                <span class="rda-tag rda-tag--white">
+                  <span class="rda-tag__dot"></span>
+                  Rwanda Diabetes Association
+                </span>
+                <h1 class="rda-hero__heading">
+                  Improving Diabetes<br>Care Across Rwanda
+                </h1>
+                <p class="rda-hero__text">
+                  Our programs focus on early detection, patient care, advocacy, and community outreach to improve lives across every district.
+                </p>
+                <div class="rda-hero__actions">
+                  <a href="{{ route('about') }}" class="rda-btn rda-btn--primary">
+                    Learn More
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="{{ route('contact') }}" class="rda-btn rda-btn--ghost-white">
+                    Free Consultation
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="swiper-button-next">
-                <svg class="icon icon-32" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                    fill="none">
-                    <path d="M17.3337 25.3359L26.667 16.0026M26.667 16.0026L17.3337 6.66927M26.667 16.0026H5.33366"
-                        stroke="CurrentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="rda-hero__slide">
+          <img src="assets/img/2.jpg" alt="Community Outreach" loading="lazy">
+          <div class="rda-hero__overlay"></div>
+          <div class="rda-hero__content">
+            <div class="container">
+              <div class="rda-hero__inner">
+                <span class="rda-tag rda-tag--white">
+                  <span class="rda-tag__dot"></span>
+                  Community Programs
+                </span>
+                <h1 class="rda-hero__heading">
+                  Building Healthier<br>Communities Together
+                </h1>
+                <p class="rda-hero__text">
+                  Through mobile clinics and outreach events, we help communities access early screening — critical for reducing complications and saving lives.
+                </p>
+                <div class="rda-hero__actions">
+                  <a href="{{ route('contact') }}" class="rda-btn rda-btn--primary">
+                    Free Consultation
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-</hero-slider>
+    <!-- Nav -->
+    <div class="rda-hero__nav">
+      <div class="rda-hero__arrows">
+        <button class="rda-hero__arrow rda-prev" aria-label="Previous slide">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M14.6663 25.3359L5.33301 16.0026M5.33301 16.0026L14.6663 6.66927M5.33301 16.0026H26.6663" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="rda-hero__arrow rda-next" aria-label="Next slide">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M17.3337 25.3359L26.667 16.0026M26.667 16.0026L17.3337 6.66927M26.667 16.0026H5.33366" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="rda-hero-pagination"></div>
+    </div>
+  </div>
+</section>
 
-<div class="multicolumn multicolumn-page mt-100">
-    <div class="container">
-        <div class="multicolumn-header section-headings">
-            <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <g clip-path="url(#clip0_9088_4143)">
-                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                    </g>
-                    <defs>
-                        <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-                <span>Our Programs</span>
-                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <g clip-path="url(#clip0_9088_4143)">
-                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                    </g>
-                    <defs>
-                        <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-            <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up">
-                Get to know about Diabetes, Awareness, Support programs
-            </h2>
-            <p class="mb-4">
-                Through mobile clinics, outreach events, and health facility partnerships, we help communities access early screening critical for reducing complications and saving lives.
+<!-- ══════════════════════════════════════════════
+     PROGRAMS
+══════════════════════════════════════════════ -->
+<section class="rda-programs">
+  <div class="container">
+    <div class="rda-programs__header">
+      <div class="section-eyebrow" style="justify-content:center;">
+        <span class="rda-tag">
+          <span class="rda-tag__dot"></span>
+          Our Programs
+        </span>
+      </div>
+      <h2 class="rda-programs__heading">
+        Diabetes Awareness &amp; Support Programs
+      </h2>
+      <p class="rda-programs__subtext">
+        Through mobile clinics, outreach events, and health facility partnerships, we help communities access early screening critical for reducing complications and saving lives.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      @foreach($programs as $program)
+      <div class="col-xl-4 col-md-6 col-12">
+        <div class="rda-program-card">
+          <div class="rda-program-card__img-wrap">
+            <img class="rda-program-card__img"
+                 src="{{ asset('image/program') }}/{{ $program->image }}"
+                 alt="{{ $program->title }}"
+                 loading="lazy">
+          </div>
+          <div class="rda-program-card__body">
+            <h3 class="rda-program-card__title">{{ $program->title }}</h3>
+            <p class="rda-program-card__text">
+              {{ \Illuminate\Support\Str::limit($program->short_description, 120) }}
             </p>
+            <a href="{{ route('programs.show', $program->slug) }}" class="rda-btn rda-btn--outline" style="align-self:flex-start;padding:10px 22px;font-size:14px;">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="multicolumn-inner">
-            <div class="row product-grid">
-                @foreach( $programs as $program)
-                <div class="col-xl-4 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up">
-                    <div class="multicolumn-card">
-                        <div class="card-icon">
-                             <img src="{{asset('image/program')}}/{{ $program->image }}" alt="{{ $program->title }}" width="1000" height="742" loading="lazy">
-                        </div>
-                        <h2 class="heading text-28">{{ $program->title }}</h2>
-                        <div class="text text-16">
-                            {{ \Illuminate\Support\Str::limit($program->short_description, 120) }}
-                        </div>
-                        <a href="{{ route('programs.show', $program->slug) }}" class="button button--primary mt-4" aria-label="More About Us">
-                            Learn More
-                            <span class="svg-wrapper">
-                                <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                </svg>
-                            </span>
-                            <span class="visually-hidden">To learn more about diabetes & awareness, click this
-                                button.</span>
-                        </a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
+      </div>
+      @endforeach
     </div>
-</div>
+  </div>
+</section>
 
-<div class="why-choose-us mt-100 section-padding">
-    <div class="container">
-        <div class="choose-top">
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <picture class="choose-media radius18 aos-init aos-animate" data-aos="fade-right">
-                        <source media="(max-width: 575px)" srcset="assets/img/1I7A8070.jpeg">
-                        <img src="assets/img/1I7A8070.jpeg" alt="choose us image" width="1000" height="742" loading="lazy">
-                    </picture>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="choose-us-content section-headings">
-                        <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span>About Us</span>
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </div>
-                        <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up">
-                            Who we are
-                        </h2>
-                        <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                            Rwanda Diabetes Association is committed to improving the lives of people living with diabetes
-                            through education, prevention, screening, and access to quality care.
-                        </p>
-                        <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                            <a href="{{ route('about') }}" class="button button--primary" aria-label="More About Us">
-                                Learn About Us
-                                <span class="svg-wrapper">
-                                    <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ══════════════════════════════════════════════
+     ABOUT / WHO WE ARE
+══════════════════════════════════════════════ -->
+<section class="rda-about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <img class="rda-about__img"
+             src="assets/img/1I7A8070.jpeg"
+             alt="Rwanda Diabetes Association team"
+             loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <div class="rda-about__content">
+          <div class="section-eyebrow">
+            <span class="rda-tag">
+              <span class="rda-tag__dot"></span>
+              About Us
+            </span>
+          </div>
+          <h2 class="rda-about__heading">Who We Are</h2>
+          <p class="rda-about__text">
+            Rwanda Diabetes Association is committed to improving the lives of people living with diabetes through education, prevention, screening, and access to quality care across all communities in Rwanda.
+          </p>
 
-        <div class="choose-bottom">
-            <div class="choose-bottom-cards">
-                <div class="row">
-                    <div class="col-12 col-lg-6 col-xl-4 aos-init aos-animate" data-aos="fade-up">
-                        <div class="card-icon-text card-icon-text-horizontal">
-                            <div class="svg-wrapper">
-                                <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="70" height="70" rx="10" fill="white"></rect>
-                                    <g clip-path="url(#clip0_9088_8914)">
-                                        <path d="M39.4445 26.2037C39.5971 26.3562 39.797 26.4325 39.9969 26.4325C40.1969 26.4325 40.3969 26.3562 40.5494 26.2037C40.8544 25.8986 40.8544 25.4039 40.5494 25.0987L40.5388 25.0882C40.2337 24.7831 39.739 24.7831 39.4339 25.0882C39.1288 25.3933 39.1288 25.8879 39.4339 26.1931L39.4445 26.2037Z" fill="#054468"></path>
-                                        <path d="M52.0481 33.5938L54.7712 30.8707C54.9946 30.6473 55.0614 30.3112 54.9405 30.0193C54.8195 29.7273 54.5347 29.537 54.2187 29.537H48.5741C47.8363 26.5167 46.2877 23.7646 44.0741 21.5509C40.8574 18.3341 36.5805 16.5625 32.0313 16.5625C27.482 16.5625 23.2051 18.3341 19.9884 21.5509C16.7716 24.7677 15 29.0445 15 33.5938C15 38.143 16.7716 42.4199 19.9884 45.6366C20.9449 46.5932 21.9958 47.4209 23.1191 48.1132L20.7655 52.2714C20.6286 52.5133 20.6305 52.8097 20.7705 53.0497C20.9104 53.2898 21.1673 53.4375 21.4453 53.4375H25.4688C25.7502 53.4375 26.01 53.2861 26.1487 53.0411L27.8129 50.1009C29.175 50.4464 30.5894 50.625 32.0313 50.625C33.4731 50.625 34.8875 50.4464 36.2496 50.1009L37.9138 53.0411C38.0525 53.2861 38.3123 53.4375 38.5938 53.4375H42.6172C42.8952 53.4375 43.1521 53.2898 43.2921 53.0498C43.4321 52.8097 43.434 52.5133 43.2971 52.2715L40.9434 48.1133C42.0668 47.4209 43.1177 46.5933 44.0742 45.6367C46.287 43.4239 47.8363 40.6706 48.5741 37.6505H54.2188C54.5347 37.6505 54.8196 37.4602 54.9406 37.1683C55.0615 36.8764 54.9946 36.5403 54.7713 36.3169L52.0481 33.5938ZM50.6196 32.8125H45.1673L46.8803 31.0995H52.3327L50.6196 32.8125ZM25.0132 51.875H22.7852L24.4857 48.8709C25.0693 49.1598 25.6684 49.4153 26.2814 49.6345L25.0132 51.875ZM41.2773 51.875H39.0493L37.7811 49.6345C38.3941 49.4153 38.9932 49.1598 39.5768 48.8709L41.2773 51.875ZM42.9693 44.5318C41.9373 45.5638 40.7846 46.4312 39.5438 47.1226C39.5285 47.13 39.5131 47.137 39.498 47.1455C39.4885 47.1509 39.4799 47.1571 39.4708 47.1628C38.519 47.6864 37.516 48.1068 36.4753 48.4173C36.4344 48.4254 36.3939 48.4374 36.354 48.4524C34.967 48.8538 33.5152 49.0625 32.0313 49.0625C30.5473 49.0625 29.0955 48.8538 27.7085 48.4525C27.6685 48.4375 27.628 48.4255 27.587 48.4173C26.5464 48.1069 25.5434 47.6865 24.5917 47.1629C24.5826 47.1572 24.574 47.151 24.5645 47.1456C24.5495 47.1371 24.5341 47.1301 24.5188 47.1227C23.278 46.4313 22.1253 45.5639 21.0933 44.5318C18.1716 41.6102 16.5625 37.7256 16.5625 33.5938C16.5625 29.4619 18.1716 25.5773 21.0932 22.6557C24.0148 19.7341 27.8994 18.125 32.0313 18.125C36.1631 18.125 40.0477 19.7341 42.9693 22.6557C44.8891 24.5755 46.2583 26.9404 46.9613 29.537H46.5568C46.3496 29.537 46.1509 29.6194 46.0044 29.7659L43.9309 31.8394C43.7216 30.419 43.2624 29.0379 42.569 27.7819C42.3605 27.4041 41.8852 27.2671 41.5074 27.4755C41.1297 27.6841 40.9926 28.1594 41.2011 28.5371C41.9427 29.8804 42.357 31.3409 42.4631 32.8126H39.0184C38.8445 31.2301 38.1452 29.7641 37.0031 28.622C35.6751 27.2939 33.9094 26.5625 32.0313 26.5625C30.1531 26.5625 28.3874 27.2939 27.0595 28.6219C25.7314 29.95 25 31.7156 25 33.5938C25 35.4719 25.7314 37.2376 27.0594 38.5655C28.3874 39.8936 30.1531 40.625 32.0313 40.625C33.9094 40.625 35.6751 39.8936 37.003 38.5656C38.1451 37.4236 38.8444 35.9576 39.0183 34.375H42.4596C42.2733 36.8172 41.2427 39.1872 39.4338 40.9963C37.4565 42.9736 34.8275 44.0625 32.0313 44.0625C29.235 44.0625 26.606 42.9736 24.6288 40.9963C22.6514 39.019 21.5625 36.3901 21.5625 33.5938C21.5625 30.7974 22.6514 28.1685 24.6288 26.1912C27.9086 22.9114 33.032 22.1847 37.088 24.424C37.4656 24.6324 37.9409 24.4954 38.1495 24.1177C38.358 23.7399 38.2209 23.2647 37.8432 23.0561C35.6053 21.8205 32.9702 21.3281 30.4236 21.6698C27.792 22.0228 25.406 23.2042 23.5239 25.0864C21.2515 27.3588 20 30.3801 20 33.5938C20 36.8074 21.2515 39.8288 23.5238 42.1011C25.7963 44.3735 28.8176 45.625 32.0313 45.625C35.2449 45.625 38.2663 44.3735 40.5386 42.1012C42.3851 40.2548 43.5565 37.9234 43.9336 35.351L46.0043 37.4217C46.1508 37.5682 46.3495 37.6505 46.5567 37.6505H46.9611C46.258 40.247 44.8883 42.6128 42.9693 44.5318ZM34.5828 32.1206C34.3671 31.7469 33.8893 31.6189 33.5156 31.8347L31.6406 32.9172C31.3989 33.0567 31.25 33.3146 31.25 33.5938C31.25 33.8729 31.3989 34.1308 31.6406 34.2703L33.5156 35.3528C33.6387 35.4238 33.773 35.4576 33.9055 35.4576C34.1755 35.4576 34.4381 35.3175 34.5828 35.0669C34.7096 34.8473 34.7169 34.5921 34.6262 34.375H37.4443C37.2788 35.5393 36.7446 36.6144 35.8982 37.4607C34.8653 38.4937 33.492 39.0625 32.0313 39.0625C30.5705 39.0625 29.1972 38.4937 28.1642 37.4607C27.1313 36.4278 26.5625 35.0545 26.5625 33.5938C26.5625 32.133 27.1313 30.7597 28.1643 29.7267C29.1972 28.6938 30.5705 28.125 32.0313 28.125C33.492 28.125 34.8653 28.6938 35.8983 29.7268C36.7446 30.5731 37.2788 31.6482 37.4444 32.8125H34.6263C34.7169 32.5953 34.7096 32.3402 34.5828 32.1206ZM46.8803 36.088L45.1673 34.375H50.6196L52.3327 36.088H46.8803Z" fill="#054468"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_9088_8914">
-                                            <rect width="40" height="40" fill="white" transform="translate(15 15)"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <div class="content">
-                                <h2 class="heading text-20 fw-700">Our Mission</h2>
-                                <p class="text text-16">To improve the well-being of people living with diabetes in Rwanda through prevention, treatment, education</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 col-xl-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-icon-text card-icon-text-horizontal">
-                            <div class="svg-wrapper">
-                                <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="70" height="70" rx="10" fill="white"></rect>
-                                    <g clip-path="url(#clip0_9088_8924)">
-                                        <path d="M35 27.0312C30.606 27.0312 27.0312 30.606 27.0312 35C27.0312 39.394 30.606 42.9688 35 42.9688C39.394 42.9688 42.9688 39.394 42.9688 35C42.9688 30.606 39.394 27.0312 35 27.0312ZM35 41.4062C31.4676 41.4062 28.5938 38.5324 28.5938 35C28.5938 31.4676 31.4676 28.5938 35 28.5938C38.5324 28.5938 41.4062 31.4676 41.4062 35C41.4062 38.5324 38.5324 41.4062 35 41.4062Z" fill="#054468"></path>
-                                        <path d="M34.9998 34.2784C34.4895 34.2784 34.0742 33.9339 34.0742 33.5105C34.0742 33.0872 34.4895 32.7427 34.9998 32.7427C35.5102 32.7427 35.9255 33.0872 35.9255 33.5105C35.9255 33.942 36.2753 34.2918 36.7067 34.2918C37.1381 34.2918 37.488 33.942 37.488 33.5105C37.488 32.4812 36.7714 31.6062 35.7811 31.2986V31.2578C35.7811 30.8263 35.4313 30.4766 34.9998 30.4766C34.5684 30.4766 34.2186 30.8263 34.2186 31.2578V31.2986C33.2284 31.6062 32.5117 32.4812 32.5117 33.5105C32.5117 34.7955 33.6279 35.8409 34.9998 35.8409C35.5102 35.8409 35.9255 36.1853 35.9255 36.6087C35.9255 37.032 35.5103 37.3765 34.9998 37.3765C34.4894 37.3765 34.0742 37.032 34.0742 36.6087C34.0742 36.1772 33.7244 35.8274 33.293 35.8274C32.8616 35.8274 32.5117 36.1772 32.5117 36.6087C32.5117 37.6384 33.2287 38.5136 34.2195 38.8209C34.2296 39.2436 34.5748 39.5833 34.9998 39.5833C35.4249 39.5833 35.77 39.2436 35.7802 38.8209C36.7709 38.5136 37.488 37.6384 37.488 36.6087C37.488 35.3237 36.3718 34.2784 34.9998 34.2784Z" fill="#054468"></path>
-                                        <path d="M50.1774 21.7288L50.1619 21.7132C49.8567 21.4081 49.3622 21.4081 49.0569 21.7132C48.7519 22.0183 48.7519 22.5129 49.0569 22.8181L49.0726 22.8337C49.2251 22.9863 49.4251 23.0626 49.625 23.0626C49.8249 23.0626 50.0248 22.9863 50.1774 22.8337C50.4825 22.5287 50.4825 22.034 50.1774 21.7288Z" fill="#054468"></path>
-                                        <path d="M20.2593 46.4008C20.1141 46.2554 19.9125 46.1719 19.707 46.1719C19.5016 46.1719 19.3 46.2555 19.1547 46.4008C19.0094 46.5461 18.9258 46.7477 18.9258 46.9531C18.9258 47.1586 19.0093 47.3602 19.1547 47.5055C19.3001 47.6508 19.5016 47.7344 19.707 47.7344C19.9125 47.7344 20.1141 47.6508 20.2593 47.5055C20.4046 47.3602 20.4883 47.1586 20.4883 46.9531C20.4883 46.7477 20.4047 46.5461 20.2593 46.4008Z" fill="#054468"></path>
-                                        <path d="M54.9973 34.8982C54.9752 31.2386 53.9524 27.6184 52.0317 24.5065C51.8052 24.1393 51.3238 24.0253 50.9566 24.252C50.5894 24.4786 50.4755 24.9599 50.702 25.3271C52.0945 27.5834 52.9512 30.0347 53.2916 32.5243C52.997 32.1788 52.6552 31.7909 52.2684 31.372C50.785 29.7656 48.4005 27.4532 45.4647 25.5604C45.1936 25.3856 44.8552 25.4 44.6039 25.5696L43.1139 26.4299C41.7634 25.1499 40.1406 24.2121 38.364 23.6852V21.9129C38.364 21.4814 38.0141 21.1316 37.5827 21.1316H32.4172C31.9858 21.1316 31.6359 21.4814 31.6359 21.9129V23.6852C29.8593 24.212 28.2366 25.1498 26.886 26.4299L25.4788 25.6174C25.2237 25.3892 24.8388 25.3479 24.5366 25.5419C21.5888 27.4337 19.2089 29.7383 17.7315 31.3385C17.3441 31.7581 17.0035 32.1452 16.7109 32.4893C17.2448 28.6068 19.0252 24.8991 21.9627 21.9617C28.0354 15.889 37.3733 14.7928 44.6706 19.2961C45.0377 19.5226 45.5191 19.4087 45.7458 19.0415C45.9724 18.6743 45.8584 18.193 45.4912 17.9663C41.7249 15.6422 37.2141 14.6313 32.7907 15.1205C30.5803 15.3648 28.4446 15.9689 26.443 16.9161C24.3718 17.8962 22.4927 19.222 20.858 20.8567C17.781 23.9337 15.8268 27.8301 15.2064 32.1248C15.074 33.0413 15.007 33.9661 15.0037 34.8906C15.0001 34.927 15 34.9616 15 34.9988C15 35.0414 15.0001 35.0796 15.0047 35.1195C15.0291 38.3063 15.8087 41.4812 17.2852 44.2934C17.4249 44.5595 17.6966 44.7116 17.9776 44.7116C18.0999 44.7116 18.2241 44.6827 18.3401 44.6219C18.7221 44.4213 18.8691 43.949 18.6686 43.567C17.6452 41.618 16.998 39.5584 16.7116 37.477C17.0055 37.8216 17.3463 38.2084 17.7316 38.6257C19.215 40.2322 21.5995 42.5445 24.5353 44.4374C24.6663 44.5218 24.813 44.5621 24.9579 44.562C25.1048 44.562 25.2492 44.5194 25.3745 44.4406L26.8861 43.5678C28.2366 44.8479 29.8594 45.7856 31.636 46.3125V48.0848C31.636 48.5163 31.9859 48.866 32.4173 48.866H37.5828C38.0142 48.866 38.3641 48.5163 38.3641 48.0848V46.3125C40.1407 45.7856 41.7634 44.8479 43.114 43.5678L44.5187 44.3788C44.6638 44.5098 44.8514 44.5799 45.0422 44.5799C45.1866 44.5799 45.3328 44.5398 45.4634 44.456C48.4113 42.5642 50.7912 40.2596 52.2685 38.6593C52.6559 38.2397 52.9965 37.8526 53.2891 37.5085C52.7549 41.382 50.9807 45.0925 48.0372 48.0359C42.2243 53.8488 33.1612 55.1066 25.9976 51.0945C25.6213 50.8839 25.1452 51.018 24.9342 51.3945C24.7234 51.7709 24.8577 52.247 25.2341 52.4578C28.209 54.1239 31.6112 54.9964 35.0288 54.9964C35.892 54.9964 36.7563 54.9407 37.6149 54.8281C42.0122 54.2513 45.9983 52.2847 49.1422 49.1409C50.777 47.506 52.1028 45.6269 53.0829 43.5556C54.0301 41.5538 54.6341 39.4181 54.8784 37.2076C54.9565 36.5011 54.9959 35.7924 54.9982 35.0849C55 35.0564 55 35.0284 55 34.9988C55 34.9634 54.9999 34.931 54.9973 34.8982ZM16.7149 34.9893C17.4036 34.033 19.4798 31.4644 22.4433 29.0134L21.6993 30.302C21.5957 30.4814 21.5676 30.6946 21.6213 30.8948C21.6749 31.0949 21.8058 31.2656 21.9852 31.3692L23.5205 32.2556C23.307 33.1516 23.199 34.0716 23.199 34.9988C23.199 35.926 23.307 36.846 23.5205 37.7421L21.9852 38.6285C21.8058 38.7321 21.6748 38.9027 21.6213 39.1029C21.5676 39.3031 21.5957 39.5163 21.6993 39.6957L22.4101 40.9269C19.5066 38.5061 17.4269 35.9595 16.7149 34.9893ZM44.7553 42.7113L43.3766 41.9152C43.0644 41.7349 42.6688 41.792 42.42 42.0534C41.0534 43.4903 39.3176 44.4932 37.4003 44.9538C37.0491 45.0381 36.8016 45.3523 36.8016 45.7134V47.3035H33.1984V45.7134C33.1984 45.3523 32.9509 45.0381 32.5997 44.9538C30.6824 44.4932 28.9466 43.4904 27.58 42.0534C27.3312 41.792 26.9358 41.7348 26.6233 41.9152L25.2446 42.7113L23.443 39.5909L24.8198 38.7961C25.1323 38.6157 25.2805 38.2448 25.1786 37.8987C24.9018 36.9596 24.7615 35.984 24.7615 34.9988C24.7615 34.0137 24.9018 33.038 25.1786 32.099C25.2806 31.7529 25.1323 31.382 24.8198 31.2016L23.443 30.4067L25.2446 27.2864L26.6233 28.0824C26.9358 28.2629 27.3313 28.2058 27.58 27.9442C28.9466 26.5074 30.6824 25.5045 32.5997 25.0439C32.9509 24.9595 33.1984 24.6454 33.1984 24.2842V22.6941H36.8015V24.2842C36.8015 24.6454 37.0491 24.9595 37.4002 25.0439C39.3175 25.5045 41.0533 26.5073 42.4199 27.9442C42.6688 28.2057 43.0641 28.2629 43.3766 28.0824L44.7553 27.2864L46.5569 30.4067L45.1801 31.2016C44.8676 31.382 44.7194 31.7529 44.8213 32.099C45.0981 33.0381 45.2384 34.0137 45.2384 34.9988C45.2384 35.984 45.0981 36.9597 44.8213 37.8987C44.7193 38.2448 44.8676 38.6157 45.1801 38.7961L46.5569 39.5909L44.7553 42.7113ZM47.5565 40.9847L48.3007 39.6956C48.4043 39.5162 48.4324 39.303 48.3787 39.1028C48.3251 38.9027 48.1942 38.732 48.0148 38.6284L46.4795 37.742C46.693 36.8459 46.801 35.9259 46.801 34.9988C46.801 34.0716 46.693 33.1516 46.4795 32.2555L48.0148 31.3691C48.1942 31.2655 48.3252 31.0949 48.3787 30.8947C48.4324 30.6945 48.4043 30.4813 48.3007 30.3019L47.5899 29.0708C50.4934 31.4915 52.5731 34.0381 53.2852 35.0083C52.5964 35.9647 50.5202 38.5335 47.5565 40.9847Z" fill="#054468"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_9088_8924">
-                                            <rect width="40" height="40" fill="white" transform="translate(15 15)"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <div class="content">
-                                <h2 class="heading text-20 fw-700">Our Vision</h2>
-                                <p class="text text-16">A Rwanda where no one dies from diabetes and every person has access to timely care, education, and support.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 col-xl-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card-icon-text card-icon-text-horizontal">
-                            <div class="svg-wrapper">
-                                <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="70" height="70" rx="10" fill="white"></rect>
-                                    <g clip-path="url(#clip0_9088_8945)">
-                                        <path d="M24.8815 28.0246C24.8815 27.5897 25.2341 27.237 25.6691 27.237C26.1041 27.237 26.4567 27.5896 26.4567 28.0246C26.4567 28.4596 26.1041 28.8122 25.6691 28.8122C25.2341 28.8122 24.8815 28.4595 24.8815 28.0246ZM49.1647 38.5557L40.3842 37.7579L37.9433 44.6052H42.2836C42.7185 44.6052 43.0711 44.9578 43.0711 45.3927V47.7551H44.6461C45.0809 47.7551 45.4336 48.1078 45.4336 48.5426V53.4251H45.8273C46.2622 53.4251 46.6148 53.7777 46.6148 54.2126C46.6148 54.6474 46.2622 55.0001 45.8273 55.0001H24.565C24.1302 55.0001 23.7775 54.6474 23.7775 54.2126C23.7775 53.7777 24.1302 53.4251 24.565 53.4251H24.9588V48.5426C24.9588 48.1078 25.3114 47.7551 25.7463 47.7551H27.3212V45.3927C27.3212 44.9578 27.6739 44.6052 28.1087 44.6052H32.6204L29.6215 35.4017L20.4558 31.7982C19.9565 31.6522 19.7029 30.8291 20.3306 30.3949L22.2395 29.216C22.2403 29.216 22.2411 29.216 22.2411 29.2151C23.1182 28.6749 23.9442 30.016 23.0671 30.5562L22.4971 30.9082L30.5437 34.0717C30.7626 34.1583 30.9311 34.3362 31.0043 34.5607L34.2773 44.6052H36.2716L39.1052 36.6538C39.225 36.3183 39.5628 36.1017 39.9187 36.134L47.755 36.8459L43.3191 29.5222C43.1947 29.3167 43.1719 29.06 43.2569 28.8348L46.362 20.6574L38.2295 22.9231C37.987 22.9901 37.7169 22.9342 37.5216 22.7751L30.865 17.3602L30.3499 25.6675C30.3342 25.9226 30.1956 26.1549 29.9782 26.2889L29.0977 26.833C28.2048 27.3844 27.3772 26.044 28.2701 25.4926L28.8032 25.1635L29.3876 15.734C29.4347 15.1529 30.1435 14.7566 30.6704 15.1718L38.1996 21.2961L47.44 18.7226C48.1288 18.5747 48.6165 19.1843 48.3874 19.7612L44.8657 29.0347L49.9096 37.364C50.2779 37.8709 49.8207 38.6024 49.1647 38.5557ZM29.8412 49.3301H26.5337V53.4251H29.8412V49.3301ZM38.9761 49.3301H31.4162V53.4251H38.9761V49.3301ZM40.5511 49.3301V53.4251H43.8586V49.3301H40.5511ZM41.4961 46.1802H28.8962V47.7551H41.4961V46.1802Z" fill="#054468"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_9088_8945">
-                                            <rect width="40" height="40" fill="white" transform="translate(15 15)"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <div class="content">
-                                <h2 class="heading text-20 fw-700">Our Objectives</h2>
-                                <p class="text text-16">Prevent and manage diabetes and reduce its complications through accessible care and early intervention.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="rda-pillars">
+            <div class="rda-pillar">
+              <div class="rda-pillar__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.09 8.26L19 6L15.45 11.12L21 13.27L15.09 14.4L17 20L12 16.9L7 20L8.91 14.4L3 13.27L8.55 11.12L5 6L10.91 8.26L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="rda-pillar__title">Our Mission</p>
+                <p class="rda-pillar__text">To improve the well-being of people living with diabetes in Rwanda through prevention, treatment, and education.</p>
+              </div>
             </div>
-            <div class="choose-media-absolute radius18 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                <img src="assets/img/1I7A8221.jpeg" alt="choose image" width="800" height="834" loading="lazy">
+            <div class="rda-pillar">
+              <div class="rda-pillar__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/><path d="M12 7v5l3 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <p class="rda-pillar__title">Our Vision</p>
+                <p class="rda-pillar__text">A Rwanda where no one dies from diabetes and every person has access to timely care, education, and support.</p>
+              </div>
             </div>
+            <div class="rda-pillar">
+              <div class="rda-pillar__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="rda-pillar__title">Our Objectives</p>
+                <p class="rda-pillar__text">Prevent and manage diabetes, reducing its complications through accessible care and early intervention.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:36px;">
+            <a href="{{ route('about') }}" class="rda-btn rda-btn--primary">
+              Learn About Us
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-
-<div class="promotion mt-50 section-padding">
-    <div class="container">
-        <div class="promotion-container">
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                    <div class="promtion-content section-headings">
-                        <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
-                            Our Initiative Impact
-                        </h2>
-                        <div class="text text-18 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
-                            Building Healthier Communities through awareness campaigns, support
-                        </div>
-                        <ul class="promotion-lists list-unstyled">
-                            <li class="promotion-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="10">
-                                <div class="promotion-title">
-                                    <svg class="icon icon-50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                                        <circle cx="25" cy="25" r="25" fill="#054468"></circle>
-                                        <g clip-path="url(#clip0_9088_5518)">
-                                            <path d="M19.5985 31.1283L19.0574 34.375H19C18.5864 34.375 18.25 34.7114 18.25 35.125V35.875C18.25 36.2886 18.5864 36.625 19 36.625H31C31.4136 36.625 31.75 36.2886 31.75 35.875V35.125C31.75 34.7114 31.4136 34.375 31 34.375H30.9426L30.4015 31.1283C30.2886 30.451 29.7378 29.9526 29.0669 29.8878L32.5289 24.6947L31.2651 19.6409L26.2041 21.328L25.6371 23.0009L24.589 16.8869L18.8121 13.5858L16.3416 19.7609L21.0389 29.8784C20.3204 29.8971 19.7174 30.4154 19.5985 31.1283ZM31.0004 35.875H19V35.125H31L31.0004 35.875ZM29.662 31.2516L30.1825 34.375H19.8175L20.338 31.2516C20.3988 30.8886 20.71 30.625 21.0782 30.625H28.9221C29.29 30.625 29.6012 30.8886 29.662 31.2516ZM26.6991 29.1906L28.618 25.3525L31.3727 25.0769L28.1744 29.875H26.8165L26.6991 29.1906ZM31.6559 24.295L28.5831 24.6021L27.0475 21.8376L30.7349 20.6084L31.6559 24.295ZM26.5833 22.5475L27.9509 25.0094L26.4846 27.9419L25.9037 24.553L26.5833 22.5475ZM26.0553 29.875H24.5271L22.9934 24.8897L22.2768 25.1102L23.7423 29.875H21.8643L17.3894 20.2368L20.9598 20.8319L22.0454 24.3603L22.762 24.1397L21.67 20.5915L24.0119 17.9571L26.0553 29.875ZM19.1879 14.6643L23.6624 17.221L21.1071 20.0958L17.2709 19.4564L19.1879 14.6643ZM21.25 31.375H28.75V33.625H27.25V32.875H28V32.125H22V32.875H26.5V33.625H21.25V31.375ZM32.5 18.4052V19.375H33.25V18.4052L34.1553 17.5H35.125V16.75H34.1553L33.25 15.8447V14.875H32.5V15.8447L31.5947 16.75H30.625V17.5H31.5947L32.5 18.4052ZM32.875 16.5302L33.4697 17.125L32.875 17.7198L32.2803 17.125L32.875 16.5302ZM33.25 14.125H32.5V13.375H33.25V14.125ZM29.875 17.5H29.125V16.75H29.875V17.5ZM32.5 20.125H33.25V20.875H32.5V20.125ZM35.875 16.75H36.625V17.5H35.875V16.75ZM15.25 34.1553V35.125H16V34.1553L16.9052 33.25H17.875V32.5H16.9052L16 31.5947V30.625H15.25V31.5947L14.3447 32.5H13.375V33.25H14.3447L15.25 34.1553ZM15.625 32.2803L16.2198 32.875L15.625 33.4697L15.0303 32.875L15.625 32.2803ZM15.25 29.125H16V29.875H15.25V29.125ZM16 36.625H15.25V35.875H16V36.625ZM34.75 28.2197V27.25H34V28.2197L33.0947 29.125H32.125V29.875H33.0947L34 30.7803V31.75H34.75V30.7803L35.6553 29.875H36.625V29.125H35.6553L34.75 28.2197ZM34.375 30.0947L33.7803 29.5L34.375 28.9053L34.9697 29.5L34.375 30.0947ZM34 26.5V25.75H34.75V26.5H34ZM34.75 33.25H34V32.5H34.75V33.25ZM30.625 29.875V29.125H31.375V29.875H30.625ZM14.875 14.125H14.125V13.375H14.875V14.125ZM14.125 14.875H13.375V14.125H14.125V14.875ZM14.125 14.875H14.875V15.625H14.125V14.875ZM14.875 14.875V14.125H15.625V14.875H14.875ZM16.75 24.625H16V23.875H16.75V24.625ZM15.25 24.625H16V25.375H15.25V24.625ZM16 25.375H16.75V26.125H16V25.375ZM16.75 25.375V24.625H17.5V25.375H16.75ZM26.125 14.875H25.375V14.125H26.125V14.875ZM25.375 15.625H24.625V14.875H25.375V15.625ZM25.375 15.625H26.125V16.375H25.375V15.625ZM26.125 15.625V14.875H26.875V15.625H26.125Z" fill="white"></path>
-                                        </g>
-                                        <defs>
-                                            <clipPath>
-                                                <rect width="24" height="24" fill="white" transform="translate(13 13)"></rect>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <div class="text text-18 fw-600">
-                                        40,000+
-                                    </div>
-                                </div>
-                                <div class="promotion-text text text-16">
-                                    people reached through awareness campaigns
-                                </div>
-                            </li>
-                            <li class="promotion-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                                <div class="promotion-title">
-                                    <svg class="icon icon-50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-                                        <circle cx="25" cy="25" r="25" fill="#054468"></circle>
-                                        <g clip-path="url(#clip0_9088_5518)">
-                                            <path d="M19.5985 31.1283L19.0574 34.375H19C18.5864 34.375 18.25 34.7114 18.25 35.125V35.875C18.25 36.2886 18.5864 36.625 19 36.625H31C31.4136 36.625 31.75 36.2886 31.75 35.875V35.125C31.75 34.7114 31.4136 34.375 31 34.375H30.9426L30.4015 31.1283C30.2886 30.451 29.7378 29.9526 29.0669 29.8878L32.5289 24.6947L31.2651 19.6409L26.2041 21.328L25.6371 23.0009L24.589 16.8869L18.8121 13.5858L16.3416 19.7609L21.0389 29.8784C20.3204 29.8971 19.7174 30.4154 19.5985 31.1283ZM31.0004 35.875H19V35.125H31L31.0004 35.875ZM29.662 31.2516L30.1825 34.375H19.8175L20.338 31.2516C20.3988 30.8886 20.71 30.625 21.0782 30.625H28.9221C29.29 30.625 29.6012 30.8886 29.662 31.2516ZM26.6991 29.1906L28.618 25.3525L31.3727 25.0769L28.1744 29.875H26.8165L26.6991 29.1906ZM31.6559 24.295L28.5831 24.6021L27.0475 21.8376L30.7349 20.6084L31.6559 24.295ZM26.5833 22.5475L27.9509 25.0094L26.4846 27.9419L25.9037 24.553L26.5833 22.5475ZM26.0553 29.875H24.5271L22.9934 24.8897L22.2768 25.1102L23.7423 29.875H21.8643L17.3894 20.2368L20.9598 20.8319L22.0454 24.3603L22.762 24.1397L21.67 20.5915L24.0119 17.9571L26.0553 29.875ZM19.1879 14.6643L23.6624 17.221L21.1071 20.0958L17.2709 19.4564L19.1879 14.6643ZM21.25 31.375H28.75V33.625H27.25V32.875H28V32.125H22V32.875H26.5V33.625H21.25V31.375ZM32.5 18.4052V19.375H33.25V18.4052L34.1553 17.5H35.125V16.75H34.1553L33.25 15.8447V14.875H32.5V15.8447L31.5947 16.75H30.625V17.5H31.5947L32.5 18.4052ZM32.875 16.5302L33.4697 17.125L32.875 17.7198L32.2803 17.125L32.875 16.5302ZM33.25 14.125H32.5V13.375H33.25V14.125ZM29.875 17.5H29.125V16.75H29.875V17.5ZM32.5 20.125H33.25V20.875H32.5V20.125ZM35.875 16.75H36.625V17.5H35.875V16.75ZM15.25 34.1553V35.125H16V34.1553L16.9052 33.25H17.875V32.5H16.9052L16 31.5947V30.625H15.25V31.5947L14.3447 32.5H13.375V33.25H14.3447L15.25 34.1553ZM15.625 32.2803L16.2198 32.875L15.625 33.4697L15.0303 32.875L15.625 32.2803ZM15.25 29.125H16V29.875H15.25V29.125ZM16 36.625H15.25V35.875H16V36.625ZM34.75 28.2197V27.25H34V28.2197L33.0947 29.125H32.125V29.875H33.0947L34 30.7803V31.75H34.75V30.7803L35.6553 29.875H36.625V29.125H35.6553L34.75 28.2197ZM34.375 30.0947L33.7803 29.5L34.375 28.9053L34.9697 29.5L34.375 30.0947ZM34 26.5V25.75H34.75V26.5H34ZM34.75 33.25H34V32.5H34.75V33.25ZM30.625 29.875V29.125H31.375V29.875H30.625ZM14.875 14.125H14.125V13.375H14.875V14.125ZM14.125 14.875H13.375V14.125H14.125V14.875ZM14.125 14.875H14.875V15.625H14.125V14.875ZM14.875 14.875V14.125H15.625V14.875H14.875ZM16.75 24.625H16V23.875H16.75V24.625ZM15.25 24.625H16V25.375H15.25V24.625ZM16 25.375H16.75V26.125H16V25.375ZM16.75 25.375V24.625H17.5V25.375H16.75ZM26.125 14.875H25.375V14.125H26.125V14.875ZM25.375 15.625H24.625V14.875H25.375V15.625ZM25.375 15.625H26.125V16.375H25.375V15.625ZM26.125 15.625V14.875H26.875V15.625H26.125Z" fill="white"></path>
-                                        </g>
-                                        <defs>
-                                            <clipPath>
-                                                <rect width="24" height="24" fill="white" transform="translate(13 13)"></rect>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <div class="text text-18 fw-600">
-                                        Initiative
-                                    </div>
-                                </div>
-                                <div class="promotion-text text text-16">
-                                    A growing impact across Rwanda.
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                            <a href="{{ route('impact')}}" class="button button--secondary" aria-label="View All Details">
-                                Our Impact
-                                <span class="svg-wrapper text-white">
-                                    <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <div class="promotion-img radius18 aos-init aos-animate" data-aos="flip-left">
-                        <img src="assets/img/1I7A8445.jpeg" loading="lazy" alt="Promotion image">
-                    </div>
-                </div>
-            </div>
+<!-- ══════════════════════════════════════════════
+     IMPACT
+══════════════════════════════════════════════ -->
+<section class="rda-impact">
+  <div class="container rda-impact__content">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="section-eyebrow">
+          <span class="rda-tag rda-tag--white">
+            <span class="rda-tag__dot"></span>
+            Our Impact
+          </span>
         </div>
+        <h2 class="rda-impact__heading">Our Initiative Impact</h2>
+        <p class="rda-impact__subtext">
+          Building healthier communities through awareness campaigns, support networks, and direct patient care across Rwanda.
+        </p>
+
+        <div class="rda-stats">
+          <div class="rda-stat">
+            <div class="rda-stat__number">40,000+</div>
+            <div class="rda-stat__label">People reached through awareness campaigns</div>
+          </div>
+          <div class="rda-stat">
+            <div class="rda-stat__number">All 30</div>
+            <div class="rda-stat__label">Districts served across Rwanda</div>
+          </div>
+          <div class="rda-stat">
+            <div class="rda-stat__number">12+</div>
+            <div class="rda-stat__label">Years of dedicated service</div>
+          </div>
+          <div class="rda-stat">
+            <div class="rda-stat__number">Growing</div>
+            <div class="rda-stat__label">Community reach and partner network</div>
+          </div>
+        </div>
+
+        <a href="{{ route('impact') }}" class="rda-btn rda-btn--ghost-white">
+          Explore Our Impact
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="rda-impact__img-wrap">
+          <img class="rda-impact__img"
+               src="assets/img/1I7A8445.jpeg"
+               alt="Community Impact"
+               loading="lazy">
+          <div class="rda-impact__img-badge">
+            <div class="rda-impact__img-badge-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="white"/></svg>
+            </div>
+            <div class="rda-impact__img-badge-text">
+              <strong>Community First</strong>
+              <span>Nationwide health initiative</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<div class="running-content running-content-bg my-4">
-
-    <div class="container">
-        <div class="section-headings section-headings-horizontal">
-            <div class="section-headings-left">
-
-                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Partners and collaborators
-                </h2>
-                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
-                </p>
-            </div>
-            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="{{ route('partner_with_us')}}" class="button button--primary" aria-label="See All Post">
-                    Partner with Us
-                    <span class="svg-wrapper">
-                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
-                        </svg>
-                    </span>
-                </a>
-            </div>
+<!-- ══════════════════════════════════════════════
+     PARTNERS
+══════════════════════════════════════════════ -->
+@if($partners && $partners->count())
+<section class="rda-partners">
+  <div class="container">
+    <div class="rda-partners__header">
+      <div>
+        <div class="section-eyebrow">
+          <span class="rda-tag">
+            <span class="rda-tag__dot"></span>
+            Collaborators
+          </span>
         </div>
-        @if($partners && $partners->count())
-        <div class="content-inner radius18 mt-4">
-            <div class="logos-background p-5 overflow-hidden">
-                <div class="content-lists running-animation d-flex">
-                    <div class="content-item d-flex align-items-center">
-                        @foreach($partners as $partner)
-                        <a href="{{ $partner->website }}"
-                            class="content-link mx-4"
-                            target="_blank"
-                            rel="noopener">
-
-                            <img src="{{asset('image/partners')}}/{{ $partner->logo }}"
-                                width="108"
-                                height="36"
-                                loading="lazy"
-                                alt="{{ $partner->name }}">
-                        </a>
-                        @endforeach
-                    </div>
-
-                    {{-- Duplicate for seamless loop --}}
-                    <div class="content-item d-flex align-items-center">
-                        @foreach($partners as $partner)
-                        <a href="{{ $partner->website }}"
-                            class="content-link mx-4"
-                            target="_blank"
-                            rel="noopener">
-
-                            <img src="{{asset('image/partners')}}/{{ $partner->logo }}"
-                                width="108"
-                                height="36"
-                                loading="lazy"
-                                alt="{{ $partner->name }}">
-                        </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-
+        <h2 class="rda-partners__heading">Partners &amp; Collaborators</h2>
+        <p class="rda-partners__subtext">Organizations we work with to extend our reach and impact.</p>
+      </div>
+      <a href="{{ route('partner_with_us') }}" class="rda-btn rda-btn--primary">
+        Partner with Us
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+      </a>
     </div>
-</div>
-
-<style>
-    /* Make swiper slides equal height */
-    .testicolumn-slider .swiper-slide {
-        height: auto;
-        display: flex;
-    }
-
-    /* Force card to fill slide height */
-    .testicolumn-slider .card-testimonial {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    /* Push user info to bottom (nice layout) */
-    .testicolumn-slider .card-testimonial .user-info-wrap {
-        margin-top: auto;
-    }
-</style>
-
-<div class="testimonial-3 mt-100 overflow-x-hidden">
-    <div class="container">
-        <div class="row product-grid">
-            <div class="col-lg-6 col-12">
-                <div class="section-headings section-headings-vertical aos-init aos-animate" data-aos="fade-right">
-                    <div class="section-headings-top">
-                        <div class="subheading text-20 subheading-bg">
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span>Testimonial</span>
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor"></rect>
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </div>
-                        <h2 class="heading text-24" style="height: 3rem;">
-                            Success story from our community outreach
-                        </h2>
-                    </div>
-                    <div class="section-headings-bottom section-headings-horizontal">
-                        <div class="text text-18">Real stories from individuals whose lives have been transformed through early detection, education, and support.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12">
-                <testicolumn-slider class="team-slider testicolumn-slider" data-aos="fade-left">
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            @foreach($stories as $story)
-                            <div class="swiper-slide">
-                                <div class="card-testimonial radius18">
-                                    <ul class="rating-list list-unstyled">
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                        <li class="rating-icon">
-                                            <svg class="icon icon-24" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </li>
-                                    </ul>
-                                    <p class="text text-24">
-                                        “ {{ $story->excerpt }}”
-                                    </p>
-                                    <div class="user-info-wrap">
-                                        <div class="user-info">
-                                            <!-- <div class="user-img">
-                                                <img src="assets/img/image.png" width="80" height="80" loading="lazy" alt="image">
-                                            </div> -->
-                                            <div class="user-name-desig">
-                                                <h2 class="user-name heading text-24">
-                                                    {{ $story->title }}
-                                                </h2>
-                                                <!-- <div class="user-desig text text-18">
-                                                    Product Manager
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <div class="icon-quote">
-                                            <svg class="icon icon-62" width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.5312 9.41406C6.51702 9.41406 0 15.9329 0 23.9453C0 31.2606 5.43154 37.3306 12.4771 38.3311C11.9131 42.4287 10.3486 46.3275 7.90415 49.7085C7.42874 50.3683 7.44654 51.2624 7.9538 51.9009C8.4515 52.5292 9.31635 52.7674 10.0754 52.4473C21.6088 47.6332 29.0625 36.4438 29.0625 23.9453C29.0625 15.9329 22.5455 9.41406 14.5312 9.41406ZM47.4688 9.41406C39.4545 9.41406 32.9375 15.9329 32.9375 23.9453C32.9375 31.2606 38.369 37.3306 45.4146 38.3311C44.8506 42.4287 43.2861 46.3275 40.8417 49.7085C40.3662 50.3683 40.384 51.2624 40.8913 51.9009C41.389 52.5292 42.2538 52.7674 43.0129 52.4473C54.5463 47.6332 62 36.4438 62 23.9453C62 15.9329 55.483 9.41406 47.4688 9.41406Z" fill="CurrentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 2" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
-                </testicolumn-slider>
-            </div>
+    <div class="rda-partners__track-wrap">
+      <div class="rda-partners__track">
+        <div class="rda-partners__list">
+          @foreach($partners as $partner)
+          <a href="{{ $partner->website }}" class="rda-partners__logo" target="_blank" rel="noopener">
+            <img src="{{ asset('image/partners') }}/{{ $partner->logo }}" alt="{{ $partner->name }}" loading="lazy">
+          </a>
+          @endforeach
         </div>
+        <div class="rda-partners__list">
+          @foreach($partners as $partner)
+          <a href="{{ $partner->website }}" class="rda-partners__logo" target="_blank" rel="noopener">
+            <img src="{{ asset('image/partners') }}/{{ $partner->logo }}" alt="{{ $partner->name }}" loading="lazy">
+          </a>
+          @endforeach
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+@endif
 
-<div class="featured-blog mt-100 section-padding">
-    <div class="container">
-        <div class="section-headings section-headings-horizontal">
-            <div class="section-headings-left">
-                <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-right" data-aos-delay="10">
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <span>Our news & updates</span>
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </div>
-                <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Latest News & updates
-                </h2>
-                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
-                </p>
-            </div>
-            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="{{ route('news.index')}}" class="button button--primary" aria-label="See All Post">
-                    Discover More
-                    <span class="svg-wrapper">
-                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
-                        </svg>
-                    </span>
-                </a>
-            </div>
+<!-- ══════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════ -->
+<section class="rda-testimonials">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="rda-testimonials__left">
+          <div class="section-eyebrow">
+            <span class="rda-tag">
+              <span class="rda-tag__dot"></span>
+              Testimonials
+            </span>
+          </div>
+          <h2 class="rda-testimonials__heading">
+            Success Stories from Our Community
+          </h2>
+          <p class="rda-testimonials__subtext">
+            Real stories from individuals whose lives have been transformed through early detection, education, and ongoing support.
+          </p>
+          <div style="margin-top:32px;display:flex;gap:12px;align-items:center;">
+            <button class="rda-hero__arrow rda-testi-prev" aria-label="Previous" style="background:var(--cream);border-color:var(--gray-100);color:var(--navy);">
+              <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M14.6663 25.3359L5.33301 16.0026M5.33301 16.0026L14.6663 6.66927M5.33301 16.0026H26.6663" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="rda-hero__arrow rda-testi-next" aria-label="Next" style="background:var(--teal);border-color:var(--teal);color:white;">
+              <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M17.3337 25.3359L26.667 16.0026M26.667 16.0026L17.3337 6.66927M26.667 16.0026H5.33366" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="section-content">
-            <div class="row product-grid justify-content-center">
-                @foreach( $news as $new)
-                <div class="col-12 col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-blog radius18 h-100">
-                        <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
-                            <span class="blog-tag subheading subheading-bg text-16 fw-500">{{ $new->category->name }}</span>
-                            <div class="media">
-                                <img src="{{asset('image/posts')}}/{{ $new->featured_image }}" alt="blog image" width="1000" height="707" loading="lazy">
-                            </div>
-                            <div class="buttons">
-                                <div class="button button--primary">
-                                    Read More
-                                    <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z" fill="currentColor"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="card-blog-top">
-                            <div class="card-blog-meta">
-                                <div class="card-blog-meta-item text text-18">
-                                    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0007 0.046875C6.95088 0.046875 5.94406 0.463912 5.20173 1.20624C4.4594 1.94858 4.04236 2.95539 4.04236 4.00521C4.04236 5.05502 4.4594 6.06184 5.20173 6.80417C5.94406 7.5465 6.95088 7.96354 8.0007 7.96354C9.05051 7.96354 10.0573 7.5465 10.7997 6.80417C11.542 6.06184 11.959 5.05502 11.959 4.00521C11.959 2.95539 11.542 1.94858 10.7997 1.20624C10.0573 0.463912 9.05051 0.046875 8.0007 0.046875ZM5.29236 4.00521C5.29236 3.28691 5.57771 2.59804 6.08562 2.09013C6.59353 1.58222 7.2824 1.29688 8.0007 1.29688C8.71899 1.29688 9.40787 1.58222 9.91578 2.09013C10.4237 2.59804 10.709 3.28691 10.709 4.00521C10.709 4.7235 10.4237 5.41238 9.91578 5.92029C9.40787 6.4282 8.71899 6.71354 8.0007 6.71354C7.2824 6.71354 6.59353 6.4282 6.08562 5.92029C5.57771 5.41238 5.29236 4.7235 5.29236 4.00521ZM8.0007 9.21354C6.0732 9.21354 4.29653 9.65187 2.9807 10.3919C1.68403 11.1219 0.709031 12.2269 0.709031 13.5885V13.6735C0.708198 14.6419 0.707364 15.8569 1.7732 16.7252C2.29736 17.1519 3.03153 17.456 4.0232 17.656C5.01653 17.8577 6.31236 17.9635 8.0007 17.9635C9.68903 17.9635 10.984 17.8577 11.979 17.656C12.9707 17.456 13.704 17.1519 14.229 16.7252C15.2949 15.8569 15.2932 14.6419 15.2924 13.6735V13.5885C15.2924 12.2269 14.3174 11.1219 13.0215 10.3919C11.7049 9.65187 9.92903 9.21354 8.0007 9.21354ZM1.95903 13.5885C1.95903 12.8794 2.47736 12.1094 3.5932 11.4819C4.68986 10.8652 6.24653 10.4635 8.00153 10.4635C9.75486 10.4635 11.3115 10.8652 12.4082 11.4819C13.5249 12.1094 14.0424 12.8794 14.0424 13.5885C14.0424 14.6785 14.009 15.2919 13.439 15.7552C13.1307 16.0069 12.614 16.2527 11.7307 16.431C10.8499 16.6094 9.6457 16.7135 8.0007 16.7135C6.3557 16.7135 5.1507 16.6094 4.2707 16.431C3.38736 16.2527 2.8707 16.0069 2.56236 15.756C1.99236 15.2919 1.95903 14.6785 1.95903 13.5885Z" fill="currentColor"></path>
-                                    </svg>
-                                    {{ $new->author->name}}
-                                </div>
-                                <div class="card-blog-meta-item text text-18">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.1667 10.6667C13.3877 10.6667 13.5996 10.5789 13.7559 10.4226C13.9122 10.2663 14 10.0543 14 9.83333C14 9.61232 13.9122 9.40036 13.7559 9.24408C13.5996 9.0878 13.3877 9 13.1667 9C12.9457 9 12.7337 9.0878 12.5774 9.24408C12.4211 9.40036 12.3333 9.61232 12.3333 9.83333C12.3333 10.0543 12.4211 10.2663 12.5774 10.4226C12.7337 10.5789 12.9457 10.6667 13.1667 10.6667ZM13.1667 14C13.3877 14 13.5996 13.9122 13.7559 13.7559C13.9122 13.5996 14 13.3877 14 13.1667C14 12.9457 13.9122 12.7337 13.7559 12.5774C13.5996 12.4211 13.3877 12.3333 13.1667 12.3333C12.9457 12.3333 12.7337 12.4211 12.5774 12.5774C12.4211 12.7337 12.3333 12.9457 12.3333 13.1667C12.3333 13.3877 12.4211 13.5996 12.5774 13.7559C12.7337 13.9122 12.9457 14 13.1667 14ZM9.83333 9.83333C9.83333 10.0543 9.74554 10.2663 9.58926 10.4226C9.43297 10.5789 9.22101 10.6667 9 10.6667C8.77899 10.6667 8.56702 10.5789 8.41074 10.4226C8.25446 10.2663 8.16667 10.0543 8.16667 9.83333C8.16667 9.61232 8.25446 9.40036 8.41074 9.24408C8.56702 9.0878 8.77899 9 9 9C9.22101 9 9.43297 9.0878 9.58926 9.24408C9.74554 9.40036 9.83333 9.61232 9.83333 9.83333ZM9.83333 13.1667C9.83333 13.3877 9.74554 13.5996 9.58926 13.7559C9.43297 13.9122 9.22101 14 9 14C8.77899 14 8.56702 13.9122 8.41074 13.7559C8.25446 13.5996 8.16667 13.3877 8.16667 13.1667C8.16667 12.9457 8.25446 12.7337 8.41074 12.5774C8.56702 12.4211 8.77899 12.3333 9 12.3333C9.22101 12.3333 9.43297 12.4211 9.58926 12.5774C9.74554 12.7337 9.83333 12.9457 9.83333 13.1667ZM4.83333 10.6667C5.05435 10.6667 5.26631 10.5789 5.42259 10.4226C5.57887 10.2663 5.66667 10.0543 5.66667 9.83333C5.66667 9.61232 5.57887 9.40036 5.42259 9.24408C5.26631 9.0878 5.05435 9 4.83333 9C4.61232 9 4.40036 9.0878 4.24408 9.24408C4.0878 9.40036 4 9.61232 4 9.83333C4 10.0543 4.0878 10.2663 4.24408 10.4226C4.40036 10.5789 4.61232 10.6667 4.83333 10.6667ZM4.83333 14C5.05435 14 5.26631 13.9122 5.42259 13.7559C5.57887 13.5996 5.66667 13.3877 5.66667 13.1667C5.66667 12.9457 5.57887 12.7337 5.42259 12.5774C5.26631 12.4211 5.05435 12.3333 4.83333 12.3333C4.61232 12.3333 4.40036 12.4211 4.24408 12.5774C4.0878 12.7337 4 12.9457 4 13.1667C4 13.3877 4.0878 13.5996 4.24408 13.7559C4.40036 13.9122 4.61232 14 4.83333 14Z" fill="currentColor"></path>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83268 0.453125C4.99844 0.453125 5.15741 0.518973 5.27462 0.636183C5.39183 0.753394 5.45768 0.912365 5.45768 1.07812V1.71396C6.00935 1.70312 6.61685 1.70312 7.28518 1.70312H10.7127C11.3818 1.70312 11.9893 1.70312 12.541 1.71396V1.07812C12.541 0.912365 12.6069 0.753394 12.7241 0.636183C12.8413 0.518973 13.0003 0.453125 13.166 0.453125C13.3318 0.453125 13.4907 0.518973 13.608 0.636183C13.7252 0.753394 13.791 0.912365 13.791 1.07812V1.76729C14.0077 1.78396 14.2127 1.80479 14.4068 1.83063C15.3835 1.96229 16.1743 2.23896 16.7985 2.86229C17.4218 3.48646 17.6985 4.27729 17.8302 5.25396C17.9577 6.20396 17.9577 7.41646 17.9577 8.94812V10.7081C17.9577 12.2398 17.9577 13.4531 17.8302 14.4023C17.6985 15.379 17.4218 16.1698 16.7985 16.794C16.1743 17.4173 15.3835 17.694 14.4068 17.8256C13.4568 17.9531 12.2443 17.9531 10.7127 17.9531H7.28602C5.75435 17.9531 4.54102 17.9531 3.59185 17.8256C2.61518 17.694 1.82435 17.4173 1.20018 16.794C0.576849 16.1698 0.300182 15.379 0.168516 14.4023C0.0410156 13.4523 0.0410156 12.2398 0.0410156 10.7081V8.94812C0.0410156 7.41646 0.0410156 6.20312 0.168516 5.25396C0.300182 4.27729 0.576849 3.48646 1.20018 2.86229C1.82435 2.23896 2.61518 1.96229 3.59185 1.83063C3.78602 1.80479 3.99185 1.78396 4.20768 1.76729V1.07812C4.20768 0.912365 4.27353 0.753394 4.39074 0.636183C4.50795 0.518973 4.66692 0.453125 4.83268 0.453125ZM3.75768 3.06979C2.92018 3.18229 2.43685 3.39396 2.08435 3.74646C1.73185 4.09896 1.52018 4.58229 1.40768 5.42062C1.38852 5.56229 1.37268 5.71229 1.35935 5.86979H16.6393C16.626 5.71146 16.6102 5.56229 16.591 5.41979C16.4785 4.58229 16.2668 4.09896 15.9143 3.74646C15.5618 3.39396 15.0785 3.18229 14.2402 3.06979C13.3843 2.95479 12.2552 2.95312 10.666 2.95312H7.33268C5.74352 2.95312 4.61518 2.95479 3.75768 3.06979ZM1.29102 8.99479C1.29102 8.28312 1.29102 7.66396 1.30185 7.11979H16.6968C16.7077 7.66396 16.7077 8.28312 16.7077 8.99479V10.6615C16.7077 12.2506 16.706 13.3798 16.591 14.2365C16.4785 15.074 16.2668 15.5573 15.9143 15.9098C15.5618 16.2623 15.0785 16.474 14.2402 16.5865C13.3843 16.7015 12.2552 16.7031 10.666 16.7031H7.33268C5.74352 16.7031 4.61518 16.7015 3.75768 16.5865C2.92018 16.474 2.43685 16.2623 2.08435 15.9098C1.73185 15.5573 1.52018 15.074 1.40768 14.2356C1.29268 13.3798 1.29102 12.2506 1.29102 10.6615V8.99479Z" fill="currentColor"></path>
-                                    </svg>
-                                    {{ $new->created_at->format('M d, Y') }}
-                                </div>
-                            </div>
-                            <h2 class="card-blog-heading heading text-22">
-                                <a href="{{ route('news.detail', $new->id )}}" class="heading text-18">
-                                    {{ $new->title }}
-                                </a>
-                            </h2>
-                        </div>
-                    </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="swiper rda-testi-swiper" style="padding:4px;">
+          <div class="swiper-wrapper">
+            @foreach($stories as $story)
+            <div class="swiper-slide" style="height:auto;">
+              <div class="rda-testi-card">
+                <div class="rda-testi-card__stars">
+                  @for($i=0;$i<5;$i++)
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>
+                  @endfor
                 </div>
-                @endforeach
+                <p class="rda-testi-card__text">"{{ $story->excerpt }}"</p>
+                <div class="rda-testi-card__author">
+                  <div class="rda-testi-card__author-avatar">
+                    {{ strtoupper(substr($story->title, 0, 1)) }}
+                  </div>
+                  <div>
+                    <div class="rda-testi-card__author-name">{{ $story->title }}</div>
+                    <div style="font-size:13px;color:var(--gray-400);">Community Member</div>
+                  </div>
+                </div>
+              </div>
             </div>
+            @endforeach
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-
-<div class="featured-blog bg-transparent section-padding">
-    <div class="container">
-        <div class="section-headings text-center">
-            <div class="subheading subheading-bg text-20 aos-init aos-animate" data-aos="fade-up">
-                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <g clip-path="url(#clip0_9088_4143)">
-                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                    </g>
-                    <defs>
-                        <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-                <span>Our Publications</span>
-                <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <g clip-path="url(#clip0_9088_4143)">
-                        <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                    </g>
-                    <defs>
-                        <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-            <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
-                Latest Publications From Us
-            </h2>
+<!-- ══════════════════════════════════════════════
+     NEWS
+══════════════════════════════════════════════ -->
+<section class="rda-news">
+  <div class="container">
+    <div class="rda-news__header">
+      <div>
+        <div class="section-eyebrow">
+          <span class="rda-tag">
+            <span class="rda-tag__dot"></span>
+            News &amp; Updates
+          </span>
         </div>
-        <div class="section-content">
-            <div class="row product-grid">
-                <div class="col-12 col-xl-6">
-                    <div class="text-banner">
-                        <div class="container-fluid">
-                            <div class="text-banner-inner radius18">
-                                <div class="section-headings">
-                                    <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-up">
-                                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                            <g clip-path="url(#clip0_9088_4143)">
-                                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                            </g>
-                                            <defs>
-                                                <clipPath>
-                                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <span>Learning resources</span>
-                                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                            <g clip-path="url(#clip0_9088_4143)">
-                                                <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                                            </g>
-                                            <defs>
-                                                <clipPath>
-                                                    <rect width="14" height="14" fill="CurrentColor"></rect>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <h2 class="heading text-30 aos-init aos-animate" data-aos="fade-up">
-                                        Resources & Education Hub
-                                    </h2>
-                                    <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                                        Explore easy-to-understand guides, prevention tips, nutrition advice, and tools to help you manage diabetes at home.
-                                    </p>
-                                    <div class="buttons aos-init aos-animate" data-aos="fade-up">
-                                        <a href="{{ route('research.index') }}" class="button button--secondary" aria-label="See More Services">
-                                            View our resources
-                                            <span class="svg-wrapper">
-                                                <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="CurrentColor"></path>
-                                                </svg>
-                                            </span>
-                                            <span class="visually-hidden">To learn more about our resources, click this button.</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-xl-6">
-                    <div class="horizontal-blogs">
-                        @foreach ($latestItems as $item)
-                        <div class="card-blog-list-horizontal radius18 aos-init aos-animate" data-aos="fade-up">
-                            <div class="card-blog-content">
-                                <div class="card-blog-meta">
-                                    <div class="card-blog-meta-item text text-16">
-                                        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0007 0.046875C6.95088 0.046875 5.94406 0.463912 5.20173 1.20624C4.4594 1.94858 4.04236 2.95539 4.04236 4.00521C4.04236 5.05502 4.4594 6.06184 5.20173 6.80417C5.94406 7.5465 6.95088 7.96354 8.0007 7.96354C9.05051 7.96354 10.0573 7.5465 10.7997 6.80417C11.542 6.06184 11.959 5.05502 11.959 4.00521C11.959 2.95539 11.542 1.94858 10.7997 1.20624C10.0573 0.463912 9.05051 0.046875 8.0007 0.046875ZM5.29236 4.00521C5.29236 3.28691 5.57771 2.59804 6.08562 2.09013C6.59353 1.58222 7.2824 1.29688 8.0007 1.29688C8.71899 1.29688 9.40787 1.58222 9.91578 2.09013C10.4237 2.59804 10.709 3.28691 10.709 4.00521C10.709 4.7235 10.4237 5.41238 9.91578 5.92029C9.40787 6.4282 8.71899 6.71354 8.0007 6.71354C7.2824 6.71354 6.59353 6.4282 6.08562 5.92029C5.57771 5.41238 5.29236 4.7235 5.29236 4.00521ZM8.0007 9.21354C6.0732 9.21354 4.29653 9.65187 2.9807 10.3919C1.68403 11.1219 0.709031 12.2269 0.709031 13.5885V13.6735C0.708198 14.6419 0.707364 15.8569 1.7732 16.7252C2.29736 17.1519 3.03153 17.456 4.0232 17.656C5.01653 17.8577 6.31236 17.9635 8.0007 17.9635C9.68903 17.9635 10.984 17.8577 11.979 17.656C12.9707 17.456 13.704 17.1519 14.229 16.7252C15.2949 15.8569 15.2932 14.6419 15.2924 13.6735V13.5885C15.2924 12.2269 14.3174 11.1219 13.0215 10.3919C11.7049 9.65187 9.92903 9.21354 8.0007 9.21354ZM1.95903 13.5885C1.95903 12.8794 2.47736 12.1094 3.5932 11.4819C4.68986 10.8652 6.24653 10.4635 8.00153 10.4635C9.75486 10.4635 11.3115 10.8652 12.4082 11.4819C13.5249 12.1094 14.0424 12.8794 14.0424 13.5885C14.0424 14.6785 14.009 15.2919 13.439 15.7552C13.1307 16.0069 12.614 16.2527 11.7307 16.431C10.8499 16.6094 9.6457 16.7135 8.0007 16.7135C6.3557 16.7135 5.1507 16.6094 4.2707 16.431C3.38736 16.2527 2.8707 16.0069 2.56236 15.756C1.99236 15.2919 1.95903 14.6785 1.95903 13.5885Z" fill="currentColor"></path>
-                                        </svg>
-                                        {{ $item->category->name }}
-                                    </div>
-                                    <div class="card-blog-meta-item text text-16">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.1667 10.6667C13.3877 10.6667 13.5996 10.5789 13.7559 10.4226C13.9122 10.2663 14 10.0543 14 9.83333C14 9.61232 13.9122 9.40036 13.7559 9.24408C13.5996 9.0878 13.3877 9 13.1667 9C12.9457 9 12.7337 9.0878 12.5774 9.24408C12.4211 9.40036 12.3333 9.61232 12.3333 9.83333C12.3333 10.0543 12.4211 10.2663 12.5774 10.4226C12.7337 10.5789 12.9457 10.6667 13.1667 10.6667ZM13.1667 14C13.3877 14 13.5996 13.9122 13.7559 13.7559C13.9122 13.5996 14 13.3877 14 13.1667C14 12.9457 13.9122 12.7337 13.7559 12.5774C13.5996 12.4211 13.3877 12.3333 13.1667 12.3333C12.9457 12.3333 12.7337 12.4211 12.5774 12.5774C12.4211 12.7337 12.3333 12.9457 12.3333 13.1667C12.3333 13.3877 12.4211 13.5996 12.5774 13.7559C12.7337 13.9122 12.9457 14 13.1667 14ZM9.83333 9.83333C9.83333 10.0543 9.74554 10.2663 9.58926 10.4226C9.43297 10.5789 9.22101 10.6667 9 10.6667C8.77899 10.6667 8.56702 10.5789 8.41074 10.4226C8.25446 10.2663 8.16667 10.0543 8.16667 9.83333C8.16667 9.61232 8.25446 9.40036 8.41074 9.24408C8.56702 9.0878 8.77899 9 9 9C9.22101 9 9.43297 9.0878 9.58926 9.24408C9.74554 9.40036 9.83333 9.61232 9.83333 9.83333ZM9.83333 13.1667C9.83333 13.3877 9.74554 13.5996 9.58926 13.7559C9.43297 13.9122 9.22101 14 9 14C8.77899 14 8.56702 13.9122 8.41074 13.7559C8.25446 13.5996 8.16667 13.3877 8.16667 13.1667C8.16667 12.9457 8.25446 12.7337 8.41074 12.5774C8.56702 12.4211 8.77899 12.3333 9 12.3333C9.22101 12.3333 9.43297 12.4211 9.58926 12.5774C9.74554 12.7337 9.83333 12.9457 9.83333 13.1667ZM4.83333 10.6667C5.05435 10.6667 5.26631 10.5789 5.42259 10.4226C5.57887 10.2663 5.66667 10.0543 5.66667 9.83333C5.66667 9.61232 5.57887 9.40036 5.42259 9.24408C5.26631 9.0878 5.05435 9 4.83333 9C4.61232 9 4.40036 9.0878 4.24408 9.24408C4.0878 9.40036 4 9.61232 4 9.83333C4 10.0543 4.0878 10.2663 4.24408 10.4226C4.40036 10.5789 4.61232 10.6667 4.83333 10.6667ZM4.83333 14C5.05435 14 5.26631 13.9122 5.42259 13.7559C5.57887 13.5996 5.66667 13.3877 5.66667 13.1667C5.66667 12.9457 5.57887 12.7337 5.42259 12.5774C5.26631 12.4211 5.05435 12.3333 4.83333 12.3333C4.61232 12.3333 4.40036 12.4211 4.24408 12.5774C4.0878 12.7337 4 12.9457 4 13.1667C4 13.3877 4.0878 13.5996 4.24408 13.7559C4.40036 13.9122 4.61232 14 4.83333 14Z" fill="currentColor"></path>
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83268 0.453125C4.99844 0.453125 5.15741 0.518973 5.27462 0.636183C5.39183 0.753394 5.45768 0.912365 5.45768 1.07812V1.71396C6.00935 1.70312 6.61685 1.70312 7.28518 1.70312H10.7127C11.3818 1.70312 11.9893 1.70312 12.541 1.71396V1.07812C12.541 0.912365 12.6069 0.753394 12.7241 0.636183C12.8413 0.518973 13.0003 0.453125 13.166 0.453125C13.3318 0.453125 13.4907 0.518973 13.608 0.636183C13.7252 0.753394 13.791 0.912365 13.791 1.07812V1.76729C14.0077 1.78396 14.2127 1.80479 14.4068 1.83063C15.3835 1.96229 16.1743 2.23896 16.7985 2.86229C17.4218 3.48646 17.6985 4.27729 17.8302 5.25396C17.9577 6.20396 17.9577 7.41646 17.9577 8.94812V10.7081C17.9577 12.2398 17.9577 13.4531 17.8302 14.4023C17.6985 15.379 17.4218 16.1698 16.7985 16.794C16.1743 17.4173 15.3835 17.694 14.4068 17.8256C13.4568 17.9531 12.2443 17.9531 10.7127 17.9531H7.28602C5.75435 17.9531 4.54102 17.9531 3.59185 17.8256C2.61518 17.694 1.82435 17.4173 1.20018 16.794C0.576849 16.1698 0.300182 15.379 0.168516 14.4023C0.0410156 13.4523 0.0410156 12.2398 0.0410156 10.7081V8.94812C0.0410156 7.41646 0.0410156 6.20312 0.168516 5.25396C0.300182 4.27729 0.576849 3.48646 1.20018 2.86229C1.82435 2.23896 2.61518 1.96229 3.59185 1.83063C3.78602 1.80479 3.99185 1.78396 4.20768 1.76729V1.07812C4.20768 0.912365 4.27353 0.753394 4.39074 0.636183C4.50795 0.518973 4.66692 0.453125 4.83268 0.453125ZM3.75768 3.06979C2.92018 3.18229 2.43685 3.39396 2.08435 3.74646C1.73185 4.09896 1.52018 4.58229 1.40768 5.42062C1.38852 5.56229 1.37268 5.71229 1.35935 5.86979H16.6393C16.626 5.71146 16.6102 5.56229 16.591 5.41979C16.4785 4.58229 16.2668 4.09896 15.9143 3.74646C15.5618 3.39396 15.0785 3.18229 14.2402 3.06979C13.3843 2.95479 12.2552 2.95312 10.666 2.95312H7.33268C5.74352 2.95312 4.61518 2.95479 3.75768 3.06979ZM1.29102 8.99479C1.29102 8.28312 1.29102 7.66396 1.30185 7.11979H16.6968C16.7077 7.66396 16.7077 8.28312 16.7077 8.99479V10.6615C16.7077 12.2506 16.706 13.3798 16.591 14.2365C16.4785 15.074 16.2668 15.5573 15.9143 15.9098C15.5618 16.2623 15.0785 16.474 14.2402 16.5865C13.3843 16.7015 12.2552 16.7031 10.666 16.7031H7.33268C5.74352 16.7031 4.61518 16.7015 3.75768 16.5865C2.92018 16.474 2.43685 16.2623 2.08435 15.9098C1.73185 15.5573 1.52018 15.074 1.40768 14.2356C1.29268 13.3798 1.29102 12.2506 1.29102 10.6615V8.99479Z" fill="currentColor"></path>
-                                        </svg>
-                                        {{ $item->created_at->format('M d, Y') }}
-                                    </div>
-                                </div>
-
-                                <h2 class="card-blog-heading heading text-24">
-                                    <a href="{{ $item->external_link }}" class="heading text-24">
-                                        {{ $item->title }}
-                                    </a>
-                                </h2>
-
-                                <div class="buttons">
-                                    <a href="{{ $item->external_link }}" class="button--cta" aria-label="See blog details">
-                                        Read More
-                                        <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z" fill="currentColor"></path>
-                                        </svg>
-                                        <span class="visually-hidden">To see blog details, click here</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="rda-news__heading">Latest News &amp; Updates</h2>
+        <p class="rda-news__subtext">
+          Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
+        </p>
+      </div>
+      <a href="{{ route('news.index') }}" class="rda-btn rda-btn--primary" style="align-self:flex-start;">
+        Discover More
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+      </a>
     </div>
-</div>
 
+    <div class="row g-4">
+      @foreach($news as $new)
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="rda-news-card">
+          <div class="rda-news-card__img-wrap">
+            <img class="rda-news-card__img"
+                 src="{{ asset('image/posts') }}/{{ $new->featured_image }}"
+                 alt="{{ $new->title }}"
+                 loading="lazy">
+            <span class="rda-news-card__cat">{{ $new->category->name }}</span>
+          </div>
+          <div class="rda-news-card__body">
+            <div class="rda-news-card__meta">
+              <span class="rda-news-card__meta-item">
+                <svg width="13" height="13" viewBox="0 0 16 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.0007 0.046875C6.95088 0.046875 5.94406 0.463912 5.20173 1.20624C4.4594 1.94858 4.04236 2.95539 4.04236 4.00521C4.04236 5.05502 4.4594 6.06184 5.20173 6.80417C5.94406 7.5465 6.95088 7.96354 8.0007 7.96354C9.05051 7.96354 10.0573 7.5465 10.7997 6.80417C11.542 6.06184 11.959 5.05502 11.959 4.00521C11.959 2.95539 11.542 1.94858 10.7997 1.20624C10.0573 0.463912 9.05051 0.046875 8.0007 0.046875ZM5.29236 4.00521C5.29236 3.28691 5.57771 2.59804 6.08562 2.09013C6.59353 1.58222 7.2824 1.29688 8.0007 1.29688C8.71899 1.29688 9.40787 1.58222 9.91578 2.09013C10.4237 2.59804 10.709 3.28691 10.709 4.00521C10.709 4.7235 10.4237 5.41238 9.91578 5.92029C9.40787 6.4282 8.71899 6.71354 8.0007 6.71354C7.2824 6.71354 6.59353 6.4282 6.08562 5.92029C5.57771 5.41238 5.29236 4.7235 5.29236 4.00521ZM8.0007 9.21354C6.0732 9.21354 4.29653 9.65187 2.9807 10.3919C1.68403 11.1219 0.709031 12.2269 0.709031 13.5885C0.709031 14.6785 0.742364 15.2919 1.31236 15.756C1.62070 16.0069 2.13736 16.2527 3.02070 16.431C3.90070 16.6094 5.10570 16.7135 6.75070 16.7135H9.25070C10.8957 16.7135 12.1007 16.6094 12.9807 16.431C13.8640 16.2527 14.3807 16.0069 14.6890 15.756C15.2590 15.2919 15.2924 14.6785 15.2924 13.5885C15.2924 12.2269 14.3174 11.1219 13.0215 10.3919C11.7049 9.65187 9.92903 9.21354 8.0007 9.21354Z" fill="currentColor"/></svg>
+                {{ $new->author->name }}
+              </span>
+              <span class="rda-news-card__meta-item">
+                <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.83268 0.453125C4.99844 0.453125 5.15741 0.518973 5.27462 0.636183C5.39183 0.753394 5.45768 0.912365 5.45768 1.07812V1.71396C6.00935 1.70312 6.61685 1.70312 7.28518 1.70312H10.7127C11.3818 1.70312 11.9893 1.70312 12.541 1.71396V1.07812C12.541 0.912365 12.6069 0.753394 12.7241 0.636183C12.8413 0.518973 13.0003 0.453125 13.166 0.453125C13.3318 0.453125 13.4907 0.518973 13.608 0.636183C13.7252 0.753394 13.791 0.912365 13.791 1.07812V1.76729C14.0077 1.78396 14.2127 1.80479 14.4068 1.83063C15.3835 1.96229 16.1743 2.23896 16.7985 2.86229C17.4218 3.48646 17.6985 4.27729 17.8302 5.25396C17.9577 6.20396 17.9577 7.41646 17.9577 8.94812V10.7081C17.9577 12.2398 17.9577 13.4531 17.8302 14.4023C17.6985 15.379 17.4218 16.1698 16.7985 16.794C16.1743 17.4173 15.3835 17.694 14.4068 17.8256C13.4568 17.9531 12.2443 17.9531 10.7127 17.9531H7.28602C5.75435 17.9531 4.54102 17.9531 3.59185 17.8256C2.61518 17.694 1.82435 17.4173 1.20018 16.794C0.576849 16.1698 0.300182 15.379 0.168516 14.4023C0.0410156 13.4523 0.0410156 12.2398 0.0410156 10.7081V8.94812C0.0410156 7.41646 0.0410156 6.20312 0.168516 5.25396C0.300182 4.27729 0.576849 3.48646 1.20018 2.86229C1.82435 2.23896 2.61518 1.96229 3.59185 1.83063C3.78602 1.80479 3.99185 1.78396 4.20768 1.76729V1.07812C4.20768 0.912365 4.27353 0.753394 4.39074 0.636183C4.50795 0.518973 4.66692 0.453125 4.83268 0.453125ZM1.29102 8.99479V10.6615C1.29102 12.2506 1.29268 13.3798 1.40768 14.2356C1.52018 15.074 1.73185 15.5573 2.08435 15.9098C2.43685 16.2623 2.92018 16.474 3.75768 16.5865C4.61518 16.7015 5.74352 16.7031 7.33268 16.7031H10.666C12.2552 16.7031 13.3843 16.7015 14.2402 16.5865C15.0785 16.474 15.5618 16.2623 15.9143 15.9098C16.2668 15.5573 16.4785 15.074 16.591 14.2365C16.706 13.3798 16.7077 12.2506 16.7077 10.6615V8.99479C16.7077 8.28312 16.7077 7.66396 16.6968 7.11979H1.30185C1.29102 7.66396 1.29102 8.28312 1.29102 8.99479Z" fill="currentColor"/></svg>
+                {{ $new->created_at->format('M d, Y') }}
+              </span>
+            </div>
+            <a href="{{ route('news.detail', $new->id) }}" class="rda-news-card__title">
+              {{ $new->title }}
+            </a>
+            <a href="{{ route('news.detail', $new->id) }}" class="rda-news-card__link">
+              Read Article
+              <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PUBLICATIONS
+══════════════════════════════════════════════ -->
+<section class="rda-publications">
+  <div class="container">
+    <div class="section-eyebrow" style="justify-content:center;">
+      <span class="rda-tag">
+        <span class="rda-tag__dot"></span>
+        Publications
+      </span>
+    </div>
+    <h2 class="rda-publications__heading">Latest Publications From Us</h2>
+    <p class="rda-publications__subtext">
+      Access our research, guides, and educational resources on diabetes prevention and management.
+    </p>
+
+    <div class="row g-4 align-items-stretch">
+      <div class="col-xl-5">
+        <div class="rda-pub-highlight">
+          <div class="section-eyebrow">
+            <span class="rda-tag rda-tag--white">
+              <span class="rda-tag__dot"></span>
+              Learning Resources
+            </span>
+          </div>
+          <h3 class="rda-pub-highlight__heading">Resources &amp; Education Hub</h3>
+          <p class="rda-pub-highlight__text">
+            Explore easy-to-understand guides, prevention tips, nutrition advice, and tools to help you manage diabetes at home.
+          </p>
+          <a href="{{ route('research.index') }}" class="rda-btn rda-btn--ghost-white" style="align-self:flex-start;">
+            View All Resources
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-xl-7">
+        <div class="rda-pub-list">
+          @foreach($latestItems as $item)
+          <div class="rda-pub-item">
+            <div class="rda-pub-item__meta">
+              <span class="rda-pub-item__cat">{{ $item->category->name }}</span>
+              <span>{{ $item->created_at->format('M d, Y') }}</span>
+            </div>
+            <a href="{{ $item->external_link }}" class="rda-pub-item__title">{{ $item->title }}</a>
+            <a href="{{ $item->external_link }}" class="rda-pub-item__link">
+              Read More
+              <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        new Swiper('.hero-slider .swiper', {
-            loop: true,
-            speed: 800,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.hero-slider .slider-pagination', // 👈 scoped selector
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.hero-slider .swiper-button-next',
-                prevEl: '.hero-slider .swiper-button-prev',
-            },
-        });
-    });
-</script>
+document.addEventListener('DOMContentLoaded', function () {
 
+  // Hero Slider
+  new Swiper('.rda-hero-swiper', {
+    loop: true,
+    speed: 900,
+    autoplay: { delay: 5500, disableOnInteraction: false },
+    pagination: { el: '.rda-hero-pagination', clickable: true },
+    navigation: { nextEl: '.rda-next', prevEl: '.rda-prev' },
+  });
+
+  // Testimonials Slider
+  new Swiper('.rda-testi-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    speed: 600,
+    navigation: { nextEl: '.rda-testi-next', prevEl: '.rda-testi-prev' },
+    breakpoints: {
+      768: { slidesPerView: 1.2 },
+    },
+  });
+
+});
+</script>
 
 @endsection

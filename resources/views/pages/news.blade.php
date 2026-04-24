@@ -1,161 +1,529 @@
 @extends('layouts.base')
-@section('title', 'Latest news')
+@section('title', 'Latest News & Updates — Rwanda Diabetes Organization')
 @section('content')
 
-<div class="page-blog mt-100">
-    <div class="container">
-        <div class="section-headings section-headings-horizontal">
-            <div class="section-headings-left">
-                <div class="subheading text-20 subheading-bg aos-init aos-animate" data-aos="fade-right" data-aos-delay="10">
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <span>Our news & updates</span>
-                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <g clip-path="url(#clip0_9088_4143)">
-                            <path d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z" fill="CurrentColor"></path>
-                        </g>
-                        <defs>
-                            <clipPath>
-                                <rect width="14" height="14" fill="CurrentColor"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </div>
-                <h2 class="heading text-50 aos-init aos-animate" data-aos="fade-right" data-aos-delay="20">
-                    Latest News & updates
-                </h2>
-                <p class="text text-18 aos-init aos-animate" data-aos="fade-up">
-                    Stay updated with the latest activities, health alerts, events, and diabetes education from our organization.
-                </p>
+<style>
+    /* ── Design tokens ──────────────────────────────────────────────── */
+    :root {
+        --nb-bg:          #f5f7fa;
+        --nb-surface:     #ffffff;
+        --nb-ink:         #0d1b2a;
+        --nb-muted:       #5a6a7a;
+        --nb-faint:       #e4eaf1;
+        --nb-accent:      #1a6eb5;
+        --nb-accent-2:    #e8f1fb;
+        --nb-green:       #14875a;
+        --nb-radius:      18px;
+        --nb-radius-sm:   10px;
+        --nb-shadow:      0 2px 14px rgba(13,27,42,.07), 0 1px 3px rgba(13,27,42,.04);
+        --nb-shadow-h:    0 10px 36px rgba(13,27,42,.12), 0 2px 8px rgba(13,27,42,.06);
+        --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+    .nb-page { font-family: 'DM Sans', sans-serif; background: var(--nb-bg); }
+
+    /* ── Shared ─────────────────────────────────────────────────────── */
+    .nb-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--nb-accent);
+        margin-bottom: 14px;
+    }
+    .nb-eyebrow::before {
+        content: '';
+        display: block;
+        width: 24px; height: 2px;
+        background: var(--nb-accent);
+        border-radius: 2px;
+    }
+
+    .nb-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 22px;
+        border-radius: 40px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: 'DM Sans', sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition: transform .25s var(--ease-expo), box-shadow .25s ease, background .2s, color .2s, border-color .2s;
+    }
+    .nb-btn:hover { transform: translateY(-2px); }
+    .nb-btn--primary {
+        background: var(--nb-accent);
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(26,110,181,.28);
+    }
+    .nb-btn--primary:hover { background: #155c9e; box-shadow: 0 8px 24px rgba(26,110,181,.38); color: #fff; }
+    .nb-btn--outline { background: transparent; border-color: var(--nb-faint); color: var(--nb-ink); }
+    .nb-btn--outline:hover { border-color: var(--nb-accent); color: var(--nb-accent); }
+
+    /* ════════════════════════════════════════════════════════════════
+       HERO BAND
+    ════════════════════════════════════════════════════════════════ */
+    .nb-hero {
+        background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 60%, #1a6eb5 100%);
+        padding: 80px 0 68px;
+        position: relative;
+        overflow: hidden;
+    }
+    .nb-hero::before {
+        content: '';
+        position: absolute; inset: 0;
+        background:
+            radial-gradient(circle at 75% 35%, rgba(26,110,181,.45) 0%, transparent 52%),
+            radial-gradient(circle at 15% 75%, rgba(20,135,90,.22) 0%, transparent 42%);
+        pointer-events: none;
+    }
+    .nb-hero__inner {
+        position: relative; z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        flex-wrap: wrap;
+    }
+    .nb-hero .nb-eyebrow { color: #93c5fd; }
+    .nb-hero .nb-eyebrow::before { background: #93c5fd; }
+    .nb-hero__title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(30px, 4.5vw, 50px);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 12px;
+        letter-spacing: -.02em;
+        line-height: 1.1;
+    }
+    .nb-hero__title em { font-style: italic; color: #93c5fd; }
+    .nb-hero__sub {
+        font-size: 15px;
+        color: rgba(255,255,255,.68);
+        font-weight: 300;
+        max-width: 500px;
+        line-height: 1.7;
+        margin: 0;
+    }
+    .nb-hero__btn-wrap { flex-shrink: 0; padding-bottom: 6px; }
+    .nb-btn--ghost {
+        background: rgba(255,255,255,.12);
+        border-color: rgba(255,255,255,.28);
+        color: #fff;
+        backdrop-filter: blur(8px);
+    }
+    .nb-btn--ghost:hover { background: rgba(255,255,255,.22); color: #fff; }
+
+    /* ════════════════════════════════════════════════════════════════
+       GRID SECTION
+    ════════════════════════════════════════════════════════════════ */
+    .nb-grid-section { padding: 72px 0 88px; }
+
+    /* result meta bar */
+    .nb-meta-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 36px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--nb-faint);
+    }
+    .nb-meta-bar__count {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--nb-muted);
+    }
+    .nb-meta-bar__count strong { color: var(--nb-ink); }
+
+    /* ── Cards grid ─────────────────────────────────────────────────── */
+    .nb-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+    @media (max-width: 1024px) { .nb-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .nb-grid { grid-template-columns: 1fr; } }
+
+    /* ── Card ───────────────────────────────────────────────────────── */
+    .nb-card {
+        background: var(--nb-surface);
+        border-radius: var(--nb-radius);
+        border: 1.5px solid var(--nb-faint);
+        box-shadow: var(--nb-shadow);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform .4s var(--ease-expo), box-shadow .4s var(--ease-expo), border-color .2s ease;
+        opacity: 0;
+        animation: nbCardIn .6s var(--ease-expo) forwards;
+    }
+    .nb-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--nb-shadow-h);
+        border-color: rgba(26,110,181,.18);
+    }
+
+    @keyframes nbCardIn {
+        from { opacity: 0; transform: translateY(22px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .nb-card:nth-child(1) { animation-delay: .04s; }
+    .nb-card:nth-child(2) { animation-delay: .10s; }
+    .nb-card:nth-child(3) { animation-delay: .16s; }
+    .nb-card:nth-child(4) { animation-delay: .22s; }
+    .nb-card:nth-child(5) { animation-delay: .28s; }
+    .nb-card:nth-child(6) { animation-delay: .34s; }
+    .nb-card:nth-child(7) { animation-delay: .40s; }
+    .nb-card:nth-child(8) { animation-delay: .46s; }
+    .nb-card:nth-child(9) { animation-delay: .52s; }
+
+    /* photo */
+    .nb-card__img {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #dde3ea;
+        flex-shrink: 0;
+    }
+    .nb-card__img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform .6s var(--ease-expo);
+    }
+    .nb-card:hover .nb-card__img img { transform: scale(1.05); }
+
+    /* category pill */
+    .nb-card__cat {
+        position: absolute;
+        top: 14px; left: 14px;
+        padding: 4px 12px;
+        border-radius: 40px;
+        background: var(--nb-accent);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(26,110,181,.30);
+    }
+
+    /* read-more overlay button */
+    .nb-card__read-btn {
+        position: absolute;
+        bottom: 14px; right: 14px;
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: var(--nb-surface);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--nb-accent);
+        box-shadow: 0 2px 12px rgba(13,27,42,.16);
+        opacity: 0;
+        transform: scale(.8);
+        transition: opacity .3s ease, transform .3s var(--ease-expo);
+        text-decoration: none;
+    }
+    .nb-card:hover .nb-card__read-btn {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* card body */
+    .nb-card__body {
+        padding: 22px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    /* meta row */
+    .nb-card__meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+    .nb-card__meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--nb-muted);
+    }
+    .nb-card__meta-item svg { flex-shrink: 0; opacity: .7; }
+
+    /* title */
+    .nb-card__title {
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--nb-ink);
+        margin: 0 0 16px;
+        flex: 1;
+        transition: color .2s ease;
+        text-decoration: none;
+        display: block;
+    }
+    .nb-card__title:hover { color: var(--nb-accent); }
+
+    /* read more link */
+    .nb-card__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--nb-accent);
+        text-decoration: none;
+        letter-spacing: .03em;
+        margin-top: auto;
+        transition: gap .2s var(--ease-expo), color .2s ease;
+    }
+    .nb-card__link:hover { gap: 10px; color: #155c9e; }
+    .nb-card__link svg { transition: transform .2s var(--ease-expo); }
+    .nb-card__link:hover svg { transform: translateX(3px); }
+
+    /* divider between meta and link */
+    .nb-card__divider {
+        height: 1px;
+        background: var(--nb-faint);
+        margin: 16px 0;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       EMPTY STATE
+    ════════════════════════════════════════════════════════════════ */
+    .nb-empty {
+        text-align: center;
+        padding: 80px 24px;
+        background: var(--nb-surface);
+        border-radius: var(--nb-radius);
+        border: 1.5px dashed var(--nb-faint);
+    }
+    .nb-empty__icon {
+        width: 64px; height: 64px;
+        border-radius: 16px;
+        background: var(--nb-accent-2);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--nb-accent);
+        margin: 0 auto 16px;
+    }
+    .nb-empty__title {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--nb-ink);
+        margin-bottom: 8px;
+    }
+    .nb-empty__sub { font-size: 14px; color: var(--nb-muted); }
+
+    /* ════════════════════════════════════════════════════════════════
+       PAGINATION
+    ════════════════════════════════════════════════════════════════ */
+    .nb-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 56px;
+        flex-wrap: wrap;
+    }
+
+    .nb-page-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px; height: 40px;
+        border-radius: var(--nb-radius-sm);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--nb-ink);
+        text-decoration: none;
+        border: 1.5px solid var(--nb-faint);
+        background: var(--nb-surface);
+        transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s var(--ease-expo);
+        cursor: pointer;
+    }
+    .nb-page-btn:hover:not(.nb-page-btn--disabled) {
+        border-color: var(--nb-accent);
+        background: var(--nb-accent-2);
+        color: var(--nb-accent);
+        transform: translateY(-1px);
+    }
+    .nb-page-btn--active {
+        background: var(--nb-accent);
+        border-color: var(--nb-accent);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(26,110,181,.30);
+    }
+    .nb-page-btn--active:hover { background: var(--nb-accent); color: #fff; transform: none; }
+    .nb-page-btn--disabled {
+        opacity: .35;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    .nb-page-btn--wide {
+        width: auto;
+        padding: 0 16px;
+        gap: 6px;
+        font-size: 13px;
+    }
+</style>
+
+<div class="nb-page">
+
+    {{-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ --}}
+    <section class="nb-hero">
+        <div class="container nb-hero__inner">
+            <div>
+                <span class="nb-eyebrow">Newsroom</span>
+                <h1 class="nb-hero__title">Latest <em>News</em> &amp; Updates</h1>
+                <p class="nb-hero__sub">Stay informed with the latest activities, health alerts, events, and diabetes education from our organization.</p>
             </div>
-            <div class="section-headings-right buttons aos-init aos-animate" data-aos="fade-left" data-aos-delay="20">
-                <a href="services.html" class="button button--primary" aria-label="See All Post">
+            <div class="nb-hero__btn-wrap">
+                <a href="services.html" class="nb-btn nb-btn--ghost">
                     Discover More
-                    <span class="svg-wrapper">
-                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z" fill="currentColor"></path>
-                        </svg>
-                    </span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
-        <div class="row product-grid mt-4">
-            @foreach( $news as $new)
-            <div class="col-12 col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-blog radius18 h-100">
-                    <a class="card-blog-bottom" href="{{ route('news.detail', $new->id )}}" aria-label="Blog details">
-                        <span class="blog-tag subheading subheading-bg text-16 fw-500">{{ $new->category->name }}</span>
-                        <div class="media">
-                            <img src="{{asset('image/posts')}}/{{ $new->featured_image }}" alt="blog image" width="1000" height="707" loading="lazy">
-                        </div>
-                        <div class="buttons">
-                            <div class="button button--primary">
-                                Read More
-                                <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z" fill="currentColor"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="card-blog-top">
-                        <div class="card-blog-meta">
-                            <div class="card-blog-meta-item text text-18">
-                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0007 0.046875C6.95088 0.046875 5.94406 0.463912 5.20173 1.20624C4.4594 1.94858 4.04236 2.95539 4.04236 4.00521C4.04236 5.05502 4.4594 6.06184 5.20173 6.80417C5.94406 7.5465 6.95088 7.96354 8.0007 7.96354C9.05051 7.96354 10.0573 7.5465 10.7997 6.80417C11.542 6.06184 11.959 5.05502 11.959 4.00521C11.959 2.95539 11.542 1.94858 10.7997 1.20624C10.0573 0.463912 9.05051 0.046875 8.0007 0.046875ZM5.29236 4.00521C5.29236 3.28691 5.57771 2.59804 6.08562 2.09013C6.59353 1.58222 7.2824 1.29688 8.0007 1.29688C8.71899 1.29688 9.40787 1.58222 9.91578 2.09013C10.4237 2.59804 10.709 3.28691 10.709 4.00521C10.709 4.7235 10.4237 5.41238 9.91578 5.92029C9.40787 6.4282 8.71899 6.71354 8.0007 6.71354C7.2824 6.71354 6.59353 6.4282 6.08562 5.92029C5.57771 5.41238 5.29236 4.7235 5.29236 4.00521ZM8.0007 9.21354C6.0732 9.21354 4.29653 9.65187 2.9807 10.3919C1.68403 11.1219 0.709031 12.2269 0.709031 13.5885V13.6735C0.708198 14.6419 0.707364 15.8569 1.7732 16.7252C2.29736 17.1519 3.03153 17.456 4.0232 17.656C5.01653 17.8577 6.31236 17.9635 8.0007 17.9635C9.68903 17.9635 10.984 17.8577 11.979 17.656C12.9707 17.456 13.704 17.1519 14.229 16.7252C15.2949 15.8569 15.2932 14.6419 15.2924 13.6735V13.5885C15.2924 12.2269 14.3174 11.1219 13.0215 10.3919C11.7049 9.65187 9.92903 9.21354 8.0007 9.21354ZM1.95903 13.5885C1.95903 12.8794 2.47736 12.1094 3.5932 11.4819C4.68986 10.8652 6.24653 10.4635 8.00153 10.4635C9.75486 10.4635 11.3115 10.8652 12.4082 11.4819C13.5249 12.1094 14.0424 12.8794 14.0424 13.5885C14.0424 14.6785 14.009 15.2919 13.439 15.7552C13.1307 16.0069 12.614 16.2527 11.7307 16.431C10.8499 16.6094 9.6457 16.7135 8.0007 16.7135C6.3557 16.7135 5.1507 16.6094 4.2707 16.431C3.38736 16.2527 2.8707 16.0069 2.56236 15.756C1.99236 15.2919 1.95903 14.6785 1.95903 13.5885Z" fill="currentColor"></path>
-                                </svg>
-                                {{ $new->author->name}}
-                            </div>
-                            <div class="card-blog-meta-item text text-18">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.1667 10.6667C13.3877 10.6667 13.5996 10.5789 13.7559 10.4226C13.9122 10.2663 14 10.0543 14 9.83333C14 9.61232 13.9122 9.40036 13.7559 9.24408C13.5996 9.0878 13.3877 9 13.1667 9C12.9457 9 12.7337 9.0878 12.5774 9.24408C12.4211 9.40036 12.3333 9.61232 12.3333 9.83333C12.3333 10.0543 12.4211 10.2663 12.5774 10.4226C12.7337 10.5789 12.9457 10.6667 13.1667 10.6667ZM13.1667 14C13.3877 14 13.5996 13.9122 13.7559 13.7559C13.9122 13.5996 14 13.3877 14 13.1667C14 12.9457 13.9122 12.7337 13.7559 12.5774C13.5996 12.4211 13.3877 12.3333 13.1667 12.3333C12.9457 12.3333 12.7337 12.4211 12.5774 12.5774C12.4211 12.7337 12.3333 12.9457 12.3333 13.1667C12.3333 13.3877 12.4211 13.5996 12.5774 13.7559C12.7337 13.9122 12.9457 14 13.1667 14ZM9.83333 9.83333C9.83333 10.0543 9.74554 10.2663 9.58926 10.4226C9.43297 10.5789 9.22101 10.6667 9 10.6667C8.77899 10.6667 8.56702 10.5789 8.41074 10.4226C8.25446 10.2663 8.16667 10.0543 8.16667 9.83333C8.16667 9.61232 8.25446 9.40036 8.41074 9.24408C8.56702 9.0878 8.77899 9 9 9C9.22101 9 9.43297 9.0878 9.58926 9.24408C9.74554 9.40036 9.83333 9.61232 9.83333 9.83333ZM9.83333 13.1667C9.83333 13.3877 9.74554 13.5996 9.58926 13.7559C9.43297 13.9122 9.22101 14 9 14C8.77899 14 8.56702 13.9122 8.41074 13.7559C8.25446 13.5996 8.16667 13.3877 8.16667 13.1667C8.16667 12.9457 8.25446 12.7337 8.41074 12.5774C8.56702 12.4211 8.77899 12.3333 9 12.3333C9.22101 12.3333 9.43297 12.4211 9.58926 12.5774C9.74554 12.7337 9.83333 12.9457 9.83333 13.1667ZM4.83333 10.6667C5.05435 10.6667 5.26631 10.5789 5.42259 10.4226C5.57887 10.2663 5.66667 10.0543 5.66667 9.83333C5.66667 9.61232 5.57887 9.40036 5.42259 9.24408C5.26631 9.0878 5.05435 9 4.83333 9C4.61232 9 4.40036 9.0878 4.24408 9.24408C4.0878 9.40036 4 9.61232 4 9.83333C4 10.0543 4.0878 10.2663 4.24408 10.4226C4.40036 10.5789 4.61232 10.6667 4.83333 10.6667ZM4.83333 14C5.05435 14 5.26631 13.9122 5.42259 13.7559C5.57887 13.5996 5.66667 13.3877 5.66667 13.1667C5.66667 12.9457 5.57887 12.7337 5.42259 12.5774C5.26631 12.4211 5.05435 12.3333 4.83333 12.3333C4.61232 12.3333 4.40036 12.4211 4.24408 12.5774C4.0878 12.7337 4 12.9457 4 13.1667C4 13.3877 4.0878 13.5996 4.24408 13.7559C4.40036 13.9122 4.61232 14 4.83333 14Z" fill="currentColor"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83268 0.453125C4.99844 0.453125 5.15741 0.518973 5.27462 0.636183C5.39183 0.753394 5.45768 0.912365 5.45768 1.07812V1.71396C6.00935 1.70312 6.61685 1.70312 7.28518 1.70312H10.7127C11.3818 1.70312 11.9893 1.70312 12.541 1.71396V1.07812C12.541 0.912365 12.6069 0.753394 12.7241 0.636183C12.8413 0.518973 13.0003 0.453125 13.166 0.453125C13.3318 0.453125 13.4907 0.518973 13.608 0.636183C13.7252 0.753394 13.791 0.912365 13.791 1.07812V1.76729C14.0077 1.78396 14.2127 1.80479 14.4068 1.83063C15.3835 1.96229 16.1743 2.23896 16.7985 2.86229C17.4218 3.48646 17.6985 4.27729 17.8302 5.25396C17.9577 6.20396 17.9577 7.41646 17.9577 8.94812V10.7081C17.9577 12.2398 17.9577 13.4531 17.8302 14.4023C17.6985 15.379 17.4218 16.1698 16.7985 16.794C16.1743 17.4173 15.3835 17.694 14.4068 17.8256C13.4568 17.9531 12.2443 17.9531 10.7127 17.9531H7.28602C5.75435 17.9531 4.54102 17.9531 3.59185 17.8256C2.61518 17.694 1.82435 17.4173 1.20018 16.794C0.576849 16.1698 0.300182 15.379 0.168516 14.4023C0.0410156 13.4523 0.0410156 12.2398 0.0410156 10.7081V8.94812C0.0410156 7.41646 0.0410156 6.20312 0.168516 5.25396C0.300182 4.27729 0.576849 3.48646 1.20018 2.86229C1.82435 2.23896 2.61518 1.96229 3.59185 1.83063C3.78602 1.80479 3.99185 1.78396 4.20768 1.76729V1.07812C4.20768 0.912365 4.27353 0.753394 4.39074 0.636183C4.50795 0.518973 4.66692 0.453125 4.83268 0.453125ZM3.75768 3.06979C2.92018 3.18229 2.43685 3.39396 2.08435 3.74646C1.73185 4.09896 1.52018 4.58229 1.40768 5.42062C1.38852 5.56229 1.37268 5.71229 1.35935 5.86979H16.6393C16.626 5.71146 16.6102 5.56229 16.591 5.41979C16.4785 4.58229 16.2668 4.09896 15.9143 3.74646C15.5618 3.39396 15.0785 3.18229 14.2402 3.06979C13.3843 2.95479 12.2552 2.95312 10.666 2.95312H7.33268C5.74352 2.95312 4.61518 2.95479 3.75768 3.06979ZM1.29102 8.99479C1.29102 8.28312 1.29102 7.66396 1.30185 7.11979H16.6968C16.7077 7.66396 16.7077 8.28312 16.7077 8.99479V10.6615C16.7077 12.2506 16.706 13.3798 16.591 14.2365C16.4785 15.074 16.2668 15.5573 15.9143 15.9098C15.5618 16.2623 15.0785 16.474 14.2402 16.5865C13.3843 16.7015 12.2552 16.7031 10.666 16.7031H7.33268C5.74352 16.7031 4.61518 16.7015 3.75768 16.5865C2.92018 16.474 2.43685 16.2623 2.08435 15.9098C1.73185 15.5573 1.52018 15.074 1.40768 14.2356C1.29268 13.3798 1.29102 12.2506 1.29102 10.6615V8.99479Z" fill="currentColor"></path>
-                                </svg>
-                                {{ $new->created_at->format('M d, Y') }}
-                            </div>
-                        </div>
-                        <h2 class="card-blog-heading heading text-22">
-                            <a href="{{ route('news.detail', $new->id )}}" class="heading text-22">
-                                {{ $new->title }}
-                            </a>
-                        </h2>
-                    </div>
-                </div>
+    </section>
+
+    {{-- ══════════════════════════════════════════
+         ARTICLES GRID
+    ══════════════════════════════════════════ --}}
+    <section class="nb-grid-section">
+        <div class="container">
+
+            {{-- meta bar --}}
+            <div class="nb-meta-bar">
+                <p class="nb-meta-bar__count">
+                    Showing <strong>{{ $news->firstItem() }}–{{ $news->lastItem() }}</strong> of <strong>{{ $news->total() }}</strong> articles
+                </p>
             </div>
-            @endforeach
-        </div>
 
-        @if ($news->hasPages())
-        <nav class="pagination">
-            <ul class="list-unstyled pagintaion-list">
+            @if($news->count())
+            <div class="nb-grid">
+                @foreach($news as $new)
+                <article class="nb-card">
 
-                {{-- PREVIOUS --}}
-                @if ($news->onFirstPage())
-                <li class="disabled">
-                    <span class="pagination-link" aria-disabled="true">
-                        {{-- LEFT SVG --}}
-                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015C5.70175 11.3811 5.7937 11.4446 5.89537 11.4883C5.99704 11.532 6.10639 11.5549 6.21704 11.5559C6.32769 11.5569 6.43742 11.5358 6.53984 11.4939C6.64225 11.452 6.7353 11.3901 6.81354 11.3119C6.89178 11.2336 6.95366 11.1406 6.99556 11.0382C7.03746 10.9357 7.05855 10.826 7.05759 10.7154C7.05662 10.6047 7.03364 10.4954 6.98996 10.3937C6.94629 10.292 6.8828 10.2001 6.80321 10.1232L2.67821 5.9982L6.80321 1.8732Z" />
-                        </svg>
-                    </span>
-                </li>
+                    {{-- Image --}}
+                    <div class="nb-card__img">
+                        <span class="nb-card__cat">{{ $new->category->name }}</span>
+                        <img src="{{ asset('image/posts') }}/{{ $new->featured_image }}"
+                             alt="{{ $new->title }}"
+                             width="800" height="500"
+                             loading="lazy">
+                        <a href="{{ route('news.detail', $new->id) }}" class="nb-card__read-btn" aria-label="Read more">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    {{-- Body --}}
+                    <div class="nb-card__body">
+
+                        {{-- meta --}}
+                        <div class="nb-card__meta">
+                            <span class="nb-card__meta-item">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                {{ $new->author->name }}
+                            </span>
+                            <span class="nb-card__meta-item">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                {{ $new->created_at->format('M d, Y') }}
+                            </span>
+                        </div>
+
+                        {{-- title --}}
+                        <a href="{{ route('news.detail', $new->id) }}" class="nb-card__title">
+                            {{ $new->title }}
+                        </a>
+
+                        <div class="nb-card__divider"></div>
+
+                        {{-- read more --}}
+                        <a href="{{ route('news.detail', $new->id) }}" class="nb-card__link">
+                            Read Article
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+
+                    </div>
+                </article>
+                @endforeach
+            </div>
+
+            @else
+            <div class="nb-empty">
+                <div class="nb-empty__icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <h2 class="nb-empty__title">No articles yet</h2>
+                <p class="nb-empty__sub">Check back soon — new updates are published regularly.</p>
+            </div>
+            @endif
+
+            {{-- ═══ Pagination ══════════════════════════════════════ --}}
+            @if($news->hasPages())
+            <nav class="nb-pagination" aria-label="News pagination">
+
+                {{-- Previous --}}
+                @if($news->onFirstPage())
+                <span class="nb-page-btn nb-page-btn--disabled" aria-disabled="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                </span>
                 @else
-                <li>
-                    <a href="{{ $news->previousPageUrl() }}" class="pagination-link">
-                        {{-- LEFT SVG --}}
-                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0.910711 5.40903C0.754485 5.5653 0.666722 5.77723 0.666722 5.9982C0.666722 6.21917 0.754485 6.43109 0.910711 6.58736L5.62488 11.3015L2.67821 5.9982L6.80321 1.8732Z" />
-                        </svg>
-                    </a>
-                </li>
+                <a href="{{ $news->previousPageUrl() }}" class="nb-page-btn" aria-label="Previous page">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
                 @endif
 
-                {{-- PAGE NUMBERS --}}
-                @foreach ($news->getUrlRange(1, $news->lastPage()) as $page => $url)
-                <li>
+                {{-- Page numbers --}}
+                @foreach($news->getUrlRange(1, $news->lastPage()) as $page => $url)
+                    @if($news->lastPage() <= 7 || $page == 1 || $page == $news->lastPage() || abs($page - $news->currentPage()) <= 1)
                     <a href="{{ $url }}"
-                        class="pagination-link {{ $news->currentPage() == $page ? 'active' : '' }}">
+                       class="nb-page-btn {{ $news->currentPage() == $page ? 'nb-page-btn--active' : '' }}"
+                       aria-label="Page {{ $page }}"
+                       aria-current="{{ $news->currentPage() == $page ? 'page' : 'false' }}">
                         {{ $page }}
                     </a>
-                </li>
+                    @elseif(abs($page - $news->currentPage()) == 2)
+                    <span class="nb-page-btn nb-page-btn--disabled" style="border:none; background:none; cursor:default;">…</span>
+                    @endif
                 @endforeach
 
-                {{-- NEXT --}}
-                @if ($news->hasMorePages())
-                <li>
-                    <a href="{{ $news->nextPageUrl() }}" class="pagination-link">
-                        {{-- RIGHT SVG --}}
-                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015L5.32179 5.9982L1.19679 1.8732Z" />
-                        </svg>
-                    </a>
-                </li>
+                {{-- Next --}}
+                @if($news->hasMorePages())
+                <a href="{{ $news->nextPageUrl() }}" class="nb-page-btn" aria-label="Next page">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                </a>
                 @else
-                <li class="disabled">
-                    <span class="pagination-link" aria-disabled="true">
-                        {{-- RIGHT SVG --}}
-                        <svg viewBox="0 0 8 12" width="12" height="12" fill="currentColor">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015Z" />
-                        </svg>
-                    </span>
-                </li>
+                <span class="nb-page-btn nb-page-btn--disabled" aria-disabled="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                </span>
                 @endif
 
-            </ul>
-        </nav>
-        @endif
-    </div>
+            </nav>
+            @endif
+
+        </div>
+    </section>
+
 </div>
 
 @endsection
