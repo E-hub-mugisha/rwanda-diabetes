@@ -1,256 +1,552 @@
 @extends('layouts.base')
-@section('title', $new->title )
+@section('title', $new->title)
 @section('content')
 
+<style>
+    /* ── Design tokens ── */
+    :root {
+        --ink:       #0f0e0d;
+        --ink-soft:  #4a4540;
+        --ink-muted: #8a847c;
+        --paper:     #faf9f6;
+        --cream:     #f2efe8;
+        --accent:    #c8522a;
+        --accent-lt: #f0e0d8;
+        --rule:      #e3ddd5;
+        --serif:     'Playfair Display', Georgia, serif;
+        --sans:      'DM Sans', system-ui, sans-serif;
+        --mono:      'DM Mono', monospace;
+        --radius:    4px;
+        --shadow:    0 2px 24px rgba(15,14,13,.07);
+        --shadow-md: 0 8px 40px rgba(15,14,13,.12);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); }
+
+    /* ── Page Banner ── */
+    .page-banner {
+        position: relative;
+        height: 400px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+    .page-banner .media-bg {
+        position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    }
+    .page-banner .media-bg img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: brightness(.55) saturate(.8);
+    }
+    .page-banner::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(15,14,13,.72) 0%, transparent 55%);
+    }
+    .banner-content {
+        position: relative; z-index: 2;
+        width: 100%; padding: 0 clamp(1.5rem, 5vw, 6rem) 3rem;
+    }
+    .banner-eyebrow {
+        display: flex; align-items: center; gap: .6rem;
+        font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+        text-transform: uppercase; color: rgba(255,255,255,.55);
+        margin-bottom: 1rem;
+    }
+    .banner-eyebrow span { color: var(--accent); }
+    .banner-eyebrow svg { opacity: .5; }
+    .banner-title {
+        font-family: var(--serif); font-size: clamp(1.8rem, 4.5vw, 3rem);
+        font-weight: 700; color: #fff;
+        line-height: 1.18; max-width: 780px;
+        text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    /* ── Layout wrapper ── */
+    .article-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3.5rem clamp(1rem, 4vw, 2.5rem) 5rem;
+        align-items: start;
+    }
+    @media (max-width: 1024px) {
+        .article-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── Main article ── */
+    .article-main {}
+
+    .article-hero {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 2.5rem;
+        box-shadow: var(--shadow-md);
+        aspect-ratio: 16/9;
+    }
+    .article-hero img {
+        width: 100%; height: 100%; object-fit: cover;
+        display: block;
+        transition: transform .6s ease;
+    }
+    .article-hero:hover img { transform: scale(1.02); }
+
+    .article-meta {
+        display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+        align-items: center; margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--rule);
+    }
+    .meta-chip {
+        display: flex; align-items: center; gap: .4rem;
+        font-family: var(--sans); font-size: .82rem; font-weight: 500;
+        color: var(--ink-soft);
+    }
+    .meta-chip svg { color: var(--accent); flex-shrink: 0; }
+    .meta-chip.category {
+        background: var(--accent-lt); color: var(--accent);
+        padding: .25rem .7rem; border-radius: 100px;
+        font-weight: 600; font-size: .75rem; letter-spacing: .05em;
+        text-transform: uppercase;
+    }
+
+    .article-title {
+        font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 700; color: var(--ink); line-height: 1.25;
+        margin-bottom: 1.25rem;
+    }
+
+    .article-excerpt {
+        font-size: 1.1rem; font-weight: 500; color: var(--ink-soft);
+        line-height: 1.7; margin-bottom: 2rem;
+        padding-left: 1.2rem;
+        border-left: 3px solid var(--accent);
+    }
+
+    .article-body {
+        font-size: 1rem; line-height: 1.85; color: var(--ink-soft);
+    }
+    .article-body p { margin-bottom: 1.4rem; }
+    .article-body h2, .article-body h3 {
+        font-family: var(--serif); color: var(--ink); margin: 2rem 0 .75rem;
+    }
+    .article-body a { color: var(--accent); text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color .2s; }
+    .article-body a:hover { text-decoration-color: var(--accent); }
+    .article-body blockquote {
+        border-left: 3px solid var(--accent);
+        padding: .75rem 1.25rem; margin: 1.5rem 0;
+        background: var(--cream); border-radius: 0 var(--radius) var(--radius) 0;
+        font-style: italic; color: var(--ink-soft);
+    }
+
+    /* ── Tags & Share ── */
+    .article-footer {
+        margin-top: 3rem; padding-top: 2rem;
+        border-top: 1px solid var(--rule);
+        display: flex; flex-wrap: wrap; gap: 1.5rem;
+        justify-content: space-between; align-items: center;
+    }
+    .footer-tags { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .footer-tags-label {
+        font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--ink-muted); margin-right: .25rem;
+    }
+    .tag-pill {
+        display: inline-block;
+        padding: .3rem .8rem;
+        background: var(--cream); border: 1px solid var(--rule);
+        border-radius: 100px;
+        font-size: .8rem; font-weight: 500; color: var(--ink-soft);
+        text-decoration: none;
+        transition: background .2s, border-color .2s, color .2s;
+    }
+    .tag-pill:hover { background: var(--accent-lt); border-color: var(--accent); color: var(--accent); }
+
+    .share-group { display: flex; align-items: center; gap: .75rem; }
+    .share-label {
+        font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--ink-muted);
+    }
+    .share-btn {
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1px solid var(--rule); background: #fff;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--ink-soft); text-decoration: none;
+        transition: background .2s, border-color .2s, color .2s, transform .2s;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .share-btn:hover {
+        background: var(--accent); border-color: var(--accent); color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(200,82,42,.25);
+    }
+
+    /* ── Sidebar ── */
+    .article-sidebar { position: sticky; top: 2rem; }
+
+    .sidebar-card {
+        background: #fff; border: 1px solid var(--rule);
+        border-radius: 8px; overflow: hidden;
+        box-shadow: var(--shadow);
+        margin-bottom: 1.75rem;
+    }
+    .sidebar-card-header {
+        padding: 1rem 1.4rem .85rem;
+        border-bottom: 1px solid var(--rule);
+        display: flex; align-items: center; gap: .6rem;
+    }
+    .sidebar-card-header h3 {
+        font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+        text-transform: uppercase; color: var(--ink-muted); font-weight: 500;
+    }
+    .sidebar-card-header .accent-dot {
+        width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
+    }
+
+    /* Related posts */
+    .related-post {
+        display: flex; gap: 1rem; padding: 1rem 1.4rem;
+        border-bottom: 1px solid var(--rule); text-decoration: none;
+        transition: background .18s;
+    }
+    .related-post:last-child { border-bottom: none; }
+    .related-post:hover { background: var(--cream); }
+    .related-post-thumb {
+        width: 72px; height: 60px; border-radius: var(--radius);
+        overflow: hidden; flex-shrink: 0;
+    }
+    .related-post-thumb img {
+        width: 100%; height: 100%; object-fit: cover;
+        display: block; transition: transform .3s;
+    }
+    .related-post:hover .related-post-thumb img { transform: scale(1.07); }
+    .related-post-body { flex: 1; min-width: 0; }
+    .related-post-date {
+        font-size: .72rem; color: var(--ink-muted); margin-bottom: .3rem;
+        font-family: var(--mono);
+    }
+    .related-post-title {
+        font-family: var(--serif); font-size: .93rem; font-weight: 600;
+        color: var(--ink); line-height: 1.35;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .related-post:hover .related-post-title { color: var(--accent); }
+
+    /* Author card */
+    .author-card-body { padding: 1.25rem 1.4rem; }
+    .author-avatar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .author-avatar {
+        width: 52px; height: 52px; border-radius: 50%;
+        background: var(--accent-lt); display: flex; align-items: center; justify-content: center;
+        font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--accent);
+        flex-shrink: 0; border: 2px solid var(--accent-lt);
+    }
+    .author-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--ink); }
+    .author-role { font-size: .78rem; color: var(--ink-muted); margin-top: .1rem; }
+    .author-bio { font-size: .85rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* Tags sidebar */
+    .tags-sidebar-body { padding: 1rem 1.4rem 1.25rem; }
+    .tags-cloud { display: flex; flex-wrap: wrap; gap: .45rem; }
+
+    /* TOC */
+    .toc-body { padding: 1rem 1.4rem 1.25rem; }
+    .toc-list { list-style: none; }
+    .toc-list li { border-bottom: 1px solid var(--rule); }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-list a {
+        display: flex; align-items: center; gap: .5rem;
+        padding: .5rem 0; text-decoration: none;
+        font-size: .85rem; color: var(--ink-soft);
+        transition: color .18s, padding-left .18s;
+    }
+    .toc-list a::before {
+        content: ''; display: inline-block;
+        width: 4px; height: 4px; border-radius: 50%;
+        background: var(--rule); flex-shrink: 0;
+        transition: background .18s;
+    }
+    .toc-list a:hover { color: var(--accent); padding-left: .4rem; }
+    .toc-list a:hover::before { background: var(--accent); }
+
+    /* ── Reading progress bar ── */
+    #reading-progress {
+        position: fixed; top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, var(--accent), #e8854f);
+        transform-origin: left; transform: scaleX(0);
+        z-index: 9999; transition: transform .1s linear;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb-bar {
+        background: var(--cream); border-bottom: 1px solid var(--rule);
+        padding: .7rem clamp(1rem, 4vw, 2.5rem);
+    }
+    .breadcrumb-inner {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; gap: .5rem;
+        font-size: .8rem; color: var(--ink-muted);
+    }
+    .breadcrumb-inner a { color: var(--ink-soft); text-decoration: none; transition: color .18s; }
+    .breadcrumb-inner a:hover { color: var(--accent); }
+    .breadcrumb-inner .sep { color: var(--rule); }
+    .breadcrumb-inner .current { color: var(--ink); font-weight: 500; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+        .article-footer { flex-direction: column; align-items: flex-start; }
+    }
+</style>
+
+<!-- Reading progress bar -->
+<div id="reading-progress"></div>
+
 <!-- Page Banner -->
-<div class="page-banner overlay">
+<div class="page-banner">
     <picture class="media media-bg">
-        <source
-            media="(max-width: 575px)"
-            srcset="assets/img/banner/page-banner-575.jpg">
-        <source
-            media="(max-width: 991px)"
-            srcset="assets/img/banner/page-banner-991.jpg">
-        <img
-            src="assets/img/banner/page-banner.jpg"
-            width="1920"
-            height="520"
-            loading="eager"
-            alt="Page Banner Image">
+        <source media="(max-width: 575px)" srcset="assets/img/banner/page-banner-575.jpg">
+        <source media="(max-width: 991px)" srcset="assets/img/banner/page-banner-991.jpg">
+        <img src="assets/img/banner/page-banner.jpg" width="1920" height="520" loading="eager" alt="">
     </picture>
-    <div class="page-banner-content">
-        <div class="container text-center">
-            <h1 class="heading text-80 fw-700" data-aos="fade-up">
-                {{ $new->title }}
-            </h1>
-            <ul
-                class="breadcrumb list-unstyled"
-                data-aos="fade-up"
-                data-aos-delay="100">
-                <li>
-                    <a
-                        href="/"
-                        class="text text-18"
-                        aria-label="Home Page">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <svg
-                        width="8"
-                        height="12"
-                        viewBox="0 0 8 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M7.08929 5.40903C7.24552 5.5653 7.33328 5.77723 7.33328 5.9982C7.33328 6.21917 7.24552 6.43109 7.08929 6.58736L2.37512 11.3015C2.29825 11.3811 2.2063 11.4446 2.10463 11.4883C2.00296 11.532 1.89361 11.5549 1.78296 11.5559C1.67231 11.5569 1.56258 11.5358 1.46016 11.4939C1.35775 11.452 1.2647 11.3901 1.18646 11.3119C1.10822 11.2336 1.04634 11.1406 1.00444 11.0382C0.962537 10.9357 0.941453 10.826 0.942414 10.7154C0.943376 10.6047 0.966364 10.4954 1.01004 10.3937C1.05371 10.292 1.1172 10.2001 1.19679 10.1232L5.32179 5.9982L1.19679 1.8732C1.04499 1.71603 0.960996 1.50553 0.962894 1.28703C0.964793 1.06853 1.05243 0.859522 1.20694 0.705015C1.36145 0.550508 1.57046 0.462868 1.78896 0.460969C2.00745 0.45907 2.21795 0.543066 2.37512 0.694864L7.08929 5.40903Z"
-                            fill="currentColor" />
-                    </svg>
-                </li>
-                <li>
-                    <a role="link" aria-disabled="true" class="text text-18 active">
-                        {{ $new->title }}
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div class="banner-content">
+        <p class="banner-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="currentColor"/></svg>
+            <a href="/" style="color:inherit;text-decoration:none;">Home</a>
+            <span>›</span>
+            <span>Blog</span>
+            <span>›</span>
+            <span style="color:rgba(255,255,255,.75);">Article</span>
+        </p>
+        <h1 class="banner-title">{{ $new->title }}</h1>
     </div>
 </div>
 
-<!-- Blog List -->
-<div class="page-blog-details mt-100">
-    <div class="container">
-        <drawer-opener
-            class="open-sidebar svg-wrapper text text-20 fw-500 d-lg-none"
-            data-drawer=".drawer-blog-sidebar"
-            data-aos="fade-up">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor">
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-            </svg>
-            Filter
-        </drawer-opener>
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="blog-details">
-                    <div class="card-blog-list" data-aos="fade-up">
-                        <div class="card-blog-list-media radius18">
-                            <div class="media">
-                                <img
-                                    src="{{asset('image/posts')}}/{{ $new->featured_image }}"
-                                    alt="blog image"
-                                    width="1000"
-                                    height="707"
-                                    loading="lazy">
-                            </div>
-                        </div>
+<!-- Breadcrumb bar -->
+<div class="breadcrumb-bar">
+    <div class="breadcrumb-inner">
+        <a href="/">Home</a>
+        <span class="sep">›</span>
+        <a href="/blog">Blog</a>
+        <span class="sep">›</span>
+        <span class="current">{{ Str::limit($new->title, 55) }}</span>
+    </div>
+</div>
 
-                        <div class="card-blog-content">
-                            <div class="card-blog-meta">
-                                <div class="card-blog-meta-item text text-18">
-                                    <svg
-                                        width="18"
-                                        height="20"
-                                        viewBox="0 0 18 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.00098 0.650391C11.499 0.650391 13.5437 2.69437 13.5439 5.19238C13.5439 7.69056 11.4992 9.73535 9.00098 9.73535C6.50299 9.73517 4.45898 7.69045 4.45898 5.19238C4.45919 2.69448 6.50308 0.650569 9.00098 0.650391Z"
-                                            stroke="currentColor"
-                                            stroke-width="1.3" />
-                                        <path
-                                            d="M5.2041 11.4092C5.22954 11.4041 5.2933 11.4126 5.34375 11.4502L5.34863 11.4531C6.41552 12.2405 7.68474 12.6464 8.99902 12.6465C10.3135 12.6465 11.5834 12.2407 12.6504 11.4531L12.6553 11.4502C12.6717 11.4383 12.7412 11.4086 12.8506 11.418C14.4691 11.6454 15.9118 12.559 16.8516 13.9482L16.8555 13.9531C17.0155 14.1843 17.152 14.4246 17.2607 14.6719C17.1428 14.8756 17.0147 15.073 16.8711 15.2705L16.7158 15.4775L16.708 15.4883C16.4195 15.8798 16.0836 16.2387 15.7285 16.5938C15.4317 16.8905 15.0922 17.1871 14.7559 17.4395C13.0785 18.6922 11.0607 19.3506 8.97656 19.3506C6.89732 19.3505 4.88498 18.6944 3.20996 17.4473C2.84577 17.1514 2.51261 16.8807 2.22559 16.5938L2.21875 16.5859L2.21094 16.5801L1.95215 16.3242C1.69963 16.0639 1.46736 15.7886 1.24609 15.4883L1.24316 15.4834L0.944336 15.0703C0.86428 14.9535 0.788425 14.8348 0.71875 14.7178C0.835661 14.4569 0.982086 14.185 1.14258 13.9531L1.14355 13.9541L1.15137 13.9424C2.06835 12.5567 3.53571 11.6401 5.16504 11.416L5.18457 11.4131L5.2041 11.4092Z"
-                                            stroke="currentColor"
-                                            stroke-width="1.3" />
-                                    </svg>
-                                    {{ $new->author->name}}
-                                </div>
-                                <div class="card-blog-meta-item text text-18">
-                                    <svg
-                                        width="18"
-                                        height="16"
-                                        viewBox="0 0 18 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1.125 1.25H16.875V11.375H9L4.5 15.3125V11.375H1.125V1.25Z"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                    {{ $new->created_at->format('M d, Y') }}
-                                </div>
-                            </div>
+<!-- Main layout -->
+<div class="article-layout">
 
-                            <h2 class="card-blog-heading heading text-50">
-                                {{ $new->title }}
-                            </h2>
+    <!-- ── Left: Article content ── -->
+    <main class="article-main" id="article-body">
 
-                            <div class="blog-description">
-                                <p>
-                                    {{ $new->excerpt }}
-                                </p>
+        <!-- Hero image -->
+        <div class="article-hero">
+            <img
+                src="{{ asset('image/posts') }}/{{ $new->featured_image }}"
+                alt="{{ $new->title }}"
+                width="1000" height="562" loading="lazy">
+        </div>
 
-                                <p>
-                                    {!! $new->content !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Meta row -->
+        <div class="article-meta">
+            @if($new->category ?? null)
+            <span class="meta-chip category">{{ $new->category }}</span>
+            @endif
+            <span class="meta-chip">
+                <svg width="15" height="15" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.001 0.65C11.499 0.65 13.544 2.694 13.544 5.192C13.544 7.69 11.499 9.735 9.001 9.735C6.503 9.735 4.459 7.69 4.459 5.192C4.459 2.694 6.503 0.65 9.001 0.65Z" stroke="currentColor" stroke-width="1.3"/><path d="M5.204 11.409C6.416 12.24 7.686 12.646 9 12.646C10.314 12.646 11.583 12.24 12.655 11.453C14.469 11.645 15.912 12.559 16.852 13.948C16.476 14.478 16.073 14.953 15.729 15.594C14.079 16.692 12.061 17.35 8.977 17.35C5.897 17.35 3.885 16.694 2.21 15.447C1.699 14.789 1.248 14.16 0.944 15.07L0.712 14.718C0.836 14.457 0.982 14.185 1.143 13.953C2.068 12.557 3.536 11.64 5.165 11.416L5.204 11.409Z" stroke="currentColor" stroke-width="1.3"/></svg>
+                {{ $new->author->name }}
+            </span>
+            <span class="meta-chip">
+                <svg width="15" height="15" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2.5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M1 7h16" stroke="currentColor" stroke-width="1.3"/><path d="M5 1v3M13 1v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                {{ $new->created_at->format('F d, Y') }}
+            </span>
+            <span class="meta-chip" style="margin-left:auto;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {{ ceil(str_word_count(strip_tags($new->content)) / 200) }} min read
+            </span>
+        </div>
 
-                <div class="blog-share" data-aos="fade-up">
-                    <div class="blog-share-item">
-                        <h2 class="label heading text-16 fw-500">Tags:</h2>
-                        <ul class="sidebar-tags list-unstyled">
-                            @php
-                            // Normalize tags: always an array, trimmed
-                            $tags = is_array($new->tags)
-                            ? $new->tags
-                            : explode(',', $new->tags ?? '');
-                            @endphp
+        <!-- Title -->
+        <h1 class="article-title">{{ $new->title }}</h1>
 
-                            <li>
-                                @foreach ($tags as $tag)
-                                @php $tag = trim($tag); @endphp
-                                @if($tag)
-                                <a href="#"
-                                    class="subheading subheading-bg text-18"
-                                    aria-label="Tag: {{ $tag }}">
-                                    {{ $tag }}
-                                </a>
-                                @endif
-                                @endforeach
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="blog-share-item">
-                        <h2 class="label heading text-16 fw-500">Share:</h2>
-                        <ul class="social-icons list-unstyled">
-                            <li>
-                                <a
-                                    class="social-link text"
-                                    href="https://web.facebook.com/">
-                                    <svg
-                                        width="10"
-                                        height="18"
-                                        viewBox="0 0 10 18"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6.66634 10.2552H8.74967L9.58301 6.92188H6.66634V5.25521C6.66634 4.39739 6.66634 3.58854 8.33301 3.58854H9.58301V0.788625C9.31159 0.752583 8.28551 0.671875 7.20209 0.671875C4.94001 0.671875 3.33301 2.05259 3.33301 4.5883V6.92188H0.833008V10.2552H3.33301V17.3385H6.66634V10.2552Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                    <span class="visually-hidden">Facebook</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="social-link text"
-                                    href="https://www.linkedin.com/">
-                                    <svg
-                                        width="17"
-                                        height="16"
-                                        viewBox="0 0 17 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M3.78357 2.16742C3.78326 2.84601 3.37157 3.45666 2.74262 3.71142C2.11367 3.96619 1.39306 3.81419 0.920587 3.32711C0.448112 2.84001 0.318129 2.11511 0.59192 1.49421C0.86572 0.873305 1.48862 0.480397 2.1669 0.500755C3.0678 0.527797 3.78398 1.26612 3.78357 2.16742ZM3.83357 5.06742H0.500237V15.5007H3.83357V5.06742ZM9.10025 5.06742H5.78357V15.5007H9.06692V10.0257C9.06692 6.97573 13.0419 6.6924 13.0419 10.0257V15.5007H16.3336V8.8924C16.3336 3.75075 10.4503 3.94242 9.06692 6.4674L9.10025 5.06742Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                    <span class="visually-hidden">Linkedin</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="social-link text"
-                                    href="https://x.com/">
-                                    <svg
-                                        width="18"
-                                        height="14"
-                                        viewBox="0 0 18 14"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M17.5104 1.71289C16.8743 1.9943 16.1996 2.17914 15.5088 2.26127C16.2366 1.82561 16.7812 1.14026 17.0411 0.332886C16.3573 0.739186 15.6088 1.02515 14.8282 1.17835C14.1693 0.475394 13.2483 0.0770356 12.2848 0.0781272C10.3605 0.0781272 8.79975 1.63835 8.79975 3.56354C8.79975 3.83666 8.83109 4.10153 8.88967 4.35709C5.99206 4.21121 3.42506 2.82455 1.70565 0.715686C1.39608 1.24757 1.23338 1.85216 1.2342 2.46757C1.2342 3.67667 1.84967 4.74388 2.78458 5.36868C2.23115 5.35118 1.6899 5.20171 1.20599 4.93262C1.20545 4.94726 1.20545 4.9619 1.20545 4.97574C1.20545 6.66484 2.40683 8.07384 4.00166 8.39376C3.70234 8.47476 3.3936 8.51568 3.08352 8.51543C2.85831 8.51543 2.63976 8.49468 2.42733 8.45393C2.8711 9.83826 4.15739 10.8461 5.683 10.8738C4.44845 11.8427 2.92391 12.3683 1.35453 12.3661C1.07677 12.3663 0.799246 12.3499 0.523438 12.3171C2.1167 13.3413 3.97127 13.8849 5.86535 13.8829C12.2763 13.8829 15.7817 8.57243 15.7817 3.9671C15.7817 3.81643 15.778 3.66523 15.7713 3.51615C16.4536 3.02322 17.0425 2.41257 17.5104 1.71289Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                    <span class="visually-hidden">Twitter</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="social-link text"
-                                    href="https://www.instagram.com/">
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 18 18"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.85724 0.671875C10.7951 0.673425 11.2703 0.678392 11.681 0.690617L11.8427 0.6959C12.0296 0.702542 12.2139 0.710875 12.4362 0.721292C13.3229 0.762267 13.9278 0.902542 14.4591 1.10879C15.0083 1.3206 15.4722 1.60671 15.9354 2.06991C16.3979 2.5331 16.6841 2.99837 16.8966 3.54629C17.1021 4.07685 17.2424 4.68241 17.2841 5.56921C17.294 5.79143 17.302 5.97577 17.3086 6.16263L17.3138 6.32437C17.326 6.73499 17.3316 7.21032 17.3333 8.14818L17.334 8.76952C17.3341 8.84543 17.3341 8.92377 17.3341 9.0046L17.334 9.23968L17.3335 9.8611C17.3319 10.7989 17.327 11.2743 17.3147 11.6848L17.3094 11.8466C17.3028 12.0335 17.2945 12.2178 17.2841 12.44C17.2431 13.3268 17.1021 13.9317 16.8966 14.4629C16.6847 15.0123 16.3979 15.4762 15.9354 15.9393C15.4722 16.4018 15.0062 16.6879 14.4591 16.9004C13.9278 17.106 13.3229 17.2463 12.4362 17.2879C12.2139 17.2978 12.0296 17.3059 11.8427 17.3124L11.681 17.3177C11.2703 17.3299 10.7951 17.3354 9.85724 17.3373L9.23582 17.3379C9.1599 17.3379 9.08157 17.3379 9.00074 17.3379H8.76565L8.14424 17.3373C7.2064 17.3358 6.73109 17.3309 6.32046 17.3186L6.15873 17.3134C5.97185 17.3067 5.78752 17.2983 5.5653 17.2879C4.67849 17.247 4.07433 17.106 3.54239 16.9004C2.99377 16.6887 2.52919 16.4018 2.06599 15.9393C1.6028 15.4762 1.31739 15.0102 1.10489 14.4629C0.898636 13.9317 0.759052 13.3268 0.717386 12.44C0.707486 12.2178 0.69941 12.0335 0.692869 11.8466L0.687627 11.6848C0.675435 11.2743 0.669877 10.7989 0.668077 9.8611L0.667969 8.14818C0.669519 7.21032 0.674477 6.73499 0.686702 6.32437L0.691994 6.16263C0.698635 5.97577 0.706969 5.79143 0.717386 5.56921C0.758352 4.68171 0.898636 4.07754 1.10489 3.54629C1.31669 2.99768 1.6028 2.5331 2.06599 2.06991C2.52919 1.60671 2.99447 1.32129 3.54239 1.10879C4.07364 0.902542 4.6778 0.762958 5.5653 0.721292C5.78752 0.7114 5.97185 0.703325 6.15873 0.696783L6.32046 0.691542C6.73109 0.679342 7.2064 0.673783 8.14424 0.671983L9.85724 0.671875ZM9.00074 4.83796C6.6983 4.83796 4.83405 6.70423 4.83405 9.0046C4.83405 11.307 6.70033 13.1713 9.00074 13.1713C11.3032 13.1713 13.1674 11.305 13.1674 9.0046C13.1674 6.70221 11.3011 4.83796 9.00074 4.83796ZM9.00074 6.50462C10.3815 6.50462 11.5007 7.62352 11.5007 9.0046C11.5007 10.3853 10.3818 11.5046 9.00074 11.5046C7.61999 11.5046 6.50072 10.3858 6.50072 9.0046C6.50072 7.62385 7.61957 6.50462 9.00074 6.50462ZM13.3757 3.58796C12.8013 3.58796 12.3341 4.05455 12.3341 4.62892C12.3341 5.20329 12.8007 5.6706 13.3757 5.6706C13.9501 5.6706 14.4174 5.20402 14.4174 4.62892C14.4174 4.05455 13.9493 3.58724 13.3757 3.58796Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                    <span class="visually-hidden">Instagram</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Excerpt / pull quote -->
+        @if($new->excerpt)
+        <p class="article-excerpt">{{ $new->excerpt }}</p>
+        @endif
+
+        <!-- Body content -->
+        <div class="article-body">
+            {!! $new->content !!}
+        </div>
+
+        <!-- Footer: tags + share -->
+        <div class="article-footer">
+            <div class="footer-tags">
+                <span class="footer-tags-label">Tags</span>
+                @php
+                    $tags = is_array($new->tags)
+                        ? $new->tags
+                        : explode(',', $new->tags ?? '');
+                @endphp
+                @foreach($tags as $tag)
+                    @php $tag = trim($tag); @endphp
+                    @if($tag)
+                        <a href="#" class="tag-pill" aria-label="Tag: {{ $tag }}">{{ $tag }}</a>
+                    @endif
+                @endforeach
             </div>
 
+            <div class="share-group">
+                <span class="share-label">Share</span>
+                <a class="share-btn" href="https://web.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                    <svg width="9" height="16" viewBox="0 0 10 18" fill="currentColor"><path d="M6.666 10.255H8.75l.833-3.333H6.666V5.255C6.666 4.397 6.666 3.588 8.333 3.588H9.583V.789C9.312.752 8.286.672 7.202.672 4.94.672 3.333 2.053 3.333 4.588V6.922H.833v3.333h2.5v7.083h3.333v-7.083Z"/></svg>
+                </a>
+                <a class="share-btn" href="https://www.linkedin.com/shareArticle?url={{ urlencode(request()->url()) }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                    <svg width="15" height="14" viewBox="0 0 17 16" fill="currentColor"><path d="M3.784 2.167C3.784 2.846 3.372 3.456 2.743 3.711 2.114 3.966 1.393 3.814.921 3.327.448 2.84.318 2.115.592 1.494.866.873 1.489.48 2.167.501c.9.027 1.617.765 1.617 1.666ZM3.834 5.067H.5V15.5h3.333V5.067ZM9.1 5.067H5.784V15.5h3.283v-5.475c0-3.05 3.975-3.333 3.975 0V15.5h3.292V8.892C16.334 3.75 10.45 3.942 9.067 6.467L9.1 5.067Z"/></svg>
+                </a>
+                <a class="share-btn" href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($new->title) }}" target="_blank" rel="noopener" aria-label="Share on X / Twitter">
+                    <svg width="16" height="12" viewBox="0 0 18 14" fill="currentColor"><path d="M17.51 1.713A8.33 8.33 0 0 1 15.509 2.26 4.166 4.166 0 0 0 17.04.333a8.33 8.33 0 0 1-2.64 1.009 4.157 4.157 0 0 0-7.084 3.79A11.8 11.8 0 0 1 1.706.716a4.157 4.157 0 0 0 1.286 5.548 4.14 4.14 0 0 1-1.882-.52v.053a4.158 4.158 0 0 0 3.333 4.073 4.17 4.17 0 0 1-1.877.071 4.158 4.158 0 0 0 3.882 2.887A8.339 8.339 0 0 1 .524 14.389 11.76 11.76 0 0 0 6.865 16.5a11.76 11.76 0 0 0 11.847-11.97c0-.18-.004-.36-.012-.537A8.46 8.46 0 0 0 20.8 2C20.116 2.3 19.386 2.5 18.617 2.6A4.17 4.17 0 0 0 17.51 1.713Z"/></svg>
+                </a>
+                <a class="share-btn" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Share on Instagram">
+                    <svg width="16" height="16" viewBox="0 0 18 18" fill="currentColor"><path d="M9.857.672c.938.002 1.413.007 1.824.02l.161.005c.187.007.371.015.593.025.887.041 1.492.181 2.023.387.55.212 1.013.498 1.477.961.462.463.748.927.961 1.476.206.53.346 1.136.387 2.023.01.222.018.406.024.593l.005.162c.012.41.018.885.019 1.822l.001.622-.001.847v.234l-.001.622-.001.622c-.002.937-.007 1.412-.02 1.822l-.005.162c-.007.187-.015.371-.025.593-.041.887-.181 1.492-.387 2.023a3.99 3.99 0 0 1-.961 1.476 3.99 3.99 0 0 1-1.477.961c-.531.206-1.136.346-2.023.387-.222.01-.406.018-.593.024l-.161.005c-.411.012-.886.018-1.824.019l-.621.001h-.47l-.622-.001-.622-.001c-.937-.002-1.412-.007-1.822-.02l-.162-.005c-.187-.007-.371-.015-.593-.025-.887-.041-1.492-.181-2.023-.387a3.99 3.99 0 0 1-1.476-.961A3.99 3.99 0 0 1 1.1 14.463c-.206-.531-.346-1.136-.387-2.023a48.3 48.3 0 0 1-.024-.593l-.006-.162C.671 11.275.667 10.8.666 9.862L.666 8.145c.002-.937.007-1.412.02-1.822l.005-.162C.698 5.974.706 5.79.717 5.568c.04-.887.181-1.492.387-2.023.212-.549.498-1.013.96-1.476.463-.463.928-.749 1.477-.961.53-.206 1.136-.346 2.023-.387.222-.01.406-.018.593-.025l.162-.005C6.73.679 7.206.673 8.143.671L9.857.672ZM9 4.838a4.167 4.167 0 1 0 0 8.333A4.167 4.167 0 0 0 9 4.838ZM9 6.505a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm4.375-3.084a.833.833 0 1 0 0 1.667.833.833 0 0 0 0-1.667Z"/></svg>
+                </a>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- ── Right: Sidebar ── -->
+    <aside class="article-sidebar">
+
+        <!-- Author card -->
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <span class="accent-dot"></span>
+                <h3>About the Author</h3>
+            </div>
+            <div class="author-card-body">
+                <div class="author-avatar-row">
+                    <div class="author-avatar">{{ strtoupper(substr($new->author->name, 0, 1)) }}</div>
+                    <div>
+                        <div class="author-name">{{ $new->author->name }}</div>
+                        <div class="author-role">Staff Writer</div>
+                    </div>
+                </div>
+                <p class="author-bio">Expert contributor covering the latest insights and trends. Passionate about sharing knowledge and actionable perspectives.</p>
+            </div>
+        </div>
+
+        <!-- Related posts -->
+        @if(isset($relatedPosts) && $relatedPosts->count())
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <span class="accent-dot"></span>
+                <h3>Related Articles</h3>
+            </div>
+            @foreach($relatedPosts as $related)
+            <a href="/news/{{ $related->slug ?? $related->id }}" class="related-post">
+                <div class="related-post-thumb">
+                    <img src="{{ asset('image/posts') }}/{{ $related->featured_image }}"
+                         alt="{{ $related->title }}" loading="lazy">
+                </div>
+                <div class="related-post-body">
+                    <div class="related-post-date">{{ $related->created_at->format('M d, Y') }}</div>
+                    <div class="related-post-title">{{ $related->title }}</div>
+                </div>
+            </a>
+            @endforeach
+        </div>
+        @else
+        {{-- Fallback: static placeholder cards shown when no related posts injected --}}
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <span class="accent-dot"></span>
+                <h3>Related Articles</h3>
+            </div>
+            <div style="padding:1.25rem 1.4rem; color:var(--ink-muted); font-size:.85rem;">
+                No related articles at the moment.
+            </div>
+        </div>
+        @endif
+
+        <!-- Tags cloud -->
+        @if(isset($allTags) && count($allTags))
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <span class="accent-dot"></span>
+                <h3>Popular Tags</h3>
+            </div>
+            <div class="tags-sidebar-body">
+                <div class="tags-cloud">
+                    @foreach($allTags as $t)
+                    <a href="#" class="tag-pill">{{ trim($t) }}</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @else
+        {{-- Fallback: current post tags --}}
+        <div class="sidebar-card">
+            <div class="sidebar-card-header">
+                <span class="accent-dot"></span>
+                <h3>Tags</h3>
+            </div>
+            <div class="tags-sidebar-body">
+                <div class="tags-cloud">
+                    @php
+                        $tags = is_array($new->tags)
+                            ? $new->tags
+                            : explode(',', $new->tags ?? '');
+                    @endphp
+                    @foreach($tags as $tag)
+                        @php $tag = trim($tag); @endphp
+                        @if($tag)
+                            <a href="#" class="tag-pill">{{ $tag }}</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
+
+        <!-- Newsletter CTA -->
+        <div class="sidebar-card" style="background: linear-gradient(135deg, var(--ink) 0%, #2a2320 100%); border-color: transparent;">
+            <div style="padding: 1.5rem 1.4rem; text-align:center;">
+                <div style="width:40px;height:40px;background:var(--accent);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <h4 style="font-family:var(--serif);color:#fff;font-size:1.05rem;margin-bottom:.5rem;">Stay in the Loop</h4>
+                <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:1.1rem;">Get the latest articles delivered to your inbox weekly.</p>
+                <input type="email" placeholder="Your email address"
+                    style="width:100%;padding:.6rem .9rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:.6rem;outline:none;"
+                    onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'">
+                <button style="width:100%;padding:.65rem;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-weight:600;font-size:.85rem;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Subscribe</button>
+            </div>
+        </div>
+
+    </aside>
 </div>
+
+<script>
+    // Reading progress bar
+    (function () {
+        const bar = document.getElementById('reading-progress');
+        const body = document.getElementById('article-body');
+        if (!bar || !body) return;
+        function update() {
+            const rect = body.getBoundingClientRect();
+            const total = rect.height - window.innerHeight;
+            const progress = Math.min(1, Math.max(0, -rect.top / total));
+            bar.style.transform = 'scaleX(' + progress + ')';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+    })();
+</script>
 
 @endsection

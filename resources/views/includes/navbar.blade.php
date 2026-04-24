@@ -2,11 +2,11 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="{{ route('admin.dashboard')}}">
-            <img src="https://demo.bootstrapdash.com/star-admin-free/dist/themes/assets/images/logo.svg"
+            <img src="{{ asset('assets/img/logo-rda.png') }}"
                 alt="logo" />
         </a>
         <a class="navbar-brand brand-logo-mini" href="{{ route('admin.dashboard')}}">
-            <img src="https://demo.bootstrapdash.com/star-admin-free/dist/themes/assets/images/logo-mini.svg"
+            <img src="{{ asset('assets/img/logo-rda.png') }}"
                 alt="logo" />
         </a>
     </div>
